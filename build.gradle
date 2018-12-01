@@ -1,0 +1,38 @@
+buildscript {
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.16'
+    }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.8.1'
+    id 'com.github.jruby-gradle.base' version '1.4.0'
+}
+
+dependencies {
+    gems files('repos/gem/asciidoctor-pdf-cjk-0.1.3.gem')
+}
+
+asciidoctorj {
+    version = '1.5.5'
+}
+
+asciidoctor {
+    dependsOn jrubyPrepare
+    gemPath = jrubyPrepare.outputDir
+    backends = ['pdf']
+    requires = [
+        'asciidoctor-pdf-cjk'
+    ]
+    attributes(
+        'build-gradle': file('build.gradle'),
+        'sourcedir': 'src/',
+        'source-highlighter': 'coderay',
+        'pdf-stylesdir': "@style",
+        'pdf-fontsdir': "@font",
+        'pdf-style': 'pdf'
+    )
+    sources {
+        include 'index.adoc'
+    }
+}

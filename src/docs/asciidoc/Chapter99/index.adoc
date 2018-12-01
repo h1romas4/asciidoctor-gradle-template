@@ -1,0 +1,164 @@
+:stylesheet: ../@style/asciidoctor.css
+include::../attribute.adoc[]
+
+== Asciidoc テンプレート集
+
+=== 脚注
+
+脚注は次のように書きます。
+
+[WARNING]
+====
+``WARNING`` メッセージはここに。
+====
+
+[TIP]
+====
+``TIP`` メッセージはここに。
+====
+
+その他に、``IMPORTANT`` ``NOTE`` ``CAUTION`` があります。
+
+1行でこのようにもかけます。
+
+[source]
+IMPORTANT: 重要事項を記述します。
+
+=== 画像挿入
+
+.画像のタイトル
+image::image-01.png[]
+
+=== キーボードショートカット表記
+
+|===
+|ショートカット|目的
+|kbd:[F11]
+|全画面表示
+|kbd:[Ctrl+T]
+|新規タブを開く
+|kbd:[Ctrl+Shift+N]
+|シークレットウインドウを開く
+|kbd:[Ctrl + +]
+|ズーム
+|===
+
+ファイルを保存するには menu:File[Save] を選択します。拡大率をデフォルトに戻すには menu:View[Zoom > Reset] を選択します。
+
+完了したら btn:[OK] ボタンを押してください。ナビゲーターでファイルを選択し、 btn:[開く] をクリックしてください。
+
+=== 属性値の文書への挿入
+
+``値: {sourcedir}``
+
+=== ソースコード（直接記述）
+
+[source, java]
+.Hello.java
+----
+class Hello {
+    public static void main(String[] args) {
+        // comment
+        System.out.println("Hello, World"); // <1>
+    }
+}
+----
+
+<1> 注釈をいれることができます。
+
+=== ソースコード（外部ファイルのinclude）
+
+NOTE: ファイルから行数とインデントを指定できます。
+
+[source, javascript, indent=0]
+.sample.js
+----
+include::src/sample.js[lines=2..3]
+----
+
+<1> include 中でも注釈を指定できます。
+
+=== サイドバー
+
+.Javaについて
+****
+Java（ジャバ）は、コンピューターにおいて、狭義ではプログラミング言語Javaを指す。広義では言語仕様以外にも、仕様が与えられているJavaクラスライブラリやJava仮想マシン、さらにはJDKやJREなどの公式のものをはじめとする、場合によってはサードパーティのものなどを含め曖昧にJavaプラットフォームと総称されるようなものなどのエコシステムなどを指すこともある。構文についてはJavaの文法の記事を参照。 
+
+https://ja.wikipedia.org/wiki/Java より
+****
+
+=== 引用
+
+[quote, hiromasa]
+____
+引用です。引用です。引用です。
+
+引用です。引用です。引用です。
+____
+
+=== 表組み
+
+.テーブルタイトル
+[options="header"]
+|=======================
+|Col 1|Col 2      |Col 3
+|1    |Item 1     |a
+|2    |Item 2     |b
+|3    |Item 3     |c
+|=======================
+
+.テーブルタイトル
+[format="csv",width="60%",cols="4"]
+[frame="topbot",grid="none"]
+|======
+1,2,3,4
+a,b,c,d
+A,B,C,D
+|======
+
+=== 改ページ
+
+[source]
+<<<
+
+=== 水平線
+
+[source]
+---
+
+=== リスト
+
+* レベル１
+** レベル２
+*** レベル３
+**** レベル４
+***** レベル５
+* レベル１
+
+=== リスト（順番あり）
+
+. 手順１
+. 手順２
+.. 手順２a
+.. 手順２b
+. 手順３
+
+=== 定義リスト
+
+第一項::
+第一項の定義
+第二項::
+第二項の定義
+
+=== リストとラベルの組み合わせ
+
+オペレーティング システム::
+  Linux:::
+    . Fedora
+      * デスクトップ
+    . Ubuntu
+      * デスクトップ
+      * サーバ
+  BSD:::
+    . FreeBSD
+    . NetBSD

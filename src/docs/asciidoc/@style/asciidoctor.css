@@ -1,0 +1,58 @@
+h1, h2, h3, h4, h5 {
+    color: #2d466b;
+    font-weight: 300;
+    font-style: normal;
+    margin: 1.5em 0 1.5em 0;
+}
+
+.hljs {
+    font-family: 'Ricty';
+    font-size: 1.5em;
+    background: #444 !important;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: white !important;
+}
+
+.hljs,
+.hljs-subst {
+  color: white !important;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-built_in,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #d88 !important;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: wheat !important;
+}
+
+blockquote {
+    background-color: #fff;
+}
+
+blockquote .paragraph p {
+    font-size: 0.9em !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    background-color: #fff;
+}

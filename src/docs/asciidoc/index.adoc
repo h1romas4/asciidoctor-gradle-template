@@ -1,0 +1,15 @@
+:stylesheet: ./@style/asciidoctor.css
+include::./attribute.adoc[]
+
+= AsciidoctorとGradleでつくるPDF文書執筆環境
+https://github.com/h1romas4
+2018-12-01
+:Revision: 1.0.0
+:toc:
+
+// 章ごとにインクルードしていく（画像パスも上書きすること）
+:imagesdir: Chapter01/images
+include::Chapter01/index.adoc[]
+
+:imagesdir: Chapter99/images
+include::Chapter99/index.adoc[]
