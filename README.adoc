@@ -1,0 +1,3 @@
+= asciidoctor-gradle-template
+
+Work in progress.
