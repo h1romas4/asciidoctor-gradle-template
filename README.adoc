@@ -1,3 +1,5 @@
 = asciidoctor-gradle-template
 
 Work in progress.
+
+@see https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/docs/index.pdf
