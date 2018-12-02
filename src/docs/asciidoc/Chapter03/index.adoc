@@ -1,0 +1,79 @@
+:stylesheet: ../@style/asciidoctor.css
+include::../attribute.adoc[]
+
+== Asciidoc から PDF 文書を作成する
+
+=== サンプル文書の PDF 変換を試す
+
+環境の準備ができましたので Asciidoc 文書を PDF に変換してみます。
+
+変換に使うビルドスクリプトは github のリポジトリに公開されており、リポジトリには PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく PDF に変換できるかを試してみましょう。
+
+macOS / Linux の場合は次のようにします。
+
+[source]
+[caption="手順. "]
+.PDF 変換ビルドスクリプトの取得と実行
+----
+$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip # <1>
+$ unzip master.zip # <2>
+$ cd asciidoctor-gradle-template-master # <3>
+$ ./gradlew asciidoc # <4>
+> Task :asciidoctor
+
+BUILD SUCCESSFUL in 19s <5>
+2 actionable tasks: 1 executed, 1 up-to-date
+----
+
+<1> リポジトリのファイルをダウンロードします。
+<2> ダウンロードした .zip ファイルを展開します。
+<3> カレントディレクトリを展開したフォルダの中に移します。
+<4> Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。
+<5> ``BUILD SUCCESSFUL`` が出力されればビルド成功です。
+
+<<<
+
+Windows をお使いの場合は同等の操作をブラウザとエクスプローラーを使って行います。
+
+. ブラウザを使って ``https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip`` にアクセスしリポジトリのファイルを取得します。
+. ダウンロードした .zip ファイルを右クリックし展開します。
+. 展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに ``cmd.exe`` と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。
++
+image::windows-01.png[windows, 480]
+
+. ``.\gradlew.bat asciidoc`` と入力し Gradle ビルドを実行します。
+. ``BUILD SUCCESSFUL`` が出力されればビルド成功です。
+
+.プロキシーサーバーの設定
+****
+もしお使いのコンピュータープロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを ``./gradlew asciidoc`` をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（``example.com``） と ポート番号（``8080``）部分はそれぞれの環境に合わせてください。
+
+[source]
+[caption="手順. "]
+.プロキシーサーバー設定（Windows）
+----
+set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
+----
+
+[source]
+[caption="手順. "]
+.プロキシーサーバー設定（macOS / Linux）
+----
+export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
+----
+****
+
+<<<
+
+Asciidoc から変換された PDF は次の場所に格納されます。
+
+[source]
+----
+build/asciidoc/pdf/index.pdf
+----
+
+``index.pdf`` が作成され正しい文書が表示できればビルドは成功です。コンピューターに Asciidoc 文書を PDF に変換する環境が整いました。
+
+image::build-success.png[]
+
+サンプル文書は Asciidoc 文書形式のひな形にもなっています。このファイルを元に次は自身の Asciidoc 文書を作成していきます。
