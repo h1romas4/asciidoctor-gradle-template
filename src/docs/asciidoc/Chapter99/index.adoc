@@ -1,4 +1,4 @@
-:stylesheet: ../@style/asciidoctor.css
+:stylesheet: ../@style/vscode-asciidoc.css
 include::../attribute.adoc[]
 
 == Asciidoc テンプレート集

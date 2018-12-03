@@ -21,13 +21,15 @@ asciidoctorj {
 asciidoctor {
     dependsOn jrubyPrepare
     gemPath = jrubyPrepare.outputDir
-    backends = ['pdf']
+    backends = ['pdf', 'html']
     requires = [
         'asciidoctor-pdf-cjk'
     ]
     attributes(
         'build-gradle': file('build.gradle'),
         'sourcedir': 'src/',
+        'stylesdir': '@style',
+        'stylesheet': 'asciidoctor.css',
         'source-highlighter': 'coderay',
         'pdf-stylesdir': "@style",
         'pdf-fontsdir': "@font",

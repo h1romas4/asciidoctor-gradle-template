@@ -2,7 +2,9 @@
 
 Work in progress.
 
-@see https://h1romas4.github.io/asciidoctor-gradle-template/index.pdf[AsciidoctorとGradleでつくるPDF文書執筆環境]
+@see https://h1romas4.github.io/asciidoctor-gradle-template/index.html[AsciidoctorとGradleでつくるPDF文書執筆環境(HTML version)]
+
+@see https://h1romas4.github.io/asciidoctor-gradle-template/index.pdf[AsciidoctorとGradleでつくるPDF文書執筆環境(PDF version)]
 
 == Fonts
 

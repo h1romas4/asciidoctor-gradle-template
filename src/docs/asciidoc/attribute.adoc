@@ -20,7 +20,7 @@
 :version-label: バージョン
 :warning-caption: 警告
 
-:experimental:
+:experimental:
 :icons: font
 :sectnums:
 :chapter-label:

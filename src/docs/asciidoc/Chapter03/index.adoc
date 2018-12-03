@@ -1,4 +1,4 @@
-:stylesheet: ../@style/asciidoctor.css
+:stylesheet: ../@style/vscode-asciidoc.css
 include::../attribute.adoc[]
 
 == Asciidoc から PDF 文書を作成する
@@ -46,7 +46,7 @@ image::windows-01.png[windows, 480]
 
 .プロキシーサーバーの設定
 ****
-もしお使いのコンピュータープロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを ``./gradlew asciidoc`` をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（``example.com``） と ポート番号（``8080``）部分はそれぞれの環境に合わせてください。
+もしお使いのコンピューターがプロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを ``./gradlew asciidoc`` をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（``example.com``） と ポート番号（``8080``）部分はそれぞれの環境に合わせてください。
 
 [source]
 [caption="手順. "]
