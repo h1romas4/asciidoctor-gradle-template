@@ -1,13 +1,13 @@
 :stylesheet: ../@style/editor.css
 include::../attribute.adoc[]
 
-== Asciidoc から PDF 文書を作成する
+== Asciidoc から PDF/HTML 文書を作成する
 
-=== サンプル文書の PDF 変換を試す
+=== サンプル文書の変換を試す
 
-環境の準備ができましたので Asciidoc 文書を PDF に変換してみます。
+環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。
 
-変換に使うビルドスクリプトは github のリポジトリに公開されており、リポジトリには PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく PDF に変換できるかを試してみましょう。
+変換に使うスクリプトは github のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく PDF に変換できるかを試してみましょう。
 
 macOS / Linux の場合は次のようにします。
 
@@ -41,7 +41,7 @@ Windows をお使いの場合は同等の操作をブラウザとエクスプロ
 +
 image::windows-01.png[windows, 480]
 
-. ``.\gradlew.bat asciidoc`` と入力し Gradle ビルドを実行します。
+. ``.\gradlew.bat asciidoc`` と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。
 . ``BUILD SUCCESSFUL`` が出力されればビルド成功です。
 
 .プロキシーサーバーの設定
@@ -65,14 +65,13 @@ export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 
 <<<
 
-Asciidoc から変換された PDF は次の場所に格納されます。
+Asciidoc から変換された HTML/PDF は次の場所に格納されます。ブラウザや PDF ビュアーで表示を確認してみます。
 
 [source]
 ----
+build/asciidoc/html/index.html
 build/asciidoc/pdf/index.pdf
 ----
-
-``index.pdf`` が作成され正しい文書が表示できればビルドは成功です。コンピューターに Asciidoc 文書を PDF に変換する環境が整いました。
 
 image::build-success.png[]
 

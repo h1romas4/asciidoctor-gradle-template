@@ -1,9 +1,9 @@
 :stylesheet: ../@style/editor.css
 include::../attribute.adoc[]
 
-== PDF 変換用ビルドスクリプトを使う準備
+== Asciidoc 文書変換用スクリプトを使う準備
 
-本手順で用いる PDF 変換用ビルドスクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
+本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
 
 NOTE: Java 実行環境は、本手順で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のプロダクトは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
 
@@ -37,9 +37,11 @@ IMPORTANT: 現在 Java 9 以降の環境で Asciidoctor の実行環境となる
 
 もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入することができます。
 
-[quote, https://sdkman.io/]
+[quote, SDKMAN]
 ____
 SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.
+
+https://sdkman.io/
 ____
 
 [source]
@@ -119,9 +121,11 @@ $ sdk default java 8.0.192-zulu <3>
 
 もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。
 
-[quote, https://adoptopenjdk.net]
+[quote, AdoptOpenJDK]
 ____
 Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+
+https://adoptopenjdk.net
 ____
 
 ``https://adoptopenjdk.net`` サイトにブラウザでアクセスし、OpenJDK 8 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。

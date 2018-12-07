@@ -3,18 +3,27 @@ include::../attribute.adoc[]
 
 == はじめに
 
-本文書は ``Asciidoc`` とその Ruby による実装である ``Asciidoctor`` を用いて PDF 文書を作成する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
+本文書は ``Asciidoc`` とその Ruby による実装である ``Asciidoctor`` を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
 
-``Asciidoc`` は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
+この文書の手順より以下のことができるようになります。
+
+[format="csv",cols="1,2"]
+[frame="topbot",grid="none"]
+|======
+Asciidoc 文書変換用スクリプト,Asciidoc 形式で執筆した文書を、公開できる PDF/HTML 形式に変換する。
+Visual Studio Code 拡張設定,変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。
+|======
+
+Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
 
 [TIP]
 ====
-``Asciidoc`` の表現力を示すひとつの例は、このような脚注表現です。
+Asciidoc の表現力を示すひとつの例は、このような脚注表現です。
 ====
 
 一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。
 
-具体的には PDF 変換に、実行を JVM 環境だけに依存する ``Ascidocrotj`` と ``Gradle`` を活用し、執筆環境については ``Visual Studio Code`` を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。
+具体的には文書の変換に、実行を JVM 環境だけに依存する ``Ascidocrotj`` と ``Gradle`` を活用し、執筆環境については ``Visual Studio Code`` を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。
 
 本文書がみなさんの執筆活動のお手伝いになれば幸いです。
 
@@ -35,6 +44,7 @@ Asciidoc::
     * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
     * asciidoctor-pdf-cjk - MIT License - https://github.com/chloerei/asciidoctor-pdf-cjk
 Build Tool::
+    * SDKMAN - Apache License 2.0 - https://sdkman.io/
     * Gradle - Apache License 2.0 - https://gradle.org/
 Text Editor::
     * Visual Studio Code - Microsoft - https://code.visualstudio.com/
