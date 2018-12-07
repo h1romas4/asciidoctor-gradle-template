@@ -1,4 +1,4 @@
-:stylesheet: ./@style/vscode-asciidoc.css
+:stylesheet: ./@style/editor.css
 include::./attribute.adoc[]
 
 = AsciidoctorとGradleでつくるPDF文書執筆環境

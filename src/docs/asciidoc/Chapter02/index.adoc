@@ -1,4 +1,4 @@
-:stylesheet: ../@style/vscode-asciidoc.css
+:stylesheet: ../@style/editor.css
 include::../attribute.adoc[]
 
 == PDF 変換用ビルドスクリプトを使う準備
