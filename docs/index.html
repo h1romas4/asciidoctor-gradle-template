@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
 <meta name="author" content="https://github.com/h1romas4/asciidoctor-gradle-template">
-<title>AsciidoctorとGradleでつくるPDF文書執筆環境</title>
+<title>AsciidoctorとGradleでつくる文書執筆環境</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 /* Uncomment @import statement below to use as custom stylesheet */
@@ -526,7 +526,7 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>AsciidoctorとGradleでつくるPDF文書執筆環境</h1>
+<h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
 <span id="revdate">2018-12-01</span>
@@ -539,15 +539,15 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_謝辞">1.1. 謝辞</a></li>
 </ul>
 </li>
-<li><a href="#_pdf_変換用ビルドスクリプトを使う準備">2. PDF 変換用ビルドスクリプトを使う準備</a>
+<li><a href="#_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</a>
 <ul class="sectlevel2">
 <li><a href="#_java_実行環境の導入_macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
 <li><a href="#_java_実行環境の導入_windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
 </ul>
 </li>
-<li><a href="#_asciidoc_から_pdf_文書を作成する">3. Asciidoc から PDF 文書を作成する</a>
+<li><a href="#_asciidoc_から_pdf_html_文書を作成する">3. Asciidoc から PDF/HTML 文書を作成する</a>
 <ul class="sectlevel2">
-<li><a href="#_サンプル文書の_pdf_変換を試す">3.1. サンプル文書の PDF 変換を試す</a></li>
+<li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
 </ul>
 </li>
 <li><a href="#_asciidoc_テンプレート集">4. Asciidoc テンプレート集</a>
@@ -577,10 +577,29 @@ table.CodeRay td.code>pre{padding:0}
 <h2 id="_はじめに">1. はじめに</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本文書は <code>Asciidoc</code> とその Ruby による実装である <code>Asciidoctor</code> を用いて PDF 文書を作成する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
+<p>本文書は <code>Asciidoc</code> とその Ruby による実装である <code>Asciidoctor</code> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
 </div>
 <div class="paragraph">
-<p><code>Asciidoc</code> は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
+<p>この文書の手順より以下のことができるようになります。</p>
+</div>
+<table class="tableblock frame-topbot grid-none spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 文書変換用スクリプト</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 形式で執筆した文書を、公開できる PDF/HTML 形式に変換する。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code 拡張設定</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -590,7 +609,7 @@ table.CodeRay td.code>pre{padding:0}
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>Asciidoc</code> の表現力を示すひとつの例は、このような脚注表現です。</p>
+<p>Asciidoc の表現力を示すひとつの例は、このような脚注表現です。</p>
 </div>
 </td>
 </tr>
@@ -600,7 +619,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。</p>
 </div>
 <div class="paragraph">
-<p>具体的には PDF 変換に、実行を JVM 環境だけに依存する <code>Ascidocrotj</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>Ascidocrotj</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -667,6 +686,9 @@ table.CodeRay td.code>pre{padding:0}
 <div class="ulist">
 <ul>
 <li>
+<p>SDKMAN - Apache License 2.0 - <a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
+</li>
+<li>
 <p>Gradle - Apache License 2.0 - <a href="https://gradle.org/" class="bare">https://gradle.org/</a></p>
 </li>
 </ul>
@@ -704,10 +726,10 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pdf_変換用ビルドスクリプトを使う準備">2. PDF 変換用ビルドスクリプトを使う準備</h2>
+<h2 id="_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本手順で用いる PDF 変換用ビルドスクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
+<p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -765,9 +787,12 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pr
 <div class="paragraph">
 <p>SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.</p>
 </div>
+<div class="paragraph">
+<p><a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
+</div>
 </blockquote>
 <div class="attribution">
-&#8212; https://sdkman.io/
+&#8212; SDKMAN
 </div>
 </div>
 <div class="listingblock">
@@ -893,9 +918,12 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 <div class="paragraph">
 <p>Java™ is the world&#8217;s leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.</p>
 </div>
+<div class="paragraph">
+<p><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></p>
+</div>
 </blockquote>
 <div class="attribution">
-&#8212; https://adoptopenjdk.net
+&#8212; AdoptOpenJDK
 </div>
 </div>
 <div class="paragraph">
@@ -942,15 +970,15 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_asciidoc_から_pdf_文書を作成する">3. Asciidoc から PDF 文書を作成する</h2>
+<h2 id="_asciidoc_から_pdf_html_文書を作成する">3. Asciidoc から PDF/HTML 文書を作成する</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_サンプル文書の_pdf_変換を試す">3.1. サンプル文書の PDF 変換を試す</h3>
+<h3 id="_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</h3>
 <div class="paragraph">
-<p>環境の準備ができましたので Asciidoc 文書を PDF に変換してみます。</p>
+<p>環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。</p>
 </div>
 <div class="paragraph">
-<p>変換に使うビルドスクリプトは github のリポジトリに公開されており、リポジトリには PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく PDF に変換できるかを試してみましょう。</p>
+<p>変換に使うスクリプトは github のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく PDF に変換できるかを試してみましょう。</p>
 </div>
 <div class="paragraph">
 <p>macOS / Linux の場合は次のようにします。</p>
@@ -961,11 +989,9 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <pre class="CodeRay highlight"><code>$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip <i class="conum" data-value="1"></i><b>(1)</b>
 $ unzip master.zip <i class="conum" data-value="2"></i><b>(2)</b>
 $ cd asciidoctor-gradle-template-master <i class="conum" data-value="3"></i><b>(3)</b>
-$ ./gradlew asciidoc <i class="conum" data-value="4"></i><b>(4)</b>
-&gt; Task :asciidoctor
-
+$ ./gradlew docs <i class="conum" data-value="4"></i><b>(4)</b>
 BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
-2 actionable tasks: 1 executed, 1 up-to-date</code></pre>
+2 actionable tasks: 2 executed</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1013,7 +1039,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </li>
 <li>
-<p><code>.\gradlew.bat asciidoc</code> と入力し Gradle ビルドを実行します。</p>
+<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。</p>
 </li>
 <li>
 <p><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</p>
@@ -1042,23 +1068,37 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>Asciidoc から変換された PDF は次の場所に格納されます。</p>
+<p>Asciidoc から変換された文書は次の場所に格納されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>build/asciidoc/pdf/index.pdf</code></pre>
+<pre class="CodeRay highlight"><code>docs/index.html
+docs/index.pdf</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p><code>index.pdf</code> が作成され正しい文書が表示できればビルドは成功です。コンピューターに Asciidoc 文書を PDF に変換する環境が整いました。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/build-success.png" alt="build success">
+<img src="Chapter03/images/pdf.png" alt="pdf" width="520">
 </div>
+<div class="title">図 1. PDF 文書</div>
 </div>
-<div class="paragraph">
-<p>サンプル文書は Asciidoc 文書形式のひな形にもなっています。このファイルを元に次は自身の Asciidoc 文書を作成していきます。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/html.png" alt="html" width="520">
+</div>
+<div class="title">図 2. HTML 文書</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+文書を github 上に公開する場合は、GitHub Pages に <code>docs</code> フォルダを指定することで簡単にパブリッシュすることができます。
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1117,7 +1157,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="content">
 <img src="Chapter99/images/image-01.png" alt="image 01">
 </div>
-<div class="title">図 1. 画像のタイトル</div>
+<div class="title">図 3. 画像のタイトル</div>
 </div>
 </div>
 <div class="sect2">
@@ -1469,7 +1509,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2018-12-04 08:48:36 JST
+最終更新 2018-12-07 15:13:35 JST
 </div>
 </div>
 </body>
