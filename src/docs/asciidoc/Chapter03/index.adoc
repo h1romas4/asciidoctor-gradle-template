@@ -94,10 +94,13 @@ image::vscode-extention1.png[vscode]
 . btn:[再読み込み] ボタンをクリックします。
 +
 image::vscode-extention2.png[vscode]
-
++
+<<<
 . Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 +
 image::vscode-asciidoc.png[vscode, 600]
+
+<<<
 
 なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で btn:[F1] を押し、menu:Change Preview Security Setting[Disable] を選択してください。
 
