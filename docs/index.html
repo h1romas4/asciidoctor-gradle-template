@@ -236,7 +236,8 @@ pre.pygments .lineno{display:inline-block;margin-right:.25em}
 table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
-.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+/* fix font style; .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify} */
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1em;line-height:1.75;word-spacing:.1em;letter-spacing:0;}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
 .quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
@@ -549,25 +550,7 @@ table.CodeRay td.code>pre{padding:0}
 <ul class="sectlevel2">
 <li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
 <li><a href="#_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</a></li>
-</ul>
-</li>
-<li><a href="#_asciidoc_テンプレート集">4. Asciidoc テンプレート集</a>
-<ul class="sectlevel2">
-<li><a href="#_脚注">4.1. 脚注</a></li>
-<li><a href="#_画像挿入">4.2. 画像挿入</a></li>
-<li><a href="#_キーボードショートカット表記">4.3. キーボードショートカット表記</a></li>
-<li><a href="#_属性値の文書への挿入">4.4. 属性値の文書への挿入</a></li>
-<li><a href="#_ソースコード_直接記述">4.5. ソースコード（直接記述）</a></li>
-<li><a href="#_ソースコード_外部ファイルのinclude">4.6. ソースコード（外部ファイルのinclude）</a></li>
-<li><a href="#_サイドバー">4.7. サイドバー</a></li>
-<li><a href="#_引用">4.8. 引用</a></li>
-<li><a href="#_表組み">4.9. 表組み</a></li>
-<li><a href="#_改ページ">4.10. 改ページ</a></li>
-<li><a href="#_水平線">4.11. 水平線</a></li>
-<li><a href="#_リスト">4.12. リスト</a></li>
-<li><a href="#_リスト_順番あり">4.13. リスト（順番あり）</a></li>
-<li><a href="#_定義リスト">4.14. 定義リスト</a></li>
-<li><a href="#_リストとラベルの組み合わせ">4.15. リストとラベルの組み合わせ</a></li>
+<li><a href="#_文書のファイル構成">3.3. 文書のファイル構成</a></li>
 </ul>
 </li>
 </ul>
@@ -590,7 +573,7 @@ table.CodeRay td.code>pre{padding:0}
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 形式で執筆した文書を PDF/HTML 形式に変換する。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 文書変換用スクリプト</p></td>
 </tr>
 <tr>
@@ -739,7 +722,7 @@ table.CodeRay td.code>pre{padding:0}
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-Java 実行環境は、文書変換の過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のプロダクトは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
+Java 実行環境は、文書変換スクリプトを動作させる過程でで唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
 </td>
 </tr>
 </table>
@@ -1165,11 +1148,11 @@ docs/index.pdf</code></pre>
 <img src="Chapter03/images/vscode-asciidoc-security2.png" alt="vscode">
 </div>
 </div>
-<div class="admonitionblock warning">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="警告"></i>
+<i class="fa icon-important" title="重要"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1186,407 +1169,114 @@ docs/index.pdf</code></pre>
 </table>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_asciidoc_テンプレート集">4. Asciidoc テンプレート集</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_脚注">4.1. 脚注</h3>
+<h3 id="_文書のファイル構成">3.3. 文書のファイル構成</h3>
 <div class="paragraph">
-<p>脚注は次のように書きます。</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="警告"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>WARNING</code> メッセージはここに。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>TIP</code> メッセージはここに。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>その他に、<code>IMPORTANT</code> <code>NOTE</code> <code>CAUTION</code> があります。</p>
-</div>
-<div class="paragraph">
-<p>1行でこのようにもかけます。</p>
+<p>文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。</p>
 </div>
 <div class="listingblock">
+<div class="title">文書を構成するファイル</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>IMPORTANT: 重要事項を記述します。</code></pre>
+<pre class="CodeRay highlight"><code>src/docs/asciidoc/index.adoc <i class="conum" data-value="1"></i><b>(1)</b>
+src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
+src/docs/asciidoc/@css/*.css <i class="conum" data-value="3"></i><b>(3)</b>
+src/docs/asciidoc/@css/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
+src/docs/asciidoc/@font/* <i class="conum" data-value="5"></i><b>(5)</b>
+src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_画像挿入">4.2. 画像挿入</h3>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter99/images/image-01.png" alt="image 01">
-</div>
-<div class="title">図 3. 画像のタイトル</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_キーボードショートカット表記">4.3. キーボードショートカット表記</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
+<div class="colist arabic">
+<table>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ショートカット</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">目的</p></td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を <code>include</code> して構成していきます。</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>F11</kbd></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">全画面表示</p></td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>文書設定をするためのファイルです。各文書から <code>incliude</code> します。</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>T</kbd></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">新規タブを開く</p></td>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>HTML 用のスタイルシートです。<code>editor.css</code> はエディタのリアルタイムプレビューが使うスタイルシートです。その他は HTML 文書変換用です。いずれも文書に合わせて修正することができます。</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">シークレットウインドウを開く</p></td>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。</td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>+</kbd></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ズーム</p></td>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>PDF 文書に埋め込みされるフォントファイルです。<code>pdf-theme.yml</code> から参照されています。TrueType フォント <code>.ttf</code> が指定できます。</td>
 </tr>
-</tbody>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。後述の <code>build.gradle</code> による画像パス解決のためフォルダ名は <code>Chapter{number}</code> とします。</td>
+</tr>
 </table>
-<div class="paragraph">
-<p>ファイルを保存するには <span class="menuseq"><span class="menu">File</span>&#160;&#9656; <span class="menuitem">Save</span></span> を選択します。拡大率をデフォルトに戻すには <span class="menuseq"><span class="menu">View</span>&#160;&#9656; <span class="submenu">Zoom</span>&#160;&#9656; <span class="menuitem">Reset</span></span> を選択します。</p>
 </div>
 <div class="paragraph">
-<p>完了したら <b class="button">OK</b> ボタンを押してください。ナビゲーターでファイルを選択し、 <b class="button">開く</b> をクリックしてください。</p>
+<p>変換スクリプトとなる <code>build.gradle</code> の <code>attribute</code> 設定でこれらのファイルパスや変換に必要な属性を設定しています。</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_属性値の文書への挿入">4.4. 属性値の文書への挿入</h3>
-<div class="paragraph">
-<p><code>値: src/</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ソースコード_直接記述">4.5. ソースコード（直接記述）</h3>
 <div class="listingblock">
-<div class="title">リスト 1. Hello.java</div>
+<div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="type">class</span> <span class="class">Hello</span> {
-    <span class="directive">public</span> <span class="directive">static</span> <span class="type">void</span> main(<span class="predefined-type">String</span><span class="type">[]</span> args) {
-        <span class="comment">// comment</span>
-        <span class="predefined-type">System</span>.out.println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, World</span><span class="delimiter">&quot;</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="CodeRay highlight"><code>asciidoctor {
+    attributes(
+        'build-gradle': file('build.gradle'),
+        'sourcedir': 'src/',
+        'stylesdir': '@style',
+        'stylesheet': 'asciidoctor.css',
+        'source-highlighter': 'coderay',
+        'pdf-stylesdir': "@style",
+        'pdf-fontsdir': "@font",
+        'pdf-style': 'pdf'
+    )
+    sources {
+        include 'index.adoc'
     }
 }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>注釈をいれることができます。</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ソースコード_外部ファイルのinclude">4.6. ソースコード（外部ファイルのinclude）</h3>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-ファイルから行数とインデントを指定できます。
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock">
-<div class="title">リスト 2. sample.js</div>
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="javascript">    alert(<span class="string"><span class="delimiter">&quot;</span><span class="content">hoge</span><span class="delimiter">&quot;</span></span>); <i class="conum" data-value="1"></i><b>(1)</b>
-}</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>include 中でも注釈を指定できます。</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_サイドバー">4.7. サイドバー</h3>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Javaについて</div>
 <div class="paragraph">
-<p>Java（ジャバ）は、コンピューターにおいて、狭義ではプログラミング言語Javaを指す。広義では言語仕様以外にも、仕様が与えられているJavaクラスライブラリやJava仮想マシン、さらにはJDKやJREなどの公式のものをはじめとする、場合によってはサードパーティのものなどを含め曖昧にJavaプラットフォームと総称されるようなものなどのエコシステムなどを指すこともある。構文についてはJavaの文法の記事を参照。</p>
+<p><code>src/docs/asciidoc/attribute.adoc</code> ではエディタのリアルタイムプレビュー用の属性定義を行い、文書変換スクリプトでその値を上書きするように構成すると良いでしょう。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://ja.wikipedia.org/wiki/Java" class="bare">https://ja.wikipedia.org/wiki/Java</a> より</p>
+<p>Asciidoctor で利用可能な属性は次から参照できます。</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_引用">4.8. 引用</h3>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>引用です。引用です。引用です。</p>
+<p>Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.</p>
 </div>
 <div class="paragraph">
-<p>引用です。引用です。引用です。</p>
+<p><a href="https://asciidoctor.org/docs/user-manual/#attributes" class="bare">https://asciidoctor.org/docs/user-manual/#attributes</a></p>
 </div>
 </blockquote>
 <div class="attribution">
-&#8212; hiromasa
+&#8212; asciidoctor.org
 </div>
 </div>
+<div class="paragraph">
+<p>また、文書に挿入する画像ファイルは <code>images</code> というフォルダ名内に配置され、その文書からの相対パスでリンクされることを期待しています。設定は次の部分で変更可能です。</p>
 </div>
-<div class="sect2">
-<h3 id="_表組み">4.9. 表組み</h3>
-<table class="tableblock frame-all grid-all spread">
-<caption class="title">表 1. テーブルタイトル</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Col 1</th>
-<th class="tableblock halign-left valign-top">Col 2</th>
-<th class="tableblock halign-left valign-top">Col 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Item 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Item 2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">b</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Item 3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-topbot grid-none" style="width: 60%;">
-<caption class="title">表 2. テーブルタイトル</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">b</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">c</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">d</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">B</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">D</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_改ページ">4.10. 改ページ</h3>
 <div class="listingblock">
+<div class="title">src/docs/asciidoc/attribute.adoc</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>&lt;&lt;&lt;</code></pre>
+<pre class="CodeRay highlight"><code> ifndef::imagesdir[:imagesdir: ./images]</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_水平線">4.11. 水平線</h3>
 <div class="listingblock">
+<div class="title">build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code>---</code></pre>
+<pre class="CodeRay highlight"><code> copy {
+     from 'src/docs/asciidoc/'
+     include 'Chapter*/images/*' // 子文書のフォルダ名
+     into 'docs'
+ }</code></pre>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_リスト">4.12. リスト</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>レベル１</p>
-<div class="ulist">
-<ul>
-<li>
-<p>レベル２</p>
-<div class="ulist">
-<ul>
-<li>
-<p>レベル３</p>
-<div class="ulist">
-<ul>
-<li>
-<p>レベル４</p>
-<div class="ulist">
-<ul>
-<li>
-<p>レベル５</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>レベル１</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_リスト_順番あり">4.13. リスト（順番あり）</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>手順１</p>
-</li>
-<li>
-<p>手順２</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>手順２a</p>
-</li>
-<li>
-<p>手順２b</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>手順３</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_定義リスト">4.14. 定義リスト</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">第一項</dt>
-<dd>
-<p>第一項の定義</p>
-</dd>
-<dt class="hdlist1">第二項</dt>
-<dd>
-<p>第二項の定義</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_リストとラベルの組み合わせ">4.15. リストとラベルの組み合わせ</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">オペレーティング システム</dt>
-<dd>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Linux</dt>
-<dd>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Fedora</p>
-<div class="ulist">
-<ul>
-<li>
-<p>デスクトップ</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Ubuntu</p>
-<div class="ulist">
-<ul>
-<li>
-<p>デスクトップ</p>
-</li>
-<li>
-<p>サーバ</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-</dd>
-<dt class="hdlist1">BSD</dt>
-<dd>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>FreeBSD</p>
-</li>
-<li>
-<p>NetBSD</p>
-</li>
-</ol>
-</div>
-</dd>
-</dl>
-</div>
-</dd>
-</dl>
+<hr>
+<div class="paragraph">
+<p>That&#8217;s all. Happy coding!</p>
 </div>
 </div>
 </div>
@@ -1594,7 +1284,7 @@ docs/index.pdf</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2018-12-08 10:06:04 JST
+最終更新 2018-12-08 15:00:37 JST
 </div>
 </div>
 </body>

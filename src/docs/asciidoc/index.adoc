@@ -16,6 +16,3 @@ include::Chapter02/index.adoc[]
 
 :imagesdir: Chapter03/images
 include::Chapter03/index.adoc[]
-
-:imagesdir: Chapter99/images
-include::Chapter99/index.adoc[]

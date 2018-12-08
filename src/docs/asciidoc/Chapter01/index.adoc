@@ -10,7 +10,7 @@ include::../attribute.adoc[]
 [format="csv",cols="2,1"]
 [frame="topbot",grid="none"]
 |======
-Asciidoc 形式で執筆した文書を PDF/HTML 形式に変換する。,Asciidoc 文書変換用スクリプト
+Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。,Asciidoc 文書変換用スクリプト
 変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。,Visual Studio Code 拡張設定
 |======
 

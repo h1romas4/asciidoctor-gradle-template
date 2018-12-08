@@ -108,7 +108,7 @@ image::vscode-asciidoc-security1.png[vscode]
 
 image::vscode-asciidoc-security2.png[vscode]
 
-[WARNING]
+[IMPORTANT]
 ====
 本設定は、プレビュー画面で動作する Webview がインターネット上の外部リソースを評価できるようにセキュリティー権限を下げる設定です。
 
@@ -116,3 +116,84 @@ image::vscode-asciidoc-security2.png[vscode]
 
 拡張がソースコードのハイライトを行うため、CDN に配置されたリソースを参照しているために発生している問題で、将来ローカルのリソースを参照するように修正され解決されると思われます。
 ====
+
+=== 文書のファイル構成
+
+文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。
+
+[source]
+[caption=""]
+.文書を構成するファイル
+----
+src/docs/asciidoc/index.adoc # <1>
+src/docs/asciidoc/attribute.adoc # <2>
+src/docs/asciidoc/@css/*.css # <3>
+src/docs/asciidoc/@css/pdf-theme.yml # <4>
+src/docs/asciidoc/@font/* # <5>
+src/docs/asciidoc/Chapter{number}/index.adoc <6>
+----
+
+<1> 文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を ``include`` して構成していきます。
+<2> 文書設定をするためのファイルです。各文書から ``incliude`` します。
+<3> HTML 用のスタイルシートです。``editor.css`` はエディタのリアルタイムプレビューが使うスタイルシートです。その他は HTML 文書変換用です。いずれも文書に合わせて修正することができます。
+<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。
+<5> PDF 文書に埋め込みされるフォントファイルです。``pdf-theme.yml`` から参照されています。TrueType フォント ``.ttf`` が指定できます。
+<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。後述の ``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
+
+変換スクリプトとなる ``build.gradle`` の ``attribute`` 設定でこれらのファイルパスや変換に必要な属性を設定しています。
+
+[source]
+[caption=""]
+.build.gradle
+----
+asciidoctor {
+    attributes(
+        'build-gradle': file('build.gradle'),
+        'sourcedir': 'src/',
+        'stylesdir': '@style',
+        'stylesheet': 'asciidoctor.css',
+        'source-highlighter': 'coderay',
+        'pdf-stylesdir': "@style",
+        'pdf-fontsdir': "@font",
+        'pdf-style': 'pdf'
+    )
+    sources {
+        include 'index.adoc'
+    }
+}
+----
+
+``src/docs/asciidoc/attribute.adoc`` ではエディタのリアルタイムプレビュー用の属性定義を行い、文書変換スクリプトでその値を上書きするように構成すると良いでしょう。
+
+Asciidoctor で利用可能な属性は次から参照できます。
+
+[quote, asciidoctor.org]
+____
+Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.
+
+https://asciidoctor.org/docs/user-manual/#attributes
+____
+
+また、文書に挿入する画像ファイルは ``images`` というフォルダ名内に配置され、その文書からの相対パスでリンクされることを期待しています。設定は次の部分で変更可能です。
+
+[source]
+[caption=""]
+.src/docs/asciidoc/attribute.adoc
+----
+ ifndef::imagesdir[:imagesdir: ./images]
+----
+
+[source]
+[caption=""]
+.build.gradle
+----
+ copy {
+     from 'src/docs/asciidoc/'
+     include 'Chapter*/images/*' // 子文書のフォルダ名
+     into 'docs'
+ }
+----
+
+---
+
+That's all. Happy coding!
