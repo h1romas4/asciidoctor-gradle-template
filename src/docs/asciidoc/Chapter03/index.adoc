@@ -1,7 +1,7 @@
 :stylesheet: ../@style/editor.css
 include::../attribute.adoc[]
 
-== Asciidoc から PDF/HTML 文書を作成する
+== Asciidoc から HTML/PDF 文書を作成する
 
 === サンプル文書の変換を試す
 
@@ -77,4 +77,39 @@ image::pdf.png[pdf, 520]
 .HTML 文書
 image::html.png[html, 520]
 
-NOTE: 文書を github 上に公開する場合は、GitHub Pages に ``docs`` フォルダを指定することで簡単にパブリッシュすることができます。
+TIP: 文書を github 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に ``docs`` フォルダを指定することで継続的に文書をパブリッシュすることができます。
+
+=== テキストエディタで Asciidoc 文書を編集する
+
+プロジェクトに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。
+
+プロジェクトフォルダ（``asciidoctor-gradle-template-master``）を Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。
+
+NOTE: 拡張機能の推奨は ``.vscode/extention.json`` で設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+
+. btn:[すべてインストール] ボタンをクリックします。
++
+image::vscode-extention1.png[vscode]
+
+. btn:[再読み込み] ボタンをクリックします。
++
+image::vscode-extention2.png[vscode]
+
+. Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
++
+image::vscode-asciidoc.png[vscode, 600]
+
+なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で btn:[F1] を押し、menu:Change Preview Security Setting[Disable] を選択してください。
+
+image::vscode-asciidoc-security1.png[vscode]
+
+image::vscode-asciidoc-security2.png[vscode]
+
+[WARNING]
+====
+本設定は、プレビュー画面で動作する Webview がインターネット上の外部リソースを評価できるようにセキュリティー権限を下げる設定です。
+
+プロジェクト（ファイルが配置されたフォルダ）毎の設定となりますが、この設定をした後はこのプロジェクトで第三者の作成した未知の Asciidoc 文書を開かないようにしてください。外部に配置された悪意の JavaScript により、セキュリティーを侵害される可能性があります。理解の上、設定してください。
+
+拡張がソースコードのハイライトを行うため、CDN に配置されたリソースを参照しているために発生している問題で、将来ローカルのリソースを参照するように修正され解決されると思われます。
+====
