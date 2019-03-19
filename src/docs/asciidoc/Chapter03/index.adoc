@@ -196,7 +196,7 @@ ____
 
 === asciidoctorj-diagram
 
-[plantuml, diag-sequence-sample, svg]
+[plantuml, diag-sequence-sample, png]
 ----
 @startuml
 ClassA -> ClassB: Call
