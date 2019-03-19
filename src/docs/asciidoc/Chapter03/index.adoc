@@ -194,6 +194,18 @@ ____
  }
 ----
 
+=== asciidoctorj-diagram
+
+[plantuml, diag-sequence-sample, svg]
+----
+@startuml
+ClassA -> ClassB: Call
+ClassB -> ClassC: Call
+ClassC --> ClassB: 日本語のテスト１
+ClassB --> ClassA: 日本語のテスト２
+@enduml
+----
+
 ---
 
 That's all. Happy coding!
