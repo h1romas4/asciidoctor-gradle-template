@@ -201,8 +201,8 @@ ____
 @startuml
 ClassA -> ClassB: Call
 ClassB -> ClassC: Call
-ClassC --> ClassB: 日本語のテスト１
-ClassB --> ClassA: 日本語のテスト２
+ClassC --> ClassB: 日本語のテスト２
+ClassB --> ClassA: 日本語のテスト３
 @enduml
 ----
 
