@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.5">
+<meta name="generator" content="Asciidoctor 1.5.8">
 <meta name="author" content="https://github.com/h1romas4/asciidoctor-gradle-template">
 <title>AsciidoctorとGradleでつくる文書執筆環境</title>
 <style>
@@ -432,7 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
 /*pre.CodeRay {background-color:#f7f7f8;}*/
@@ -530,6 +530,7 @@ table.CodeRay td.code>pre{padding:0}
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
+<span id="revnumber">バージョン unspecified,</span>
 <span id="revdate">2018-12-01</span>
 </div>
 <div id="toc" class="toc2">
@@ -542,11 +543,11 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</a>
 <ul class="sectlevel2">
-<li><a href="#_java_実行環境の導入_macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
-<li><a href="#_java_実行環境の導入_windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
+<li><a href="#_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
+<li><a href="#_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
 </ul>
 </li>
-<li><a href="#_asciidoc_から_html_pdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</a>
+<li><a href="#_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</a>
 <ul class="sectlevel2">
 <li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
 <li><a href="#_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</a></li>
@@ -567,7 +568,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>この文書の手順より以下のことができるようになります。</p>
 </div>
-<table class="tableblock frame-topbot grid-none spread">
+<table class="tableblock frame-topbot grid-none stretch">
 <colgroup>
 <col style="width: 66.6666%;">
 <col style="width: 33.3334%;">
@@ -763,7 +764,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pr
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入_macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
+<h3 id="_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
 <div class="paragraph">
 <p>もし macOS / Linux 環境に Java 実行環境がなければ <code>SDKMAN</code> を利用することで、ターミナルから簡単に導入することができます。</p>
 </div>
@@ -894,7 +895,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入_windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</h3>
+<h3 id="_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</h3>
 <div class="paragraph">
 <p>もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。</p>
 </div>
@@ -929,7 +930,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 </div>
 <div class="paragraph">
-<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><span class="menu">エクスプローラー</span>&#160;&#9656; <span class="submenu">PC（右クリック）</span>&#160;&#9656; <span class="submenu">プロパティー</span>&#160;&#9656; <span class="submenu">詳細設定</span>&#160;&#9656; <span class="menuitem">環境設定</span></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk8</code> ）を設定します。</p>
+<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk8</code> ）を設定します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -955,7 +956,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_asciidoc_から_html_pdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</h2>
+<h2 id="_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</h3>
@@ -1137,7 +1138,7 @@ docs/index.pdf</code></pre>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で <b class="button">F1</b> を押し、<span class="menuseq"><span class="menu">Change Preview Security Setting</span>&#160;&#9656; <span class="menuitem">Disable</span></span> を選択してください。</p>
+<p>なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で <b class="button">F1</b> を押し、<span class="menuseq"><b class="menu">Change Preview Security Setting</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Disable</b></span> を選択してください。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1280,7 +1281,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <h3 id="_asciidoctorj_diagram">3.4. asciidoctorj-diagram</h3>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample.png" alt="diag sequence sample" width="332" height="221">
+<img src="Chapter03/images/diag-sequence-sample.svg" alt="diag sequence sample" width="333" height="222">
 </div>
 </div>
 <hr>
@@ -1293,7 +1294,8 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2019-03-20 10:54:57 JST
+バージョン unspecified<br>
+最終更新 2019-03-20 10:54:57 +0900
 </div>
 </div>
 </body>
