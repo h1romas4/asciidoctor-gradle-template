@@ -194,6 +194,52 @@ ____
  }
 ----
 
+<<<
+
+=== asciidoctorj-diagram
+
+本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム表記を使うことができます。
+
+==== PlantUML
+
+PlantUML 形式のダイアグラムを `.svg` ベクター画像で文書に埋め込みます。
+
+[plantuml, diag-sequence-sample1, svg]
+----
+@startuml
+ClassA -> ClassB: 日本語のテスト１
+ClassB -> ClassC: 日本語のテスト２
+ClassC --> ClassB: 日本語のテスト３
+ClassB --> ClassA: 日本語のテスト４
+@enduml
+----
+
+[plantuml, diag-sequence-sample2, svg]
+----
+@startsalt
+{
+{T
+ + ヨーロッパ
+ ++ イタリア
+ ++ ドイツ
+ +++ ベルリン
+ + アフリカ
+}
+}
+@endsalt
+----
+
+[plantuml, diag-sequence-sample3, svg]
+----
+@startsalt
+{
+  ログイン<&person> | "MyName   "
+  パスワード<&key>  | "****     "
+  [キャンセル <&circle-x>] | [OK <&account-login>]
+}
+@endsal
+----
+
 ---
 
 That's all. Happy coding!
