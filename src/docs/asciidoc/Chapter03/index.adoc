@@ -207,6 +207,7 @@ PlantUML 形式のダイアグラムを `.svg` ベクター画像で文書に埋
 [plantuml, diag-sequence-sample1, svg]
 ----
 @startuml
+skinparam monochrome true
 ClassA -> ClassB: 日本語のテスト１
 ClassB -> ClassC: 日本語のテスト２
 ClassC --> ClassB: 日本語のテスト３
