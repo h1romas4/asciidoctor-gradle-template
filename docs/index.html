@@ -1276,7 +1276,44 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
  }</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_文書中の相互参照">3.3.1. 文書中の相互参照</h4>
+<div class="paragraph">
+<p>文書内の参照リンクは次のように指定できます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>&lt;&lt;_文書のファイル構成,章の冒頭&gt;&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+&lt;&lt;Chapter01/index.adoc#_はじめに,はじめに&gt;&gt; <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>同一 <code>.adoc</code> 内での内部参照</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>.adoc</code> をまたいだドキュメント間参照</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>リンクの例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_文書のファイル構成">章の冒頭</a> を参照してください･･･</p>
+</li>
+<li>
+<p><a href="#_はじめに">はじめに</a> で述べたように･･･</p>
+</li>
+</ul>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_asciidoctorj_diagram">3.4. asciidoctorj-diagram</h3>
