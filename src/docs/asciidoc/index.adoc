@@ -3,7 +3,7 @@ include::./attribute.adoc[]
 
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
-2018-12-01
+2019-03-24
 :Revision: 1.0.0
 :toc: left
 
