@@ -1,4 +1,3 @@
-:stylesheet: ./@style/editor.css
 include::./attribute.adoc[]
 
 = AsciidoctorとGradleでつくる文書執筆環境

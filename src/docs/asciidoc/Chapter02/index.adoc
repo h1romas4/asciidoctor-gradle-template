@@ -1,4 +1,3 @@
-:stylesheet: ../@style/editor.css
 include::../attribute.adoc[]
 
 == Asciidoc 文書変換用スクリプトを使う準備

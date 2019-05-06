@@ -6,5 +6,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "asciidoc.preview.useEditorStyle": false
+    "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css"
 }
