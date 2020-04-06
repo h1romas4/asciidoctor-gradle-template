@@ -49,7 +49,7 @@ ____
 ----
 $ curl -s "https://get.sdkman.io" | bash # <1>
 $ source "$HOME/.sdkman/bin/sdkman-init.sh" # <2>
-$ sdk list java <3>
+$ sdk list java # <3>
 =========================================
 Available Java Versions
 =========================================
@@ -66,7 +66,7 @@ Available Java Versions
      1.0.0-rc9-graal
      1.0.0-rc8-graal
      1.0.0-rc7-graal
-$ sdk install java 8.0.192-zulu <4>
+$ sdk install java 8.0.192-zulu # <4>
 ----
 
 <1> SDKMAN を導入します。
@@ -103,9 +103,9 @@ SDKMAN は主に Java エコシステムの開発環境をコマンドライン�
 [caption="手順. "]
 .SDKMAN による Java のバージョン切り替え
 ----
-$ sdk install java 11.0.1-open <1>
-$ sdk default java 11.0.1-open <2>
-$ sdk default java 8.0.192-zulu <3>
+$ sdk install java 11.0.1-open # <1>
+$ sdk default java 11.0.1-open # <2>
+$ sdk default java 8.0.192-zulu # <3>
 ----
 
 <1> Java 11 を導入

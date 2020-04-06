@@ -42,6 +42,7 @@ Asciidoc::
     * Asciidoctorj - MIT License - https://github.com/asciidoctor/asciidoctorj
     * Asciidoctor.js - MIT License - https://asciidoctor.org/docs/asciidoctor.js/
     * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
+    * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
     * asciidoctor-pdf-cjk - MIT License - https://github.com/chloerei/asciidoctor-pdf-cjk
 Build Tool::
     * SDKMAN - Apache License 2.0 - https://sdkman.io/
