@@ -5,6 +5,11 @@ font:
       italic: genshin/GenShinGothic-P-Regular.ttf
       bold: genshin/GenShinGothic-P-Medium.ttf
       bold_italic: genshin/GenShinGothic-P-Bold.ttf
+    Genyo:
+      normal: genyo-font/JP/GenYoMinJP-Regular.ttf
+      italic: genyo-font/JP/GenYoMinJP-Light.ttf
+      bold: genyo-font/JP/GenYoMinJP-Bold.ttf
+      bold_italic: genyo-font/JP/GenYoMinJP-SemiBold.ttf
     RictyDiminished:
       normal: RictyDiminished/RictyDiminished-Regular.ttf
       italic: RictyDiminished/RictyDiminished-Oblique.ttf
@@ -35,7 +40,7 @@ page:
 base:
   align: left
   font_color: 333333
-  font_family: GenShinGothic-P # Noto Serif
+  font_family: Genyo
   font_size: 10
   line_height_length: 15
   line_height: $base_line_height_length / $base_font_size
@@ -56,7 +61,7 @@ vertical_spacing: $vertical_rhythm
 link:
   font_color: 428bca
 button:
-  font_family: GenShinGothic-P
+  font_family: Genyo
 # literal is currently used for inline monospaced in prose and table cells
 literal:
   font_color: 333333
@@ -66,7 +71,7 @@ menu_caret_content: " <font size=\"1.15em\"><color rgb=\"b12146\">\u203a</color>
 heading:
   align: left
   font_color: 2D466B
-  font_family: GenShinGothic-P
+  font_family: Genyo
   font_style: bold
   # h1 is used for part titles (book doctype only)
   h1_font_size: floor($base_font_size * 2.4)
@@ -103,12 +108,12 @@ block:
 caption:
   align: left
   font_size: $base_font_size
-  font_family: GenShinGothic-P
+  font_family: Genyo
   font_color: 333333
   # margin_inside: $vertical_rhythm / 3
   margin_outside: 0
 lead:
-  font_family: GenShinGothic-P
+  font_family: Genyo
   font_size: $base_font_size
   line_height: 1.4
   font_color: 2D466B

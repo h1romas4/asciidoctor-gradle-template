@@ -36,6 +36,7 @@ Font::
     * 源真ゴシック - SIL Open Font License 1.1  - http://jikasei.me/font/genshin/
     * M+ Fonts - M+ FONT LICENSE - https://mplus-fonts.osdn.jp/about.html
     * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
+    * 源様明朝 - SIL Open Font License 1.1 - https://github.com/ButTaiwan/genyo-font
 Asciidoc::
     * Asciidoctor - MIT License - https://asciidoctor.org/
     * Asciidoctorj - MIT License - https://github.com/asciidoctor/asciidoctorj
