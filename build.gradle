@@ -6,9 +6,7 @@ plugins {
 
 repositories {
     mavenCentral()
-    ruby {
-        gems()
-    }
+    ruby.gems()
 }
 
 dependencies {
@@ -19,7 +17,6 @@ dependencies {
 asciidoctor {
     dependsOn asciidoctorGemsPrepare
     baseDir file('src/docs/asciidoc')
-    sourceDir file('src/docs/asciidoc')
     sources {
         include 'index.adoc'
     }
@@ -29,10 +26,7 @@ asciidoctor {
         }
     }
     asciidoctorj {
-        attributes 'build-gradle': file('build.gradle'),
-            'sourcedir': 'src/',
-            'outdir': "./",
-            'source-highlighter': 'coderay',
+        attributes 'source-highlighter': 'coderay',
             'stylesdir': '@style',
             'stylesheet': 'asciidoctor.css'
     }
@@ -41,16 +35,12 @@ asciidoctor {
 asciidoctorPdf {
     dependsOn asciidoctorGemsPrepare
     baseDir file('src/docs/asciidoc')
-    sourceDir file('src/docs/asciidoc')
     fontsDir file('src/docs/asciidoc/@font')
     sources {
         include 'index.adoc'
     }
     asciidoctorj {
-        attributes 'build-gradle': file('build.gradle'),
-            'sourcedir': 'src/',
-            'outdir': "./",
-            'source-highlighter': 'coderay',
+        attributes 'source-highlighter': 'coderay',
             'pdf-stylesdir': "@style",
             'pdf-style': 'pdf'
     }
