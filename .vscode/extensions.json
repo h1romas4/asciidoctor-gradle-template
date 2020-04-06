@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "joaompinto.asciidoctor-vscode",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "mushan.vscode-paste-image"
     ]
 }
