@@ -2,9 +2,9 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.8">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="author" content="https://github.com/h1romas4/asciidoctor-gradle-template">
 <title>AsciidoctorとGradleでつくる文書執筆環境</title>
 <style>
@@ -433,18 +433,845 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
+<div class="details">
+<span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
+<span id="revdate">2019-03-24</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">目次</div>
+<ul class="sectlevel1">
+<li><a href="#_はじめに">1. はじめに</a>
+<ul class="sectlevel2">
+<li><a href="#_謝辞">1.1. 謝辞</a></li>
+</ul>
+</li>
+<li><a href="#_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</a>
+<ul class="sectlevel2">
+<li><a href="#_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
+<li><a href="#_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
+</ul>
+</li>
+<li><a href="#_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</a>
+<ul class="sectlevel2">
+<li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
+<li><a href="#_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</a></li>
+<li><a href="#_文書のファイル構成">3.3. 文書のファイル構成</a></li>
+<li><a href="#_asciidoctorj_diagram">3.4. asciidoctorj-diagram</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_はじめに">1. はじめに</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本&#8203;文&#8203;書&#8203;は&#8203; <code>Asciidoc</code> &#8203;と&#8203;そ&#8203;の&#8203; Ruby &#8203;に&#8203;よ&#8203;る&#8203;実&#8203;装&#8203;で&#8203;あ&#8203;る&#8203; <code>Asciidoctor</code> &#8203;を&#8203;用&#8203;い&#8203;て&#8203; Asciidoc &#8203;文&#8203;書&#8203;を&#8203;執&#8203;筆&#8203;す&#8203;る&#8203;環&#8203;境&#8203;を&#8203;構&#8203;築&#8203;す&#8203;る&#8203;手&#8203;順&#8203;を&#8203;示&#8203;し&#8203;ま&#8203;す。&#8203;実&#8203;行&#8203;環&#8203;境&#8203;は&#8203; Windows、&#8203;Linux、&#8203;macOS &#8203;の&#8203;各&#8203; OS &#8203;に&#8203;対&#8203;応&#8203;し&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>こ&#8203;の&#8203;文&#8203;書&#8203;の&#8203;手&#8203;順&#8203;よ&#8203;り&#8203;以&#8203;下&#8203;の&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;な&#8203;り&#8203;ま&#8203;す。</p>
+</div>
+<table class="tableblock frame-topbot grid-none stretch">
+<colgroup>
+<col style="width: 66.6666%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc &#8203;形&#8203;式&#8203;で&#8203;執&#8203;筆&#8203;し&#8203;た&#8203;文&#8203;書&#8203;を&#8203; HTML/PDF &#8203;形&#8203;式&#8203;に&#8203;変&#8203;換&#8203;す&#8203;る。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc &#8203;文&#8203;書&#8203;変&#8203;換&#8203;用&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">変&#8203;換&#8203;結&#8203;果&#8203;を&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;に&#8203;プ&#8203;レ&#8203;ビュー&#8203;し&#8203;な&#8203;が&#8203;ら、&#8203;テ&#8203;キ&#8203;ス&#8203;ト&#8203;エ&#8203;ディ&#8203;ター&#8203;で&#8203;文&#8203;書&#8203;を&#8203;編&#8203;集&#8203;す&#8203;る。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code &#8203;拡&#8203;張&#8203;設&#8203;定</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Asciidoc &#8203;は&#8203;表&#8203;現&#8203;力&#8203;の&#8203;高&#8203;い&#8203;文&#8203;書&#8203;を&#8203;テ&#8203;キ&#8203;ス&#8203;ト&#8203;ファ&#8203;イ&#8203;ル&#8203;ベー&#8203;ス&#8203;で&#8203;執&#8203;筆&#8203;で&#8203;き&#8203;る&#8203;テ&#8203;キ&#8203;ス&#8203;ト&#8203;プ&#8203;ロ&#8203;セッ&#8203;サー&#8203;で&#8203;す。&#8203;他&#8203;の&#8203;軽&#8203;量&#8203;テ&#8203;キ&#8203;ス&#8203;ト&#8203;プ&#8203;ロ&#8203;セッ&#8203;サー&#8203;が&#8203;持&#8203;た&#8203;な&#8203;い&#8203;文&#8203;書&#8203;間&#8203;の&#8203;イ&#8203;ン&#8203;ク&#8203;ルー&#8203;ド&#8203;や&#8203;ソー&#8203;ス&#8203;コー&#8203;ド&#8203;の&#8203;挿&#8203;入&#8203;な&#8203;ど&#8203;の&#8203;機&#8203;能&#8203;も&#8203;有&#8203;し、&#8203;か&#8203;つ&#8203;簡&#8203;潔&#8203;で&#8203;す。&#8203;特&#8203;に&#8203;技&#8203;術&#8203;文&#8203;書&#8203;の&#8203;執&#8203;筆&#8203;に&#8203;は&#8203;大&#8203;き&#8203;な&#8203;力&#8203;を&#8203;発&#8203;揮&#8203;す&#8203;る&#8203;こ&#8203;と&#8203;で&#8203;しょ&#8203;う。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Asciidoc &#8203;の&#8203;表&#8203;現&#8203;力&#8203;を&#8203;示&#8203;す&#8203;ひ&#8203;と&#8203;つ&#8203;の&#8203;例&#8203;は、&#8203;こ&#8203;の&#8203;よ&#8203;う&#8203;な&#8203;脚&#8203;注&#8203;表&#8203;現&#8203;で&#8203;す。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>一&#8203;般&#8203;的&#8203;に&#8203;こ&#8203;の&#8203;よ&#8203;う&#8203;な&#8203;テ&#8203;キ&#8203;ス&#8203;ト&#8203;プ&#8203;ロ&#8203;セッ&#8203;サー&#8203;を&#8203;用&#8203;い&#8203;た&#8203;執&#8203;筆&#8203;環&#8203;境&#8203;を&#8203;構&#8203;築&#8203;す&#8203;る&#8203;た&#8203;め&#8203;に&#8203;は&#8203;多&#8203;く&#8203;の&#8203;準&#8203;備&#8203;が&#8203;必&#8203;要&#8203;と&#8203;な&#8203;り&#8203;ま&#8203;す&#8203;が、&#8203;本&#8203;文&#8203;書&#8203;の&#8203;手&#8203;順&#8203;は&#8203;極&#8203;力&#8203;初&#8203;期&#8203;導&#8203;入&#8203;す&#8203;る&#8203;プ&#8203;ロ&#8203;ダ&#8203;ク&#8203;ト&#8203;を&#8203;少&#8203;な&#8203;く、&#8203;簡&#8203;単&#8203;に&#8203;快&#8203;適&#8203;な&#8203;執&#8203;筆&#8203;環&#8203;境&#8203;を&#8203;整&#8203;え&#8203;ら&#8203;れ&#8203;る&#8203;よ&#8203;う&#8203;考&#8203;え&#8203;ら&#8203;れ&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>具&#8203;体&#8203;的&#8203;に&#8203;は&#8203;文&#8203;書&#8203;の&#8203;変&#8203;換&#8203;に、&#8203;実&#8203;行&#8203;を&#8203; JVM &#8203;環&#8203;境&#8203;だ&#8203;け&#8203;に&#8203;依&#8203;存&#8203;す&#8203;る&#8203; <code>Ascidocrotj</code> &#8203;と&#8203; <code>Gradle</code> &#8203;を&#8203;活&#8203;用&#8203;し、&#8203;執&#8203;筆&#8203;環&#8203;境&#8203;に&#8203;つ&#8203;い&#8203;て&#8203;は&#8203; <code>Visual Studio Code</code> &#8203;を&#8203;用&#8203;い&#8203;る&#8203;こ&#8203;と&#8203;で&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;に&#8203;文&#8203;書&#8203;を&#8203;プ&#8203;レ&#8203;ビュー&#8203;し&#8203;な&#8203;が&#8203;ら、&#8203;最&#8203;後&#8203;に&#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;一&#8203;つ&#8203;で&#8203; PDF &#8203;化&#8203;で&#8203;き&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;準&#8203;備&#8203;し&#8203;て&#8203;あ&#8203;り&#8203;ま&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>本&#8203;文&#8203;書&#8203;が&#8203;み&#8203;な&#8203;さ&#8203;ん&#8203;の&#8203;執&#8203;筆&#8203;活&#8203;動&#8203;の&#8203;お&#8203;手&#8203;伝&#8203;い&#8203;に&#8203;な&#8203;れ&#8203;ば&#8203;幸&#8203;い&#8203;で&#8203;す。</p>
+</div>
+<div class="sect2">
+<h3 id="_謝辞">1.1. 謝辞</h3>
+<div class="paragraph">
+<p>本&#8203;文&#8203;書&#8203;の&#8203;手&#8203;順&#8203;の&#8203;実&#8203;装&#8203;で&#8203;あ&#8203;る&#8203;ビ&#8203;ル&#8203;ド&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;や&#8203;テー&#8203;マ&#8203;で&#8203;は&#8203;次&#8203;の&#8203;プ&#8203;ロ&#8203;ダ&#8203;ク&#8203;ト&#8203;と&#8203;技&#8203;術&#8203;資&#8203;料&#8203;が&#8203;使&#8203;わ&#8203;れ&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+プロダクト名の隣にライセンスを併記しました。商用利用等で制限のあるプロダクトはありませんが、それぞれライセンスを確認してください。
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Font</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>源&#8203;真&#8203;ゴ&#8203;シッ&#8203;ク&#8203; - SIL Open Font License 1.1  - <a href="http://jikasei.me/font/genshin/" class="bare">http://jikasei.me/font/genshin/</a></p>
+</li>
+<li>
+<p>M+ Fonts - M+ FONT LICENSE - <a href="https://mplus-fonts.osdn.jp/about.html" class="bare">https://mplus-fonts.osdn.jp/about.html</a></p>
+</li>
+<li>
+<p>Ricty Diminished - SIL Open Font License 1.1 - <a href="https://github.com/edihbrandon/RictyDiminished" class="bare">https://github.com/edihbrandon/RictyDiminished</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Asciidoc</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Asciidoctor - MIT License - <a href="https://asciidoctor.org/" class="bare">https://asciidoctor.org/</a></p>
+</li>
+<li>
+<p>Asciidoctorj - MIT License - <a href="https://github.com/asciidoctor/asciidoctorj" class="bare">https://github.com/asciidoctor/asciidoctorj</a></p>
+</li>
+<li>
+<p>Asciidoctor.js - MIT License - <a href="https://asciidoctor.org/docs/asciidoctor.js/" class="bare">https://asciidoctor.org/docs/asciidoctor.js/</a></p>
+</li>
+<li>
+<p>Asciidoctor PDF - MIT License - <a href="https://asciidoctor.org/docs/asciidoctor-pdf/" class="bare">https://asciidoctor.org/docs/asciidoctor-pdf/</a></p>
+</li>
+<li>
+<p>asciidoctor-pdf-cjk - MIT License - <a href="https://github.com/chloerei/asciidoctor-pdf-cjk" class="bare">https://github.com/chloerei/asciidoctor-pdf-cjk</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Build Tool</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>SDKMAN - Apache License 2.0 - <a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
+</li>
+<li>
+<p>Gradle - Apache License 2.0 - <a href="https://gradle.org/" class="bare">https://gradle.org/</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Text Editor</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>Visual Studio Code - Microsoft - <a href="https://code.visualstudio.com/" class="bare">https://code.visualstudio.com/</a></p>
+</li>
+<li>
+<p>asciidoctor-vscode - MIT License - <a href="https://github.com/asciidoctor/asciidoctor-vscode" class="bare">https://github.com/asciidoctor/asciidoctor-vscode</a></p>
+</li>
+</ul>
+</div>
+</dd>
+<dt class="hdlist1">Guide</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>asciidoctor-pdf&#8203;で&#8203;かっ&#8203;こ&#8203;い&#8203;い&#8203;PDF&#8203;を&#8203;作&#8203;る&#8203; - <a href="https://qiita.com/kuboaki/items/67774c5ebd41467b83e2" class="bare">https://qiita.com/kuboaki/items/67774c5ebd41467b83e2</a></p>
+</li>
+</ul>
+</div>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>素&#8203;晴&#8203;ら&#8203;し&#8203;い&#8203;成&#8203;果&#8203;を&#8203;公&#8203;開&#8203;さ&#8203;れ&#8203;て&#8203;い&#8203;る&#8203;み&#8203;な&#8203;さ&#8203;ま&#8203;に&#8203;感&#8203;謝&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本&#8203;手&#8203;順&#8203;で&#8203;用&#8203;い&#8203;る&#8203; Asciidoc &#8203;文&#8203;書&#8203;変&#8203;換&#8203;用&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;は&#8203;ビ&#8203;ル&#8203;ド&#8203;ツー&#8203;ル&#8203;で&#8203;あ&#8203;る&#8203; Gradle &#8203;を&#8203;活&#8203;用&#8203;し&#8203;て&#8203;お&#8203;り、&#8203;実&#8203;行&#8203;す&#8203;る&#8203;た&#8203;め&#8203;に&#8203;は&#8203; Java &#8203;実&#8203;行&#8203;環&#8203;境&#8203;が&#8203;必&#8203;要&#8203;で&#8203;す。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>お&#8203;使&#8203;い&#8203;の&#8203;コ&#8203;ン&#8203;ピュー&#8203;ター&#8203;の&#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;ラ&#8203;イ&#8203;ン&#8203;環&#8203;境&#8203;（macOS/Linux &#8203;で&#8203;は&#8203;ター&#8203;ミ&#8203;ナ&#8203;ル、&#8203;Windows &#8203;で&#8203;は&#8203; cmd.exe &#8203;か&#8203; powershell.exe）&#8203;で&#8203; <code>java -version</code> &#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;を&#8203;入&#8203;力&#8203;し、&#8203;Java 8 &#8203;以&#8203;上&#8203;の&#8203;バー&#8203;ジョ&#8203;ン&#8203;が&#8203;表&#8203;示&#8203;さ&#8203;れ&#8203;る&#8203;よ&#8203;う&#8203;で&#8203;あ&#8203;れ&#8203;ば&#8203;既&#8203;に&#8203;準&#8203;備&#8203;は&#8203;整っ&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">macOS/Linux の場合</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>$ java -version
+openjdk version &quot;1.8.0_192&quot;
+OpenJDK Runtime Environment (Zulu 8.33.0.1-macosx) (build 1.8.0_192-b01)
+OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Windows の場合</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>C:¥&gt; java -version
+openjdk version &quot;1.8.0_192&quot;
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="重要"></i>
+</td>
+<td class="content">
+現在 Java 9 以降の環境で Asciidoctor の実行環境となる <code>JRuby</code> が（ビルドの範囲では動作に問題ないように見えるものの）実行時にワーニングを出力するため、本手順では Java 8 を使って解説しています。この問題は将来解消されるでしょう。
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
+<div class="paragraph">
+<p>も&#8203;し&#8203; macOS / Linux &#8203;環&#8203;境&#8203;に&#8203; Java &#8203;実&#8203;行&#8203;環&#8203;境&#8203;が&#8203;な&#8203;け&#8203;れ&#8203;ば&#8203; <code>SDKMAN</code> &#8203;を&#8203;利&#8203;用&#8203;す&#8203;る&#8203;こ&#8203;と&#8203;で、&#8203;ター&#8203;ミ&#8203;ナ&#8203;ル&#8203;か&#8203;ら&#8203;簡&#8203;単&#8203;に&#8203;導&#8203;入&#8203;す&#8203;る&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;す。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; SDKMAN
+</div>
+</div>
+<div class="listingblock">
+<div class="title">手順. SDKMAN を用いた Java の導入</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>$ curl -s &quot;https://get.sdkman.io&quot; | bash <i class="conum" data-value="1"></i><b>(1)</b>
+$ source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot; <i class="conum" data-value="2"></i><b>(2)</b>
+$ sdk list java <i class="conum" data-value="3"></i><b>(3)</b>
+=========================================
+Available Java Versions
+=========================================
+     12.ea.20-open
+     11.0.1-zulu
+     11.0.1-open
+     10.0.2-zulu
+     10.0.2-open
+     9.0.7-zulu
+     9.0.4-open
+     8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b>
+     8.0.191-oracle
+     7.0.181-zulu
+     1.0.0-rc9-graal
+     1.0.0-rc8-graal
+     1.0.0-rc7-graal
+$ sdk install java 8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>SDKMAN &#8203;を&#8203;導&#8203;入&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>SDKMAN &#8203;を&#8203;環&#8203;境&#8203;に&#8203;設&#8203;定&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>導&#8203;入&#8203;で&#8203;き&#8203;る&#8203; Java &#8203;の&#8203;バー&#8203;ジョ&#8203;ン&#8203;を&#8203;一&#8203;覧&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>8.0 &#8203;系&#8203;の&#8203;最&#8203;新&#8203;バー&#8203;ジョ&#8203;ン&#8203;を&#8203;指&#8203;定&#8203;し&#8203;て&#8203; Java &#8203;を&#8203;導&#8203;入&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>ま&#8203;た、&#8203;Gradle &#8203;は&#8203; <code>JAVA_HOME</code> &#8203;環&#8203;境&#8203;変&#8203;数&#8203;に&#8203;実&#8203;行&#8203;環&#8203;境&#8203;の&#8203; Java &#8203;の&#8203;パ&#8203;ス&#8203;が&#8203;設&#8203;定&#8203;さ&#8203;れ&#8203;て&#8203;い&#8203;る&#8203;こ&#8203;と&#8203;を&#8203;期&#8203;待&#8203;し&#8203;て&#8203;い&#8203;ま&#8203;す&#8203;の&#8203;で、&#8203;<code>.bash_profile</code> &#8203;で&#8203;次&#8203;の&#8203;よ&#8203;う&#8203;に&#8203; <code>JAVA_HOME</code> &#8203;を&#8203;設&#8203;定&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. JAVA_HOME の設定</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>$ vi ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+export JAVA_HOME=~/.sdkman/candidates/java/current <i class="conum" data-value="2"></i><b>(2)</b>
+$ source ~/.bash_profile <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>vi &#8203;エ&#8203;ディ&#8203;タ&#8203;で&#8203; <code>.bash_profile</code> &#8203;を&#8203;開&#8203;き&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>本&#8203;ラ&#8203;イ&#8203;ン&#8203;を&#8203;ファ&#8203;イ&#8203;ル&#8203;の&#8203;最&#8203;下&#8203;部&#8203;に&#8203;追&#8203;加&#8203;し&#8203; vi &#8203;を&#8203;保&#8203;存&#8203;終&#8203;了&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>設&#8203;定&#8203;を&#8203;適&#8203;用&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>こ&#8203;れ&#8203;で&#8203;準&#8203;備&#8203;完&#8203;了&#8203;で&#8203;す。</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">SDKMAN について</div>
+<div class="paragraph">
+<p>SDKMAN &#8203;は&#8203;主&#8203;に&#8203; Java &#8203;エ&#8203;コ&#8203;シ&#8203;ス&#8203;テ&#8203;ム&#8203;の&#8203;開&#8203;発&#8203;環&#8203;境&#8203;を&#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;ラ&#8203;イ&#8203;ン&#8203;か&#8203;ら&#8203;簡&#8203;単&#8203;に&#8203;導&#8203;入・&#8203;設&#8203;定&#8203;す&#8203;る&#8203;た&#8203;め&#8203;に&#8203;つ&#8203;く&#8203;た&#8203;れ&#8203;た&#8203;管&#8203;理&#8203;ソ&#8203;フ&#8203;ト&#8203;ウェ&#8203;ア&#8203;で&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>た&#8203;と&#8203;え&#8203;ば&#8203;簡&#8203;単&#8203;に&#8203;各&#8203;種&#8203; Java &#8203;の&#8203;バー&#8203;ジョ&#8203;ン&#8203;を&#8203;導&#8203;入&#8203;し&#8203;切&#8203;り&#8203;替&#8203;え&#8203;る&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. SDKMAN による Java のバージョン切り替え</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>$ sdk install java 11.0.1-open <i class="conum" data-value="1"></i><b>(1)</b>
+$ sdk default java 11.0.1-open <i class="conum" data-value="2"></i><b>(2)</b>
+$ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Java 11 &#8203;を&#8203;導&#8203;入</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Java 11 &#8203;を&#8203;デ&#8203;フォ&#8203;ル&#8203;ト&#8203;に&#8203;設&#8203;定</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Java 8 &#8203;を&#8203;デ&#8203;フォ&#8203;ル&#8203;ト&#8203;に&#8203;設&#8203;定</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</h3>
+<div class="paragraph">
+<p>も&#8203;し&#8203; Windows &#8203;環&#8203;境&#8203;に&#8203; Java &#8203;実&#8203;行&#8203;環&#8203;境&#8203;が&#8203;な&#8203;け&#8203;れ&#8203;ば&#8203; AdoptOpenJDK &#8203;プ&#8203;ロ&#8203;ジェ&#8203;ク&#8203;ト&#8203;が&#8203;提&#8203;供&#8203;す&#8203;る&#8203; OpenJDK &#8203;の&#8203;バ&#8203;イ&#8203;ナ&#8203;リ&#8203;を&#8203;導&#8203;入&#8203;す&#8203;る&#8203;と&#8203;良&#8203;い&#8203;で&#8203;しょ&#8203;う。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Java™ is the world&#8217;s leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; AdoptOpenJDK
+</div>
+</div>
+<div class="paragraph">
+<p><code><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></code> &#8203;サ&#8203;イ&#8203;ト&#8203;に&#8203;ブ&#8203;ラ&#8203;ウ&#8203;ザ&#8203;で&#8203;ア&#8203;ク&#8203;セ&#8203;ス&#8203;し、&#8203;OpenJDK 8 (LTS) - HotSpot &#8203;を&#8203;選&#8203;択&#8203;し&#8203;た&#8203;後、&#8203;zip &#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/AdoptOpenJDK.png" alt="adopt" width="640">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>zip &#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;任&#8203;意&#8203;の&#8203;場&#8203;所&#8203;に&#8203;展&#8203;開&#8203;し&#8203;ま&#8203;す。&#8203;こ&#8203;こ&#8203;で&#8203;は&#8203; <code>C:\develop\runtime\openjdk8</code> &#8203;に&#8203;展&#8203;開&#8203;し&#8203;た&#8203;と&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/windows-01.png" alt="導入先" width="480">
+</div>
+</div>
+<div class="paragraph">
+<p>Gradle &#8203;は&#8203; <code>JAVA_HOME</code> &#8203;環&#8203;境&#8203;変&#8203;数&#8203;に&#8203;実&#8203;行&#8203;環&#8203;境&#8203;の&#8203; Java &#8203;の&#8203;パ&#8203;ス&#8203;が&#8203;設&#8203;定&#8203;さ&#8203;れ&#8203;て&#8203;い&#8203;る&#8203;こ&#8203;と&#8203;を&#8203;期&#8203;待&#8203;し&#8203;て&#8203;い&#8203;ま&#8203;す&#8203;の&#8203;で、&#8203;<span class="menuseq"><b class="menu">&#8203;エ&#8203;ク&#8203;ス&#8203;プ&#8203;ロー&#8203;ラー&#8203;</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC&#8203;（右&#8203;ク&#8203;リッ&#8203;ク）&#8203;</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">&#8203;プ&#8203;ロ&#8203;パ&#8203;ティー&#8203;</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">&#8203;詳&#8203;細&#8203;設&#8203;定&#8203;</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">&#8203;環&#8203;境&#8203;設&#8203;定&#8203;</b></span> &#8203;か&#8203;ら&#8203;ユー&#8203;ザー&#8203;環&#8203;境&#8203;変&#8203;数&#8203;に&#8203;  <code>JAVA_HOME</code> &#8203;を&#8203;追&#8203;加&#8203;し、&#8203;先&#8203;ほ&#8203;ど&#8203; .zip &#8203;を&#8203;展&#8203;開&#8203;し&#8203;た&#8203;パ&#8203;ス&#8203;（<code>C:\develop\runtime\openjdk8</code> ）&#8203;を&#8203;設&#8203;定&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/windows-02.png" alt="環境変数" width="320">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、<code>java</code> コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>こ&#8203;れ&#8203;で&#8203;準&#8203;備&#8203;完&#8203;了&#8203;で&#8203;す。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</h3>
+<div class="paragraph">
+<p>環&#8203;境&#8203;の&#8203;準&#8203;備&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;し&#8203;た&#8203;の&#8203;で&#8203; Asciidoc &#8203;文&#8203;書&#8203;を&#8203; HTML/PDF &#8203;に&#8203;変&#8203;換&#8203;し&#8203;て&#8203;み&#8203;ま&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>変&#8203;換&#8203;に&#8203;使&#8203;う&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;は&#8203; github &#8203;の&#8203;リ&#8203;ポ&#8203;ジ&#8203;ト&#8203;リ&#8203;に&#8203;公&#8203;開&#8203;さ&#8203;れ&#8203;て&#8203;お&#8203;り、&#8203;リ&#8203;ポ&#8203;ジ&#8203;ト&#8203;リ&#8203;に&#8203;は&#8203; HTML/PDF &#8203;変&#8203;換&#8203;に&#8203;使&#8203;う&#8203;ファ&#8203;イ&#8203;ル&#8203;一&#8203;式&#8203;と、&#8203;文&#8203;書&#8203;サ&#8203;ン&#8203;プ&#8203;ル&#8203;と&#8203;し&#8203;て&#8203; "&#8203;こ&#8203;の&#8203;文&#8203;書&#8203;" &#8203;の&#8203; Asciidoc &#8203;ファ&#8203;イ&#8203;ル&#8203;が&#8203;置&#8203;か&#8203;れ&#8203;て&#8203;い&#8203;ま&#8203;す。&#8203;ま&#8203;ず&#8203;は&#8203;サ&#8203;ン&#8203;プ&#8203;ル&#8203;文&#8203;書&#8203;が&#8203;正&#8203;し&#8203;く&#8203;変&#8203;換&#8203;で&#8203;き&#8203;る&#8203;か&#8203;を&#8203;試&#8203;し&#8203;て&#8203;み&#8203;ま&#8203;しょ&#8203;う。</p>
+</div>
+<div class="paragraph">
+<p>macOS / Linux &#8203;の&#8203;場&#8203;合&#8203;は&#8203;次&#8203;の&#8203;よ&#8203;う&#8203;に&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. PDF 変換ビルドスクリプトの取得と実行</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip <i class="conum" data-value="1"></i><b>(1)</b>
+$ unzip master.zip <i class="conum" data-value="2"></i><b>(2)</b>
+$ cd asciidoctor-gradle-template-master <i class="conum" data-value="3"></i><b>(3)</b>
+$ ./gradlew docs <i class="conum" data-value="4"></i><b>(4)</b>
+BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
+2 actionable tasks: 2 executed</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>リ&#8203;ポ&#8203;ジ&#8203;ト&#8203;リ&#8203;の&#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;し&#8203;た&#8203; .zip &#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;展&#8203;開&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>カ&#8203;レ&#8203;ン&#8203;ト&#8203;ディ&#8203;レ&#8203;ク&#8203;ト&#8203;リ&#8203;を&#8203;展&#8203;開&#8203;し&#8203;た&#8203;フォ&#8203;ル&#8203;ダ&#8203;の&#8203;中&#8203;に&#8203;移&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Gradle &#8203;の&#8203;ビ&#8203;ル&#8203;ド&#8203;を&#8203;実&#8203;行&#8203;し&#8203;ま&#8203;す。&#8203;初&#8203;回&#8203;実&#8203;行&#8203;時&#8203;は&#8203;ビ&#8203;ル&#8203;ド&#8203;に&#8203;必&#8203;要&#8203;な&#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;す&#8203;る&#8203;た&#8203;め&#8203;少&#8203;し&#8203;時&#8203;間&#8203;が&#8203;か&#8203;か&#8203;り&#8203;ま&#8203;す。&#8203;次&#8203;回&#8203;は&#8203;数&#8203;秒&#8203;で&#8203;完&#8203;了&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td><code>BUILD SUCCESSFUL</code> &#8203;が&#8203;出&#8203;力&#8203;さ&#8203;れ&#8203;れ&#8203;ば&#8203;ビ&#8203;ル&#8203;ド&#8203;成&#8203;功&#8203;で&#8203;す。</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Windows &#8203;を&#8203;お&#8203;使&#8203;い&#8203;の&#8203;場&#8203;合&#8203;は&#8203;同&#8203;等&#8203;の&#8203;操&#8203;作&#8203;を&#8203;ブ&#8203;ラ&#8203;ウ&#8203;ザ&#8203;と&#8203;エ&#8203;ク&#8203;ス&#8203;プ&#8203;ロー&#8203;ラー&#8203;を&#8203;使っ&#8203;て&#8203;行&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ブ&#8203;ラ&#8203;ウ&#8203;ザ&#8203;を&#8203;使っ&#8203;て&#8203; <code><a href="https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip</a></code> &#8203;に&#8203;ア&#8203;ク&#8203;セ&#8203;ス&#8203;し&#8203;リ&#8203;ポ&#8203;ジ&#8203;ト&#8203;リ&#8203;の&#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;取&#8203;得&#8203;し&#8203;ま&#8203;す。</p>
+</li>
+<li>
+<p>ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;し&#8203;た&#8203; .zip &#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;右&#8203;ク&#8203;リッ&#8203;ク&#8203;し&#8203;展&#8203;開&#8203;し&#8203;ま&#8203;す。</p>
+</li>
+<li>
+<p>展&#8203;開&#8203;し&#8203;た&#8203;フォ&#8203;ル&#8203;ダ&#8203;内&#8203;を&#8203;エ&#8203;ク&#8203;ス&#8203;プ&#8203;ロー&#8203;ラー&#8203;で&#8203;表&#8203;示&#8203;し&#8203;た&#8203;上&#8203;で、&#8203;ア&#8203;ド&#8203;レ&#8203;ス&#8203;バー&#8203;に&#8203; <code>cmd.exe</code> &#8203;と&#8203;入&#8203;力&#8203;し、&#8203;こ&#8203;の&#8203;フォ&#8203;ル&#8203;ダ&#8203;を&#8203;カ&#8203;レ&#8203;ン&#8203;ト&#8203;ディ&#8203;レ&#8203;ク&#8203;ト&#8203;リ&#8203;と&#8203;し&#8203;て&#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;プ&#8203;ロ&#8203;ン&#8203;プ&#8203;ト&#8203;を&#8203;起&#8203;動&#8203;し&#8203;ま&#8203;す。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/windows-01.png" alt="windows" width="480">
+</div>
+</div>
+</li>
+<li>
+<p><code>.\gradlew.bat docs</code> &#8203;と&#8203;入&#8203;力&#8203;し&#8203; Gradle &#8203;ビ&#8203;ル&#8203;ド&#8203;を&#8203;実&#8203;行&#8203;し&#8203;ま&#8203;す。&#8203;初&#8203;回&#8203;実&#8203;行&#8203;時&#8203;は&#8203;ビ&#8203;ル&#8203;ド&#8203;に&#8203;必&#8203;要&#8203;な&#8203;ファ&#8203;イ&#8203;ル&#8203;を&#8203;ダ&#8203;ウ&#8203;ン&#8203;ロー&#8203;ド&#8203;す&#8203;る&#8203;た&#8203;め&#8203;少&#8203;し&#8203;時&#8203;間&#8203;が&#8203;か&#8203;か&#8203;り&#8203;ま&#8203;す。&#8203;次&#8203;回&#8203;は&#8203;数&#8203;秒&#8203;で&#8203;完&#8203;了&#8203;し&#8203;ま&#8203;す。</p>
+</li>
+<li>
+<p><code>BUILD SUCCESSFUL</code> &#8203;が&#8203;出&#8203;力&#8203;さ&#8203;れ&#8203;れ&#8203;ば&#8203;ビ&#8203;ル&#8203;ド&#8203;成&#8203;功&#8203;で&#8203;す。</p>
+</li>
+</ol>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">プロキシーサーバーの設定</div>
+<div class="paragraph">
+<p>も&#8203;し&#8203;お&#8203;使&#8203;い&#8203;の&#8203;コ&#8203;ン&#8203;ピュー&#8203;ター&#8203;が&#8203;プ&#8203;ロ&#8203;キ&#8203;シー&#8203;サー&#8203;バー&#8203;経&#8203;由&#8203;の&#8203;イ&#8203;ン&#8203;ター&#8203;ネッ&#8203;ト&#8203;ア&#8203;ク&#8203;セ&#8203;ス&#8203;を&#8203;行&#8203;う&#8203;場&#8203;合&#8203;は、&#8203;次&#8203;の&#8203;コ&#8203;マ&#8203;ン&#8203;ド&#8203;を&#8203; <code>./gradlew docs</code> &#8203;を&#8203;す&#8203;る&#8203;前&#8203;に&#8203;入&#8203;力&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。&#8203;イ&#8203;ン&#8203;ター&#8203;ネッ&#8203;ト&#8203;を&#8203;使っ&#8203;た&#8203;ラ&#8203;イ&#8203;ブ&#8203;ラ&#8203;リ&#8203;の&#8203;取&#8203;得&#8203;が&#8203;正&#8203;し&#8203;く&#8203;行&#8203;わ&#8203;れ&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;な&#8203;り&#8203;ま&#8203;す。&#8203;ホ&#8203;ス&#8203;ト&#8203;名&#8203;（<code>example.com</code>）&#8203; &#8203;と&#8203; &#8203;ポー&#8203;ト&#8203;番&#8203;号&#8203;（<code>8080</code>）&#8203;部&#8203;分&#8203;は&#8203;そ&#8203;れ&#8203;ぞ&#8203;れ&#8203;の&#8203;環&#8203;境&#8203;に&#8203;合&#8203;わ&#8203;せ&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. プロキシーサーバー設定（Windows）</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">手順. プロキシーサーバー設定（macOS / Linux）</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Asciidoc &#8203;か&#8203;ら&#8203;変&#8203;換&#8203;さ&#8203;れ&#8203;た&#8203;文&#8203;書&#8203;は&#8203;次&#8203;の&#8203;場&#8203;所&#8203;に&#8203;格&#8203;納&#8203;さ&#8203;れ&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>docs/index.html
+docs/index.pdf</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/pdf.png" alt="pdf" width="520">
+</div>
+<div class="title">図 1. PDF 文書</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/html.png" alt="html" width="520">
+</div>
+<div class="title">図 2. HTML 文書</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+文書を github 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</h3>
+<div class="paragraph">
+<p>プ&#8203;ロ&#8203;ジェ&#8203;ク&#8203;ト&#8203;に&#8203;配&#8203;置&#8203;さ&#8203;れ&#8203;た&#8203; Asciidoc &#8203;文&#8203;書&#8203;は&#8203; Visual Studio Code &#8203;を&#8203;利&#8203;用&#8203;し&#8203;て&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;に&#8203;変&#8203;換&#8203;結&#8203;果&#8203;を&#8203;プ&#8203;レ&#8203;ビュー&#8203;し&#8203;な&#8203;が&#8203;ら&#8203;編&#8203;集&#8203;で&#8203;き&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;準&#8203;備&#8203;さ&#8203;れ&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>プ&#8203;ロ&#8203;ジェ&#8203;ク&#8203;ト&#8203;フォ&#8203;ル&#8203;ダ&#8203;（<code>asciidoctor-gradle-template-master</code>）&#8203;を&#8203; Visual Studio Code &#8203;で&#8203;開&#8203;き、&#8203;拡&#8203;張&#8203;機&#8203;能&#8203;の&#8203;推&#8203;奨&#8203;事&#8203;項&#8203;か&#8203;ら&#8203;拡&#8203;張&#8203;を&#8203;導&#8203;入&#8203;し&#8203;ま&#8203;す。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+拡張機能の推奨は <code>.vscode/extention.json</code> で設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><b class="button">&#8203;す&#8203;べ&#8203;て&#8203;イ&#8203;ン&#8203;ス&#8203;トー&#8203;ル&#8203;</b> &#8203;ボ&#8203;タ&#8203;ン&#8203;を&#8203;ク&#8203;リッ&#8203;ク&#8203;し&#8203;ま&#8203;す。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/vscode-extention1.png" alt="vscode">
+</div>
+</div>
+</li>
+<li>
+<p><b class="button">&#8203;再&#8203;読&#8203;み&#8203;込&#8203;み&#8203;</b> &#8203;ボ&#8203;タ&#8203;ン&#8203;を&#8203;ク&#8203;リッ&#8203;ク&#8203;し&#8203;ま&#8203;す。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/vscode-extention2.png" alt="vscode">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</li>
+<li>
+<p>Asciidoc &#8203;文&#8203;書&#8203;（<code>src/docs/asciidoc/index.adoc</code>&#8203;な&#8203;ど）&#8203;を&#8203; Visual Studio Code &#8203;の&#8203;エ&#8203;ク&#8203;ス&#8203;プ&#8203;ロー&#8203;ラー&#8203;か&#8203;ら&#8203;選&#8203;択&#8203;し&#8203;て&#8203;開&#8203;き、&#8203;文&#8203;書&#8203;を&#8203;開&#8203;い&#8203;た&#8203;エ&#8203;ディ&#8203;タ&#8203;部&#8203;右&#8203;上&#8203;に&#8203;配&#8203;置&#8203;さ&#8203;れ&#8203;た&#8203; <b class="button">Open Preview to the Side</b>&#8203;ア&#8203;イ&#8203;コ&#8203;ン&#8203;を&#8203;ク&#8203;リッ&#8203;ク&#8203;す&#8203;る&#8203;と、&#8203;画&#8203;面&#8203;右&#8203;側&#8203;に&#8203; Asciidoc &#8203;文&#8203;書&#8203;の&#8203;変&#8203;換&#8203;が&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;に&#8203;確&#8203;認&#8203;で&#8203;き&#8203;る&#8203;プ&#8203;レ&#8203;ビュー&#8203;が&#8203;表&#8203;示&#8203;さ&#8203;れ&#8203;ま&#8203;す。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/vscode-asciidoc.png" alt="vscode" width="600">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>な&#8203;お、&#8203;も&#8203;し&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;プ&#8203;レ&#8203;ビュー&#8203;で&#8203;ソー&#8203;ス&#8203;コー&#8203;ド&#8203;の&#8203;ハ&#8203;イ&#8203;ラ&#8203;イ&#8203;ト&#8203;が&#8203;動&#8203;作&#8203;し&#8203;な&#8203;い&#8203;場&#8203;合&#8203;は、&#8203;Asciidoc &#8203;文&#8203;書&#8203;を&#8203;開&#8203;い&#8203;た&#8203;状&#8203;態&#8203;で&#8203; <b class="button">F1</b> &#8203;を&#8203;押&#8203;し、&#8203;<span class="menuseq"><b class="menu">Change Preview Security Setting</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Disable</b></span> &#8203;を&#8203;選&#8203;択&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/vscode-asciidoc-security1.png" alt="vscode">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/vscode-asciidoc-security2.png" alt="vscode">
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="重要"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>本&#8203;設&#8203;定&#8203;は、&#8203;プ&#8203;レ&#8203;ビュー&#8203;画&#8203;面&#8203;で&#8203;動&#8203;作&#8203;す&#8203;る&#8203; Webview &#8203;が&#8203;イ&#8203;ン&#8203;ター&#8203;ネッ&#8203;ト&#8203;上&#8203;の&#8203;外&#8203;部&#8203;リ&#8203;ソー&#8203;ス&#8203;を&#8203;評&#8203;価&#8203;で&#8203;き&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;セ&#8203;キュ&#8203;リ&#8203;ティー&#8203;権&#8203;限&#8203;を&#8203;下&#8203;げ&#8203;る&#8203;設&#8203;定&#8203;で&#8203;す。</p>
+</div>
+<div class="paragraph">
+<p>プ&#8203;ロ&#8203;ジェ&#8203;ク&#8203;ト&#8203;（ファ&#8203;イ&#8203;ル&#8203;が&#8203;配&#8203;置&#8203;さ&#8203;れ&#8203;た&#8203;フォ&#8203;ル&#8203;ダ）&#8203;毎&#8203;の&#8203;設&#8203;定&#8203;と&#8203;な&#8203;り&#8203;ま&#8203;す&#8203;が、&#8203;こ&#8203;の&#8203;設&#8203;定&#8203;を&#8203;し&#8203;た&#8203;後&#8203;は&#8203;こ&#8203;の&#8203;プ&#8203;ロ&#8203;ジェ&#8203;ク&#8203;ト&#8203;で&#8203;第&#8203;三&#8203;者&#8203;の&#8203;作&#8203;成&#8203;し&#8203;た&#8203;未&#8203;知&#8203;の&#8203; Asciidoc &#8203;文&#8203;書&#8203;を&#8203;開&#8203;か&#8203;な&#8203;い&#8203;よ&#8203;う&#8203;に&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。&#8203;外&#8203;部&#8203;に&#8203;配&#8203;置&#8203;さ&#8203;れ&#8203;た&#8203;悪&#8203;意&#8203;の&#8203; JavaScript &#8203;に&#8203;よ&#8203;り、&#8203;セ&#8203;キュ&#8203;リ&#8203;ティー&#8203;を&#8203;侵&#8203;害&#8203;さ&#8203;れ&#8203;る&#8203;可&#8203;能&#8203;性&#8203;が&#8203;あ&#8203;り&#8203;ま&#8203;す。&#8203;理&#8203;解&#8203;の&#8203;上、&#8203;設&#8203;定&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い。</p>
+</div>
+<div class="paragraph">
+<p>拡&#8203;張&#8203;が&#8203;ソー&#8203;ス&#8203;コー&#8203;ド&#8203;の&#8203;ハ&#8203;イ&#8203;ラ&#8203;イ&#8203;ト&#8203;を&#8203;行&#8203;う&#8203;た&#8203;め、&#8203;CDN &#8203;に&#8203;配&#8203;置&#8203;さ&#8203;れ&#8203;た&#8203;リ&#8203;ソー&#8203;ス&#8203;を&#8203;参&#8203;照&#8203;し&#8203;て&#8203;い&#8203;る&#8203;た&#8203;め&#8203;に&#8203;発&#8203;生&#8203;し&#8203;て&#8203;い&#8203;る&#8203;問&#8203;題&#8203;で、&#8203;将&#8203;来&#8203;ロー&#8203;カ&#8203;ル&#8203;の&#8203;リ&#8203;ソー&#8203;ス&#8203;を&#8203;参&#8203;照&#8203;す&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;修&#8203;正&#8203;さ&#8203;れ&#8203;解&#8203;決&#8203;さ&#8203;れ&#8203;る&#8203;と&#8203;思&#8203;わ&#8203;れ&#8203;ま&#8203;す。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_文書のファイル構成">3.3. 文書のファイル構成</h3>
+<div class="paragraph">
+<p>文&#8203;書&#8203;は&#8203;次&#8203;の&#8203;よ&#8203;う&#8203;な&#8203;ファ&#8203;イ&#8203;ル&#8203;で&#8203;構&#8203;成&#8203;し&#8203;ま&#8203;す。&#8203;サ&#8203;ン&#8203;プ&#8203;ル&#8203;文&#8203;書&#8203;か&#8203;ら&#8203;執&#8203;筆&#8203;し&#8203;た&#8203;い&#8203;文&#8203;書&#8203;に&#8203;合&#8203;わ&#8203;せ&#8203;て&#8203;カ&#8203;ス&#8203;タ&#8203;マ&#8203;イ&#8203;ズ&#8203;し&#8203;て&#8203;い&#8203;く&#8203;と&#8203;よ&#8203;い&#8203;で&#8203;しょ&#8203;う。</p>
+</div>
+<div class="listingblock">
+<div class="title">文書を構成するファイル</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>src/docs/asciidoc/index.adoc <i class="conum" data-value="1"></i><b>(1)</b>
+src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
+src/docs/asciidoc/@css/*.css <i class="conum" data-value="3"></i><b>(3)</b>
+src/docs/asciidoc/@css/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
+src/docs/asciidoc/@font/* <i class="conum" data-value="5"></i><b>(5)</b>
+src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>文&#8203;書&#8203;を&#8203;作&#8203;成&#8203;す&#8203;る&#8203;起&#8203;点&#8203;と&#8203;な&#8203;る&#8203; Asciidoc &#8203;文&#8203;書&#8203;で&#8203;す。&#8203;大&#8203;き&#8203;な&#8203;文&#8203;書&#8203;の&#8203;場&#8203;合&#8203;は&#8203;こ&#8203;こ&#8203;か&#8203;ら&#8203;他&#8203;の&#8203; Asciidoc &#8203;文&#8203;書&#8203;を&#8203; <code>include</code> &#8203;し&#8203;て&#8203;構&#8203;成&#8203;し&#8203;て&#8203;い&#8203;き&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>文&#8203;書&#8203;設&#8203;定&#8203;を&#8203;す&#8203;る&#8203;た&#8203;め&#8203;の&#8203;ファ&#8203;イ&#8203;ル&#8203;で&#8203;す。&#8203;各&#8203;文&#8203;書&#8203;か&#8203;ら&#8203; <code>incliude</code> &#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>HTML &#8203;用&#8203;の&#8203;ス&#8203;タ&#8203;イ&#8203;ル&#8203;シー&#8203;ト&#8203;で&#8203;す。&#8203;<code>editor.css</code> &#8203;は&#8203;エ&#8203;ディ&#8203;タ&#8203;の&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;プ&#8203;レ&#8203;ビュー&#8203;が&#8203;使&#8203;う&#8203;ス&#8203;タ&#8203;イ&#8203;ル&#8203;シー&#8203;ト&#8203;で&#8203;す。&#8203;そ&#8203;の&#8203;他&#8203;は&#8203; HTML &#8203;文&#8203;書&#8203;変&#8203;換&#8203;用&#8203;で&#8203;す。&#8203;い&#8203;ず&#8203;れ&#8203;も&#8203;文&#8203;書&#8203;に&#8203;合&#8203;わ&#8203;せ&#8203;て&#8203;修&#8203;正&#8203;す&#8203;る&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>PDF &#8203;文&#8203;書&#8203;に&#8203;変&#8203;換&#8203;す&#8203;る&#8203;際&#8203;に&#8203;使&#8203;わ&#8203;れ&#8203;る&#8203;ス&#8203;タ&#8203;イ&#8203;ル&#8203;定&#8203;義&#8203;で&#8203;す。&#8203;文&#8203;書&#8203;に&#8203;合&#8203;わ&#8203;せ&#8203;て&#8203;修&#8203;正&#8203;す&#8203;る&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>PDF &#8203;文&#8203;書&#8203;に&#8203;埋&#8203;め&#8203;込&#8203;み&#8203;さ&#8203;れ&#8203;る&#8203;フォ&#8203;ン&#8203;ト&#8203;ファ&#8203;イ&#8203;ル&#8203;で&#8203;す。&#8203;<code>pdf-theme.yml</code> &#8203;か&#8203;ら&#8203;参&#8203;照&#8203;さ&#8203;れ&#8203;て&#8203;い&#8203;ま&#8203;す。&#8203;TrueType &#8203;フォ&#8203;ン&#8203;ト&#8203; <code>.ttf</code> &#8203;が&#8203;指&#8203;定&#8203;で&#8203;き&#8203;ま&#8203;す。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td><code>src/docs/asciidoc/index.adoc</code> &#8203;か&#8203;ら&#8203;参&#8203;照&#8203;さ&#8203;れ&#8203;る&#8203;子&#8203;文&#8203;書&#8203;で&#8203;す。&#8203;後&#8203;述&#8203;の&#8203; <code>build.gradle</code> &#8203;に&#8203;よ&#8203;る&#8203;画&#8203;像&#8203;パ&#8203;ス&#8203;解&#8203;決&#8203;の&#8203;た&#8203;め&#8203;フォ&#8203;ル&#8203;ダ&#8203;名&#8203;は&#8203; <code>Chapter{number}</code> &#8203;と&#8203;し&#8203;ま&#8203;す。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>変&#8203;換&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;と&#8203;な&#8203;る&#8203; <code>build.gradle</code> &#8203;の&#8203; <code>attribute</code> &#8203;設&#8203;定&#8203;で&#8203;こ&#8203;れ&#8203;ら&#8203;の&#8203;ファ&#8203;イ&#8203;ル&#8203;パ&#8203;ス&#8203;や&#8203;変&#8203;換&#8203;に&#8203;必&#8203;要&#8203;な&#8203;属&#8203;性&#8203;を&#8203;設&#8203;定&#8203;し&#8203;て&#8203;い&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="CodeRay highlight"><code>asciidoctor {
+    attributes(
+        'build-gradle': file('build.gradle'),
+        'sourcedir': 'src/',
+        'stylesdir': '@style',
+        'stylesheet': 'asciidoctor.css',
+        'source-highlighter': 'coderay',
+        'pdf-stylesdir': &quot;@style&quot;,
+        'pdf-fontsdir': &quot;@font&quot;,
+        'pdf-style': 'pdf'
+    )
+    sources {
+        include 'index.adoc'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>src/docs/asciidoc/attribute.adoc</code> &#8203;で&#8203;は&#8203;エ&#8203;ディ&#8203;タ&#8203;の&#8203;リ&#8203;ア&#8203;ル&#8203;タ&#8203;イ&#8203;ム&#8203;プ&#8203;レ&#8203;ビュー&#8203;用&#8203;の&#8203;属&#8203;性&#8203;定&#8203;義&#8203;を&#8203;行&#8203;い、&#8203;文&#8203;書&#8203;変&#8203;換&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;で&#8203;そ&#8203;の&#8203;値&#8203;を&#8203;上&#8203;書&#8203;き&#8203;す&#8203;る&#8203;よ&#8203;う&#8203;に&#8203;構&#8203;成&#8203;す&#8203;る&#8203;と&#8203;良&#8203;い&#8203;で&#8203;しょ&#8203;う。</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor &#8203;で&#8203;利&#8203;用&#8203;可&#8203;能&#8203;な&#8203;属&#8203;性&#8203;は&#8203;次&#8203;か&#8203;ら&#8203;参&#8203;照&#8203;で&#8203;き&#8203;ま&#8203;す。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://asciidoctor.org/docs/user-manual/#attributes" class="bare">https://asciidoctor.org/docs/user-manual/#attributes</a></p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; asciidoctor.org
+</div>
+</div>
+<div class="paragraph">
+<p>ま&#8203;た、&#8203;文&#8203;書&#8203;に&#8203;挿&#8203;入&#8203;す&#8203;る&#8203;画&#8203;像&#8203;ファ&#8203;イ&#8203;ル&#8203;は&#8203; <code>images</code> &#8203;と&#8203;い&#8203;う&#8203;フォ&#8203;ル&#8203;ダ&#8203;名&#8203;内&#8203;に&#8203;配&#8203;置&#8203;さ&#8203;れ、&#8203;そ&#8203;の&#8203;文&#8203;書&#8203;か&#8203;ら&#8203;の&#8203;相&#8203;対&#8203;パ&#8203;ス&#8203;で&#8203;リ&#8203;ン&#8203;ク&#8203;さ&#8203;れ&#8203;る&#8203;こ&#8203;と&#8203;を&#8203;期&#8203;待&#8203;し&#8203;て&#8203;い&#8203;ま&#8203;す。&#8203;設&#8203;定&#8203;は&#8203;次&#8203;の&#8203;部&#8203;分&#8203;で&#8203;変&#8203;更&#8203;可&#8203;能&#8203;で&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="title">src/docs/asciidoc/attribute.adoc</div>
+<div class="content">
+<pre class="CodeRay highlight"><code> ifndef::imagesdir[:imagesdir: ./images]</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="CodeRay highlight"><code> copy {
+     from 'src/docs/asciidoc/'
+     include 'Chapter*/images/*' // 子文書のフォルダ名
+     into 'docs'
+ }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_文書中の相互参照">3.3.1. 文書中の相互参照</h4>
+<div class="paragraph">
+<p>文&#8203;書&#8203;内&#8203;の&#8203;参&#8203;照&#8203;リ&#8203;ン&#8203;ク&#8203;は&#8203;次&#8203;の&#8203;よ&#8203;う&#8203;に&#8203;指&#8203;定&#8203;で&#8203;き&#8203;ま&#8203;す。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>&lt;&lt;_文書のファイル構成,章の冒頭&gt;&gt; <i class="conum" data-value="1"></i><b>(1)</b>
+&lt;&lt;Chapter01/index.adoc#_はじめに,はじめに&gt;&gt; <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>同&#8203;一&#8203; <code>.adoc</code> &#8203;内&#8203;で&#8203;の&#8203;内&#8203;部&#8203;参&#8203;照</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>.adoc</code> &#8203;を&#8203;ま&#8203;た&#8203;い&#8203;だ&#8203;ド&#8203;キュ&#8203;メ&#8203;ン&#8203;ト&#8203;間&#8203;参&#8203;照</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>リ&#8203;ン&#8203;ク&#8203;の&#8203;例</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="_&.html#8203;文&#8203;書&#8203;の&#8203;ファ&#8203;イ&#8203;ル&#8203;構&#8203;成&#8203;">&#8203;章&#8203;の&#8203;冒&#8203;頭&#8203;</a> &#8203;を&#8203;参&#8203;照&#8203;し&#8203;て&#8203;く&#8203;だ&#8203;さ&#8203;い&#8203;･･･</p>
+</li>
+<li>
+<p><a href="#_&#8203;は&#8203;じ&#8203;め&#8203;に&#8203;">&#8203;は&#8203;じ&#8203;め&#8203;に&#8203;</a> &#8203;で&#8203;述&#8203;べ&#8203;た&#8203;よ&#8203;う&#8203;に&#8203;･･･</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_asciidoctorj_diagram">3.4. asciidoctorj-diagram</h3>
+<div class="paragraph">
+<p>本&#8203;変&#8203;換&#8203;ビ&#8203;ル&#8203;ド&#8203;ス&#8203;ク&#8203;リ&#8203;プ&#8203;ト&#8203;で&#8203;は&#8203; <code>asciidoctorj-diagram</code> &#8203;が&#8203;有&#8203;効&#8203;に&#8203;なっ&#8203;て&#8203;お&#8203;り、&#8203;い&#8203;く&#8203;つ&#8203;か&#8203;の&#8203;ダ&#8203;イ&#8203;ア&#8203;グ&#8203;ラ&#8203;ム&#8203;表&#8203;記&#8203;を&#8203;使&#8203;う&#8203;こ&#8203;と&#8203;が&#8203;で&#8203;き&#8203;ま&#8203;す。</p>
+</div>
+<div class="sect3">
+<h4 id="_plantuml">3.4.1. PlantUML</h4>
+<div class="paragraph">
+<p>PlantUML &#8203;形&#8203;式&#8203;の&#8203;ダ&#8203;イ&#8203;ア&#8203;グ&#8203;ラ&#8203;ム&#8203;を&#8203; <code>.svg</code> &#8203;ベ&#8203;ク&#8203;ター&#8203;画&#8203;像&#8203;で&#8203;文&#8203;書&#8203;に&#8203;埋&#8203;め&#8203;込&#8203;み&#8203;ま&#8203;す。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="333" height="237">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="97">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="173" height="78">
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>That&#8217;s all. Happy coding!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2020-04-06 11:41:50 +0900
+</div>
+</div>
 <style>
 /* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
-/*pre.CodeRay {background-color:#f7f7f8;}*/
-.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
-.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
-.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
-table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
-table.CodeRay td{vertical-align: top;line-height:1.45}
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
 table.CodeRay td.line-numbers{text-align:right}
-table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
-table.CodeRay td.code{padding:0 0 0 .5em}
-table.CodeRay td.code>pre{padding:0}
+table.CodeRay td.code{padding:0 0 0 .75em}
 .CodeRay .debug{color:#fff !important;background:#000080 !important}
 .CodeRay .annotation{color:#007}
 .CodeRay .attribute-name{color:#000080}
@@ -524,836 +1351,5 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .change .change{color:#66f}
 .CodeRay .head .head{color:#f4f}
 </style>
-</head>
-<body class="book toc2 toc-left">
-<div id="header">
-<h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
-<div class="details">
-<span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revnumber">バージョン unspecified,</span>
-<span id="revdate">2019-03-24</span>
-</div>
-<div id="toc" class="toc2">
-<div id="toctitle">目次</div>
-<ul class="sectlevel1">
-<li><a href="#_はじめに">1. はじめに</a>
-<ul class="sectlevel2">
-<li><a href="#_謝辞">1.1. 謝辞</a></li>
-</ul>
-</li>
-<li><a href="#_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</a>
-<ul class="sectlevel2">
-<li><a href="#_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
-<li><a href="#_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
-</ul>
-</li>
-<li><a href="#_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</a>
-<ul class="sectlevel2">
-<li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
-<li><a href="#_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</a></li>
-<li><a href="#_文書のファイル構成">3.3. 文書のファイル構成</a></li>
-<li><a href="#_asciidoctorj_diagram">3.4. asciidoctorj-diagram</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="content">
-<div class="sect1">
-<h2 id="_はじめに">1. はじめに</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>本文書は <code>Asciidoc</code> とその Ruby による実装である <code>Asciidoctor</code> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
-</div>
-<div class="paragraph">
-<p>この文書の手順より以下のことができるようになります。</p>
-</div>
-<table class="tableblock frame-topbot grid-none stretch">
-<colgroup>
-<col style="width: 66.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 文書変換用スクリプト</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code 拡張設定</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Asciidoc の表現力を示すひとつの例は、このような脚注表現です。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。</p>
-</div>
-<div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>Ascidocrotj</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。</p>
-</div>
-<div class="paragraph">
-<p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
-</div>
-<div class="sect2">
-<h3 id="_謝辞">1.1. 謝辞</h3>
-<div class="paragraph">
-<p>本文書の手順の実装であるビルドスクリプトやテーマでは次のプロダクトと技術資料が使われています。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-プロダクト名の隣にライセンスを併記しました。商用利用等で制限のあるプロダクトはありませんが、それぞれライセンスを確認してください。
-</td>
-</tr>
-</table>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Font</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>源真ゴシック - SIL Open Font License 1.1  - <a href="http://jikasei.me/font/genshin/" class="bare">http://jikasei.me/font/genshin/</a></p>
-</li>
-<li>
-<p>M+ Fonts - M+ FONT LICENSE - <a href="https://mplus-fonts.osdn.jp/about.html" class="bare">https://mplus-fonts.osdn.jp/about.html</a></p>
-</li>
-<li>
-<p>Ricty Diminished - SIL Open Font License 1.1 - <a href="https://github.com/edihbrandon/RictyDiminished" class="bare">https://github.com/edihbrandon/RictyDiminished</a></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Asciidoc</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>Asciidoctor - MIT License - <a href="https://asciidoctor.org/" class="bare">https://asciidoctor.org/</a></p>
-</li>
-<li>
-<p>Asciidoctorj - MIT License - <a href="https://github.com/asciidoctor/asciidoctorj" class="bare">https://github.com/asciidoctor/asciidoctorj</a></p>
-</li>
-<li>
-<p>Asciidoctor.js - MIT License - <a href="https://asciidoctor.org/docs/asciidoctor.js/" class="bare">https://asciidoctor.org/docs/asciidoctor.js/</a></p>
-</li>
-<li>
-<p>Asciidoctor PDF - MIT License - <a href="https://asciidoctor.org/docs/asciidoctor-pdf/" class="bare">https://asciidoctor.org/docs/asciidoctor-pdf/</a></p>
-</li>
-<li>
-<p>asciidoctor-pdf-cjk - MIT License - <a href="https://github.com/chloerei/asciidoctor-pdf-cjk" class="bare">https://github.com/chloerei/asciidoctor-pdf-cjk</a></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Build Tool</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>SDKMAN - Apache License 2.0 - <a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
-</li>
-<li>
-<p>Gradle - Apache License 2.0 - <a href="https://gradle.org/" class="bare">https://gradle.org/</a></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Text Editor</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>Visual Studio Code - Microsoft - <a href="https://code.visualstudio.com/" class="bare">https://code.visualstudio.com/</a></p>
-</li>
-<li>
-<p>asciidoctor-vscode - MIT License - <a href="https://github.com/asciidoctor/asciidoctor-vscode" class="bare">https://github.com/asciidoctor/asciidoctor-vscode</a></p>
-</li>
-</ul>
-</div>
-</dd>
-<dt class="hdlist1">Guide</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
-<p>asciidoctor-pdfでかっこいいPDFを作る - <a href="https://qiita.com/kuboaki/items/67774c5ebd41467b83e2" class="bare">https://qiita.com/kuboaki/items/67774c5ebd41467b83e2</a></p>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
-</div>
-<div class="paragraph">
-<p>素晴らしい成果を公開されているみなさまに感謝します。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 8 以上のバージョンが表示されるようであれば既に準備は整っています。</p>
-</div>
-<div class="listingblock">
-<div class="title">macOS/Linux の場合</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (Zulu 8.33.0.1-macosx) (build 1.8.0_192-b01)
-OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Windows の場合</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>C:¥&gt; java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
-OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="重要"></i>
-</td>
-<td class="content">
-現在 Java 9 以降の環境で Asciidoctor の実行環境となる <code>JRuby</code> が（ビルドの範囲では動作に問題ないように見えるものの）実行時にワーニングを出力するため、本手順では Java 8 を使って解説しています。この問題は将来解消されるでしょう。
-</td>
-</tr>
-</table>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="sect2">
-<h3 id="_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
-<div class="paragraph">
-<p>もし macOS / Linux 環境に Java 実行環境がなければ <code>SDKMAN</code> を利用することで、ターミナルから簡単に導入することができます。</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; SDKMAN
-</div>
-</div>
-<div class="listingblock">
-<div class="title">手順. SDKMAN を用いた Java の導入</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ curl -s "https://get.sdkman.io" | bash <i class="conum" data-value="1"></i><b>(1)</b>
-$ source "$HOME/.sdkman/bin/sdkman-init.sh" <i class="conum" data-value="2"></i><b>(2)</b>
-$ sdk list java <i class="conum" data-value="3"></i><b>(3)</b>
-=========================================
-Available Java Versions
-=========================================
-     12.ea.20-open
-     11.0.1-zulu
-     11.0.1-open
-     10.0.2-zulu
-     10.0.2-open
-     9.0.7-zulu
-     9.0.4-open
-     8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b>
-     8.0.191-oracle
-     7.0.181-zulu
-     1.0.0-rc9-graal
-     1.0.0-rc8-graal
-     1.0.0-rc7-graal
-$ sdk install java 8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>SDKMAN を導入します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>SDKMAN を環境に設定します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>導入できる Java のバージョンを一覧します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>8.0 系の最新バージョンを指定して Java を導入します。</td>
-</tr>
-</table>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bash_profile</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
-</div>
-<div class="listingblock">
-<div class="title">手順. JAVA_HOME の設定</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ vi ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
-export JAVA_HOME=~/.sdkman/candidates/java/current <i class="conum" data-value="2"></i><b>(2)</b>
-$ source ~/.bash_profile <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>vi エディタで <code>.bash_profile</code> を開きます。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>本ラインをファイルの最下部に追加し vi を保存終了します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>設定を適用します。</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>これで準備完了です。</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">SDKMAN について</div>
-<div class="paragraph">
-<p>SDKMAN は主に Java エコシステムの開発環境をコマンドラインから簡単に導入・設定するためにつくたれた管理ソフトウェアです。</p>
-</div>
-<div class="paragraph">
-<p>たとえば簡単に各種 Java のバージョンを導入し切り替えることができます。</p>
-</div>
-<div class="listingblock">
-<div class="title">手順. SDKMAN による Java のバージョン切り替え</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ sdk install java 11.0.1-open <i class="conum" data-value="1"></i><b>(1)</b>
-$ sdk default java 11.0.1-open <i class="conum" data-value="2"></i><b>(2)</b>
-$ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Java 11 を導入</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Java 11 をデフォルトに設定</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Java 8 をデフォルトに設定</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</h3>
-<div class="paragraph">
-<p>もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Java™ is the world&#8217;s leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; AdoptOpenJDK
-</div>
-</div>
-<div class="paragraph">
-<p><code><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></code> サイトにブラウザでアクセスし、OpenJDK 8 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/AdoptOpenJDK.png" alt="adopt" width="640">
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>zip ファイルを任意の場所に展開します。ここでは <code>C:\develop\runtime\openjdk8</code> に展開したとします。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/windows-01.png" alt="導入先" width="480">
-</div>
-</div>
-<div class="paragraph">
-<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk8</code> ）を設定します。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/windows-02.png" alt="環境変数" width="320">
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、<code>java</code> コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>これで準備完了です。</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</h3>
-<div class="paragraph">
-<p>環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。</p>
-</div>
-<div class="paragraph">
-<p>変換に使うスクリプトは github のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく変換できるかを試してみましょう。</p>
-</div>
-<div class="paragraph">
-<p>macOS / Linux の場合は次のようにします。</p>
-</div>
-<div class="listingblock">
-<div class="title">手順. PDF 変換ビルドスクリプトの取得と実行</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip <i class="conum" data-value="1"></i><b>(1)</b>
-$ unzip master.zip <i class="conum" data-value="2"></i><b>(2)</b>
-$ cd asciidoctor-gradle-template-master <i class="conum" data-value="3"></i><b>(3)</b>
-$ ./gradlew docs <i class="conum" data-value="4"></i><b>(4)</b>
-BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
-2 actionable tasks: 2 executed</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>リポジトリのファイルをダウンロードします。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>ダウンロードした .zip ファイルを展開します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>カレントディレクトリを展開したフォルダの中に移します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</td>
-</tr>
-</table>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>Windows をお使いの場合は同等の操作をブラウザとエクスプローラーを使って行います。</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>ブラウザを使って <code><a href="https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip</a></code> にアクセスしリポジトリのファイルを取得します。</p>
-</li>
-<li>
-<p>ダウンロードした .zip ファイルを右クリックし展開します。</p>
-</li>
-<li>
-<p>展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに <code>cmd.exe</code> と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。</p>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/windows-01.png" alt="windows" width="480">
-</div>
-</div>
-</li>
-<li>
-<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。</p>
-</li>
-<li>
-<p><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</p>
-</li>
-</ol>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">プロキシーサーバーの設定</div>
-<div class="paragraph">
-<p>もしお使いのコンピューターがプロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを <code>./gradlew docs</code> をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（<code>example.com</code>） と ポート番号（<code>8080</code>）部分はそれぞれの環境に合わせてください。</p>
-</div>
-<div class="listingblock">
-<div class="title">手順. プロキシーサーバー設定（Windows）</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">手順. プロキシーサーバー設定（macOS / Linux）</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>Asciidoc から変換された文書は次の場所に格納されます。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>docs/index.html
-docs/index.pdf</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/pdf.png" alt="pdf" width="520">
-</div>
-<div class="title">図 1. PDF 文書</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/html.png" alt="html" width="520">
-</div>
-<div class="title">図 2. HTML 文書</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-文書を github 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</h3>
-<div class="paragraph">
-<p>プロジェクトに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
-</div>
-<div class="paragraph">
-<p>プロジェクトフォルダ（<code>asciidoctor-gradle-template-master</code>）を Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-拡張機能の推奨は <code>.vscode/extention.json</code> で設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
-</td>
-</tr>
-</table>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><b class="button">すべてインストール</b> ボタンをクリックします。</p>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/vscode-extention1.png" alt="vscode">
-</div>
-</div>
-</li>
-<li>
-<p><b class="button">再読み込み</b> ボタンをクリックします。</p>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/vscode-extention2.png" alt="vscode">
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-</li>
-<li>
-<p>Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/vscode-asciidoc.png" alt="vscode" width="600">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で <b class="button">F1</b> を押し、<span class="menuseq"><b class="menu">Change Preview Security Setting</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Disable</b></span> を選択してください。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/vscode-asciidoc-security1.png" alt="vscode">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/vscode-asciidoc-security2.png" alt="vscode">
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="重要"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>本設定は、プレビュー画面で動作する Webview がインターネット上の外部リソースを評価できるようにセキュリティー権限を下げる設定です。</p>
-</div>
-<div class="paragraph">
-<p>プロジェクト（ファイルが配置されたフォルダ）毎の設定となりますが、この設定をした後はこのプロジェクトで第三者の作成した未知の Asciidoc 文書を開かないようにしてください。外部に配置された悪意の JavaScript により、セキュリティーを侵害される可能性があります。理解の上、設定してください。</p>
-</div>
-<div class="paragraph">
-<p>拡張がソースコードのハイライトを行うため、CDN に配置されたリソースを参照しているために発生している問題で、将来ローカルのリソースを参照するように修正され解決されると思われます。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_文書のファイル構成">3.3. 文書のファイル構成</h3>
-<div class="paragraph">
-<p>文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。</p>
-</div>
-<div class="listingblock">
-<div class="title">文書を構成するファイル</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>src/docs/asciidoc/index.adoc <i class="conum" data-value="1"></i><b>(1)</b>
-src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
-src/docs/asciidoc/@css/*.css <i class="conum" data-value="3"></i><b>(3)</b>
-src/docs/asciidoc/@css/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
-src/docs/asciidoc/@font/* <i class="conum" data-value="5"></i><b>(5)</b>
-src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を <code>include</code> して構成していきます。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>文書設定をするためのファイルです。各文書から <code>incliude</code> します。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>HTML 用のスタイルシートです。<code>editor.css</code> はエディタのリアルタイムプレビューが使うスタイルシートです。その他は HTML 文書変換用です。いずれも文書に合わせて修正することができます。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>PDF 文書に埋め込みされるフォントファイルです。<code>pdf-theme.yml</code> から参照されています。TrueType フォント <code>.ttf</code> が指定できます。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。後述の <code>build.gradle</code> による画像パス解決のためフォルダ名は <code>Chapter{number}</code> とします。</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>変換スクリプトとなる <code>build.gradle</code> の <code>attribute</code> 設定でこれらのファイルパスや変換に必要な属性を設定しています。</p>
-</div>
-<div class="listingblock">
-<div class="title">build.gradle</div>
-<div class="content">
-<pre class="CodeRay highlight"><code>asciidoctor {
-    attributes(
-        'build-gradle': file('build.gradle'),
-        'sourcedir': 'src/',
-        'stylesdir': '@style',
-        'stylesheet': 'asciidoctor.css',
-        'source-highlighter': 'coderay',
-        'pdf-stylesdir': "@style",
-        'pdf-fontsdir': "@font",
-        'pdf-style': 'pdf'
-    )
-    sources {
-        include 'index.adoc'
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>src/docs/asciidoc/attribute.adoc</code> ではエディタのリアルタイムプレビュー用の属性定義を行い、文書変換スクリプトでその値を上書きするように構成すると良いでしょう。</p>
-</div>
-<div class="paragraph">
-<p>Asciidoctor で利用可能な属性は次から参照できます。</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-<div class="paragraph">
-<p>Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://asciidoctor.org/docs/user-manual/#attributes" class="bare">https://asciidoctor.org/docs/user-manual/#attributes</a></p>
-</div>
-</blockquote>
-<div class="attribution">
-&#8212; asciidoctor.org
-</div>
-</div>
-<div class="paragraph">
-<p>また、文書に挿入する画像ファイルは <code>images</code> というフォルダ名内に配置され、その文書からの相対パスでリンクされることを期待しています。設定は次の部分で変更可能です。</p>
-</div>
-<div class="listingblock">
-<div class="title">src/docs/asciidoc/attribute.adoc</div>
-<div class="content">
-<pre class="CodeRay highlight"><code> ifndef::imagesdir[:imagesdir: ./images]</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">build.gradle</div>
-<div class="content">
-<pre class="CodeRay highlight"><code> copy {
-     from 'src/docs/asciidoc/'
-     include 'Chapter*/images/*' // 子文書のフォルダ名
-     into 'docs'
- }</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_文書中の相互参照">3.3.1. 文書中の相互参照</h4>
-<div class="paragraph">
-<p>文書内の参照リンクは次のように指定できます。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>&lt;&lt;_文書のファイル構成,章の冒頭&gt;&gt; <i class="conum" data-value="1"></i><b>(1)</b>
-&lt;&lt;Chapter01/index.adoc#_はじめに,はじめに&gt;&gt; <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>同一 <code>.adoc</code> 内での内部参照</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>.adoc</code> をまたいだドキュメント間参照</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>リンクの例</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#_文書のファイル構成">章の冒頭</a> を参照してください･･･</p>
-</li>
-<li>
-<p><a href="#_はじめに">はじめに</a> で述べたように･･･</p>
-</li>
-</ul>
-</div>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_asciidoctorj_diagram">3.4. asciidoctorj-diagram</h3>
-<div class="paragraph">
-<p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム表記を使うことができます。</p>
-</div>
-<div class="sect3">
-<h4 id="_plantuml">3.4.1. PlantUML</h4>
-<div class="paragraph">
-<p>PlantUML 形式のダイアグラムを <code>.svg</code> ベクター画像で文書に埋め込みます。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="335" height="215">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="81">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="174" height="68">
-</div>
-</div>
-<hr>
-<div class="paragraph">
-<p>That&#8217;s all. Happy coding!</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="footer">
-<div id="footer-text">
-バージョン unspecified<br>
-最終更新 2019-05-06 20:44:05 +0900
-</div>
-</div>
 </body>
 </html>

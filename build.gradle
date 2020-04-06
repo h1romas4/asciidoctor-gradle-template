@@ -68,3 +68,22 @@ asciidoctorj {
         'prawn_svg_font_patch'
     ]
 }
+
+task cleanDocs(type: Delete) {
+    delete fileTree('docs/') {
+        include '**/*'
+    }
+}
+
+task docs(dependsOn: [asciidoctor, asciidoctorPdf, cleanDocs]) doLast {
+    copy {
+        from 'build/docs/asciidoc/index.html'
+        from 'build/docs/asciidocPdf/index.pdf'
+        into 'docs/'
+    }
+    copy {
+        from 'src/docs/asciidoc/'
+        include 'Chapter*/images/*'
+        into 'docs'
+    }
+}
