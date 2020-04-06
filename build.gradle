@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    // asciidoctorGems files('./repos/gem/prawn-svg-font-patch-0.1.1.gem')
+    asciidoctorGems files('repos/gem/prawn-svg-font-patch-0.1.2.gem')
     asciidoctorGems 'rubygems:asciidoctor-pdf-linewrap-ja:0.6.0'
 }
 
@@ -63,7 +63,8 @@ asciidoctorj {
         pdf.version '1.5.3'
     }
     requires = [
+        'asciidoctor-diagram',
         'asciidoctor-pdf-linewrap-ja',
-        // 'prawn-svg-font-patch'
+        'prawn-svg-font-patch'
     ]
 }
