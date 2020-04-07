@@ -215,15 +215,20 @@ outline_list:
 table:
   font_family: $heading_font_family
   background_color: $page_background_color
-  head_background_color: fbfaf8
-  head_font_color: $base_font_color
-  head_font_style: bold
-  body_background_color: $page_background_color
-  body_stripe_background_color: fbfaf8
-  foot_background_color: f0f0f0
   border_color: e0dccd
-  border_width: 0
-  cell_padding: 5
+  border_width: 1
+  cell:
+    padding: 5
+  head:
+    background_color: fbfaf8
+    font_color: $base_font_color
+    font_style: bold
+  body:
+    background_color: $page_background_color
+    stripe-background-color: f9f9f9
+  foot:
+    background_color: f0f0f0
+
 toc:
   indent: $horizontal_rhythm
   line_height: 1.4

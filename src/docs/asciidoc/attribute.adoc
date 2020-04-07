@@ -24,6 +24,7 @@
 :icons: font
 :sectnums:
 :chapter-label:
+:table-stripes: even
 
 ifndef::imagesdir[:imagesdir: ./images]
 ifndef::sourcedir[:sourcedir: ./src]
