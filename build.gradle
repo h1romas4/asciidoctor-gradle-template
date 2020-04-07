@@ -26,8 +26,7 @@ asciidoctor {
         }
     }
     asciidoctorj {
-        attributes 'source-highlighter': 'coderay',
-            'stylesdir': '@style',
+        attributes 'stylesdir': '@style',
             'stylesheet': 'asciidoctor.css'
     }
 }
@@ -40,8 +39,7 @@ asciidoctorPdf {
         include 'index.adoc'
     }
     asciidoctorj {
-        attributes 'source-highlighter': 'coderay',
-            'pdf-stylesdir': "@style",
+        attributes 'pdf-stylesdir': "@style",
             'pdf-style': 'pdf'
     }
 }
@@ -57,6 +55,7 @@ asciidoctorj {
         'asciidoctor-pdf-linewrap-ja',
         'prawn_svg_font_patch'
     ]
+    attributes 'source-highlighter': 'coderay'
 }
 
 task cleanDocs(type: Delete) {
