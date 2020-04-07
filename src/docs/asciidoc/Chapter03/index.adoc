@@ -62,7 +62,7 @@ export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 
 <<<
 
-Asciidoc から変換された文書は次の場所に格納されます。
+Asciidoc から変換された文書は次の場所に格納されます。``docs`` フォルダはビルド出力専用となっており、ビルド時にいったん全てのファイルが削除されますのでユーザーファイルは配置しないように注意してください。
 
 [source]
 ----
@@ -134,8 +134,8 @@ src/docs/asciidoc/Chapter{number}/index.adoc <6>
 
 <1> 文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を ``include`` して構成していきます。
 <2> 文書設定をするためのファイルです。各文書から ``incliude`` します。
-<3> HTML 用のスタイルシートです。``editor.css`` はエディタのリアルタイムプレビューが使うスタイルシートです。その他は HTML 文書変換用です。いずれも文書に合わせて修正することができます。
-<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。
+<3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
+<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。
 <5> PDF 文書に埋め込みされるフォントファイルです。``pdf-theme.yml`` から参照されています。TrueType フォント ``.ttf`` が指定できます。
 <6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。後述の ``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
 
@@ -146,18 +146,16 @@ src/docs/asciidoc/Chapter{number}/index.adoc <6>
 .build.gradle
 ----
 asciidoctor {
-    attributes(
-        'build-gradle': file('build.gradle'),
-        'sourcedir': 'src/',
-        'stylesdir': '@style',
-        'stylesheet': 'asciidoctor.css',
-        'source-highlighter': 'coderay',
-        'pdf-stylesdir': "@style",
-        'pdf-fontsdir': "@font",
-        'pdf-style': 'pdf'
-    )
-    sources {
-        include 'index.adoc'
+    asciidoctorj {
+        attributes 'stylesdir': '@style',
+            'stylesheet': 'asciidoctor.css'
+    }
+}
+
+asciidoctorPdf {
+    asciidoctorj {
+        attributes 'pdf-stylesdir': "@style",
+            'pdf-style': 'pdf'
     }
 }
 ----

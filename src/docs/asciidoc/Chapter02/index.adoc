@@ -28,7 +28,7 @@ OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)
 ----
 
-IMPORTANT: 現在 Java 9 以降の環境で Asciidoctor の実行環境となる ``JRuby`` が（ビルドの範囲では動作に問題ないように見えるものの）実行時にワーニングを出力するため、本手順では Java 8 を使って解説しています。この問題は将来解消されるでしょう。
+IMPORTANT: 現在 Java 9 以降の環境ではビルド時にワーニングが出力されるため本手順では Java 8 を使って解説しています。筆者の Java 11 環境で変換の動作は正しいことが確認できていますので適宜読み替えて Java を導入してください。この問題は将来解消されるでしょう。
 
 <<<
 
