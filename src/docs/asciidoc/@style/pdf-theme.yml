@@ -279,7 +279,9 @@ header:
   height: $base_line_height_length * 2.5
   vertical_align: bottom
   padding: [0, 1, $base_line_height_length / 4, 1]
-  recto_content:
-    right: '{chapter-title}'
-  verso_content:
-    left: '{chapter-title}'
+  recto:
+    right:
+        content: '{chapter-title}'
+  verso:
+    left:
+        content: '{chapter-title}'
