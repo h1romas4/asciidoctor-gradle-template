@@ -71,7 +71,7 @@ menu_caret_content: " <font size=\"1.15em\"><color rgb=\"b12146\">\u203a</color>
 heading:
   align: left
   font_color: 2D466B
-  font_family: Genyo
+  font_family: GenShinGothic-P
   font_style: bold
   # h1 is used for part titles (book doctype only)
   h1_font_size: floor($base_font_size * 2.4)
@@ -88,19 +88,23 @@ title_page:
   logo:
     top: 10%
   title:
-    top: 55%
+    top: 35%
+    font_family: GenShinGothic-P
     font_size: $heading_h1_font_size
     font_color: 999999
     line_height: 0.9
   subtitle:
+    font_family: GenShinGothic-P
     font_size: $heading_h3_font_size
     font_style: bold_italic
     line_height: 1
   authors:
+    font_family: GenShinGothic-P
     margin_top: $base_font_size * 1.25
     font_size: $base_font_size_large
     font_color: 181818
   revision:
+    font_family: GenShinGothic-P
     margin_top: $base_font_size * 1.25
 block:
   margin_top: 0
@@ -108,12 +112,12 @@ block:
 caption:
   align: left
   font_size: $base_font_size
-  font_family: Genyo
+  font_family: GenShinGothic-P
   font_color: 333333
   # margin_inside: $vertical_rhythm / 3
   margin_outside: 0
 lead:
-  font_family: Genyo
+  font_family: GenShinGothic-P
   font_size: $base_font_size
   line_height: 1.4
   font_color: 2D466B
