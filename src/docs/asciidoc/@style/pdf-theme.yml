@@ -15,20 +15,6 @@ font:
       italic: RictyDiminished/RictyDiminished-Oblique.ttf
       bold: RictyDiminished/RictyDiminished-Bold.ttf
       bold_italic: RictyDiminished/RictyDiminished-BoldOblique.ttf
-    # M+ 1mn supports ASCII and the circled numbers used for conums
-    M+ 1mn:
-      normal: mplus/mplus1mn-regular-ascii-conums.ttf
-      bold: mplus/mplus1mn-bold-ascii.ttf
-      italic: mplus/mplus1mn-italic-ascii.ttf
-      bold_italic: mplus/mplus1mn-bold_italic-ascii.ttf
-    # It also provides arrows for ->, <-, => and <= replacements in case these glyphs are missing from font
-    M+ 1p Fallback:
-      normal: mplus/mplus1p-regular-fallback.ttf
-      bold: mplus/mplus1p-regular-fallback.ttf
-      italic: mplus/mplus1p-regular-fallback.ttf
-      bold_italic: mplus/mplus1p-regular-fallback.ttf
-  fallbacks:
-    - M+ 1p Fallback
 page:
   background_color: ffffff
   layout: portrait
@@ -168,10 +154,11 @@ code:
   border_radius: $base_border_radius
   border_width: 0.75
 conum:
-  font_family: M+ 1mn
+  font_family: RictyDiminished
   font_color: $literal_font_color
-  font_size: $base_font_size
-  line_height: 4 / 3
+  font_size: $base_font_size * 1.25
+  line_height: 1.2
+  glyphs: filled
 example:
   border_color: $base_border_color
   border_radius: $base_border_radius

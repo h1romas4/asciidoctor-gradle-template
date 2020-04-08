@@ -34,16 +34,14 @@ NOTE: プロダクト名の隣にライセンスを併記しました。商用�
 
 Font::
     * 源真ゴシック - SIL Open Font License 1.1  - http://jikasei.me/font/genshin/
-    * M+ Fonts - M+ FONT LICENSE - https://mplus-fonts.osdn.jp/about.html
-    * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
     * 源様明朝 - SIL Open Font License 1.1 - https://github.com/ButTaiwan/genyo-font
+    * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
 Asciidoc::
     * Asciidoctor - MIT License - https://asciidoctor.org/
     * Asciidoctorj - MIT License - https://github.com/asciidoctor/asciidoctorj
     * Asciidoctor.js - MIT License - https://asciidoctor.org/docs/asciidoctor.js/
     * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
     * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
-    * asciidoctor-pdf-cjk - MIT License - https://github.com/chloerei/asciidoctor-pdf-cjk
 Build Tool::
     * SDKMAN - Apache License 2.0 - https://sdkman.io/
     * Gradle - Apache License 2.0 - https://gradle.org/
