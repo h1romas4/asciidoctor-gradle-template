@@ -96,26 +96,26 @@
     "asciidoc-source": {
         "prefix": "source",
         "body": [
-            "[source]",
+            "[source, ${1:javascript}]",
             "----",
-            "${1:source} # <1>",
+            "${2:source} # <1>",
             "----",
             "",
-            "<1> ${2:explanation}"
+            "<1> ${3:explanation}"
         ],
         "description": "source code"
     },
     "asciidoc-source-with-caption": {
         "prefix": "source-with-caption",
         "body": [
-            "[source]",
+            "[source, ${1:javascript}]",
             "[caption=\"\"]",
-            ".${1:caption}",
+            ".${2:caption}",
             "----",
-            "${2:source} # <1>",
+            "${3:source} # <1>",
             "----",
             "",
-            "<1> ${3:explanation}"
+            "<1> ${4:explanation}"
         ],
         "description": "source code with caption"
     },
