@@ -6,7 +6,11 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Java%20
 
 @see https://h1romas4.github.io/asciidoctor-gradle-template/index.pdf[AsciidoctorとGradleでつくる文書執筆環境(PDF version)]
 
-== Fonts
+== Try with Gitpod
+
+image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://gitpod.io/#https://github.com/h1romas4/asciidoctor-gradle-template]
+
+== Include fonts
 
 * http://jikasei.me/font/genshin/[源真ゴシック] - https://raw.githubusercontent.com/h1romas4/asciidoctor-gradle-template/master/src/docs/asciidoc/%40font/genshin/SIL_Open_Font_License_1.1.txt[SIL Open Font License 1.1]
 * https://mplus-fonts.osdn.jp/about.html[M+ Fonts] - https://raw.githubusercontent.com/h1romas4/asciidoctor-gradle-template/master/src/docs/asciidoc/%40font/mplus/LICENSE-mplus-testflight-58[M+ FONT LICENSE]
