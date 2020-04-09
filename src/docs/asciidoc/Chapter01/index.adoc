@@ -38,9 +38,10 @@ Font::
     * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
 Asciidoc::
     * Asciidoctor - MIT License - https://asciidoctor.org/
-    * Asciidoctorj - MIT License - https://github.com/asciidoctor/asciidoctorj
+    * Asciidoctorj - Apache License 2.0 - https://github.com/asciidoctor/asciidoctorj
     * Asciidoctor.js - MIT License - https://asciidoctor.org/docs/asciidoctor.js/
     * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
+    * Asciidoctor Gradle Plugin Suite - Apache License 2.0 - https://github.com/asciidoctor/asciidoctor-gradle-plugin
     * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
 Build Tool::
     * SDKMAN - Apache License 2.0 - https://sdkman.io/
