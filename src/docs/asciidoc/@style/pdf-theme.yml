@@ -25,7 +25,7 @@ page:
   size: A4
 base:
   align: left
-  font_color: 333333
+  font_color: 222222
   font_family: Genyo
   font_size: 10
   line_height_length: 15
