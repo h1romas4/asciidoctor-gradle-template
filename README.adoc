@@ -10,6 +10,11 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Java%20
 
 image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://gitpod.io/#https://github.com/h1romas4/asciidoctor-gradle-template]
 
+== Use this tamplate
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/h1romas4/asciidoctor-gradle-template/generate" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Use this template h1romas4/asciidoctor-gradle-template on GitHub">Use this template</a>
+
 == Include fonts
 
 * http://jikasei.me/font/genshin/[源真ゴシック] - https://raw.githubusercontent.com/h1romas4/asciidoctor-gradle-template/master/src/docs/asciidoc/%40font/genshin/SIL_Open_Font_License_1.1.txt[SIL Open Font License 1.1]
