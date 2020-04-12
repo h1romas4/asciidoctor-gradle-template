@@ -11,9 +11,7 @@ repositories {
 
 dependencies {
     asciidoctorGems files('gradle/repos/gem/prawn_svg_font_patch-0.1.0.gem')
-    // asciidoctorGems 'rubygems:asciidoctor-pdf-linewrap-ja:0.6.0'
-    //  https://github.com/fuka/asciidoctor-pdf-linewrap-ja/pull/2/files
-    asciidoctorGems files('gradle/repos/gem/asciidoctor-pdf-linewrap-ja-0.6.0-patched.gem')
+    asciidoctorGems 'rubygems:asciidoctor-pdf-linewrap-ja:0.7.0'
 }
 
 asciidoctor {
