@@ -1,5 +1,6 @@
 include::../attribute.adoc[]
 
+[[introduction]]
 == はじめに
 
 本文書は ``Asciidoc`` とその Ruby による実装である ``Asciidoctor`` を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
