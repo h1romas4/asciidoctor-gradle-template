@@ -198,14 +198,14 @@ ____
 
 [source]
 ----
-[[introduction]]
+[[introduction]] // 同一ファイル <1>
 == はじめに
 
-[[project-structure]]
+[[project-structure]] // Chapter01/index.adoc ファイル <2>
 === 文書のファイル構成
 
 <<project-structure,章の冒頭>> // <1>
-<<Chapter01/index.adoc#_はじめに,はじめに>> <2>
+<<Chapter01/index.adoc#introduction,はじめに>> <2>
 ----
 
 <1> 同一 `.adoc` 内での内部参照
