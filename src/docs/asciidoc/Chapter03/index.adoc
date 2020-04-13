@@ -198,11 +198,11 @@ ____
 
 [source]
 ----
-[[introduction]] // 同一ファイル <1>
-== はじめに
-
-[[project-structure]] // Chapter01/index.adoc ファイル <2>
+[[project-structure]] // <1>
 === 文書のファイル構成
+
+[[introduction]] // <2>
+== はじめに
 
 <<project-structure,章の冒頭>> // <1>
 <<Chapter01/index.adoc#introduction,はじめに>> <2>
