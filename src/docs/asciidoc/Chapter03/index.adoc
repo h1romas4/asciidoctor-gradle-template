@@ -126,8 +126,8 @@ image::vscode-asciidoc-security2.png[vscode]
 ----
 src/docs/asciidoc/index.adoc # <1>
 src/docs/asciidoc/attribute.adoc # <2>
-src/docs/asciidoc/@css/*.css # <3>
-src/docs/asciidoc/@css/pdf-theme.yml # <4>
+src/docs/asciidoc/@style/*.css # <3>
+src/docs/asciidoc/@style/pdf-theme.yml # <4>
 src/docs/asciidoc/@font/* # <5>
 src/docs/asciidoc/Chapter{number}/index.adoc <6>
 ----
