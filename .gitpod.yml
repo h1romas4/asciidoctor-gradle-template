@@ -1,8 +1,7 @@
 image: gitpod/workspace-full
 tasks:
   - init: ./gradlew docs
-
 vscode:
   extensions:
-    - joaompinto.asciidoctor-vscode@2.7.15:4tNGcX3SbL1XiyCGQunmvQ==
-    - EditorConfig.EditorConfig@0.14.5:DTIJHHNrM36zsvYRBOY3ow==
+    - asciidoctor.asciidoctor-vscode@2.8.3:WY8ImzwaFajxn52RYp+DhQ==
+    - EditorConfig.EditorConfig@0.15.1:wTLttUDotgRJ2XHnXVuC0A==
