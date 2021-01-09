@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     asciidoctorGems files('gradle/repos/gem/prawn_svg_font_patch-0.1.0.gem')
-    asciidoctorGems 'rubygems:asciidoctor-pdf-linewrap-ja:0.7.1'
+    asciidoctorGems files('gradle/repos/gem/asciidoctor-nabetani-0.1.4-ruby25-patched.gem')
 }
 
 asciidoctor {
@@ -52,8 +52,8 @@ asciidoctorj {
     }
     requires = [
         'asciidoctor-diagram',
-        'asciidoctor-pdf-linewrap-ja',
-        'prawn_svg_font_patch'
+        'prawn_svg_font_patch',
+        'asciidoctor/nabetani'
     ]
     attributes 'source-highlighter': 'coderay'
 }
