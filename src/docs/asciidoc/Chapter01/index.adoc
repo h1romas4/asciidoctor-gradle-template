@@ -44,6 +44,7 @@ Asciidoc::
     * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
     * Asciidoctor Gradle Plugin Suite - Apache License 2.0 - https://github.com/asciidoctor/asciidoctor-gradle-plugin
     * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
+    * asciidoctor-nabetani - MIT License - https://github.com/nabetani/asciidoctor-nabetani
 Build Tool::
     * SDKMAN - Apache License 2.0 - https://sdkman.io/
     * Gradle - Apache License 2.0 - https://gradle.org/
