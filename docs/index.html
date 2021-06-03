@@ -925,6 +925,20 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="paragraph">
 <p>Windows をお使いの場合は同等の操作をブラウザとエクスプローラーを使って行います。</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="重要"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Windows の場合 .zip ファイルの展開先はマルチバイト文字を含まないパスにしてください。JRuby の制約により変換処理がエラーとなります。また、プロジェクト内部で使うフォルダやファイル名のマルチバイト名も同様です。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1248,17 +1262,17 @@ asciidoctorPdf {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="335" height="216">
+<img src="Chapter03/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="333" height="237">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="82">
+<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="97">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="174" height="68">
+<img src="Chapter03/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="173" height="78">
 </div>
 </div>
 <hr>
@@ -1272,7 +1286,7 @@ asciidoctorPdf {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2020-08-16 14:31:18 +0900
+最終更新 2020-12-22 21:37:03 +0900
 </div>
 </div>
 <style>
