@@ -10,6 +10,26 @@ font:
       italic: genyo-font/JP/GenYoMinJP-Light.ttf
       bold: genyo-font/JP/GenYoMinJP-Bold.ttf
       bold_italic: genyo-font/JP/GenYoMinJP-SemiBold.ttf
+    BIZUDGothic-P:
+      normal: morisawa-biz-ud-gothic/BIZUDPGothic-Regular.ttf
+      italic: morisawa-biz-ud-gothic/BIZUDPGothic-Regular.ttf
+      bold: morisawa-biz-ud-gothic/BIZUDPGothic-Bold.ttf
+      bold_italic: morisawa-biz-ud-gothic/BIZUDPGothic-Bold.ttf
+    BIZUDGothic:
+      normal: morisawa-biz-ud-gothic/BIZUDGothic-Regular.ttf
+      italic: morisawa-biz-ud-gothic/BIZUDGothic-Regular.ttf
+      bold: morisawa-biz-ud-gothic/BIZUDGothic-Bold.ttf
+      bold_italic: morisawa-biz-ud-gothic/BIZUDGothic-Bold.ttf
+    BIZUDMincho-P:
+      normal: morisawa-biz-ud-mincho/BIZUDPMincho-Regular.ttf
+      italic: morisawa-biz-ud-mincho/BIZUDPMincho-Regular.ttf
+      bold: morisawa-biz-ud-mincho/BIZUDPMincho-Regular.ttf
+      bold_italic: morisawa-biz-ud-mincho/BIZUDPMincho-Regular.ttf
+    BIZUDMincho:
+      normal: morisawa-biz-ud-mincho/BIZUDMincho-Regular.ttf
+      italic: morisawa-biz-ud-mincho/BIZUDMincho-Regular.ttf
+      bold: morisawa-biz-ud-mincho/BIZUDMincho-Regular.ttf
+      bold_italic: morisawa-biz-ud-mincho/BIZUDMincho-Regular.ttf
     RictyDiminished:
       normal: RictyDiminished/RictyDiminished-Regular.ttf
       italic: RictyDiminished/RictyDiminished-Oblique.ttf
@@ -26,7 +46,7 @@ page:
 base:
   align: left
   font_color: 222222
-  font_family: Genyo
+  font_family: BIZUDMincho-P
   font_size: 10
   line_height_length: 15
   line_height: $base_line_height_length / $base_font_size
