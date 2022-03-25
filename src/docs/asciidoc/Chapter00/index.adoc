@@ -38,6 +38,8 @@ Font::
     * 源真ゴシック - SIL Open Font License 1.1  - http://jikasei.me/font/genshin/
     * 源様明朝 - SIL Open Font License 1.1 - https://github.com/ButTaiwan/genyo-font
     * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
+    * Morisawa BIZ UDGothic - SIL Open Font License 1.1 - https://github.com/googlefonts/morisawa-biz-ud-gothic
+    * Morisawa BIZ UDMincho  - SIL Open Font License 1.1 - https://github.com/googlefonts/morisawa-biz-ud-mincho
 Asciidoc::
     * Asciidoctor - MIT License - https://asciidoctor.org/
     * Asciidoctorj - Apache License 2.0 - https://github.com/asciidoctor/asciidoctorj

@@ -16,4 +16,4 @@ image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://g
 * https://github.com/ButTaiwan/genyo-font[源様明朝] - https://github.com/ButTaiwan/genyo-font/blob/master/SIL_Open_Font_License_1.1.txt[SIL Open Font License 1.1]
 * https://github.com/edihbrandon/RictyDiminished[Ricty Diminished] - https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ofl[SIL Open Font License 1.1]
 * https://github.com/googlefonts/morisawa-biz-ud-gothic[Morisawa BIZ UDGothic] - https://github.com/googlefonts/morisawa-biz-ud-gothic/blob/main/OFL.txt[SIL Open Font License 1.1]
-* https://github.com/googlefonts/morisawa-biz-ud-mincho[Morisawa BIZ UDGothic] - https://github.com/googlefonts/morisawa-biz-ud-mincho/blob/main/OFL.txt[SIL Open Font License 1.1]
+* https://github.com/googlefonts/morisawa-biz-ud-mincho[Morisawa BIZ UDMincho] - https://github.com/googlefonts/morisawa-biz-ud-mincho/blob/main/OFL.txt[SIL Open Font License 1.1]
