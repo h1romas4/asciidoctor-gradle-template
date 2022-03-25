@@ -1,6 +1,7 @@
 :lang: ja
 :encoding: utf-8
 :doctype: book
+:preface-title: まえがき
 :toc-title: 目次
 :appendix-caption: 付録
 :caution-caption: 注意
@@ -11,7 +12,6 @@
 :listing-caption: リスト
 :manname-title: 名前
 :note-caption: 注記
-:preface-title: まえがき
 :table-caption: 表
 :tip-caption: ヒント
 :untitled-label: 無題
