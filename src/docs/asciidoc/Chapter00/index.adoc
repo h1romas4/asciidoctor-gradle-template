@@ -1,0 +1,58 @@
+include::../attribute.adoc[]
+
+[[introduction]]
+[preface]
+== はじめに
+
+本文書は ``Asciidoc`` とその Ruby による実装である ``Asciidoctor`` を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
+
+この文書の手順より以下のことができるようになります。
+
+[format="csv",cols="2,1"]
+[frame="topbot",grid="none"]
+|======
+Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。,Asciidoc 文書変換用スクリプト
+変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。,Visual Studio Code 拡張設定
+|======
+
+Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
+
+[TIP]
+====
+Asciidoc の表現力を示すひとつの例は、このような脚注表現です。
+====
+
+一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。
+
+具体的には文書の変換に、実行を JVM 環境だけに依存する ``AsciidoctorJ`` と ``Gradle`` を活用し、執筆環境については ``Visual Studio Code`` を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。
+
+本文書がみなさんの執筆活動のお手伝いになれば幸いです。
+
+### 謝辞
+
+本文書の手順の実装であるビルドスクリプトやテーマでは次のプロダクトと技術資料が使われています。
+
+NOTE: プロダクト名の隣にライセンスを併記しました。商用利用等で制限のあるプロダクトはありませんが、それぞれライセンスを確認してください。
+
+Font::
+    * 源真ゴシック - SIL Open Font License 1.1  - http://jikasei.me/font/genshin/
+    * 源様明朝 - SIL Open Font License 1.1 - https://github.com/ButTaiwan/genyo-font
+    * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
+Asciidoc::
+    * Asciidoctor - MIT License - https://asciidoctor.org/
+    * Asciidoctorj - Apache License 2.0 - https://github.com/asciidoctor/asciidoctorj
+    * Asciidoctor.js - MIT License - https://asciidoctor.org/docs/asciidoctor.js/
+    * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
+    * Asciidoctor Gradle Plugin Suite - Apache License 2.0 - https://github.com/asciidoctor/asciidoctor-gradle-plugin
+    * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
+    * asciidoctor-nabetani - MIT License - https://github.com/nabetani/asciidoctor-nabetani
+Build Tool::
+    * SDKMAN - Apache License 2.0 - https://sdkman.io/
+    * Gradle - Apache License 2.0 - https://gradle.org/
+Text Editor::
+    * Visual Studio Code - Microsoft - https://code.visualstudio.com/
+    * asciidoctor-vscode - MIT License - https://github.com/asciidoctor/asciidoctor-vscode
+Guide::
+    * asciidoctor-pdfでかっこいいPDFを作る - https://qiita.com/kuboaki/items/67774c5ebd41467b83e2
+
+素晴らしい成果を公開されているみなさまに感謝します。

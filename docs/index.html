@@ -437,41 +437,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="book toc2 toc-left">
+<body class="book">
 <div id="header">
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revdate">2022-01-01</span>
-</div>
-<div id="toc" class="toc2">
-<div id="toctitle">目次</div>
-<ul class="sectlevel1">
-<li><a href="#introduction">1. はじめに</a>
-<ul class="sectlevel2">
-<li><a href="#_謝辞">1.1. 謝辞</a></li>
-</ul>
-</li>
-<li><a href="#_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</a>
-<ul class="sectlevel2">
-<li><a href="#_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
-<li><a href="#_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</a></li>
-</ul>
-</li>
-<li><a href="#_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</a>
-<ul class="sectlevel2">
-<li><a href="#_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</a></li>
-<li><a href="#_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</a></li>
-<li><a href="#project-structure">3.3. 文書のファイル構成</a></li>
-<li><a href="#_asciidoctorj_diagram">3.4. asciidoctorj-diagram</a></li>
-</ul>
-</li>
-</ul>
+<span id="revdate">2022-03-25</span>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="introduction">1. はじめに</h2>
+<h2 id="introduction">はじめに</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>本文書は <code>Asciidoc</code> とその Ruby による実装である <code>Asciidoctor</code> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
@@ -522,7 +498,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
 </div>
 <div class="sect2">
-<h3 id="_謝辞">1.1. 謝辞</h3>
+<h3 id="_謝辞">謝辞</h3>
 <div class="paragraph">
 <p>本文書の手順の実装であるビルドスクリプトやテーマでは次のプロダクトと技術資料が使われています。</p>
 </div>
@@ -625,11 +601,35 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>素晴らしい成果を公開されているみなさまに感謝します。</p>
 </div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">目次</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">はじめに</a>
+<ul class="sectlevel2">
+<li><a href="#_謝辞">謝辞</a></li>
+</ul>
+</li>
+<li><a href="#_asciidoc_文書変換用スクリプトを使う準備">1. Asciidoc 文書変換用スクリプトを使う準備</a>
+<ul class="sectlevel2">
+<li><a href="#_java_実行環境の導入macos_linux_の場合">1.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
+<li><a href="#_java_実行環境の導入windows_の場合">1.2. Java 実行環境の導入（Windows の場合）</a></li>
+</ul>
+</li>
+<li><a href="#_asciidoc_から_htmlpdf_文書を作成する">2. Asciidoc から HTML/PDF 文書を作成する</a>
+<ul class="sectlevel2">
+<li><a href="#_サンプル文書の変換を試す">2.1. サンプル文書の変換を試す</a></li>
+<li><a href="#_テキストエディタで_asciidoc_文書を編集する">2.2. テキストエディタで Asciidoc 文書を編集する</a></li>
+<li><a href="#project-structure">2.3. 文書のファイル構成</a></li>
+<li><a href="#_asciidoctorj_diagram">2.4. asciidoctorj-diagram</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_asciidoc_文書変換用スクリプトを使う準備">2. Asciidoc 文書変換用スクリプトを使う準備</h2>
+<h2 id="_asciidoc_文書変換用スクリプトを使う準備">1. Asciidoc 文書変換用スクリプトを使う準備</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
@@ -681,7 +681,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pr
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入macos_linux_の場合">2.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
+<h3 id="_java_実行環境の導入macos_linux_の場合">1.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
 <div class="paragraph">
 <p>もし macOS / Linux 環境に Java 実行環境がなければ <code>SDKMAN</code> を利用することで、ターミナルから簡単に導入することができます。</p>
 </div>
@@ -812,7 +812,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入windows_の場合">2.2. Java 実行環境の導入（Windows の場合）</h3>
+<h3 id="_java_実行環境の導入windows_の場合">1.2. Java 実行環境の導入（Windows の場合）</h3>
 <div class="paragraph">
 <p>もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。</p>
 </div>
@@ -834,7 +834,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/AdoptOpenJDK.png" alt="adopt" width="640">
+<img src="Chapter01/images/AdoptOpenJDK.png" alt="adopt" width="640">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -843,7 +843,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/windows-01.png" alt="導入先" width="480">
+<img src="Chapter01/images/windows-01.png" alt="導入先" width="480">
 </div>
 </div>
 <div class="paragraph">
@@ -851,7 +851,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/windows-02.png" alt="環境変数" width="320">
+<img src="Chapter01/images/windows-02.png" alt="環境変数" width="320">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -873,10 +873,10 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_asciidoc_から_htmlpdf_文書を作成する">3. Asciidoc から HTML/PDF 文書を作成する</h2>
+<h2 id="_asciidoc_から_htmlpdf_文書を作成する">2. Asciidoc から HTML/PDF 文書を作成する</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_サンプル文書の変換を試す">3.1. サンプル文書の変換を試す</h3>
+<h3 id="_サンプル文書の変換を試す">2.1. サンプル文書の変換を試す</h3>
 <div class="paragraph">
 <p>環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。</p>
 </div>
@@ -951,7 +951,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに <code>cmd.exe</code> と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/windows-01.png" alt="windows" width="480">
+<img src="Chapter02/images/windows-01.png" alt="windows" width="480">
 </div>
 </div>
 </li>
@@ -995,13 +995,13 @@ docs/index.pdf</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/pdf.png" alt="pdf" width="520">
+<img src="Chapter02/images/pdf.png" alt="pdf" width="520">
 </div>
 <div class="title">図 1. PDF 文書</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/html.png" alt="html" width="520">
+<img src="Chapter02/images/html.png" alt="html" width="520">
 </div>
 <div class="title">図 2. HTML 文書</div>
 </div>
@@ -1019,7 +1019,7 @@ docs/index.pdf</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_テキストエディタで_asciidoc_文書を編集する">3.2. テキストエディタで Asciidoc 文書を編集する</h3>
+<h3 id="_テキストエディタで_asciidoc_文書を編集する">2.2. テキストエディタで Asciidoc 文書を編集する</h3>
 <div class="paragraph">
 <p>プロジェクトに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
 </div>
@@ -1044,7 +1044,7 @@ docs/index.pdf</code></pre>
 <p><b class="button">すべてインストール</b> ボタンをクリックします。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/vscode-extention1.png" alt="vscode">
+<img src="Chapter02/images/vscode-extention1.png" alt="vscode">
 </div>
 </div>
 </li>
@@ -1052,7 +1052,7 @@ docs/index.pdf</code></pre>
 <p><b class="button">再読み込み</b> ボタンをクリックします。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/vscode-extention2.png" alt="vscode">
+<img src="Chapter02/images/vscode-extention2.png" alt="vscode">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1061,7 +1061,7 @@ docs/index.pdf</code></pre>
 <p>Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/vscode-asciidoc.png" alt="vscode" width="600">
+<img src="Chapter02/images/vscode-asciidoc.png" alt="vscode" width="600">
 </div>
 </div>
 </li>
@@ -1073,12 +1073,12 @@ docs/index.pdf</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/vscode-asciidoc-security1.png" alt="vscode">
+<img src="Chapter02/images/vscode-asciidoc-security1.png" alt="vscode">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/vscode-asciidoc-security2.png" alt="vscode">
+<img src="Chapter02/images/vscode-asciidoc-security2.png" alt="vscode">
 </div>
 </div>
 <div class="admonitionblock important">
@@ -1103,7 +1103,7 @@ docs/index.pdf</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="project-structure">3.3. 文書のファイル構成</h3>
+<h3 id="project-structure">2.3. 文書のファイル構成</h3>
 <div class="paragraph">
 <p>文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。</p>
 </div>
@@ -1206,7 +1206,7 @@ asciidoctorPdf {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_文書中の相互参照">3.3.1. 文書中の相互参照</h4>
+<h4 id="_文書中の相互参照">2.3.1. 文書中の相互参照</h4>
 <div class="paragraph">
 <p>文書内の参照リンクは次のように指定できます。</p>
 </div>
@@ -1251,28 +1251,28 @@ asciidoctorPdf {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_asciidoctorj_diagram">3.4. asciidoctorj-diagram</h3>
+<h3 id="_asciidoctorj_diagram">2.4. asciidoctorj-diagram</h3>
 <div class="paragraph">
 <p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム表記を使うことができます。</p>
 </div>
 <div class="sect3">
-<h4 id="_plantuml">3.4.1. PlantUML</h4>
+<h4 id="_plantuml">2.4.1. PlantUML</h4>
 <div class="paragraph">
 <p>PlantUML 形式のダイアグラムを <code>.svg</code> ベクター画像で文書に埋め込みます。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="333" height="237">
+<img src="Chapter02/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="333" height="237">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="97">
+<img src="Chapter02/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="91" height="97">
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="173" height="78">
+<img src="Chapter02/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="173" height="78">
 </div>
 </div>
 <hr>
@@ -1286,7 +1286,7 @@ asciidoctorPdf {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2022-01-01 16:56:34 +0900
+最終更新 2022-03-25 14:19:00 +0900
 </div>
 </div>
 <style>

@@ -2,16 +2,23 @@ include::./attribute.adoc[]
 
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
-2022-01-01
-:Revision: 2.0.2
-:toc: left
+2022-03-25
+:Revision: 2.0.3
+:toc: macro
 
 // 章ごとにインクルードしていく（画像パスも上書きすること）
+
+// はじめに
+:imagesdir: Chapter00/images
+include::Chapter00/index.adoc[]
+
+// 目次
+toc::[]
+
+// 1章
 :imagesdir: Chapter01/images
 include::Chapter01/index.adoc[]
 
+// 2章
 :imagesdir: Chapter02/images
 include::Chapter02/index.adoc[]
-
-:imagesdir: Chapter03/images
-include::Chapter03/index.adoc[]

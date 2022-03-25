@@ -1,57 +1,146 @@
 include::../attribute.adoc[]
 
-[[introduction]]
-== はじめに
+== Asciidoc 文書変換用スクリプトを使う準備
 
-本文書は ``Asciidoc`` とその Ruby による実装である ``Asciidoctor`` を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
+本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
 
-この文書の手順より以下のことができるようになります。
+NOTE: Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
 
-[format="csv",cols="2,1"]
-[frame="topbot",grid="none"]
-|======
-Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。,Asciidoc 文書変換用スクリプト
-変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。,Visual Studio Code 拡張設定
-|======
+お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 8 以上のバージョンが表示されるようであれば既に準備は整っています。
 
-Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
+[source]
+[caption=""]
+.macOS/Linux の場合
+----
+$ java -version
+openjdk version "1.8.0_192"
+OpenJDK Runtime Environment (Zulu 8.33.0.1-macosx) (build 1.8.0_192-b01)
+OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)
+----
 
-[TIP]
-====
-Asciidoc の表現力を示すひとつの例は、このような脚注表現です。
-====
+[source]
+[caption=""]
+.Windows の場合
+----
+C:¥> java -version
+openjdk version "1.8.0_192"
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)
+----
 
-一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。
+IMPORTANT: 現在 Java 9 以降の環境ではビルド時にワーニングが出力されるため本手順では Java 8 を使って解説しています。筆者の Java 11 環境で変換の動作は正しいことが確認できていますので適宜読み替えて Java を導入してください。この問題は将来解消されるでしょう。
 
-具体的には文書の変換に、実行を JVM 環境だけに依存する ``AsciidoctorJ`` と ``Gradle`` を活用し、執筆環境については ``Visual Studio Code`` を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。
+<<<
 
-本文書がみなさんの執筆活動のお手伝いになれば幸いです。
+=== Java 実行環境の導入（macOS / Linux の場合）
 
-### 謝辞
+もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入することができます。
 
-本文書の手順の実装であるビルドスクリプトやテーマでは次のプロダクトと技術資料が使われています。
+[quote, SDKMAN]
+____
+SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.
 
-NOTE: プロダクト名の隣にライセンスを併記しました。商用利用等で制限のあるプロダクトはありませんが、それぞれライセンスを確認してください。
+https://sdkman.io/
+____
 
-Font::
-    * 源真ゴシック - SIL Open Font License 1.1  - http://jikasei.me/font/genshin/
-    * 源様明朝 - SIL Open Font License 1.1 - https://github.com/ButTaiwan/genyo-font
-    * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
-Asciidoc::
-    * Asciidoctor - MIT License - https://asciidoctor.org/
-    * Asciidoctorj - Apache License 2.0 - https://github.com/asciidoctor/asciidoctorj
-    * Asciidoctor.js - MIT License - https://asciidoctor.org/docs/asciidoctor.js/
-    * Asciidoctor PDF - MIT License - https://asciidoctor.org/docs/asciidoctor-pdf/
-    * Asciidoctor Gradle Plugin Suite - Apache License 2.0 - https://github.com/asciidoctor/asciidoctor-gradle-plugin
-    * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
-    * asciidoctor-nabetani - MIT License - https://github.com/nabetani/asciidoctor-nabetani
-Build Tool::
-    * SDKMAN - Apache License 2.0 - https://sdkman.io/
-    * Gradle - Apache License 2.0 - https://gradle.org/
-Text Editor::
-    * Visual Studio Code - Microsoft - https://code.visualstudio.com/
-    * asciidoctor-vscode - MIT License - https://github.com/asciidoctor/asciidoctor-vscode
-Guide::
-    * asciidoctor-pdfでかっこいいPDFを作る - https://qiita.com/kuboaki/items/67774c5ebd41467b83e2
+[source]
+[caption="手順. "]
+.SDKMAN を用いた Java の導入
+----
+$ curl -s "https://get.sdkman.io" | bash # <1>
+$ source "$HOME/.sdkman/bin/sdkman-init.sh" # <2>
+$ sdk list java # <3>
+=========================================
+Available Java Versions
+=========================================
+     12.ea.20-open
+     11.0.1-zulu
+     11.0.1-open
+     10.0.2-zulu
+     10.0.2-open
+     9.0.7-zulu
+     9.0.4-open
+     8.0.192-zulu <4>
+     8.0.191-oracle
+     7.0.181-zulu
+     1.0.0-rc9-graal
+     1.0.0-rc8-graal
+     1.0.0-rc7-graal
+$ sdk install java 8.0.192-zulu # <4>
+----
 
-素晴らしい成果を公開されているみなさまに感謝します。
+<1> SDKMAN を導入します。
+<2> SDKMAN を環境に設定します。
+<3> 導入できる Java のバージョンを一覧します。
+<4> 8.0 系の最新バージョンを指定して Java を導入します。
+
+<<<
+
+また、Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、``.bash_profile`` で次のように ``JAVA_HOME`` を設定します。
+
+[source]
+[caption="手順. "]
+.JAVA_HOME の設定
+----
+$ vi ~/.bash_profile # <1>
+export JAVA_HOME=~/.sdkman/candidates/java/current # <2>
+$ source ~/.bash_profile # <3>
+----
+
+<1> vi エディタで ``.bash_profile`` を開きます。
+<2> 本ラインをファイルの最下部に追加し vi を保存終了します。
+<3> 設定を適用します。
+
+これで準備完了です。
+
+.SDKMAN について
+****
+SDKMAN は主に Java エコシステムの開発環境をコマンドラインから簡単に導入・設定するためにつくたれた管理ソフトウェアです。
+
+たとえば簡単に各種 Java のバージョンを導入し切り替えることができます。
+
+[source]
+[caption="手順. "]
+.SDKMAN による Java のバージョン切り替え
+----
+$ sdk install java 11.0.1-open # <1>
+$ sdk default java 11.0.1-open # <2>
+$ sdk default java 8.0.192-zulu # <3>
+----
+
+<1> Java 11 を導入
+<2> Java 11 をデフォルトに設定
+<3> Java 8 をデフォルトに設定
+****
+
+// 改ページ
+<<<
+
+=== Java 実行環境の導入（Windows の場合）
+
+もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。
+
+[quote, AdoptOpenJDK]
+____
+Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+
+https://adoptopenjdk.net
+____
+
+``https://adoptopenjdk.net`` サイトにブラウザでアクセスし、OpenJDK 8 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。
+
+image::AdoptOpenJDK.png[adopt, 640]
+
+<<<
+
+zip ファイルを任意の場所に展開します。ここでは ``C:\develop\runtime\openjdk8`` に展開したとします。
+
+image::windows-01.png[導入先, 480]
+
+Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > 詳細設定 > 環境設定] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\runtime\openjdk8`` ）を設定します。
+
+image::windows-02.png[環境変数, 320]
+
+TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
+
+これで準備完了です。

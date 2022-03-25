@@ -97,7 +97,8 @@ title_page:
     top: 35%
     font_family: GenShinGothic-P
     font_size: $heading_h1_font_size
-    font_color: 999999
+    font_color: 2D466B
+    font_style: bold
     line_height: 0.9
   subtitle:
     font_family: GenShinGothic-P
