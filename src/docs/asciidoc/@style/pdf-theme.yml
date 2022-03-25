@@ -46,7 +46,8 @@ page:
 base:
   align: left
   font_color: 222222
-  font_family: BIZUDMincho-P
+  font_family: Genyo
+  #font_family: BIZUDMincho-P
   font_size: 10
   line_height_length: 15
   line_height: $base_line_height_length / $base_font_size
