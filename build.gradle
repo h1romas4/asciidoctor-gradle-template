@@ -61,7 +61,7 @@ asciidoctorj {
         // for another asciidoctor-pdf version
         // 'asciidoctor-pdf-linewrap-ja',
     ]
-    attributes 'source-highlighter': 'coderay'
+    attributes 'source-highlighter': 'rouge'
 }
 
 task cleanDocs(type: Delete) {
