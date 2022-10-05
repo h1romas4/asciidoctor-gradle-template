@@ -657,7 +657,7 @@ pre.rouge {
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revdate">2022-03-25</span>
+<span id="revdate">2022-10-05</span>
 </div>
 </div>
 <div id="content">
@@ -888,14 +888,14 @@ OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-現在 Java 9 以降の環境ではビルド時にワーニングが出力されるため本手順では Java 8 を使って解説しています。筆者の Java 11 環境で変換の動作は正しいことが確認できていますので適宜読み替えて Java を導入してください。この問題は将来解消されるでしょう。
+本文書では Java 11 を用いて解説します。
 </td>
 </tr>
 </table>
@@ -925,23 +925,19 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pr
 <pre class="rouge highlight"><code>$ curl -s "https://get.sdkman.io" | bash <i class="conum" data-value="1"></i><b>(1)</b>
 $ source "$HOME/.sdkman/bin/sdkman-init.sh" <i class="conum" data-value="2"></i><b>(2)</b>
 $ sdk list java <i class="conum" data-value="3"></i><b>(3)</b>
-=========================================
-Available Java Versions
-=========================================
-     12.ea.20-open
-     11.0.1-zulu
-     11.0.1-open
-     10.0.2-zulu
-     10.0.2-open
-     9.0.7-zulu
-     9.0.4-open
-     8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b>
-     8.0.191-oracle
-     7.0.181-zulu
-     1.0.0-rc9-graal
-     1.0.0-rc8-graal
-     1.0.0-rc7-graal
-$ sdk install java 8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+================================================================================
+Available Java Versions for Linux 64bit
+================================================================================
+ Vendor        | Use | Version      | Dist    | Status     | Identifier
+--------------------------------------------------------------------------------
+ Temurin       |     | 19           | tem     |            | 19-tem
+               |     | 17.0.4       | tem     | local only | 17.0.4-tem
+               |     | 17.0.4.1     | tem     |            | 17.0.4.1-tem
+               |     | 11.0.16.1    | tem     |            | 11.0.16.1-tem
+               |     | 8.0.345      | tem     |            | 8.0.345-tem
+               |     | 8.0.342      | tem     |            | 8.0.342-tem
+               |     | 8.0.332      | tem     |            | 8.0.332-tem
+$ sdk install java 11.0.16.1-tem <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -960,7 +956,7 @@ $ sdk install java 8.0.192-zulu <i class="conum" data-value="4"></i><b>(4)</b></
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>8.0 系の最新バージョンを指定して Java を導入します。</td>
+<td>Java 11 系の最新バージョンを指定して Java を導入します。</td>
 </tr>
 </table>
 </div>
@@ -1007,24 +1003,24 @@ $ source ~/.bash_profile <i class="conum" data-value="3"></i><b>(3)</b></code></
 <div class="listingblock">
 <div class="title">手順. SDKMAN による Java のバージョン切り替え</div>
 <div class="content">
-<pre class="rouge highlight"><code>$ sdk install java 11.0.1-open <i class="conum" data-value="1"></i><b>(1)</b>
-$ sdk default java 11.0.1-open <i class="conum" data-value="2"></i><b>(2)</b>
-$ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="rouge highlight"><code>$ sdk install java 8.0.345-tem <i class="conum" data-value="1"></i><b>(1)</b>
+$ sdk default java 8.0.345-tem <i class="conum" data-value="2"></i><b>(2)</b>
+$ sdk default java 11.0.16.1-tem <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Java 11 を導入</td>
+<td>Java 8 を導入</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Java 11 をデフォルトに設定</td>
+<td>Java 8 をデフォルトに設定</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Java 8 をデフォルトに設定</td>
+<td>Java 11 をデフォルトに戻す</td>
 </tr>
 </table>
 </div>
@@ -1051,7 +1047,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 </div>
 <div class="paragraph">
-<p><code><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></code> サイトにブラウザでアクセスし、OpenJDK 8 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。</p>
+<p><code><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></code> サイトにブラウザでアクセスし、OpenJDK 11 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1060,7 +1056,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>zip ファイルを任意の場所に展開します。ここでは <code>C:\develop\runtime\openjdk8</code> に展開したとします。</p>
+<p>zip ファイルを任意の場所に展開します。ここでは <code>C:\develop\runtime\openjdk11</code> に展開したとします。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1068,7 +1064,7 @@ $ sdk default java 8.0.192-zulu <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 </div>
 <div class="paragraph">
-<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk8</code> ）を設定します。</p>
+<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk11</code> ）を設定します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1507,7 +1503,7 @@ asciidoctorPdf {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2022-03-25 20:06:39 +0900
+最終更新 2022-10-05 15:22:05 +0900
 </div>
 </div>
 </body>
