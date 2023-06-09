@@ -24,6 +24,8 @@
 :chapter-label:
 :table-stripes: even
 
+:scripts: cjk
+
 ifndef::imagesdir[:imagesdir: ./images]
 ifndef::sourcedir[:sourcedir: ./src]
 ifndef::source-highlighter[:source-highlighter: highlightjs]
