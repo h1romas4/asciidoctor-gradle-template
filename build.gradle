@@ -78,6 +78,11 @@ task docs(dependsOn: [asciidoctor, asciidoctorPdf, cleanDocs]) doLast {
         into 'docs/'
     }
     copy {
+        from 'build/docs/asciidoc/'
+        include 'Chapter*/images/*'
+        into 'docs'
+    }
+    copy {
         from 'src/docs/asciidoc/'
         include 'Chapter*/images/*'
         into 'docs'

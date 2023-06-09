@@ -269,6 +269,15 @@ ClassB --> ClassA: 日本語のテスト４
 @endsal
 ----
 
+PlantUML 内の AsciiMath を使った数式出力の例。
+
+[plantuml, math-sample1, svg]
+----
+@startmath
+f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
+@endmath
+----
+
 ---
 
 That's all. Happy coding!
