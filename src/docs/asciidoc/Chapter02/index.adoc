@@ -233,6 +233,7 @@ ____
 PlantUML 形式のダイアグラムを `.svg` ベクター画像で文書に埋め込みます。
 
 [plantuml, diag-sequence-sample1, svg]
+[caption=""]
 ----
 @startuml
 skinparam monochrome true
@@ -244,6 +245,7 @@ ClassB --> ClassA: 日本語のテスト４
 ----
 
 [plantuml, diag-sequence-sample2, svg]
+[caption=""]
 ----
 @startsalt
 {
@@ -259,6 +261,7 @@ ClassB --> ClassA: 日本語のテスト４
 ----
 
 [plantuml, diag-sequence-sample3, svg]
+[caption=""]
 ----
 @startsalt
 {
@@ -269,9 +272,8 @@ ClassB --> ClassA: 日本語のテスト４
 @endsal
 ----
 
-PlantUML 内の AsciiMath を使った数式出力の例。
-
 [plantuml, math-sample1, svg]
+[caption=""]
 ----
 @startmath
 f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
