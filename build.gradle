@@ -51,7 +51,7 @@ asciidoctorj {
     version = '2.5.6'
     modules {
         diagram.use()
-        diagram.version '2.2.3'
+        diagram.version '2.2.8'
         pdf.version '1.5.3'
     }
     requires = [
