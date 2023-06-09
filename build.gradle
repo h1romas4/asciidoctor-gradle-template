@@ -42,8 +42,8 @@ asciidoctorPdf {
         include 'index.adoc'
     }
     asciidoctorj {
-        attributes 'pdf-stylesdir': "@style",
-            'pdf-style': 'pdf'
+        attributes 'pdf-themesdir': "@style",
+            'pdf-theme': 'pdf'
     }
 }
 
