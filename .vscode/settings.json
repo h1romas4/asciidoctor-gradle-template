@@ -6,5 +6,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css"
+    "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css",
+    "pasteImage.path": "${currentFileDir}/images",
+    "pasteImage.basePath": "${currentFileDir}",
 }
