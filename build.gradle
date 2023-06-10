@@ -43,7 +43,7 @@ asciidoctorPdf {
     }
     asciidoctorj {
         attributes 'pdf-themesdir': "@style",
-            'pdf-theme': 'pdf'
+            'pdf-theme': 'pdf-theme.yml'
             // When using the asciidoctor-pdf standard ward-wrap
             //, 'scripts': 'cjk'
     }

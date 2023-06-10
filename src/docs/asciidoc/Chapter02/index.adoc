@@ -161,8 +161,8 @@ asciidoctor {
 
 asciidoctorPdf {
     asciidoctorj {
-        attributes 'pdf-stylesdir': "@style",
-            'pdf-style': 'pdf'
+        attributes 'pdf-themesdir': "@style",
+            'pdf-theme': 'pdf-theme.yml'
     }
 }
 ----
