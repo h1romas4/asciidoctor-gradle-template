@@ -230,7 +230,7 @@ ____
 
 ==== PlantUML
 
-PlantUML 形式のダイアグラムを `.svg` ベクター画像で文書に埋め込みます。
+PlantUML 形式のダイアグラム記述することで、生成された `.svg` ベクター画像を文書に展開可能です。
 
 [plantuml, diag-sequence-sample1, svg]
 [caption=""]

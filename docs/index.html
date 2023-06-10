@@ -670,22 +670,18 @@ pre.rouge {
 <div class="paragraph">
 <p>この文書の手順より以下のことができるようになります。</p>
 </div>
-<table class="tableblock frame-ends grid-none stripes-even stretch">
-<colgroup>
-<col style="width: 66.6666%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換する。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Asciidoc 文書変換用スクリプト</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">変換結果をリアルタイムにプレビューしながら、テキストエディターで文書を編集する。</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Visual Studio Code 拡張設定</p></td>
-</tr>
-</tbody>
-</table>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換</dt>
+<dd>
+<p>Asciidoc 文書変換用 Gradle スクリプト</p>
+</dd>
+<dt class="hdlist1">テキストエディターで変換結果をリアルタイムにプレビューしながら文書を編集</dt>
+<dd>
+<p>Visual Studio Code と AsciiDoc 拡張設定</p>
+</dd>
+</dl>
+</div>
 <div class="paragraph">
 <p>Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
 </div>
@@ -704,10 +700,10 @@ pre.rouge {
 </table>
 </div>
 <div class="paragraph">
-<p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられています。</p>
+<p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで PDF 化できるように準備してあります。また PDF 出力に関しては、フォントセットや禁則処理設定をプロジェクトにもたせることにより、実行環境に関わらず同一出力が得られるようになっています。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -1475,7 +1471,7 @@ asciidoctorPdf {
 <div class="sect3">
 <h4 id="_plantuml">2.4.1. PlantUML</h4>
 <div class="paragraph">
-<p>PlantUML 形式のダイアグラムを <code>.svg</code> ベクター画像で文書に埋め込みます。</p>
+<p>PlantUML 形式のダイアグラム記述することで、生成された <code>.svg</code> ベクター画像を文書に展開可能です。</p>
 </div>
 <div class="imageblock">
 <div class="content">
