@@ -44,6 +44,8 @@ asciidoctorPdf {
     asciidoctorj {
         attributes 'pdf-themesdir': "@style",
             'pdf-theme': 'pdf'
+            // When using the asciidoctor-pdf standard ward-wrap
+            //, 'scripts': 'cjk'
     }
 }
 
