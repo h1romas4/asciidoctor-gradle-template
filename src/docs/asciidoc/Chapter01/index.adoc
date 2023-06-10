@@ -38,9 +38,9 @@ NOTE: 本文書では Java 11 を用いて解説します。
 
 [quote, SDKMAN]
 ____
-SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.
-
 https://sdkman.io/
+
+SDKMAN! is a tool for managing parallel versions of multiple Software Development Kits on most Unix based systems.
 ____
 
 [source]
@@ -118,9 +118,9 @@ $ sdk default java 11.0.16.1-tem # <3>
 
 [quote, AdoptOpenJDK]
 ____
-Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
-
 https://adoptopenjdk.net
+
+Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
 ____
 
 ``https://adoptopenjdk.net`` サイトにブラウザでアクセスし、OpenJDK 11 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。
