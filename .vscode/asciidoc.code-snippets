@@ -142,7 +142,7 @@
     "asciidoc-plantuml": {
         "prefix": "plantuml",
         "body": [
-            "[plantuml, ${1:diag-sequence-sample1}, svg]",
+            "[plantuml, ${1:diag-sequence-sample1}, svg, pdfwidth=${2:pdfwidth}%, width=${3:pdfwidth}%]",
             "----",
             "@startuml",
             "skinparam monochrome true",
@@ -158,7 +158,7 @@
     "asciidoc-image": {
         "prefix": "image",
         "body": [
-            "image::${1:filepath}[${2:caption}, ${3:width}]"
+            "image::${1:filepath}[${2:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
         ],
         "description": "image"
     },
@@ -166,7 +166,7 @@
         "prefix": "image-with-caption",
         "body": [
             ".${1:caption}",
-            "image::${2:filepath}[${1:caption}, ${4:width}]"
+            "image::${2:filepath}[${1:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
         ],
         "description": "image"
     },
@@ -182,7 +182,7 @@
         "body": [
             ". ${1:ol}",
             "+",
-            "image::${2:filepath}[${3:caption}, ${4:width}"
+            "image::${2:filepath}[${3:caption}, pdfwidth=${4:pdfwidth}%, width=${5:width}%"
         ],
         "description": "ol with image"
     },

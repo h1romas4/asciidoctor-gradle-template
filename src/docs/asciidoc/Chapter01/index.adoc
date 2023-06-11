@@ -125,17 +125,17 @@ ____
 
 ``https://adoptopenjdk.net`` サイトにブラウザでアクセスし、OpenJDK 11 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。
 
-image::AdoptOpenJDK.png[adopt, 640]
+image::AdoptOpenJDK.png[adopt, pdfwidth=80%, width=80%]
 
 <<<
 
 zip ファイルを任意の場所に展開します。ここでは ``C:\develop\runtime\openjdk11`` に展開したとします。
 
-image::windows-01.png[導入先, 480]
+image::windows-01.png[導入先, pdfwidth=70%, width=70%]
 
 Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > 詳細設定 > 環境設定] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\runtime\openjdk11`` ）を設定します。
 
-image::windows-02.png[環境変数, 320]
+image::windows-02.png[環境変数, pdfwidth=60%, width=60%]
 
 TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 

@@ -231,7 +231,7 @@ ____
 
 PlantUML 形式のダイアグラム記述することで、生成された `.svg` ベクター画像を文書に展開可能です。
 
-[plantuml, diag-sequence-sample1, svg]
+[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
 [caption=""]
 ----
 @startuml
@@ -243,7 +243,7 @@ ClassB --> ClassA: 日本語のテスト４
 @enduml
 ----
 
-[plantuml, diag-sequence-sample2, svg]
+[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
 [caption=""]
 ----
 @startsalt
@@ -259,7 +259,7 @@ ClassB --> ClassA: 日本語のテスト４
 @endsalt
 ----
 
-[plantuml, diag-sequence-sample3, svg]
+[plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
 [caption=""]
 ----
 @startsalt
@@ -271,7 +271,7 @@ ClassB --> ClassA: 日本語のテスト４
 @endsal
 ----
 
-[plantuml, math-sample1, svg]
+[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
 [caption=""]
 ----
 @startmath
