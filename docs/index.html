@@ -1467,6 +1467,23 @@ asciidoctorPdf {
 <div class="paragraph">
 <p>AsciiDoc の <code>[sorce]</code> ブロックを用いると、文書中にソースコードをシンタックスハイライト付きで埋め込むことができます。</p>
 </div>
+<div class="paragraph">
+<p><code>[source]</code> ブロックは次のように記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[source, javascript]
+[caption=""]
+.JavaScript ソースコードのシンタックスハイライトの例
+----
+function hello() {
+    console.log("Hello, World!"); // &lt;1&gt;
+}
+----
+
+&lt;1&gt; コンソールに ``Hello, World`` を出力</code></pre>
+</div>
+</div>
 <div class="listingblock">
 <div class="title">JavaScript ソースコードのシンタックスハイライトの例</div>
 <div class="content">
@@ -1483,6 +1500,7 @@ asciidoctorPdf {
 </tr>
 </table>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect2">
@@ -1493,11 +1511,51 @@ asciidoctorPdf {
 <div class="sect3">
 <h4 id="_plantuml">2.4.1. PlantUML</h4>
 <div class="paragraph">
-<p>PlantUML 形式のダイアグラム記述することで、生成された <code>.svg</code> ベクター画像を文書に展開可能です。</p>
+<p>PlantUML 形式のダイアグラムを記述することで、生成された <code>.svg</code> ベクター画像を文書に展開することができます。</p>
+</div>
+<div class="sect4">
+<h5 id="_シーケンス図の例">シーケンス図の例</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
+[caption=""]
+----
+@startuml diag-sequence-sample1
+skinparam monochrome true
+ClassA -&gt; ClassB: 日本語のテスト１
+ClassB -&gt; ClassC: 日本語のテスト２
+ClassC --&gt; ClassB: 日本語のテスト３
+ClassB --&gt; ClassA: 日本語のテスト４
+@enduml
+----</code></pre>
+</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="50%" height="230">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect4">
+<h5 id="_salt_の例1">Salt の例(1)</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
+[caption=""]
+----
+@startsalt diag-sequence-sample2
+{
+{T
+ + ヨーロッパ
+ ++ イタリア
+ ++ ドイツ
+ +++ ベルリン
+ + アフリカ
+}
+}
+@endsalt
+----</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1505,9 +1563,42 @@ asciidoctorPdf {
 <img src="Chapter02/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="14%" height="97">
 </div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="_salt_の例2">Salt の例(2)</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
+[caption=""]
+----
+@startsalt diag-sequence-sample3
+{
+  ログイン&lt;&amp;person&gt; | "MyName   "
+  パスワード&lt;&amp;key&gt;  | "****     "
+  [キャンセル &lt;&amp;circle-x&gt;] | [OK &lt;&amp;account-login&gt;]
+}
+@endsal
+----</code></pre>
+</div>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="40%" height="78">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect4">
+<h5 id="_asciimath_の例">AsciiMath の例</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+@startmath math-sample1
+f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
+@endmath
+----</code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -1515,9 +1606,6 @@ asciidoctorPdf {
 <img src="Chapter02/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
 </div>
 </div>
-<hr>
-<div class="paragraph">
-<p>That&#8217;s all. Happy coding!</p>
 </div>
 </div>
 </div>

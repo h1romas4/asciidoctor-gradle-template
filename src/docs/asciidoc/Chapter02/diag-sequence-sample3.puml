@@ -1,0 +1,7 @@
+@startsalt diag-sequence-sample3
+{
+  ログイン<&person> | "MyName   "
+  パスワード<&key>  | "****     "
+  [キャンセル <&circle-x>] | [OK <&account-login>]
+}
+@endsal

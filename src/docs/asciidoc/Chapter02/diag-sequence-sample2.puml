@@ -1,0 +1,11 @@
+@startsalt diag-sequence-sample2
+{
+{T
+ + ヨーロッパ
+ ++ イタリア
+ ++ ドイツ
+ +++ ベルリン
+ + アフリカ
+}
+}
+@endsalt

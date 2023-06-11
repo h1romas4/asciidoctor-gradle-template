@@ -227,6 +227,22 @@ ____
 
 AsciiDoc の ``[sorce]`` ブロックを用いると、文書中にソースコードをシンタックスハイライト付きで埋め込むことができます。
 
+``[source]`` ブロックは次のように記述します。
+
+[source]
+-----
+[source, javascript]
+[caption=""]
+.JavaScript ソースコードのシンタックスハイライトの例
+----
+function hello() {
+    console.log("Hello, World!"); // \<1>
+}
+----
+
+<1> コンソールに ``Hello, World`` を出力
+-----
+
 [source, javascript]
 [caption=""]
 .JavaScript ソースコードのシンタックスハイライトの例
@@ -238,62 +254,84 @@ function hello() {
 
 <1> コンソールに ``Hello, World`` を出力
 
+<<<<
+
 === asciidoctorj-diagram
 
 本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム表記を使うことができます。
 
 ==== PlantUML
 
-PlantUML 形式のダイアグラム記述することで、生成された `.svg` ベクター画像を文書に展開可能です。
+PlantUML 形式のダイアグラムを記述することで、生成された `.svg` ベクター画像を文書に展開することができます。
+
+===== シーケンス図の例
+
+[source]
+-----
+[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
+[caption=""]
+----
+include::diag-sequence-sample1.puml[]
+----
+-----
 
 [plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
 [caption=""]
 ----
-@startuml
-skinparam monochrome true
-ClassA -> ClassB: 日本語のテスト１
-ClassB -> ClassC: 日本語のテスト２
-ClassC --> ClassB: 日本語のテスト３
-ClassB --> ClassA: 日本語のテスト４
-@enduml
+include::diag-sequence-sample1.puml[]
 ----
+
+<<<<
+
+===== Salt の例(1)
+
+[source]
+-----
+[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
+[caption=""]
+----
+include::diag-sequence-sample2.puml[]
+----
+-----
 
 [plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
 [caption=""]
 ----
-@startsalt
-{
-{T
- + ヨーロッパ
- ++ イタリア
- ++ ドイツ
- +++ ベルリン
- + アフリカ
-}
-}
-@endsalt
+include::diag-sequence-sample2.puml[]
 ----
+
+===== Salt の例(2)
+
+[source]
+-----
+[plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
+[caption=""]
+----
+include::diag-sequence-sample3.puml[]
+----
+-----
 
 [plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
 [caption=""]
 ----
-@startsalt
-{
-  ログイン<&person> | "MyName   "
-  パスワード<&key>  | "****     "
-  [キャンセル <&circle-x>] | [OK <&account-login>]
-}
-@endsal
+include::diag-sequence-sample3.puml[]
 ----
+
+<<<<
+
+===== AsciiMath の例
+
+[source]
+-----
+[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::math-sample1.puml[]
+----
+-----
 
 [plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-@startmath
-f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
-@endmath
+include::math-sample1.puml[]
 ----
-
----
-
-That's all. Happy coding!
