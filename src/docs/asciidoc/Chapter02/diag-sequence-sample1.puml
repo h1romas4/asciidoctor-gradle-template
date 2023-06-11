@@ -1,7 +1,19 @@
 @startuml diag-sequence-sample1
 skinparam monochrome true
-ClassA -> ClassB: 日本語のテスト１
-ClassB -> ClassC: 日本語のテスト２
-ClassC --> ClassB: 日本語のテスト３
-ClassB --> ClassA: 日本語のテスト４
+hide footbox
+participant "日本語名1" as Test1
+participant "日本語名2" as Test2
+entity データーベース as Entity
+Test1 -> Test2: 日本語のテスト1
+Test2 -> Test2: 処理
+== 開始 ==
+alt 日本語のテスト2
+Test2 -> Entity: 日本語のテスト3\n折返しテスト
+Entity --> Test2: 日本語のテスト5
+note right: ノートのテストです。\n折返しのテスト
+else 日本語のテスト5
+Test2 --> Test1: 日本語のテスト6
+end
+== 終了 ==
+Test1 -> Test1: 処理
 @enduml

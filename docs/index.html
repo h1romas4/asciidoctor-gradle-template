@@ -1517,22 +1517,34 @@ function hello() {
 <h5 id="_シーケンス図の例">シーケンス図の例</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample1, svg, pdfwidth=80%, width=80%]
 [caption=""]
 ----
 @startuml diag-sequence-sample1
 skinparam monochrome true
-ClassA -&gt; ClassB: 日本語のテスト１
-ClassB -&gt; ClassC: 日本語のテスト２
-ClassC --&gt; ClassB: 日本語のテスト３
-ClassB --&gt; ClassA: 日本語のテスト４
+hide footbox
+participant "日本語名1" as Test1
+participant "日本語名2" as Test2
+entity データーベース as Entity
+Test1 -&gt; Test2: 日本語のテスト1
+Test2 -&gt; Test2: 処理
+== 開始 ==
+alt 日本語のテスト2
+Test2 -&gt; Entity: 日本語のテスト3\n折返しテスト
+Entity --&gt; Test2: 日本語のテスト5
+note right: ノートのテストです。\n折返しのテスト
+else 日本語のテスト5
+Test2 --&gt; Test1: 日本語のテスト6
+end
+== 終了 ==
+Test1 -&gt; Test1: 処理
 @enduml
 ----</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="50%" height="230">
+<img src="Chapter02/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="80%" height="498">
 </div>
 </div>
 <div style="page-break-after: always;"></div>

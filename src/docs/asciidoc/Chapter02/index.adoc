@@ -268,14 +268,14 @@ PlantUML 形式のダイアグラムを記述することで、生成された `
 
 [source]
 -----
-[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
+[plantuml, diag-sequence-sample1, svg, pdfwidth=80%, width=80%]
 [caption=""]
 ----
 include::diag-sequence-sample1.puml[]
 ----
 -----
 
-[plantuml, diag-sequence-sample1, svg, pdfwidth=50%, width=50%]
+[plantuml, diag-sequence-sample1, svg, pdfwidth=80%, width=80%]
 [caption=""]
 ----
 include::diag-sequence-sample1.puml[]
