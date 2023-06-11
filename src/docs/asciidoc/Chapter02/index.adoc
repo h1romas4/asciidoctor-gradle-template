@@ -223,6 +223,21 @@ ____
 
 <<<
 
+==== ソースコードシンタックスハイライト
+
+AsciiDoc の ``[sorce]`` ブロックを用いると、文書中にソースコードをシンタックスハイライト付きで埋め込むことができます。
+
+[source, javascript]
+[caption=""]
+.JavaScript ソースコードのシンタックスハイライトの例
+----
+function hello() {
+    console.log("Hello, World!"); // <1>
+}
+----
+
+<1> コンソールに ``Hello, World`` を出力
+
 === asciidoctorj-diagram
 
 本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム表記を使うことができます。

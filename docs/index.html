@@ -1462,6 +1462,28 @@ asciidoctorPdf {
 </div>
 <div style="page-break-after: always;"></div>
 </div>
+<div class="sect3">
+<h4 id="_ソースコードシンタックスハイライト">2.3.2. ソースコードシンタックスハイライト</h4>
+<div class="paragraph">
+<p>AsciiDoc の <code>[sorce]</code> ブロックを用いると、文書中にソースコードをシンタックスハイライト付きで埋め込むことができます。</p>
+</div>
+<div class="listingblock">
+<div class="title">JavaScript ソースコードのシンタックスハイライトの例</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>コンソールに <code>Hello, World</code> を出力</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_asciidoctorj_diagram">2.4. asciidoctorj-diagram</h3>
