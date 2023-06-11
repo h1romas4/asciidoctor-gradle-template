@@ -3,6 +3,7 @@
         "asciidoctor.asciidoctor-vscode",
         "EditorConfig.EditorConfig",
         "mushan.vscode-paste-image",
-        "anwar.papyrus-pdf"
+        "anwar.papyrus-pdf",
+        // "jebbs.plantuml"
     ]
 }

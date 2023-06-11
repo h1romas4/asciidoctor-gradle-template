@@ -9,4 +9,5 @@
     "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css",
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}",
+    "plantuml.server": "http://localhost:8080"
 }
