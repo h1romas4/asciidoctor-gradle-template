@@ -172,9 +172,9 @@ Asciidoctor で利用可能な属性は次から参照できます。
 
 [quote, asciidoctor.org]
 ____
-Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.
-
 https://asciidoctor.org/docs/user-manual/#attributes
+
+Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.
 ____
 
 また、文書に挿入する画像ファイルは ``images`` というフォルダ名内に配置され、その文書からの相対パスでリンクされることを期待しています。設定は次の部分で変更可能です。

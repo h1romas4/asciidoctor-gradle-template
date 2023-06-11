@@ -124,7 +124,8 @@
         "body": [
             "[quote, ${1:origin}]",
             "____",
-            "${2:quote}",
+            "${2:url}",
+            "${3:quote}",
             "____"
         ],
         "description": "quote"
