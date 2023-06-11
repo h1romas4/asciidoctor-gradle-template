@@ -287,18 +287,20 @@ include::diag-sequence-sample1.puml[]
 
 [source]
 -----
-[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
+[plantuml, diag-sequence-sample2, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
 include::diag-sequence-sample2.puml[]
 ----
 -----
 
-[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
+[plantuml, diag-sequence-sample2, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
 include::diag-sequence-sample2.puml[]
 ----
+
+<<<<
 
 ===== Salt の例(2)
 
@@ -316,8 +318,6 @@ include::diag-sequence-sample3.puml[]
 ----
 include::diag-sequence-sample3.puml[]
 ----
-
-<<<<
 
 ===== AsciiMath の例
 

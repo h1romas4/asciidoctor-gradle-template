@@ -746,6 +746,9 @@ pre.rouge {
 <li>
 <p>Morisawa BIZ UDMincho  - SIL Open Font License 1.1 - <a href="https://github.com/googlefonts/morisawa-biz-ud-mincho" class="bare">https://github.com/googlefonts/morisawa-biz-ud-mincho</a></p>
 </li>
+<li>
+<p>Open Iconic - MIT License - <a href="https://github.com/iconic/open-iconic/" class="bare">https://github.com/iconic/open-iconic/</a></p>
+</li>
 </ul>
 </div>
 </dd>
@@ -1553,17 +1556,23 @@ Test1 -&gt; Test1: 処理
 <h5 id="_salt_の例1">Salt の例(1)</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=14%, width=14%]
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
+' https://github.com/iconic/open-iconic/
 @startsalt diag-sequence-sample2
 {
 {T
- + ヨーロッパ
- ++ イタリア
- ++ ドイツ
- +++ ベルリン
- + アフリカ
+ + &lt;&amp;folder&gt; wp-admin
+ + &lt;&amp;folder&gt; wp-content
+ ++ &lt;&amp;folder&gt; themes
+ +++ &lt;&amp;folder&gt; my-theme   | 新規作成
+ ++++ &lt;&amp;file&gt; style.css   | 新規作成
+ ++++ &lt;&amp;file&gt; index.php   | 新規作成
+ ++ &lt;&amp;folder&gt; uploads
+ + &lt;&amp;folder&gt; wp-includes
+ + &lt;&amp;file&gt; .htaccess      | 自動作成
+ + &lt;&amp;file&gt; index.php
 }
 }
 @endsalt
@@ -1572,9 +1581,10 @@ Test1 -&gt; Test1: 処理
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="14%" height="97">
+<img src="Chapter02/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="30%" height="184">
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect4">
 <h5 id="_salt_の例2">Salt の例(2)</h5>
@@ -1598,7 +1608,6 @@ Test1 -&gt; Test1: 処理
 <img src="Chapter02/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="40%" height="78">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect4">
 <h5 id="_asciimath_の例">AsciiMath の例</h5>

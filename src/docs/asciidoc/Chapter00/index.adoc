@@ -38,6 +38,7 @@ Font::
     * Ricty Diminished - SIL Open Font License 1.1 - https://github.com/edihbrandon/RictyDiminished
     * Morisawa BIZ UDGothic - SIL Open Font License 1.1 - https://github.com/googlefonts/morisawa-biz-ud-gothic
     * Morisawa BIZ UDMincho  - SIL Open Font License 1.1 - https://github.com/googlefonts/morisawa-biz-ud-mincho
+    * Open Iconic - MIT License - https://github.com/iconic/open-iconic/
 Asciidoc::
     * Asciidoctor - MIT License - https://asciidoctor.org/
     * Asciidoctorj - Apache License 2.0 - https://github.com/asciidoctor/asciidoctorj

@@ -1,11 +1,17 @@
+' https://github.com/iconic/open-iconic/
 @startsalt diag-sequence-sample2
 {
 {T
- + ヨーロッパ
- ++ イタリア
- ++ ドイツ
- +++ ベルリン
- + アフリカ
+ + <&folder> wp-admin
+ + <&folder> wp-content
+ ++ <&folder> themes
+ +++ <&folder> my-theme   | 新規作成
+ ++++ <&file> style.css   | 新規作成
+ ++++ <&file> index.php   | 新規作成
+ ++ <&folder> uploads
+ + <&folder> wp-includes
+ + <&file> .htaccess      | 自動作成
+ + <&file> index.php
 }
 }
 @endsalt
