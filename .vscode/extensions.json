@@ -2,6 +2,7 @@
     "recommendations": [
         "asciidoctor.asciidoctor-vscode",
         "EditorConfig.EditorConfig",
-        "mushan.vscode-paste-image"
+        "mushan.vscode-paste-image",
+        "anwar.papyrus-pdf"
     ]
 }
