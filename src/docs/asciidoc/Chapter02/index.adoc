@@ -306,14 +306,14 @@ include::diag-sequence-sample2.puml[]
 
 [source]
 -----
-[plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
+[plantuml, diag-sequence-sample3, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
 include::diag-sequence-sample3.puml[]
 ----
 -----
 
-[plantuml, diag-sequence-sample3, svg, pdfwidth=40%, width=40%]
+[plantuml, diag-sequence-sample3, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
 include::diag-sequence-sample3.puml[]
