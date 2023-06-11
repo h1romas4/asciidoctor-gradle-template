@@ -41,7 +41,7 @@ Windows の場合 .zip ファイルの展開先はマルチバイト文字を含
 . ダウンロードした .zip ファイルを右クリックし展開します。
 . 展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに ``cmd.exe`` と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。
 +
-image::windows-01.png[windows, 480]
+image::windows-01.png[windows, pdfwidth=70%, width=70%]
 
 . ``.\gradlew.bat docs`` と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。
 . ``BUILD SUCCESSFUL`` が出力されればビルド成功です。
@@ -76,10 +76,10 @@ docs/index.pdf
 ----
 
 .PDF 文書
-image::pdf.png[pdf, 520]
+image::pdf.png[pdf, pdfwidth=70%, width=70%]
 
 .HTML 文書
-image::html.png[html, 520]
+image::html.png[html, pdfwidth=70%, width=70%]
 
 TIP: 文書を github 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に ``docs`` フォルダを指定することで継続的に文書をパブリッシュすることができます。
 

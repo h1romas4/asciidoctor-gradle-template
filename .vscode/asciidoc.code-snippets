@@ -23,14 +23,14 @@
     "asciidoc-h2": {
         "prefix": "h2",
         "body": [
-            "## ${1:header}"
+            "== ${1:header}"
         ],
         "description": "h2"
     },
     "asciidoc-h3": {
         "prefix": "h3",
         "body": [
-            "### ${1:header}"
+            "=== ${1:header}"
         ],
         "description": "h3"
     },
