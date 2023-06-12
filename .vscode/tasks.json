@@ -14,6 +14,24 @@
                 "reveal": "always",
                 "panel": "shared"
             }
+        },
+        {
+            "label": "docker run plantuml-server",
+            "type": "shell",
+            "command": "docker run --name plantuml_server -d --rm -p 8080:8080 plantuml/plantuml-server:jetty",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "docker stop plantuml-server",
+            "type": "shell",
+            "command": "docker stop plantuml_server",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
         }
     ]
 }
