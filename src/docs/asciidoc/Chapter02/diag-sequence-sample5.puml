@@ -1,0 +1,26 @@
+@startuml diag-sequence-sample5
+skinparam monochrome true
+hide footbox
+participant "ブラウザ\n閲覧者" as browser
+participant "静的ウェブサイト" as website
+participant "baserCMS" as basercms
+entity データーベース as Entity
+participant "ブラウザ\n管理者" as admin
+== コンテンツ閲覧==
+browser -> website: リクエスト
+website -> browser: HTML/CSS\nJavaScript(React|Vue等)返却
+browser -> basercms: REST API リクエスト
+basercms -> basercms: リクエスト処理
+basercms -> Entity: SQL 発行
+Entity -> basercms: コンテンツ取得
+note right of basercms: ここでテーマ処理を行わない（高速）
+basercms -> basercms: JSON 生成
+basercms -> browser: JSON 返却
+browser -> browser: React|Vue 等で HTML/CSS 生成
+note right of browser: HTMLが部分書き換え可能（高速）
+== コンテンツ管理==
+note right of basercms: baserCMS をコンテンツ管理として利用
+admin -> basercms: 管理画面リクエスト
+basercms <-> Entity: データーベース更新
+basercms -> admin: 管理画面 HTML/CSS 返却
+@enduml

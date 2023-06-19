@@ -1,0 +1,20 @@
+@startuml diag-sequence-sample4
+skinparam monochrome true
+hide footbox
+participant "ブラウザ\n閲覧者" as browser
+participant "baserCMS" as basercms
+entity データーベース as Entity
+participant "ブラウザ\n管理者" as admin
+== コンテンツ閲覧==
+browser -> basercms: 表示リクエスト
+basercms -> basercms: リクエスト処理
+basercms -> Entity: SQL 発行
+Entity -> basercms: コンテンツ取得
+note right of basercms: バックエンド処理とフロントエンド向け処理（HTML生成）を\n同じシーケンスで行う
+basercms -> basercms: テーマテンプレート処理
+basercms -> browser: HTML/CSS 返却
+== コンテンツ管理==
+admin -> basercms: 管理画面リクエスト
+basercms <-> Entity: データーベース更新
+basercms -> admin: 管理画面 HTML/CSS 返却
+@enduml
