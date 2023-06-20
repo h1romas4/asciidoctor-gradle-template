@@ -961,21 +961,21 @@ $ sdk install java 11.0.16.1-tem <i class="conum" data-value="4"></i><b>(4)</b><
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bash_profile</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
+<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bashrc</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. JAVA_HOME の設定</div>
 <div class="content">
-<pre class="rouge highlight"><code>$ vi ~/.bash_profile <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code>$ vi ~/.bashrc <i class="conum" data-value="1"></i><b>(1)</b>
 export JAVA_HOME=~/.sdkman/candidates/java/current <i class="conum" data-value="2"></i><b>(2)</b>
-$ source ~/.bash_profile <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+$ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>vi エディタで <code>.bash_profile</code> を開きます。</td>
+<td>vi エディタで <code>.bashrc</code> を開きます。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
