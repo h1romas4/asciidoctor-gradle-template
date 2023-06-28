@@ -44,7 +44,7 @@
     "asciidoc-note-block": {
         "prefix": "note-block",
         "body": [
-            "NOTE",
+            "[NOTE]",
             "====",
             "${1:note}",
             "===="
@@ -61,7 +61,7 @@
     "asciidoc-important-block": {
         "prefix": "important-block",
         "body": [
-            "IMPORTANT",
+            "[IMPORTANT]",
             "====",
             "${1:important}",
             "===="
@@ -78,7 +78,7 @@
     "asciidoc-tip-block": {
         "prefix": "tip-block",
         "body": [
-            "TIP",
+            "[TIP]",
             "====",
             "${1:tip}",
             "===="
@@ -133,7 +133,7 @@
     "asciidoc-column": {
         "prefix": "column",
         "body": [
-            ".${1:column-name}]",
+            ".${1:column-name}",
             "****",
             "${2:column}",
             "****"

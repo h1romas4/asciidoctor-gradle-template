@@ -196,12 +196,13 @@ prose:
   margin_top: $block_margin_top
   margin_bottom: $block_margin_bottom
 sidebar:
+  font_size: $base_font_size
   background_color: eeeeee
   border_color: e1e1e1
   border_radius: $base_border_radius
   border_width: $base_border_width
   # FIXME reenable padding bottom once margin collapsing is implemented
-  padding: [$vertical_rhythm, $vertical_rhythm * 1.25, 0, $vertical_rhythm * 1.25]
+  padding: [$vertical_rhythm * 1.25, $horizontal_rhythm * 1.25, 0, $horizontal_rhythm * 1.25]
   title:
     align: center
     font_color: $heading_font_color

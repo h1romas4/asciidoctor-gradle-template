@@ -1709,6 +1709,34 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 <img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">PlantUML ダイアグラムのリアルタイムプレビュー編集</div>
+<div class="paragraph">
+<p>本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（<code>jebbs.plantuml</code>）を使うと、PlantUML のダイアグラム記法も VS Code 上でプレビューすることができます。</p>
+</div>
+<div class="paragraph">
+<p>プレビュー処理をする PlantUML サーバは Docker コンテナで起動すると便利でしょう。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">docker run <span class="nt">-d</span> <span class="nt">--rm</span> <span class="nt">-p</span> 8080:8080 plantuml/plantuml-server:jetty</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>.vscode/setting.json</code> は次のようにポート 8080 でサーバが起動されることを期待して構成してあります。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>.vscode/setting.json</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w"> </span><span class="nl">"plantuml.server"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:8080"</span><span class="w"> </span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>文書で使う PlantUML ダイアグラムを <code>.puml</code> 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに <code>.puml</code> ファイルの修正が反映します。</p>
+</div>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect4">
