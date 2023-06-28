@@ -703,11 +703,15 @@ pre.rouge {
 <p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備してあります。また PDF 出力に関しては、フォントセットや禁則処理設定をプロジェクトにもたせることにより、実行環境に関わらず同一出力が得られるようになっています。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備してあります。PDF 出力に関しては、フォントセットや禁則処理設定をプロジェクトにもたせることにより、実行環境に関わらず同一出力が得られるようになっています。</p>
+</div>
+<div class="paragraph">
+<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順では日本語に対応したテキストダイアグラム記法による図形や数式のベクター画像挿入もサポートしました。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="sect2">
 <h3 id="_謝辞">謝辞</h3>
 <div class="paragraph">
@@ -850,7 +854,7 @@ pre.rouge {
 <li><a href="#_表形式">3.4. 表形式</a></li>
 <li><a href="#_脚注">3.5. 脚注</a></li>
 <li><a href="#_コラム表現">3.6. コラム表現</a></li>
-<li><a href="#_asciidoctorj_diagram">3.7. asciidoctorj-diagram</a></li>
+<li><a href="#_ダイアグラム記法">3.7. ダイアグラム記法</a></li>
 </ul>
 </li>
 </ul>
@@ -1107,7 +1111,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。</p>
 </div>
 <div class="paragraph">
-<p>変換に使うスクリプトは github のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく変換できるかを試してみましょう。</p>
+<p>変換に使うスクリプトは GitHub のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく変換できるかを試してみましょう。</p>
 </div>
 <div class="paragraph">
 <p>macOS / Linux の場合は次のようにします。</p>
@@ -1238,7 +1242,7 @@ docs/index.pdf</code></pre>
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-文書を github 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
+文書を GitHub 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
 </td>
 </tr>
 </table>
@@ -1661,7 +1665,7 @@ CAUTION: 注意</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_asciidoctorj_diagram">3.7. asciidoctorj-diagram</h3>
+<h3 id="_ダイアグラム記法">3.7. ダイアグラム記法</h3>
 <div class="paragraph">
 <p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
 </div>
