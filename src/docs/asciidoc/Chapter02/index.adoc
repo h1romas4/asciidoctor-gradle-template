@@ -104,23 +104,6 @@ image::vscode-extention2.png[vscode]
 +
 image::vscode-asciidoc.png[vscode, 600]
 
-<<<
-
-なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で btn:[F1] を押し、menu:Change Preview Security Setting[Disable] を選択してください。
-
-image::vscode-asciidoc-security1.png[vscode]
-
-image::vscode-asciidoc-security2.png[vscode]
-
-[IMPORTANT]
-====
-本設定は、プレビュー画面で動作する Webview がインターネット上の外部リソースを評価できるようにセキュリティー権限を下げる設定です。
-
-プロジェクト（ファイルが配置されたフォルダ）毎の設定となりますが、この設定をした後はこのプロジェクトで第三者の作成した未知の Asciidoc 文書を開かないようにしてください。外部に配置された悪意の JavaScript により、セキュリティーを侵害される可能性があります。理解の上、設定してください。
-
-拡張がソースコードのハイライトを行うため、CDN に配置されたリソースを参照しているために発生している問題で、将来ローカルのリソースを参照するように修正され解決されると思われます。
-====
-
 === 文書のファイル構成
 
 文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。

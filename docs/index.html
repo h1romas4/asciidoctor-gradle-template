@@ -1293,40 +1293,6 @@ docs/index.pdf</code></pre>
 </li>
 </ol>
 </div>
-<div style="page-break-after: always;"></div>
-<div class="paragraph">
-<p>なお、もしリアルタイムプレビューでソースコードのハイライトが動作しない場合は、Asciidoc 文書を開いた状態で <b class="button">F1</b> を押し、<span class="menuseq"><b class="menu">Change Preview Security Setting</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Disable</b></span> を選択してください。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/vscode-asciidoc-security1.png" alt="vscode">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/vscode-asciidoc-security2.png" alt="vscode">
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="重要"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>本設定は、プレビュー画面で動作する Webview がインターネット上の外部リソースを評価できるようにセキュリティー権限を下げる設定です。</p>
-</div>
-<div class="paragraph">
-<p>プロジェクト（ファイルが配置されたフォルダ）毎の設定となりますが、この設定をした後はこのプロジェクトで第三者の作成した未知の Asciidoc 文書を開かないようにしてください。外部に配置された悪意の JavaScript により、セキュリティーを侵害される可能性があります。理解の上、設定してください。</p>
-</div>
-<div class="paragraph">
-<p>拡張がソースコードのハイライトを行うため、CDN に配置されたリソースを参照しているために発生している問題で、将来ローカルのリソースを参照するように修正され解決されると思われます。</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_文書のファイル構成">2.3. 文書のファイル構成</h3>
@@ -1528,7 +1494,7 @@ function hello() {
 <i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
-Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> するなどしてリビルドしてください。
+Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> するなどしてからリビルドしてください。
 </td>
 </tr>
 </table>
@@ -1565,7 +1531,6 @@ include::source/hello.rs[]
 カラム1,カラム2
 キー1,バリュー1
 キー2,バリュー2
-キー3,バリュー3
 |======</code></pre>
 </div>
 </div>
@@ -1587,10 +1552,6 @@ include::source/hello.rs[]
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">キー2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">バリュー2</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">キー3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">バリュー3</p></td>
 </tr>
 </tbody>
 </table>
@@ -1681,6 +1642,8 @@ CAUTION: 注意</code></pre>
 <pre class="rouge highlight"><code>.コラム
 ****
 ブロックを使ってコラム表現を挿入します。
+
+吾輩はコラムである。名前はまだ無い。
 ****</code></pre>
 </div>
 </div>
@@ -1689,6 +1652,9 @@ CAUTION: 注意</code></pre>
 <div class="title">コラム</div>
 <div class="paragraph">
 <p>ブロックを使ってコラム表現を挿入します。</p>
+</div>
+<div class="paragraph">
+<p>吾輩はコラムである。名前はまだ無い。</p>
 </div>
 </div>
 </div>
