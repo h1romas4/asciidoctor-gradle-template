@@ -180,16 +180,16 @@ include::puml/diag-sequence-sample2.puml[]
 
 .PlantUML ダイアグラムのリアルタイムプレビュー編集
 ****
-本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（``jebbs.plantuml``）を使うと、PlantUML のダイアグラム記法も VS Code 上でプレビューすることができます。
+本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（``jebbs.plantuml``）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューすることができます。
 
-プレビュー処理をする PlantUML サーバは Docker コンテナで起動すると便利でしょう。
+プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書の変換では内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。
 
 [source, bash]
 ----
 docker run -d --rm -p 8080:8080 plantuml/plantuml-server:jetty
 ----
 
-`.vscode/setting.json` は次のようにポート 8080 でサーバが起動されることを期待して構成してあります。
+`.vscode/setting.json` は次のようにポート ``8080`` で PlantUML サーバが起動されることを期待して構成してあります。
 
 [source, json]
 [caption=""]
@@ -198,7 +198,7 @@ docker run -d --rm -p 8080:8080 plantuml/plantuml-server:jetty
 { "plantuml.server": "http://localhost:8080" }
 ----
 
-文書で使う PlantUML ダイアグラムを `.puml` 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに `.puml` ファイルの修正が反映します。
+文書で使う PlantUML ダイアグラムを `.puml` 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに `.puml` ファイルの修正が反映されます。
 ****
 
 <<<<

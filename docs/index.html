@@ -1727,10 +1727,10 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 <div class="content">
 <div class="title">PlantUML ダイアグラムのリアルタイムプレビュー編集</div>
 <div class="paragraph">
-<p>本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（<code>jebbs.plantuml</code>）を使うと、PlantUML のダイアグラム記法も VS Code 上でプレビューすることができます。</p>
+<p>本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（<code>jebbs.plantuml</code>）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューすることができます。</p>
 </div>
 <div class="paragraph">
-<p>プレビュー処理をする PlantUML サーバは Docker コンテナで起動すると便利でしょう。</p>
+<p>プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書の変換では内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1738,7 +1738,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 </div>
 <div class="paragraph">
-<p><code>.vscode/setting.json</code> は次のようにポート 8080 でサーバが起動されることを期待して構成してあります。</p>
+<p><code>.vscode/setting.json</code> は次のようにポート 8080 で PlantUML サーバが起動されることを期待して構成してあります。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>.vscode/setting.json</code></div>
@@ -1747,7 +1747,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 </div>
 <div class="paragraph">
-<p>文書で使う PlantUML ダイアグラムを <code>.puml</code> 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに <code>.puml</code> ファイルの修正が反映します。</p>
+<p>文書で使う PlantUML ダイアグラムを <code>.puml</code> 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに <code>.puml</code> ファイルの修正が反映されます。</p>
 </div>
 </div>
 </div>
