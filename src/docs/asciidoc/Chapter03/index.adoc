@@ -1,0 +1,228 @@
+include::../attribute.adoc[]
+
+[[project-structure]]
+== Asciidoc 記法
+
+=== 文書中の相互参照
+
+文書内の参照リンクは ``.adoc`` 文書中で次のように指定します。HTML/PDF でクリックリンクが生成されます。
+
+[source]
+----
+[[project-structure]] // <1>
+== Asciidoc 記法
+
+[[introduction]] // <2>
+== はじめに
+
+<<project-structure,章の冒頭>> // <1>
+<<Chapter01/index.adoc#introduction,はじめに>> <2>
+----
+
+<1> 同一 `.adoc` 内での内部参照
+<2> `.adoc` をまたいだドキュメント間参照
+
+リンクの例
+
+* <<project-structure,章の冒頭>> を参照してください･･･
+* <<Chapter01/index.adoc#introduction,はじめに>> で述べたように･･･
+
+=== ソースコードシンタックスハイライト
+
+``[sorce]`` ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、``// <1>`` 形式でソースコード下部に対応する説明が書けます。
+
+[source]
+-----
+[source, javascript]
+[caption=""]
+.JavaScript ソースコードのシンタックスハイライトの例
+----
+function hello() {
+    console.log("Hello, World!"); // \<1>
+}
+----
+
+<1> コンソールに ``Hello, World`` を出力
+-----
+
+[source, javascript]
+[caption=""]
+.JavaScript ソースコードのシンタックスハイライトの例
+----
+function hello() {
+    console.log("Hello, World!"); // <1>
+}
+----
+
+<1> コンソールに ``Hello, World`` を出力
+
+=== ファイルインクルード
+
+`.adoc` ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。
+
+[source]
+-----
+[source, rust]
+----
+\include::source/hello.rs[]
+----
+-----
+
+[source, rust]
+[caption=""]
+.インクルードにより挿入されたソースコードの例
+----
+include::source/hello.rs[]
+----
+
+=== 表形式
+
+表形式は次のようなコードで定義することができます。
+
+[source]
+-----
+[format="csv",cols="1,2"]
+[frame="topbot",grid="none"]
+[caption=""]
+.表形式の例
+|======
+カラム1,カラム2
+キー1,バリュー1
+キー2,バリュー2
+キー3,バリュー3
+|======
+-----
+
+[format="csv",cols="1,2"]
+[frame="topbot",grid="none"]
+[caption=""]
+.表形式の例
+|======
+カラム1,カラム2
+キー1,バリュー1
+キー2,バリュー2
+キー3,バリュー3
+|======
+
+=== 脚注
+
+補足点を脚注するいくつかの表現があります。
+
+[source]
+-----
+NOTE: メモ
+
+TIP: チップス
+
+IMPORTANT: 重要
+
+WARNING: 警告
+
+CAUTION: 注意
+-----
+
+NOTE: メモ
+
+TIP: チップス
+
+IMPORTANT: 重要
+
+WARNING: 警告
+
+CAUTION: 注意
+
+
+=== コラム表現
+
+[source]
+-----
+.コラム
+****
+ブロックを使ってコラム表現を挿入します。
+****
+-----
+
+.コラム
+****
+ブロックを使ってコラム表現を挿入します。
+****
+
+<<<<<
+
+=== asciidoctorj-diagram
+
+本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。
+
+==== PlantUML
+
+記事中に PlantUML 形式のダイアグラムを記述し、生成された `.svg` ベクター画像を文書に展開するには次のようにします。
+
+===== シーケンス図の例
+
+[source]
+-----
+[plantuml, diag-sequence-sample2, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::puml/diag-sequence-sample2.puml[]
+----
+-----
+
+[plantuml, diag-sequence-sample2, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::puml/diag-sequence-sample2.puml[]
+----
+
+<<<<
+
+===== Salt の例(1)
+
+[source]
+-----
+[plantuml, diag-salt-sample1, svg, pdfwidth=30%, width=280px]
+[caption=""]
+----
+include::puml/diag-salt-sample1.puml[]
+----
+-----
+
+[plantuml, diag-salt-sample1, svg, pdfwidth=30%, width=280px]
+[caption=""]
+----
+include::puml/diag-salt-sample1.puml[]
+----
+
+===== Salt の例(2)
+
+[source]
+-----
+[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
+[caption=""]
+----
+include::puml/diag-salt-sample2.puml[]
+----
+-----
+
+[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
+[caption=""]
+----
+include::puml/diag-salt-sample2.puml[]
+----
+
+===== AsciiMath の例
+
+[source]
+-----
+[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::puml/math-sample1.puml[]
+----
+-----
+
+[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::puml/math-sample1.puml[]
+----

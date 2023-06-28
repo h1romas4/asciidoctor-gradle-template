@@ -657,7 +657,7 @@ pre.rouge {
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revdate">2023-06-09</span>
+<span id="revdate">2023-06-28</span>
 </div>
 </div>
 <div id="content">
@@ -839,8 +839,18 @@ pre.rouge {
 <ul class="sectlevel2">
 <li><a href="#_サンプル文書の変換を試す">2.1. サンプル文書の変換を試す</a></li>
 <li><a href="#_テキストエディタで_asciidoc_文書を編集する">2.2. テキストエディタで Asciidoc 文書を編集する</a></li>
-<li><a href="#project-structure">2.3. 文書のファイル構成</a></li>
-<li><a href="#_asciidoctorj_diagram">2.4. asciidoctorj-diagram</a></li>
+<li><a href="#_文書のファイル構成">2.3. 文書のファイル構成</a></li>
+</ul>
+</li>
+<li><a href="#project-structure">3. Asciidoc 記法</a>
+<ul class="sectlevel2">
+<li><a href="#_文書中の相互参照">3.1. 文書中の相互参照</a></li>
+<li><a href="#_ソースコードシンタックスハイライト">3.2. ソースコードシンタックスハイライト</a></li>
+<li><a href="#_ファイルインクルード">3.3. ファイルインクルード</a></li>
+<li><a href="#_表形式">3.4. 表形式</a></li>
+<li><a href="#_脚注">3.5. 脚注</a></li>
+<li><a href="#_コラム表現">3.6. コラム表現</a></li>
+<li><a href="#_asciidoctorj_diagram">3.7. asciidoctorj-diagram</a></li>
 </ul>
 </li>
 </ul>
@@ -1319,7 +1329,7 @@ docs/index.pdf</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="project-structure">2.3. 文書のファイル構成</h3>
+<h3 id="_文書のファイル構成">2.3. 文書のファイル構成</h3>
 <div class="paragraph">
 <p>文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。</p>
 </div>
@@ -1421,15 +1431,21 @@ asciidoctorPdf {
  }</code></pre>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_文書中の相互参照">2.3.1. 文書中の相互参照</h4>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-structure">3. Asciidoc 記法</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_文書中の相互参照">3.1. 文書中の相互参照</h3>
 <div class="paragraph">
-<p>文書内の参照リンクは <code>.adoc</code> 文書中で次のように指定できます。</p>
+<p>文書内の参照リンクは <code>.adoc</code> 文書中で次のように指定します。HTML/PDF でクリックリンクが生成されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>[[project-structure]] <i class="conum" data-value="1"></i><b>(1)</b>
-=== 文書のファイル構成
+== Asciidoc 記法
 
 [[introduction]] <i class="conum" data-value="2"></i><b>(2)</b>
 == はじめに
@@ -1463,12 +1479,11 @@ asciidoctorPdf {
 </li>
 </ul>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="_ソースコードシンタックスハイライト">2.3.2. ソースコードシンタックスハイライト</h4>
+<div class="sect2">
+<h3 id="_ソースコードシンタックスハイライト">3.2. ソースコードシンタックスハイライト</h3>
 <div class="paragraph">
-<p><code>[sorce]</code> ブロックを用いると、文書中にソースコードをシンタックスハイライト付きで埋め込むことができます。</p>
+<p><code>[sorce]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、<code>// &lt;1&gt;</code> 形式でソースコード下部に対応する説明が書けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1500,10 +1515,31 @@ function hello() {
 </tr>
 </table>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
-<div class="sect3">
-<h4 id="_表形式">2.3.3. 表形式</h4>
+<div class="sect2">
+<h3 id="_ファイルインクルード">3.3. ファイルインクルード</h3>
+<div class="paragraph">
+<p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[source, rust]
+----
+include::source/hello.rs[]
+----</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">インクルードにより挿入されたソースコードの例</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="rust"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"Hello, world!"</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_表形式">3.4. 表形式</h3>
 <div class="paragraph">
 <p>表形式は次のようなコードで定義することができます。</p>
 </div>
@@ -1546,51 +1582,149 @@ function hello() {
 </tr>
 </tbody>
 </table>
-<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_脚注">3.5. 脚注</h3>
+<div class="paragraph">
+<p>補足点を脚注するいくつかの表現があります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>NOTE: メモ
+
+TIP: チップス
+
+IMPORTANT: 重要
+
+WARNING: 警告
+
+CAUTION: 注意</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+メモ
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+チップス
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="重要"></i>
+</td>
+<td class="content">
+重要
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="警告"></i>
+</td>
+<td class="content">
+警告
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="注意"></i>
+</td>
+<td class="content">
+注意
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_asciidoctorj_diagram">2.4. asciidoctorj-diagram</h3>
+<h3 id="_コラム表現">3.6. コラム表現</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>.コラム
+****
+ブロックを使ってコラム表現を挿入します。
+****</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">コラム</div>
 <div class="paragraph">
-<p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、PlantUML 記法を追加のアドイン無しで使うことができます。</p>
+<p>ブロックを使ってコラム表現を挿入します。</p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_asciidoctorj_diagram">3.7. asciidoctorj-diagram</h3>
+<div class="paragraph">
+<p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
 </div>
 <div class="sect3">
-<h4 id="_plantuml">2.4.1. PlantUML</h4>
+<h4 id="_plantuml">3.7.1. PlantUML</h4>
 <div class="paragraph">
-<p>PlantUML 形式のダイアグラムを記述することで、定義から生成された <code>.svg</code> ベクター画像を文書に展開します。</p>
+<p>記事中に PlantUML 形式のダイアグラムを記述し、生成された <code>.svg</code> ベクター画像を文書に展開するには次のようにします。</p>
 </div>
 <div class="sect4">
 <h5 id="_シーケンス図の例">シーケンス図の例</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample1, svg, pdfwidth=80%, width=80%]
+<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-@startuml diag-sequence-sample1
+@startuml diag-sequence-sample4
 skinparam monochrome true
 hide footbox
-participant "日本語名1" as Test1
-participant "日本語名2" as Test2
+participant "ブラウザ\n閲覧者" as browser
+participant "baserCMS" as basercms
 entity データーベース as Entity
-Test1 -&gt; Test2: 日本語のテスト1
-Test2 -&gt; Test2: 処理
-== 開始 ==
-alt 日本語のテスト2
-Test2 -&gt; Entity: 日本語のテスト3\n折返しテスト
-Entity --&gt; Test2: 日本語のテスト5
-note right: ノートのテストです。\n折返しのテスト
-else 日本語のテスト5
-Test2 --&gt; Test1: 日本語のテスト6
-end
-== 終了 ==
-Test1 -&gt; Test1: 処理
+participant "ブラウザ\n管理者" as admin
+== コンテンツ閲覧==
+browser -&gt; basercms: 表示リクエスト
+basercms -&gt; basercms: リクエスト処理
+basercms -&gt; Entity: SQL 発行
+Entity -&gt; basercms: コンテンツ取得
+note right of basercms: バックエンド処理とフロントエンド向け処理（HTML生成）を\n同じシーケンスで行う
+basercms -&gt; basercms: テーマテンプレート処理
+basercms -&gt; browser: HTML/CSS 返却
+== コンテンツ管理==
+admin -&gt; basercms: 管理画面リクエスト
+basercms &lt;-&gt; Entity: データーベース更新
+basercms -&gt; admin: 管理画面 HTML/CSS 返却
 @enduml
 ----</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/diag-sequence-sample1.svg" alt="diag sequence sample1" width="80%" height="498">
+<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1599,7 +1733,7 @@ Test1 -&gt; Test1: 処理
 <h5 id="_salt_の例1">Salt の例(1)</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=30%, width=240px]
+<pre class="rouge highlight"><code>[plantuml, diag-salt-sample1, svg, pdfwidth=30%, width=280px]
 [caption=""]
 ----
 ' https://github.com/iconic/open-iconic/
@@ -1624,16 +1758,15 @@ Test1 -&gt; Test1: 処理
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="240px" height="184">
+<img src="Chapter03/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect4">
 <h5 id="_salt_の例2">Salt の例(2)</h5>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-sequence-sample3, svg, pdfwidth=30%, width=30%]
+<pre class="rouge highlight"><code>[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
 @startsalt diag-sequence-sample3
@@ -1648,7 +1781,7 @@ Test1 -&gt; Test1: 処理
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/diag-sequence-sample3.svg" alt="diag sequence sample3" width="30%" height="78">
+<img src="Chapter03/images/diag-salt-sample2.svg" alt="diag salt sample2" width="30%" height="78">
 </div>
 </div>
 </div>
@@ -1667,7 +1800,7 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
+<img src="Chapter03/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
 </div>
 </div>
 </div>
@@ -1678,7 +1811,7 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-06-09 17:32:29 +0900
+最終更新 2023-06-28 18:23:54 +0900
 </div>
 </div>
 </body>
