@@ -1,4 +1,4 @@
-@startsalt diag-sequence-sample3
+@startsalt diag-salt-sample2
 {
   ログイン<&person> | "MyName   "
   パスワード<&key>  | "****     "

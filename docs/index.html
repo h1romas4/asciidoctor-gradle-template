@@ -1521,6 +1521,18 @@ function hello() {
 <div class="paragraph">
 <p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
 </div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="注意"></i>
+</td>
+<td class="content">
+Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> するなどしてリビルドしてください。
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>[source, rust]
@@ -1699,7 +1711,7 @@ CAUTION: 注意</code></pre>
 <pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-@startuml diag-sequence-sample4
+@startuml diag-sequence-sample2
 skinparam monochrome true
 hide footbox
 participant "ブラウザ\n閲覧者" as browser
@@ -1737,7 +1749,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 [caption=""]
 ----
 ' https://github.com/iconic/open-iconic/
-@startsalt diag-sequence-sample2
+@startsalt diag-salt-sample1
 {
 {T
  + &lt;&amp;folder&gt; wp-admin
@@ -1769,7 +1781,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 <pre class="rouge highlight"><code>[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
 [caption=""]
 ----
-@startsalt diag-sequence-sample3
+@startsalt diag-salt-sample2
 {
   ログイン&lt;&amp;person&gt; | "MyName   "
   パスワード&lt;&amp;key&gt;  | "****     "

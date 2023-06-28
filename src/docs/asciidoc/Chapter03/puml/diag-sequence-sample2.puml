@@ -1,4 +1,4 @@
-@startuml diag-sequence-sample4
+@startuml diag-sequence-sample2
 skinparam monochrome true
 hide footbox
 participant "ブラウザ\n閲覧者" as browser
