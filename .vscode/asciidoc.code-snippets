@@ -85,6 +85,40 @@
         ],
         "description": "tip block"
     },
+    "asciidoc-warning": {
+        "prefix": "warning",
+        "body": [
+            "WARNING: ${1:warning}"
+        ],
+        "description": "warning"
+    },
+    "asciidoc-warning-block": {
+        "prefix": "warning-block",
+        "body": [
+            "[WARNING]",
+            "====",
+            "${1:warning}",
+            "===="
+        ],
+        "description": "warning block"
+    },
+    "asciidoc-caution": {
+        "prefix": "caution",
+        "body": [
+            "caution: ${1:caution}"
+        ],
+        "description": "caution"
+    },
+    "asciidoc-caution-block": {
+        "prefix": "caution-block",
+        "body": [
+            "[CAUTION]",
+            "====",
+            "${1:caution}",
+            "===="
+        ],
+        "description": "caution block"
+    },
     "asciidoc-pdf-nextpage": {
         "prefix": "pdf-next-page",
         "body": [

@@ -1215,13 +1215,27 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>Asciidoc から変換された文書は次の場所に格納されます。<code>docs</code> フォルダはビルド出力専用となっており、ビルド時にいったん全てのファイルが削除されますのでユーザーファイルは配置しないように注意してください。</p>
+<p>ビルド操作により Asciidoc から変換された文書は次の場所に格納されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>docs/index.html
 docs/index.pdf</code></pre>
 </div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="注意"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>docs</code> フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、<strong>自らが作成したファイルは配置しない</strong>ように注意してください。</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1242,7 +1256,7 @@ docs/index.pdf</code></pre>
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-文書を GitHub 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
+文書を GitHub 上に公開する場合は、<code>docs</code> フォルダを含むプロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
 </td>
 </tr>
 </table>

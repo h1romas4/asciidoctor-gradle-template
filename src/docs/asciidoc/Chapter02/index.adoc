@@ -67,7 +67,7 @@ export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 
 <<<
 
-Asciidoc から変換された文書は次の場所に格納されます。``docs`` フォルダはビルド出力専用となっており、ビルド時にいったん全てのファイルが削除されますのでユーザーファイルは配置しないように注意してください。
+ビルド操作により Asciidoc から変換された文書は次の場所に格納されます。
 
 [source]
 ----
@@ -75,13 +75,18 @@ docs/index.html
 docs/index.pdf
 ----
 
+[CAUTION]
+====
+``docs`` フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、**自らが作成したファイルは配置しない**ように注意してください。
+====
+
 .PDF 文書
 image::pdf.png[pdf, pdfwidth=70%, width=70%]
 
 .HTML 文書
 image::html.png[html, pdfwidth=70%, width=70%]
 
-TIP: 文書を GitHub 上に公開する場合は、プロジェクトのファイルを全てコミットし、GitHub Pages に ``docs`` フォルダを指定することで継続的に文書をパブリッシュすることができます。
+TIP: 文書を GitHub 上に公開する場合は、``docs`` フォルダを含むプロジェクトのファイルを全てコミットし、GitHub Pages に ``docs`` フォルダを指定することで継続的に文書をパブリッシュすることができます。
 
 === テキストエディタで Asciidoc 文書を編集する
 
