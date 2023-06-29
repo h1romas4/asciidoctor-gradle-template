@@ -842,8 +842,10 @@ pre.rouge {
 <li><a href="#_asciidoc_から_htmlpdf_文書を作成する">2. Asciidoc から HTML/PDF 文書を作成する</a>
 <ul class="sectlevel2">
 <li><a href="#_サンプル文書の変換を試す">2.1. サンプル文書の変換を試す</a></li>
-<li><a href="#_テキストエディタで_asciidoc_文書を編集する">2.2. テキストエディタで Asciidoc 文書を編集する</a></li>
-<li><a href="#_文書のファイル構成">2.3. 文書のファイル構成</a></li>
+<li><a href="#_変換後の文書">2.2. 変換後の文書</a></li>
+<li><a href="#_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</a></li>
+<li><a href="#_文書のファイル構成">2.4. 文書のファイル構成</a></li>
+<li><a href="#_執筆のイテレーション">2.5. 執筆のイテレーション</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -1139,7 +1141,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>カレントディレクトリを展開したフォルダの中に移します。</td>
+<td>カレントディレクトリを展開したフォルダの中に移します。フォルダ名は任意のものに変更可能です。本手順ではプロジェクトフォルダと呼称します。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -1175,7 +1177,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>ブラウザを使って <code><a href="https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip</a></code> にアクセスしリポジトリのファイルを取得します。</p>
 </li>
 <li>
-<p>ダウンロードした .zip ファイルを右クリックし展開します。</p>
+<p>ダウンロードした .zip ファイルを右クリックし展開します。フォルダ名は任意のものに変更可能です。本手順ではプロジェクトフォルダと呼称します。</p>
 </li>
 <li>
 <p>展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに <code>cmd.exe</code> と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。</p>
@@ -1214,14 +1216,68 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_変換後の文書">2.2. 変換後の文書</h3>
 <div class="paragraph">
-<p>ビルド操作により Asciidoc から変換された文書は次の場所に格納されます。</p>
+<p><code>./gradlew docs</code> のビルド操作により Asciidoc から変換された文書は、<code>docs</code> フォルダに HTML版(<code>index.html</code>)と PDF版（<code>index.pdf</code>）として格納されます。</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="rouge highlight"><code>docs/index.html
-docs/index.pdf</code></pre>
+<img src="Chapter02/images/pdf.png" alt="pdf" width="70%">
 </div>
+<div class="title">PDF 文書</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/html.png" alt="html" width="70%">
+</div>
+<div class="title">HTML 文書</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>成果物の出力先となる <code>docs</code> フォルダの構成は次のとおりです。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="768px" height="341">
+</div>
+</div>
+<div class="paragraph">
+<p>成果物文書のソースとなるのは <code>src/docs/asciidoc</code> に配置された Asciidoc 文書と画像ファイル群です。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="580px" height="219">
+</div>
+</div>
+<div class="paragraph">
+<p><code>docs</code> 出力フォルダの構成としては、章（<code>Chapter*/images</code>）フォルダには HTML 版からリンクされるリソースが <code>src/docs/asciidoc</code> からコピーされ配置されます。また、後述するダイアグラム記法を使った図表や数式も、ビルドのタイミングでベクター画像が生成され同フォルダに出力されます。</p>
+</div>
+<div class="paragraph">
+<p>PDF 版のファイルについては <code>index.pdf</code> 単体で完結しており、フォントや画像リソースなど全てが PDF ファイル内に格納されます。</p>
+</div>
+<div class="paragraph">
+<p>以上から成果物の配布は次のようになります。</p>
+</div>
+<table class="tableblock frame-ends grid-none stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML 文書</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code>フォルダの <code>index.pdf</code>を除く全てのファイルを配布。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PDF 文書</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs/index.pdf</code> のみを配布。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>なおいずれの場合も <code>index.*</code> のファイル名は任意の名称に変更可能です。</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1231,44 +1287,20 @@ docs/index.pdf</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>docs</code> フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、<strong>自らが作成したファイルは配置しない</strong>ように注意してください。</p>
+<p><code>docs</code> フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、<strong>自らが作成したファイルは配置しない</strong>ように注意してください。執筆で作成するファイルは必ず <code>src/docs/asciidoc</code> 配下に配置します。</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/pdf.png" alt="pdf" width="70%">
-</div>
-<div class="title">図 1. PDF 文書</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/html.png" alt="html" width="70%">
-</div>
-<div class="title">図 2. HTML 文書</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-文書を GitHub 上に公開する場合は、<code>docs</code> フォルダを含むプロジェクトのファイルを全てコミットし、GitHub Pages に <code>docs</code> フォルダを指定することで継続的に文書をパブリッシュすることができます。
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_テキストエディタで_asciidoc_文書を編集する">2.2. テキストエディタで Asciidoc 文書を編集する</h3>
+<h3 id="_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</h3>
 <div class="paragraph">
-<p>プロジェクトに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
+<p>プロジェクトフォルダに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
 </div>
 <div class="paragraph">
-<p>プロジェクトフォルダ（<code>asciidoctor-gradle-template-master</code>）を Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。</p>
+<p>プロジェクトフォルダを Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1311,18 +1343,23 @@ docs/index.pdf</code></pre>
 </li>
 </ol>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_文書のファイル構成">2.3. 文書のファイル構成</h3>
+<h3 id="_文書のファイル構成">2.4. 文書のファイル構成</h3>
 <div class="paragraph">
-<p>文書は次のようなファイルで構成します。サンプル文書から執筆したい文書に合わせてカスタマイズしていくとよいでしょう。</p>
+<p>以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていくとよいでしょう。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="440px" height="358">
+</div>
 </div>
 <div class="listingblock">
-<div class="title">文書を構成するファイル</div>
 <div class="content">
 <pre class="rouge highlight"><code>src/docs/asciidoc/index.adoc <i class="conum" data-value="1"></i><b>(1)</b>
 src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
-src/docs/asciidoc/@style/*.css <i class="conum" data-value="3"></i><b>(3)</b>
+src/docs/asciidoc/@style/asciidoctor.css <i class="conum" data-value="3"></i><b>(3)</b>
 src/docs/asciidoc/@style/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
 src/docs/asciidoc/@font/**/*.ttf <i class="conum" data-value="5"></i><b>(5)</b>
 src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
@@ -1348,7 +1385,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>PDF 文書に埋め込みされるフォントファイルです。<code>pdf-theme.yml</code> から参照されています。TrueType フォント <code>.ttf</code> が指定できます。</td>
+<td>PDF 文書に埋め込みされるフォントファイルを配置します。<code>pdf-theme.yml</code> からファイル名で参照されています。TrueType フォント <code>.ttf</code> が指定できます。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
@@ -1357,28 +1394,20 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </table>
 </div>
 <div class="paragraph">
-<p>変換スクリプトとなる <code>build.gradle</code> の <code>attribute</code> 設定でこれらのファイルパスや変換に必要な属性を設定しています。</p>
+<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。</p>
 </div>
 <div class="listingblock">
-<div class="title">build.gradle</div>
+<div class="title"><code>src/docs/asciidoc/attribute.adoc</code></div>
 <div class="content">
-<pre class="rouge highlight"><code>asciidoctor {
-    asciidoctorj {
-        attributes 'stylesdir': '@style',
-            'stylesheet': 'asciidoctor.css'
-    }
-}
-
-asciidoctorPdf {
-    asciidoctorj {
-        attributes 'pdf-themesdir': "@style",
-            'pdf-theme': 'pdf-theme.yml'
-    }
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">..</span><span class="nx">snip</span><span class="p">..</span>
+<span class="p">:</span><span class="nx">preface</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span> <span class="nx">まえがき</span>
+<span class="p">:</span><span class="nx">toc</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span> <span class="nx">目次</span>
+<span class="p">:</span><span class="nx">appendix</span><span class="o">-</span><span class="nx">caption</span><span class="p">:</span> <span class="nx">付録</span>
+<span class="p">:</span><span class="nx">caution</span><span class="o">-</span><span class="nx">caption</span><span class="p">:</span> <span class="nx">注意</span>
+<span class="p">:</span><span class="nx">example</span><span class="o">-</span><span class="nx">caption</span><span class="p">:</span> <span class="nx">例</span>
+<span class="p">:</span><span class="nx">figure</span><span class="o">-</span><span class="nx">caption</span><span class="p">:</span> <span class="nx">図</span>
+<span class="p">..</span><span class="nx">snip</span><span class="p">..</span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p><code>src/docs/asciidoc/attribute.adoc</code> ではエディタのリアルタイムプレビュー用の属性定義を行い、文書変換スクリプトでその値を上書きするように構成すると良いでしょう。</p>
 </div>
 <div class="paragraph">
 <p>Asciidoctor で利用可能な属性は次から参照できます。</p>
@@ -1396,24 +1425,52 @@ asciidoctorPdf {
 &#8212; asciidoctor.org
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_執筆のイテレーション">2.5. 執筆のイテレーション</h3>
 <div class="paragraph">
-<p>また、文書に挿入する画像ファイルは <code>images</code> というフォルダ名内に配置され、その文書からの相対パスでリンクされることを期待しています。設定は次の部分で変更可能です。</p>
+<p>環境が整った後の文書執筆の進め方のイメージは次のようになります。</p>
 </div>
-<div class="listingblock">
-<div class="title">src/docs/asciidoc/attribute.adoc</div>
-<div class="content">
-<pre class="rouge highlight"><code> ifndef::imagesdir[:imagesdir: ./images]</code></pre>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>プロジェクトフォルダを VS Code で開く。</p>
+</li>
+<li>
+<p><code>src/docs/asciidocs</code> 配下の Asciidoc 文書を VS Code でプレビューしながら執筆する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Chapter が増えた場合は <code>src/docs/asciidocs/index.adoc</code> に Chapter を追記し、<code>src/docs/asciidocs/Chapter*/index.adoc</code> ファイルを新規追加する。</p>
+</li>
+<li>
+<p>画像ファイルが必要な場合は、<code>src/docs/asciidocs/Chapter*/images</code> フォルダに追加する。</p>
+</li>
+</ul>
 </div>
+</li>
+<li>
+<p>文書執筆の一定の区切りをもって <code>./gradlew docs</code> で文書のビルドを行い、HTML/PDF 文書を <code>docs/index.html</code> と <code>docs/index.pdf</code> で推敲する。</p>
+</li>
+<li>
+<p>必要ならばプロジェクトディレクトリを Git などのバージョン管理下として、コミットを行う。</p>
+</li>
+<li>
+<p>本日の執筆を終え、明日はまた 1. に戻る。</p>
+</li>
+</ol>
 </div>
-<div class="listingblock">
-<div class="title">build.gradle</div>
-<div class="content">
-<pre class="rouge highlight"><code> copy {
-     from 'src/docs/asciidoc/'
-     include 'Chapter*/images/*' // 子文書のフォルダ名
-     into 'docs'
- }</code></pre>
-</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1738,7 +1795,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 </div>
 <div class="paragraph">
-<p><code>.vscode/setting.json</code> は次のようにポート 8080 で PlantUML サーバが起動されることを期待して構成してあります。</p>
+<p><code>.vscode/setting.json</code> は次のようにポート <code>8080</code> で PlantUML サーバが起動されることを期待して構成してあります。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>.vscode/setting.json</code></div>

@@ -1,0 +1,26 @@
+' https://github.com/iconic/open-iconic/
+@startsalt directory-structure-1
+{
+{T
+ + <&folder> docs
+ ++ <&folder> Chapter00                | 章ごとの HTML 版用のリソース
+ ++ <&folder> Chapter01
+ +++ <&folder> images                  | HTML 版用の画像格納フォルダ
+ ++++ <&file> AdoptOpenJDK.png         | HTML 版用の PNG 画像リソース
+ ++++ <&file> windows-01.png
+ ++++ <&file> windows-02.png
+ ++ <&folder> Chapter02
+ +++ <&folder> images
+ ++++ <&file> html.png
+ ++++ <&file> pdf.png
+ ++++ <&file> ..snip..
+ ++ <&folder> Chapter03
+ +++ <&folder> images
+ ++++ <&file> diag-salt-sample1.svg    | HTML 版向けに自動生成されたベクター画像
+ ++++ <&file> diag-salt-sample2.svg    | 後述のダイアグラム記法による
+ ++++ <&file> ..snip..
+ ++ <&file> index.html                 | HTML 版（CSSを内包・画像はファイルに依存）
+ ++ <&file> index.pdf                  | PDF 版（全ての画像・フォントリソースを内包）
+}
+}
+@endsalt

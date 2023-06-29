@@ -1,0 +1,19 @@
+' https://github.com/iconic/open-iconic/
+@startsalt directory-structure-2
+{
+{T
+ + <&folder> src
+ ++ <&folder> docs
+ +++ <&folder> asciidoc
+ ++++ <&folder> Chapter00
+ +++++ <&file> index.adoc        | 章ごとの Asciidoc 文書
+ ++++ <&folder> Chapter01
+ +++++ <&file> index.adoc
+ +++++ <&folder> images
+ ++++++ <&file> AdoptOpenJDK.png | 文書で使う画像ファイル
+ ++++++ <&file> windows-01.png
+ ++++++ <&file> windows-02.png
+ ++++ <&folder> ..snip..
+}
+}
+@endsalt

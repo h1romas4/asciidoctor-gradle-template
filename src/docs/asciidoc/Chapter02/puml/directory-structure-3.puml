@@ -1,0 +1,27 @@
+' https://github.com/iconic/open-iconic/
+@startsalt directory-structure-3
+{
+{T
+ + <&folder> src
+ ++ <&folder> docs
+ +++ <&folder> asciidoc
+ ++++ <&folder> @style
+ +++++ <&file> asciidoctor.css              | ❸
+ +++++ <&file> pdf-theme.yml                | ❹
+ ++++ <&folder> @font                       | ❺
+ +++++ <&folder> genshin
+ ++++++ <&file> GenShinGothic-Regular.ttf
+ ++++++ <&file> ..snip..
+ +++++ <&folder> genyo-font
+ +++++ <&folder> ..snip..
+ ++++ <&folder> Chapter00                   | ❻
+ +++++ <&file> index.adoc
+ ++++ <&folder> Chapter01
+ +++++ <&folder> images
+ +++++ <&file> index.adoc
+ ++++ <&folder> ..snip..
+ ++++ <&file> attribute.adoc                | ❷
+ ++++ <&file> index.adoc                    | ❶
+}
+}
+@endsalt
