@@ -119,6 +119,8 @@ PDF 文書, ``docs/index.pdf`` のみを配布。
 
 === テキストエディタで Asciidoc 文書を編集する
 
+==== VS Code によるリアルタイムプレビュー
+
 プロジェクトフォルダに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。
 
 プロジェクトフォルダを Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。
@@ -137,6 +139,55 @@ image::vscode-extention2.png[vscode]
 . Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 +
 image::vscode-asciidoc.png[vscode, 600]
+
+==== クリップボードからの画像挿入
+
+本手順で VS Code の推奨拡張として導入される Paste Image（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書びリンクを挿入する便利な拡張です。
+
+特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。
+
+. スクリーンキャプチャなどの機能でクリップボードに画像を保持する。
+. VS Code で Asciidoc 文書を開き、menu:VS Code[F1 キー押下 > Paste Image と入力 > エンターキーで選択]する。
++
+image::2023-06-30-12-11-56.png[]
+
+Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から ``images/`` として見えるパスに画像ファイルが格納されます。
+
+[source]
+[caption=""]
+----
+image::2023-06-30-12-11-56.png[]
+----
+
+挿入時のファイル名の命名規約などの設定は ``.vscode/setting.json`` で行うことができます。
+
+[source, json]
+[caption=""]
+.``vscode/setting.json``
+----
+{
+    "pasteImage.path": "${currentFileDir}/images",
+    "pasteImage.basePath": "${currentFileDir}/images",
+    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
+}
+----
+
+NOTE: Asciidoc 拡張にも同様の機能（menu:AsciiDoc: Paste Image[]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟です。VS Code のキーコンフィグをするなどして必要に応じて使い分けると良いでしょう。
+
+.クリップボード連携のシステムインターフェース
+****
+Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。動作しない場合などに参考にしてください。
+
+[source, bash]
+----
+$ ls -laF ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
+..snip..
+-rw-r--r-- 1 hiromasa hiromasa   492  6月 26  2021 linux.sh
+-rw-r--r-- 1 hiromasa hiromasa  1540  6月 26  2021 mac.applescript
+-rw-r--r-- 1 hiromasa hiromasa   680  6月 26  2021 pc.ps1
+..snip..
+----
+****
 
 <<<<
 
@@ -203,6 +254,8 @@ ____
 * Chapter が増えた場合は ``src/docs/asciidocs/index.adoc`` に Chapter を追記し、``src/docs/asciidocs/Chapter*/index.adoc`` ファイルを新規追加する。
 * 画像ファイルが必要な場合は、``src/docs/asciidocs/Chapter*/images`` フォルダに追加する。
 . 文書執筆の一定の区切りをもって ``./gradlew docs`` で文書のビルドを行い、HTML/PDF 文書を ``docs/index.html`` と ``docs/index.pdf`` で推敲する。
++
+* ``./gradlew docs`` の入力は VS Code の統合ターミナルを使うと便利です。
 . 必要ならばプロジェクトディレクトリを Git などのバージョン管理下として、コミットを行う。
 . 本日の執筆を終え、明日はまた 1. に戻る。
 

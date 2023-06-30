@@ -1296,6 +1296,8 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="sect2">
 <h3 id="_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</h3>
+<div class="sect3">
+<h4 id="_vs_code_によるリアルタイムプレビュー">2.3.1. VS Code によるリアルタイムプレビュー</h4>
 <div class="paragraph">
 <p>プロジェクトフォルダに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
 </div>
@@ -1343,7 +1345,83 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_クリップボードからの画像挿入">2.3.2. クリップボードからの画像挿入</h4>
+<div class="paragraph">
+<p>本手順で VS Code の推奨拡張として導入される Paste Image（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書びリンクを挿入する便利な拡張です。</p>
+</div>
+<div class="paragraph">
+<p>特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>スクリーンキャプチャなどの機能でクリップボードに画像を保持する。</p>
+</li>
+<li>
+<p>VS Code で Asciidoc 文書を開き、<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Paste Image と入力</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">エンターキーで選択</b></span>する。</p>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-06-30-12-11-56.png" alt="2023 06 30 12 11 56">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から <code>images/</code> として見えるパスに画像ファイルが格納されます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>image::2023-06-30-12-11-56.png[]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>挿入時のファイル名の命名規約などの設定は <code>.vscode/setting.json</code> で行うことができます。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>vscode/setting.json</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
+    </span><span class="nl">"pasteImage.path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${currentFileDir}/images"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pasteImage.basePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${currentFileDir}/images"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pasteImage.defaultName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y-MM-DD-HH-mm-ss"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+Asciidoc 拡張にも同様の機能（<b class="menuref">AsciiDoc: Paste Image</b>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟です。VS Code のキーコンフィグをするなどして必要に応じて使い分けると良いでしょう。
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">クリップボード連携のシステムインターフェース</div>
+<div class="paragraph">
+<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。動作しない場合などに参考にしてください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-laF</span> ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
+..snip..
+<span class="nt">-rw-r--r--</span> 1 hiromasa hiromasa   492  6月 26  2021 linux.sh
+<span class="nt">-rw-r--r--</span> 1 hiromasa hiromasa  1540  6月 26  2021 mac.applescript
+<span class="nt">-rw-r--r--</span> 1 hiromasa hiromasa   680  6月 26  2021 pc.ps1
+..snip..</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_文書のファイル構成">2.4. 文書のファイル構成</h3>
@@ -1451,6 +1529,13 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </li>
 <li>
 <p>文書執筆の一定の区切りをもって <code>./gradlew docs</code> で文書のビルドを行い、HTML/PDF 文書を <code>docs/index.html</code> と <code>docs/index.pdf</code> で推敲する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>./gradlew docs</code> の入力は VS Code の統合ターミナルを使うと便利です。</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>必要ならばプロジェクトディレクトリを Git などのバージョン管理下として、コミットを行う。</p>
