@@ -2,7 +2,7 @@
     "asciidoc-menu": {
         "prefix": "menu",
         "body": [
-            "menu:${1:menu}[${2:menu-button}] "
+            "menu:${1:menu}[${2:menu-button} > ${3:menu-button}] "
         ],
         "description": "menu(inline)"
     },
@@ -252,5 +252,19 @@
             "|======",
         ],
         "description": "link asciidoc external"
+    },
+    "asciidoc-hr": {
+        "prefix": "hr",
+        "body": [
+            "- - -"
+        ],
+        "description": "horizon line"
+    },
+    "asciidoc-comment": {
+        "prefix": "comment",
+        "body": [
+            "// ${1:asciidoc-comment}"
+        ],
+        "description": "comment"
     },
 }

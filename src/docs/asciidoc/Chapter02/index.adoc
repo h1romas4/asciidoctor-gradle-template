@@ -172,7 +172,9 @@ image::2023-06-30-12-11-56.png[]
 }
 ----
 
-NOTE: Asciidoc 拡張にも同様の機能（menu:AsciiDoc: Paste Image[]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟です。VS Code のキーコンフィグをするなどして必要に応じて使い分けると良いでしょう。
+Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。
+
+AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるクールな機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
 .クリップボード連携のシステムインターフェース
 ****

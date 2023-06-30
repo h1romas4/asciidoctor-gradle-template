@@ -26,3 +26,7 @@ include::Chapter02/index.adoc[]
 // 3章
 :imagesdir: Chapter03/images
 include::Chapter03/index.adoc[]
+
+// 4章
+:imagesdir: Chapter04/images
+include::Chapter04/index.adoc[]
