@@ -129,11 +129,11 @@ NOTE: 拡張機能の推奨は ``.vscode/extention.json`` で設定されてい�
 
 . btn:[すべてインストール] ボタンをクリックします。
 +
-image::vscode-extention1.png[vscode]
+image::vscode-extention1.png[vscode, pdfwidth=50%]
 
 . btn:[再読み込み] ボタンをクリックします。
 +
-image::vscode-extention2.png[vscode]
+image::vscode-extention2.png[vscode, pdfwidth=50%]
 +
 <<<
 . Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
@@ -149,7 +149,7 @@ image::vscode-asciidoc.png[vscode, 600]
 . スクリーンキャプチャなどの機能でクリップボードに画像を保持する。
 . VS Code で Asciidoc 文書を開き、menu:VS Code[F1 キー押下 > Paste Image と入力 > エンターキーで選択]する。
 +
-image::2023-06-30-12-11-56.png[]
+image::2023-06-30-12-11-56.png[pdfwidth=70%]
 
 Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から相対で ``images/`` として見えるパスに画像ファイルが格納されます。
 
