@@ -2,11 +2,38 @@
 
 本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。
 
-=== PlantUML
+ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。
 
-記事中に PlantUML 形式のダイアグラムを記述し、生成された `.svg` ベクター画像を文書に展開するには次のようにします。
+[source]
+-----
+[ダイアグラム名, 出力ファイル名, svg, pdfwidth=70%, width=480px]
+-----
 
-==== シーケンス図の例
+``pdfwidth`` は PDF 紙面に対しての比率指定、``width`` は HTML 上の幅比率もしくはピクセル（``px``）で指定します。
+
+本手順では PlantUML と ditaa ダイアグラム記法の一部を紹介します。
+
+[quote, PlantUML]
+____
+https://plantuml.com/ja/
+
+PlantUML in a nutshell
+____
+
+[quote, ditaa]
+____
+https://ditaa.sourceforge.net/
+
+DIagrams Through Ascii Art by Stathis Sideris
+____
+
+TIP: PlantUML については PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
+
+<<<<
+
+=== シーケンス図
+
+シーケンス図を PlantUML ダイアグラム記法で記述します。
 
 [source]
 -----
@@ -48,7 +75,9 @@ docker run -d --rm -p 8080:8080 plantuml/plantuml-server:jetty
 
 <<<<
 
-==== Salt の例(1)
+=== フォルダ・ファイルツリー
+
+フォルダ・ファイルツリーを PlantUML の Salt 記法で記述します。
 
 [source]
 -----
@@ -65,24 +94,11 @@ include::puml/diag-salt-sample1.puml[]
 include::puml/diag-salt-sample1.puml[]
 ----
 
-==== Salt の例(2)
+<<<<
 
-[source]
------
-[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
-[caption=""]
-----
-include::puml/diag-salt-sample2.puml[]
-----
------
+=== 数式
 
-[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
-[caption=""]
-----
-include::puml/diag-salt-sample2.puml[]
-----
-
-==== AsciiMath の例
+数式を PlantUML の AsciiMath 記法で記述します。
 
 [source]
 -----
@@ -97,4 +113,43 @@ include::puml/math-sample1.puml[]
 [caption=""]
 ----
 include::puml/math-sample1.puml[]
+----
+
+<<<<
+
+=== ブロック図
+
+ブロック図を ditaa 記法で記述します。
+
+TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。
+
+[source]
+-----
+[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+    +------------------------+
+    | baserCMS Plugin, Theme |
+    +-------------------+    +
+    |   baserCMS Core   |    |
+    +-------------------+----+
+    |        CakePHP         |
+    +------------------------+
+    |         MySQL          |
+    +------------------------+
+----
+-----
+
+[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+    +------------------------+
+    | baserCMS Plugin, Theme |
+    +-------------------+    +
+    |   baserCMS Core   |    |
+    +-------------------+----+
+    |        CakePHP         |
+    +------------------------+
+    |         MySQL          |
+    +------------------------+
 ----

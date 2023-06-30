@@ -48,11 +48,11 @@ https://h1romas4.github.io/asciidoctor-gradle-template/index.html[Asciidoctorと
 
 https://h1romas4.github.io/asciidoctor-gradle-template/index.html[AsciidoctorとGradleでつくる文書執筆環境]
 
-TIP: PDF の印刷を考慮する場合は文字列からのリンク設定を用いると URL の情報が消えてしまうため、次項の引用機能を用いると良いでしょう。
+TIP: PDF の印刷を考慮する場合は、文字列リンクを用いると URL の情報が消えてしまうため、次項の引用機能を用いると良いでしょう。
 
 === 引用
 
-外部の文献を参照する引用は次のように記述します。文書の印刷を考慮する場合はいずれかの位置に URL を掲載します。
+外部の文献を参照する引用は次のように記述します。文書が紙面となる場合はいずれかの位置に URL を掲載します。
 
 [source]
 -----

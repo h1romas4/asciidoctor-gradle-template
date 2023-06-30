@@ -706,7 +706,7 @@ pre.rouge {
 <p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備してあります。PDF 出力に関しては、フォントセットや禁則処理設定をプロジェクトにもたせることにより、実行環境に関わらず同一出力が得られるようになっています。</p>
 </div>
 <div class="paragraph">
-<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順では日本語に対応したテキストダイアグラム記法による図形や数式のベクター画像挿入もサポートしました。</p>
+<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入もサポートしました。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -851,12 +851,26 @@ pre.rouge {
 <li><a href="#project-structure">3. Asciidoc 記法</a>
 <ul class="sectlevel2">
 <li><a href="#_文書中の相互参照">3.1. 文書中の相互参照</a></li>
-<li><a href="#_ソースコードシンタックスハイライト">3.2. ソースコードシンタックスハイライト</a></li>
-<li><a href="#_ファイルインクルード">3.3. ファイルインクルード</a></li>
-<li><a href="#_表形式">3.4. 表形式</a></li>
-<li><a href="#_脚注">3.5. 脚注</a></li>
-<li><a href="#_コラム表現">3.6. コラム表現</a></li>
-<li><a href="#_ダイアグラム記法">3.7. ダイアグラム記法</a></li>
+<li><a href="#_外部リンク">3.2. 外部リンク</a></li>
+<li><a href="#_引用">3.3. 引用</a></li>
+<li><a href="#_ソースコードシンタックスハイライト">3.4. ソースコードシンタックスハイライト</a></li>
+<li><a href="#_インラインコマンドファイル名">3.5. インラインコマンド・ファイル名</a></li>
+<li><a href="#_メニューボタン">3.6. メニュー・ボタン</a></li>
+<li><a href="#_ファイルインクルード">3.7. ファイルインクルード</a></li>
+<li><a href="#_表形式">3.8. 表形式</a></li>
+<li><a href="#_リスト">3.9. リスト</a></li>
+<li><a href="#_脚注">3.10. 脚注</a></li>
+<li><a href="#_改ページ水平線">3.11. 改ページ・水平線</a></li>
+<li><a href="#_コラム表現">3.12. コラム表現</a></li>
+<li><a href="#_コメント行">3.13. コメント行</a></li>
+</ul>
+</li>
+<li><a href="#_ダイアグラム記法">4. ダイアグラム記法</a>
+<ul class="sectlevel2">
+<li><a href="#_シーケンス図">4.1. シーケンス図</a></li>
+<li><a href="#_フォルダファイルツリー">4.2. フォルダ・ファイルツリー</a></li>
+<li><a href="#_数式">4.3. 数式</a></li>
+<li><a href="#_ブロック図">4.4. ブロック図</a></li>
 </ul>
 </li>
 </ul>
@@ -1390,17 +1404,11 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </span><span class="p">}</span></code></pre>
 </div>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-Asciidoc 拡張にも同様の機能（<b class="menuref">AsciiDoc: Paste Image</b>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟です。VS Code のキーコンフィグをするなどして必要に応じて使い分けると良いでしょう。
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。</p>
+</div>
+<div class="paragraph">
+<p>AsciiDoc: Paste Image は現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるクールな機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1564,7 +1572,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <h2 id="project-structure">3. Asciidoc 記法</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
+<p>ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
 </div>
 <div class="paragraph">
 <p>なお、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
@@ -1618,9 +1626,70 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ソースコードシンタックスハイライト">3.2. ソースコードシンタックスハイライト</h3>
+<h3 id="_外部リンク">3.2. 外部リンク</h3>
 <div class="paragraph">
-<p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、<code>// &lt;1&gt;</code> 形式でソースコード下部に対応する説明が書けます。</p>
+<p>インターネット上の URL は自動的にリンクに変換されます。</p>
+</div>
+<div class="paragraph">
+<p><a href="https://h1romas4.github.io/asciidoctor-gradle-template/index.html" class="bare">https://h1romas4.github.io/asciidoctor-gradle-template/index.html</a></p>
+</div>
+<div class="paragraph">
+<p>次のように URL の末尾に <code>[]</code> を定義すると指定した文字列からのリンクとなります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>https://h1romas4.github.io/asciidoctor-gradle-template/index.html[AsciidoctorとGradleでつくる文書執筆環境]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://h1romas4.github.io/asciidoctor-gradle-template/index.html">AsciidoctorとGradleでつくる文書執筆環境</a></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+PDF の印刷を考慮する場合は、文字列リンクを用いると URL の情報が消えてしまうため、次項の引用機能を用いると良いでしょう。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_引用">3.3. 引用</h3>
+<div class="paragraph">
+<p>外部の文献を参照する引用は次のように記述します。文書が紙面となる場合はいずれかの位置に URL を掲載します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[quote, AdoptOpenJDK]
+____
+https://adoptopenjdk.net
+
+Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+____</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></p>
+</div>
+<div class="paragraph">
+<p>Java™ is the world&#8217;s leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; AdoptOpenJDK
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ソースコードシンタックスハイライト">3.4. ソースコードシンタックスハイライト</h3>
+<div class="paragraph">
+<p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに <code>// &lt;1&gt;</code> などのコメント形式でソースコード下部に対応する説明が書けます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1654,7 +1723,31 @@ function hello() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ファイルインクルード">3.3. ファイルインクルード</h3>
+<h3 id="_インラインコマンドファイル名">3.5. インラインコマンド・ファイル名</h3>
+<div class="paragraph">
+<p>文中に現れるコマンドやファイル名などは <code>コマンド</code> で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>``コマンド``</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_メニューボタン">3.6. メニュー・ボタン</h3>
+<div class="paragraph">
+<p>コンピュータの操作で使われる <span class="menuseq"><b class="menu">メニュー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open</b></span> や <b class="button">OK</b> ボタンなどは次のように記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>menu:メニュー[File &gt; Open]
+
+btn:[OK] ボタン</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ファイルインクルード">3.7. ファイルインクルード</h3>
 <div class="paragraph">
 <p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
 </div>
@@ -1688,16 +1781,17 @@ include::source/hello.rs[]
 </div>
 </div>
 <div class="sect2">
-<h3 id="_表形式">3.4. 表形式</h3>
+<h3 id="_表形式">3.8. 表形式</h3>
 <div class="paragraph">
-<p>表形式は次のようなコードで定義することができます。</p>
+<p>表形式は次のようなコードで定義することができます。<code>cols="1,2"</code> ではカラムの比率を表現できます。</p>
 </div>
 <div class="listingblock">
+<div class="title">表形式の例1（CSV 形式、ヘッダーなし、グリッドなし）</div>
 <div class="content">
 <pre class="rouge highlight"><code>[format="csv",cols="1,2"]
 [frame="topbot",grid="none"]
 [caption=""]
-.表形式の例
+.表形式の例1
 |======
 カラム1,カラム2
 キー1,バリュー1
@@ -1706,16 +1800,56 @@ include::source/hello.rs[]
 </div>
 </div>
 <table class="tableblock frame-ends grid-none stripes-even stretch">
-<caption class="title">表形式の例</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">カラム1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">カラム2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">キー1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バリュー1</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">キー2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バリュー2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">キー3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">バリュー3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">表形式の例2（デフォルト形式、ヘッダーあり、グリッドあり）</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">[</span><span class="nx">cols</span><span class="o">=</span><span class="dl">"</span><span class="s2">1,2</span><span class="dl">"</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="dl">"</span><span class="s2">topbot</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">[</span><span class="nx">caption</span><span class="o">=</span><span class="dl">""</span><span class="p">]</span>
+<span class="p">.</span><span class="nx">表形式の例2</span>
+<span class="o">|======</span>
+<span class="o">|</span><span class="nx">カラム名1</span>
+<span class="o">|</span><span class="nx">カラム名2</span>
+
+<span class="o">|</span><span class="nx">キー1</span>
+<span class="o">|</span><span class="nx">バリュー1</span>
+
+<span class="o">|</span><span class="nx">キー2</span>
+<span class="o">|</span><span class="nx">バリュー2</span>
+<span class="o">|======</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-ends grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">カラム名1</th>
+<th class="tableblock halign-left valign-top">カラム名2</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">キー1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">バリュー1</p></td>
@@ -1728,7 +1862,85 @@ include::source/hello.rs[]
 </table>
 </div>
 <div class="sect2">
-<h3 id="_脚注">3.5. 脚注</h3>
+<h3 id="_リスト">3.9. リスト</h3>
+<div class="paragraph">
+<p>箇条書き表現は次のように記述します。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+Asciidoc はリスト中にリスト継続マーカ（<code>+</code>）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入が可能です。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>. 手順1
+. 手順2
++
+リスト継続1
++
+image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
+. 手順3
+.. 箇条書きのネスト1
+... 箇条書きのネスト2
+*** 順序なしリスト1
+*** 順序なしリスト2</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>手順1</p>
+</li>
+<li>
+<p>手順2</p>
+<div class="paragraph">
+<p>リスト継続1</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/2023-06-30-15-39-26.png" alt="2023 06 30 15 39 26" width="60%">
+</div>
+</div>
+</li>
+<li>
+<p>手順3</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>箇条書きのネスト1</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>箇条書きのネスト2</p>
+<div class="ulist">
+<ul>
+<li>
+<p>順序なしリスト1</p>
+</li>
+<li>
+<p>順序なしリスト2</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_脚注">3.10. 脚注</h3>
 <div class="paragraph">
 <p>補足点を脚注するいくつかの表現があります。</p>
 </div>
@@ -1807,7 +2019,41 @@ CAUTION: 注意</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_コラム表現">3.6. コラム表現</h3>
+<h3 id="_改ページ水平線">3.11. 改ページ・水平線</h3>
+<div class="paragraph">
+<p>改ページは次の記述で挿入します。PDF 文書のみに効果があり HTML 文書には影響しません。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>&lt;&lt;&lt;&lt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+PDF 文書全体を直接製本する場合は、改ページを使い左右のページ配置を調整します。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>水平線は HTML/PDF 文書のどちらでも有効です。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>- - -</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_コラム表現">3.12. コラム表現</h3>
+<div class="paragraph">
+<p>Asciidoc のサイドバーとブロック名称機能を組み合わせ、コラム表現を挿入します。</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>.コラム
@@ -1829,20 +2075,84 @@ CAUTION: 注意</code></pre>
 </div>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_ダイアグラム記法">3.7. ダイアグラム記法</h3>
+<h3 id="_コメント行">3.13. コメント行</h3>
+<div class="paragraph">
+<p>成果物に現れない Asciidoc 文書へのコメントは次のように文頭に <code>//</code> で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>// TODO: さらに Asciidoc 記法を追加していくこと。</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ダイアグラム記法">4. ダイアグラム記法</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
 </div>
-<div class="sect3">
-<h4 id="_plantuml">3.7.1. PlantUML</h4>
 <div class="paragraph">
-<p>記事中に PlantUML 形式のダイアグラムを記述し、生成された <code>.svg</code> ベクター画像を文書に展開するには次のようにします。</p>
+<p>ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。</p>
 </div>
-<div class="sect4">
-<h5 id="_シーケンス図の例">シーケンス図の例</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[ダイアグラム名, 出力ファイル名, svg, pdfwidth=70%, width=480px]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定します。</p>
+</div>
+<div class="paragraph">
+<p>本手順では PlantUML と ditaa ダイアグラム記法の一部を紹介します。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://plantuml.com/ja/" class="bare">https://plantuml.com/ja/</a></p>
+</div>
+<div class="paragraph">
+<p>PlantUML in a nutshell</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; PlantUML
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://ditaa.sourceforge.net/" class="bare">https://ditaa.sourceforge.net/</a></p>
+</div>
+<div class="paragraph">
+<p>DIagrams Through Ascii Art by Stathis Sideris</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; ditaa
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+PlantUML については PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="_シーケンス図">4.1. シーケンス図</h3>
+<div class="paragraph">
+<p>シーケンス図を PlantUML ダイアグラム記法で記述します。</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-sequence-sample2, svg, pdfwidth=70%, width=70%]
@@ -1873,7 +2183,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
 </div>
 </div>
 <div class="sidebarblock">
@@ -1906,8 +2216,11 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div style="page-break-after: always;"></div>
 </div>
-<div class="sect4">
-<h5 id="_salt_の例1">Salt の例(1)</h5>
+<div class="sect2">
+<h3 id="_フォルダファイルツリー">4.2. フォルダ・ファイルツリー</h3>
+<div class="paragraph">
+<p>フォルダ・ファイルツリーを PlantUML の Salt 記法で記述します。</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-salt-sample1, svg, pdfwidth=30%, width=280px]
@@ -1935,35 +2248,16 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
-<div class="sect4">
-<h5 id="_salt_の例2">Salt の例(2)</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-salt-sample2, svg, pdfwidth=30%, width=30%]
-[caption=""]
-----
-@startsalt diag-salt-sample2
-{
-  ログイン&lt;&amp;person&gt; | "MyName   "
-  パスワード&lt;&amp;key&gt;  | "****     "
-  [キャンセル &lt;&amp;circle-x&gt;] | [OK &lt;&amp;account-login&gt;]
-}
-@endsal
-----</code></pre>
+<div class="sect2">
+<h3 id="_数式">4.3. 数式</h3>
+<div class="paragraph">
+<p>数式を PlantUML の AsciiMath 記法で記述します。</p>
 </div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter03/images/diag-salt-sample2.svg" alt="diag salt sample2" width="30%" height="78">
-</div>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_asciimath_の例">AsciiMath の例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, math-sample1, svg, pdfwidth=70%, width=70%]
@@ -1977,9 +2271,48 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
+<img src="Chapter04/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
 </div>
 </div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_ブロック図">4.4. ブロック図</h3>
+<div class="paragraph">
+<p>ブロック図を ditaa 記法で記述します。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+    +------------------------+
+    | baserCMS Plugin, Theme |
+    +-------------------+    +
+    |   baserCMS Core   |    |
+    +-------------------+----+
+    |        CakePHP         |
+    +------------------------+
+    |         MySQL          |
+    +------------------------+
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-ditaa-block.svg" alt="diag ditaa block" width="70%" height="182">
 </div>
 </div>
 </div>
@@ -1988,7 +2321,7 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-06-28 18:23:54 +0900
+最終更新 2023-06-30 19:46:51 +0900
 </div>
 </div>
 </body>
