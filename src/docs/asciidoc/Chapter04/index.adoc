@@ -11,7 +11,7 @@
 
 ``pdfwidth`` は PDF 紙面に対しての比率指定、``width`` は HTML 上の幅比率もしくはピクセル（``px``）で指定します。
 
-本手順では PlantUML と ditaa ダイアグラム記法の一部を紹介します。
+本手順では PlantUML と ditaa ダイアグラム記法の一部を掲載します。
 
 [quote, PlantUML]
 ____
@@ -27,7 +27,7 @@ https://ditaa.sourceforge.net/
 DIagrams Through Ascii Art by Stathis Sideris
 ____
 
-TIP: PlantUML については PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
+TIP: PlantUML に対しては PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
 
 <<<<
 
@@ -121,35 +121,51 @@ include::puml/math-sample1.puml[]
 
 ブロック図を ditaa 記法で記述します。
 
-TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。
+TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー ``shadows`` 設定は HTML 版に対してのみ有効で PDF 版に対しては効果がないようです。
 
 [source]
 -----
-[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+[ditaa, diag-ditaa-block, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-    +------------------------+
-    | baserCMS Plugin, Theme |
-    +-------------------+    +
-    |   baserCMS Core   |    |
-    +-------------------+----+
-    |        CakePHP         |
-    +------------------------+
-    |         MySQL          |
-    +------------------------+
++---------------------------------+
+|     baserCMS Plugin, Theme      |
++----------------------------+    +
+| cPNK   baserCMS Core       |    |
++----------------------------+----+
+|            CakePHP              |
++---------------------------------+
+|             MySQL               |
++---------------------------------+
+
+/-------------+-------------\
+|cRED RED     |cBLU BLU     |
++-------------+-------------+
+|cGRE GRE     |cPNK PNK     |
++-------------+-------------+
+|cBLK BLK     |cYEL YEL     |
+\-------------+-------------/
 ----
 -----
 
-[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+[ditaa, diag-ditaa-block, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-    +------------------------+
-    | baserCMS Plugin, Theme |
-    +-------------------+    +
-    |   baserCMS Core   |    |
-    +-------------------+----+
-    |        CakePHP         |
-    +------------------------+
-    |         MySQL          |
-    +------------------------+
++---------------------------------+
+|     baserCMS Plugin, Theme      |
++----------------------------+    +
+| cPNK   baserCMS Core       |    |
++----------------------------+----+
+|            CakePHP              |
++---------------------------------+
+|             MySQL               |
++---------------------------------+
+
+/-------------+-------------\
+|cRED RED     |cBLU BLU     |
++-------------+-------------+
+|cGRE GRE     |cPNK PNK     |
++-------------+-------------+
+|cBLK BLK     |cYEL YEL     |
+\-------------+-------------/
 ----

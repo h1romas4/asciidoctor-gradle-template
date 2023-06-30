@@ -52,23 +52,23 @@ TIP: PDF の印刷を考慮する場合は、文字列リンクを用いると U
 
 === 引用
 
-外部の文献を参照する引用は次のように記述します。文書が紙面となる場合はいずれかの位置に URL を掲載します。
+外部の文献を参照する引用は次のように記述します。執筆している文書が紙面となり、引用先がウェブサイトの場合はいずれかの位置に URL を掲載します。
 
 [source]
 -----
-[quote, AdoptOpenJDK]
+[quote, Asciidoctor Documentation Site]
 ____
-https://adoptopenjdk.net
+https://docs.asciidoctor.org/
 
-Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you're already well on your way.
 ____
 -----
 
-[quote, AdoptOpenJDK]
+[quote, Asciidoctor Documentation Site]
 ____
-https://adoptopenjdk.net
+https://docs.asciidoctor.org/
 
-Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you're already well on your way.
 ____
 
 === ソースコードシンタックスハイライト

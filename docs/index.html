@@ -1660,29 +1660,29 @@ PDF の印刷を考慮する場合は、文字列リンクを用いると URL �
 <div class="sect2">
 <h3 id="_引用">3.3. 引用</h3>
 <div class="paragraph">
-<p>外部の文献を参照する引用は次のように記述します。文書が紙面となる場合はいずれかの位置に URL を掲載します。</p>
+<p>外部の文献を参照する引用は次のように記述します。執筆している文書が紙面となり、引用先がウェブサイトの場合はいずれかの位置に URL を掲載します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[quote, AdoptOpenJDK]
+<pre class="rouge highlight"><code>[quote, Asciidoctor Documentation Site]
 ____
-https://adoptopenjdk.net
+https://docs.asciidoctor.org/
 
-Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you're already well on your way.
 ____</code></pre>
 </div>
 </div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p><a href="https://adoptopenjdk.net" class="bare">https://adoptopenjdk.net</a></p>
+<p><a href="https://docs.asciidoctor.org/" class="bare">https://docs.asciidoctor.org/</a></p>
 </div>
 <div class="paragraph">
-<p>Java™ is the world&#8217;s leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.</p>
+<p>Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you&#8217;re already well on your way.</p>
 </div>
 </blockquote>
 <div class="attribution">
-&#8212; AdoptOpenJDK
+&#8212; Asciidoctor Documentation Site
 </div>
 </div>
 </div>
@@ -2107,7 +2107,7 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 <p><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定します。</p>
 </div>
 <div class="paragraph">
-<p>本手順では PlantUML と ditaa ダイアグラム記法の一部を紹介します。</p>
+<p>本手順では PlantUML と ditaa ダイアグラム記法の一部を掲載します。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2288,31 +2288,39 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。
+ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー <code>shadows</code> 設定は HTML 版に対してのみ有効で PDF 版に対しては効果がないようです。
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[ditaa, diag-ditaa-block, svg, shadows=false, separation=true, pdfwidth=70%, width=70%]
+<pre class="rouge highlight"><code>[ditaa, diag-ditaa-block, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-    +------------------------+
-    | baserCMS Plugin, Theme |
-    +-------------------+    +
-    |   baserCMS Core   |    |
-    +-------------------+----+
-    |        CakePHP         |
-    +------------------------+
-    |         MySQL          |
-    +------------------------+
++---------------------------------+
+|     baserCMS Plugin, Theme      |
++----------------------------+    +
+| cPNK   baserCMS Core       |    |
++----------------------------+----+
+|            CakePHP              |
++---------------------------------+
+|             MySQL               |
++---------------------------------+
+
+/-------------+-------------\
+|cRED RED     |cBLU BLU     |
++-------------+-------------+
+|cGRE GRE     |cPNK PNK     |
++-------------+-------------+
+|cBLK BLK     |cYEL YEL     |
+\-------------+-------------/
 ----</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-ditaa-block.svg" alt="diag ditaa block" width="70%" height="182">
+<img src="Chapter04/images/diag-ditaa-block.svg" alt="diag ditaa block" width="70%" height="294">
 </div>
 </div>
 </div>
