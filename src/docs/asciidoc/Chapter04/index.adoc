@@ -1,6 +1,6 @@
 == ダイアグラム記法
 
-本変換ビルドスクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。
+本変換スクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。
 
 ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。
 
@@ -11,7 +11,7 @@
 
 ``pdfwidth`` は PDF 紙面に対しての比率指定、``width`` は HTML 上の幅比率もしくはピクセル（``px``）で指定します。
 
-本手順では PlantUML と ditaa ダイアグラム記法の一部を掲載します。
+本章では PlantUML と ditaa ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述法を示します。詳しくはそれぞれのドキュメントを参考にしてください。
 
 [quote, PlantUML]
 ____
@@ -20,14 +20,14 @@ https://plantuml.com/ja/
 PlantUML in a nutshell
 ____
 
+TIP: 変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
+
 [quote, ditaa]
 ____
 https://ditaa.sourceforge.net/
 
 DIagrams Through Ascii Art by Stathis Sideris
 ____
-
-TIP: PlantUML に対しては PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
 
 <<<<
 

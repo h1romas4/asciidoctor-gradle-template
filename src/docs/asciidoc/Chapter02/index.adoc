@@ -142,7 +142,7 @@ image::vscode-asciidoc.png[vscode, 600]
 
 ==== クリップボードからの画像挿入
 
-本手順で VS Code の推奨拡張として導入される Paste Image（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。
+本手順で VS Code の推奨拡張として導入される https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image[Paste Image]（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。
 
 特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。
 
@@ -151,7 +151,7 @@ image::vscode-asciidoc.png[vscode, 600]
 +
 image::2023-06-30-12-11-56.png[pdfwidth=70%]
 
-Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から相対で ``images/`` として見えるパスに画像ファイルが格納されます。
+Asciidoc 文書には画像リンクが挿入されるとともに、開いている Asciidoc 文書から相対で ``images/`` として見えるパスに画像ファイルが格納され、文書への画像挿入がひとつの操作で完了します。
 
 [source]
 [caption=""]
@@ -159,7 +159,7 @@ Asciidoc 文書には次のように画像リンクが挿入されます。ま�
 image::2023-06-30-12-11-56.png[]
 ----
 
-挿入時のファイル名の命名規約や出力先のフォルダ設定は ``.vscode/setting.json`` で行うことができます。
+画像ファイル名の命名規約や出力先のフォルダ設定は ``.vscode/setting.json`` で行うことができます。
 
 [source, json]
 [caption=""]
@@ -174,7 +174,7 @@ image::2023-06-30-12-11-56.png[]
 
 Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。
 
-AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるクールな機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
+AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
 .クリップボード連携のシステムインターフェース
 ****
@@ -195,7 +195,7 @@ $ ls -laF ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
 
 === 文書のファイル構成
 
-以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていくとよいでしょう。
+以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていきます。
 
 [plantuml, directory-structure-3, svg, pdfwidth=40%, width=390px]
 [caption=""]

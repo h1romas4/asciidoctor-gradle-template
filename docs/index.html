@@ -807,6 +807,9 @@ pre.rouge {
 <li>
 <p>asciidoctor-vscode - MIT License - <a href="https://github.com/asciidoctor/asciidoctor-vscode" class="bare">https://github.com/asciidoctor/asciidoctor-vscode</a></p>
 </li>
+<li>
+<p>vscode-paste-image - MIT License - <a href="https://github.com/mushanshitiancai/vscode-paste-image" class="bare">https://github.com/mushanshitiancai/vscode-paste-image</a></p>
+</li>
 </ul>
 </div>
 </dd>
@@ -853,16 +856,17 @@ pre.rouge {
 <li><a href="#_文書中の相互参照">3.1. 文書中の相互参照</a></li>
 <li><a href="#_外部リンク">3.2. 外部リンク</a></li>
 <li><a href="#_引用">3.3. 引用</a></li>
-<li><a href="#_ソースコードシンタックスハイライト">3.4. ソースコードシンタックスハイライト</a></li>
-<li><a href="#_インラインコマンドファイル名">3.5. インラインコマンド・ファイル名</a></li>
-<li><a href="#_メニューボタン">3.6. メニュー・ボタン</a></li>
-<li><a href="#_ファイルインクルード">3.7. ファイルインクルード</a></li>
-<li><a href="#_表形式">3.8. 表形式</a></li>
-<li><a href="#_リスト">3.9. リスト</a></li>
-<li><a href="#_脚注">3.10. 脚注</a></li>
-<li><a href="#_改ページ水平線">3.11. 改ページ・水平線</a></li>
-<li><a href="#_コラム表現">3.12. コラム表現</a></li>
-<li><a href="#_コメント行">3.13. コメント行</a></li>
+<li><a href="#_画像">3.4. 画像</a></li>
+<li><a href="#_ソースコードシンタックスハイライト">3.5. ソースコードシンタックスハイライト</a></li>
+<li><a href="#_インラインコマンドファイル名">3.6. インラインコマンド・ファイル名</a></li>
+<li><a href="#_メニューボタン">3.7. メニュー・ボタン</a></li>
+<li><a href="#_ファイルインクルード">3.8. ファイルインクルード</a></li>
+<li><a href="#_表形式">3.9. 表形式</a></li>
+<li><a href="#_リスト">3.10. リスト</a></li>
+<li><a href="#_脚注">3.11. 脚注</a></li>
+<li><a href="#_改ページ水平線">3.12. 改ページ・水平線</a></li>
+<li><a href="#_コラム表現">3.13. コラム表現</a></li>
+<li><a href="#_コメント行">3.14. コメント行</a></li>
 </ul>
 </li>
 <li><a href="#_ダイアグラム記法">4. ダイアグラム記法</a>
@@ -1363,7 +1367,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect3">
 <h4 id="_クリップボードからの画像挿入">2.3.2. クリップボードからの画像挿入</h4>
 <div class="paragraph">
-<p>本手順で VS Code の推奨拡張として導入される Paste Image（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。</p>
+<p>本手順で VS Code の推奨拡張として導入される <a href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image</a>（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。</p>
 </div>
 <div class="paragraph">
 <p>特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。</p>
@@ -1384,7 +1388,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </ol>
 </div>
 <div class="paragraph">
-<p>Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から相対で <code>images/</code> として見えるパスに画像ファイルが格納されます。</p>
+<p>Asciidoc 文書には画像リンクが挿入されるとともに、開いている Asciidoc 文書から相対で <code>images/</code> として見えるパスに画像ファイルが格納され、文書への画像挿入がひとつの操作で完了します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1392,7 +1396,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>挿入時のファイル名の命名規約や出力先のフォルダ設定は <code>.vscode/setting.json</code> で行うことができます。</p>
+<p>画像ファイル名の命名規約や出力先のフォルダ設定は <code>.vscode/setting.json</code> で行うことができます。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>vscode/setting.json</code></div>
@@ -1408,7 +1412,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。</p>
 </div>
 <div class="paragraph">
-<p>AsciiDoc: Paste Image は現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるクールな機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
+<p>AsciiDoc: Paste Image は現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1434,7 +1438,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect2">
 <h3 id="_文書のファイル構成">2.4. 文書のファイル構成</h3>
 <div class="paragraph">
-<p>以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていくとよいでしょう。</p>
+<p>以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていきます。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1687,9 +1691,38 @@ ____</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ソースコードシンタックスハイライト">3.4. ソースコードシンタックスハイライト</h3>
+<h3 id="_画像">3.4. 画像</h3>
 <div class="paragraph">
-<p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに <code>// &lt;1&gt;</code> などのコメント形式でソースコード下部に対応する説明が書けます。</p>
+<p>画像の挿入は、画像ファイルを編集中の <code>.adoc</code> 文書から相対パスでみた <code>images/</code> フォルダに格納した上で、次のように記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>image::2023-06-30-12-11-56.png[pdfwidth=70%, width=600px]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>pdfwidth</code> 属性では PDF 紙面に対する幅の比率を、<code>width</code> 属性では HTML 文書中での幅の比率もしくはピクセル値を指定します。</p>
+</div>
+<div class="paragraph">
+<p>なお、本手順の Asciidoc 文書の構成では <code>images</code> に格納されている画像ファイルパスに <code>images/</code> を付与する必要はありません。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+これは <code>src/docs/asciidoc/attribute.adoc</code> で <code>:imagesdir: ./images</code> が設定済みであるための動作です。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ソースコードシンタックスハイライト">3.5. ソースコードシンタックスハイライト</h3>
+<div class="paragraph">
+<p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに <code>// &lt;1&gt;</code> などのコメント形式でソースコード下部に対応する説明が記述できます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1723,7 +1756,7 @@ function hello() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_インラインコマンドファイル名">3.5. インラインコマンド・ファイル名</h3>
+<h3 id="_インラインコマンドファイル名">3.6. インラインコマンド・ファイル名</h3>
 <div class="paragraph">
 <p>文中に現れるコマンドやファイル名などは <code>コマンド</code> で記述します。</p>
 </div>
@@ -1734,7 +1767,7 @@ function hello() {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_メニューボタン">3.6. メニュー・ボタン</h3>
+<h3 id="_メニューボタン">3.7. メニュー・ボタン</h3>
 <div class="paragraph">
 <p>コンピュータの操作で使われる <span class="menuseq"><b class="menu">メニュー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open</b></span> や <b class="button">OK</b> ボタンなどは次のように記述します。</p>
 </div>
@@ -1747,7 +1780,7 @@ btn:[OK] ボタン</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ファイルインクルード">3.7. ファイルインクルード</h3>
+<h3 id="_ファイルインクルード">3.8. ファイルインクルード</h3>
 <div class="paragraph">
 <p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
 </div>
@@ -1781,9 +1814,9 @@ include::source/hello.rs[]
 </div>
 </div>
 <div class="sect2">
-<h3 id="_表形式">3.8. 表形式</h3>
+<h3 id="_表形式">3.9. 表形式</h3>
 <div class="paragraph">
-<p>表形式は次のようなコードで定義することができます。<code>cols="1,2"</code> ではカラムの比率を表現できます。</p>
+<p>表形式は次のようなコードで定義します。属性の <code>cols="1,2"</code> はカラムの比率です。また、データ形式、罫線表現に関していくつかのオプションが設定できます。</p>
 </div>
 <div class="listingblock">
 <div class="title">表形式の例1（CSV 形式、ヘッダーなし、グリッドなし）</div>
@@ -1862,21 +1895,12 @@ include::source/hello.rs[]
 </table>
 </div>
 <div class="sect2">
-<h3 id="_リスト">3.9. リスト</h3>
+<h3 id="_リスト">3.10. リスト</h3>
 <div class="paragraph">
 <p>箇条書き表現は次のように記述します。</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-Asciidoc はリスト中にリスト継続マーカ（<code>+</code>）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入が可能です。
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Asciidoc はリスト中にリスト継続マーカ（<code>+</code>）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入をします。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1938,9 +1962,10 @@ image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 </li>
 </ol>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_脚注">3.10. 脚注</h3>
+<h3 id="_脚注">3.11. 脚注</h3>
 <div class="paragraph">
 <p>補足点を脚注するいくつかの表現があります。</p>
 </div>
@@ -2017,9 +2042,40 @@ CAUTION: 注意</code></pre>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>脚注が長文になる場合は次のようにブロックを用います。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[NOTE]
+====
+改行を含む脚注です。
+
+吾輩は脚注である。名前はまだ無い。
+====</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>改行を含む脚注です。</p>
+</div>
+<div class="paragraph">
+<p>吾輩は脚注である。名前はまだ無い。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_改ページ水平線">3.11. 改ページ・水平線</h3>
+<h3 id="_改ページ水平線">3.12. 改ページ・水平線</h3>
 <div class="paragraph">
 <p>改ページは次の記述で挿入します。PDF 文書のみに効果があり HTML 文書には影響しません。</p>
 </div>
@@ -2027,18 +2083,6 @@ CAUTION: 注意</code></pre>
 <div class="content">
 <pre class="rouge highlight"><code>&lt;&lt;&lt;&lt;</code></pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-PDF 文書全体を直接製本する場合は、改ページを使い左右のページ配置を調整します。
-</td>
-</tr>
-</table>
 </div>
 <div class="paragraph">
 <p>水平線は HTML/PDF 文書のどちらでも有効です。</p>
@@ -2048,9 +2092,10 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 <pre class="rouge highlight"><code>- - -</code></pre>
 </div>
 </div>
+<hr>
 </div>
 <div class="sect2">
-<h3 id="_コラム表現">3.12. コラム表現</h3>
+<h3 id="_コラム表現">3.13. コラム表現</h3>
 <div class="paragraph">
 <p>Asciidoc のサイドバーとブロック名称機能を組み合わせ、コラム表現を挿入します。</p>
 </div>
@@ -2077,7 +2122,7 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_コメント行">3.13. コメント行</h3>
+<h3 id="_コメント行">3.14. コメント行</h3>
 <div class="paragraph">
 <p>成果物に現れない Asciidoc 文書へのコメントは次のように文頭に <code>//</code> で記述します。</p>
 </div>
@@ -2093,7 +2138,7 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 <h2 id="_ダイアグラム記法">4. ダイアグラム記法</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本変換ビルドスクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
+<p>本変換スクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
 </div>
 <div class="paragraph">
 <p>ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。</p>
@@ -2107,7 +2152,7 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 <p><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定します。</p>
 </div>
 <div class="paragraph">
-<p>本手順では PlantUML と ditaa ダイアグラム記法の一部を掲載します。</p>
+<p>本章では PlantUML と ditaa ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述法を示します。詳しくはそれぞれのドキュメントを参考にしてください。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2122,6 +2167,18 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 &#8212; PlantUML
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
+</td>
+</tr>
+</table>
+</div>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
@@ -2134,18 +2191,6 @@ PDF 文書全体を直接製本する場合は、改ページを使い左右の�
 <div class="attribution">
 &#8212; ditaa
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-PlantUML に対しては PDF 出力時に日本語フォントが化けないようビルドで対策が導入されています。
-</td>
-</tr>
-</table>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">

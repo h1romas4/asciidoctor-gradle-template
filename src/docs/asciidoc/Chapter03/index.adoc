@@ -71,9 +71,25 @@ https://docs.asciidoctor.org/
 Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you're already well on your way.
 ____
 
+=== 画像
+
+画像の挿入は、画像ファイルを編集中の ``.adoc`` 文書から相対パスでみた ``images/`` フォルダに格納した上で、次のように記述します。
+
+[source]
+[caption=""]
+----
+image::2023-06-30-12-11-56.png[pdfwidth=70%, width=600px]
+----
+
+``pdfwidth`` 属性では PDF 紙面に対する幅の比率を、``width`` 属性では HTML 文書中での幅の比率もしくはピクセル値を指定します。
+
+なお、本手順の Asciidoc 文書の構成では ``images`` に格納されている画像ファイルパスに ``images/`` を付与する必要はありません。
+
+TIP: これは ``src/docs/asciidoc/attribute.adoc`` で ``:imagesdir: ./images`` が設定済みであるための動作です。
+
 === ソースコードシンタックスハイライト
 
-``[source]`` ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに ``// <1>`` などのコメント形式でソースコード下部に対応する説明が書けます。
+``[source]`` ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに ``// <1>`` などのコメント形式でソースコード下部に対応する説明が記述できます。
 
 [source]
 -----
@@ -143,7 +159,7 @@ include::source/hello.rs[]
 
 === 表形式
 
-表形式は次のようなコードで定義することができます。``cols="1,2"`` ではカラムの比率を表現できます。
+表形式は次のようなコードで定義します。属性の ``cols="1,2"`` はカラムの比率です。また、データ形式、罫線表現に関していくつかのオプションが設定できます。
 
 [source]
 [caption=""]
@@ -206,7 +222,7 @@ include::source/hello.rs[]
 
 箇条書き表現は次のように記述します。
 
-TIP: Asciidoc はリスト中にリスト継続マーカ（``+``）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入が可能です。
+Asciidoc はリスト中にリスト継続マーカ（``+``）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入をします。
 
 [source]
 ----
@@ -234,6 +250,8 @@ image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 ... 箇条書きのネスト2
 *** 順序なしリスト1
 *** 順序なしリスト2
+
+<<<<
 
 === 脚注
 
@@ -262,6 +280,27 @@ WARNING: 警告
 
 CAUTION: 注意
 
+脚注が長文になる場合は次のようにブロックを用います。
+
+[source]
+-----
+[NOTE]
+====
+改行を含む脚注です。
+
+吾輩は脚注である。名前はまだ無い。
+====
+-----
+
+[NOTE]
+====
+改行を含む脚注です。
+
+吾輩は脚注である。名前はまだ無い。
+====
+
+<<<<
+
 === 改ページ・水平線
 
 改ページは次の記述で挿入します。PDF 文書のみに効果があり HTML 文書には影響しません。
@@ -271,14 +310,14 @@ CAUTION: 注意
 <<<<
 ----
 
-TIP: PDF 文書全体を直接製本する場合は、改ページを使い左右のページ配置を調整します。
-
 水平線は HTML/PDF 文書のどちらでも有効です。
 
 [source]
 ----
 - - -
 ----
+
+- - -
 
 === コラム表現
 

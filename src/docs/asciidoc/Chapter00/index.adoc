@@ -57,6 +57,7 @@ Build Tool::
 Text Editor::
     * Visual Studio Code - Microsoft - https://code.visualstudio.com/
     * asciidoctor-vscode - MIT License - https://github.com/asciidoctor/asciidoctor-vscode
+    * vscode-paste-image - MIT License - https://github.com/mushanshitiancai/vscode-paste-image
 Guide::
     * asciidoctor-pdfでかっこいいPDFを作る - https://qiita.com/kuboaki/items/67774c5ebd41467b83e2
 
