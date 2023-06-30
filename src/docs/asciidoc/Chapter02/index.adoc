@@ -73,11 +73,11 @@ export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 
 [caption=""]
 .PDF 文書
-image::pdf.png[pdf, pdfwidth=70%, width=70%]
+image::pdf.png[pdf, pdfwidth=80%, width=80%]
 
 [caption=""]
 .HTML 文書
-image::html.png[html, pdfwidth=70%, width=70%]
+image::html.png[html, pdfwidth=80%, width=80%]
 
 <<<<
 
