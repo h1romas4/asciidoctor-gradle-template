@@ -3,6 +3,12 @@ include::../attribute.adoc[]
 [[project-structure]]
 == Asciidoc 記法
 
+Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。
+
+なお、プロジェクトフォルダの ``.vscode/asciidoc.code-snippets`` 設定には VS Code の btn:[Ctrl + Spaec] 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。
+
+image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
+
 === 文書中の相互参照
 
 文書内の参照リンクは ``.adoc`` 文書中で次のように指定します。HTML/PDF でクリックリンクが生成されます。

@@ -1240,7 +1240,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="768px" height="341">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
 </div>
 </div>
 <div class="paragraph">
@@ -1248,7 +1248,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="580px" height="219">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
 </div>
 </div>
 <div class="paragraph">
@@ -1349,7 +1349,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect3">
 <h4 id="_クリップボードからの画像挿入">2.3.2. クリップボードからの画像挿入</h4>
 <div class="paragraph">
-<p>本手順で VS Code の推奨拡張として導入される Paste Image（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書びリンクを挿入する便利な拡張です。</p>
+<p>本手順で VS Code の推奨拡張として導入される Paste Image（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。</p>
 </div>
 <div class="paragraph">
 <p>特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。</p>
@@ -1370,7 +1370,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </ol>
 </div>
 <div class="paragraph">
-<p>Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から <code>images/</code> として見えるパスに画像ファイルが格納されます。</p>
+<p>Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から相対で <code>images/</code> として見えるパスに画像ファイルが格納されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1378,7 +1378,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>挿入時のファイル名の命名規約などの設定は <code>.vscode/setting.json</code> で行うことができます。</p>
+<p>挿入時のファイル名の命名規約や出力先のフォルダ設定は <code>.vscode/setting.json</code> で行うことができます。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>vscode/setting.json</code></div>
@@ -1430,7 +1430,7 @@ Asciidoc 拡張にも同様の機能（<b class="menuref">AsciiDoc: Paste Image<
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="440px" height="358">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="358">
 </div>
 </div>
 <div class="listingblock">
@@ -1532,7 +1532,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <div class="ulist">
 <ul>
 <li>
-<p><code>./gradlew docs</code> の入力は VS Code の統合ターミナルを使うと便利です。</p>
+<p><code>./gradlew docs</code> の入力は VS Code の統合ターミナルが使えます。</p>
 </li>
 </ul>
 </div>
@@ -1563,6 +1563,17 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <div class="sect1">
 <h2 id="project-structure">3. Asciidoc 記法</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
+</div>
+<div class="paragraph">
+<p>なお、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/2023-06-30-15-39-26.png" alt="2023 06 30 15 39 26" width="60%">
+</div>
+</div>
 <div class="sect2">
 <h3 id="_文書中の相互参照">3.1. 文書中の相互参照</h3>
 <div class="paragraph">

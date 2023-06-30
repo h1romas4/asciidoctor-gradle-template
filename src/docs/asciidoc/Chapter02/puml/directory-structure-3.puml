@@ -8,9 +8,9 @@
  ++++ <&folder> @style
  +++++ <&file> asciidoctor.css              | ❸
  +++++ <&file> pdf-theme.yml                | ❹
- ++++ <&folder> @font                       | ❺
+ ++++ <&folder> @font
  +++++ <&folder> genshin
- ++++++ <&file> GenShinGothic-Regular.ttf
+ ++++++ <&file> GenShinGothic-Regular.ttf   | ❺
  ++++++ <&file> ..snip..
  +++++ <&folder> genyo-font
  +++++ <&folder> ..snip..

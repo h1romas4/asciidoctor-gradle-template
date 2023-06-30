@@ -83,7 +83,7 @@ image::html.png[html, pdfwidth=70%, width=70%]
 
 成果物の出力先となる ``docs`` フォルダの構成は次のとおりです。
 
-[plantuml, directory-structure-1, svg, pdfwidth=72%, width=768px]
+[plantuml, directory-structure-1, svg, pdfwidth=72%, width=690px]
 [caption=""]
 ----
 include::puml/directory-structure-1.puml[]
@@ -91,7 +91,7 @@ include::puml/directory-structure-1.puml[]
 
 成果物文書のソースとなるのは ``src/docs/asciidoc`` に配置された Asciidoc 文書と画像ファイル群です。
 
-[plantuml, directory-structure-2, svg, pdfwidth=55%, width=580px]
+[plantuml, directory-structure-2, svg, pdfwidth=55%, width=522px]
 [caption=""]
 ----
 include::puml/directory-structure-2.puml[]
@@ -142,7 +142,7 @@ image::vscode-asciidoc.png[vscode, 600]
 
 ==== クリップボードからの画像挿入
 
-本手順で VS Code の推奨拡張として導入される Paste Image（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書びリンクを挿入する便利な拡張です。
+本手順で VS Code の推奨拡張として導入される Paste Image（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。
 
 特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。
 
@@ -151,7 +151,7 @@ image::vscode-asciidoc.png[vscode, 600]
 +
 image::2023-06-30-12-11-56.png[]
 
-Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から ``images/`` として見えるパスに画像ファイルが格納されます。
+Asciidoc 文書には次のように画像リンクが挿入されます。また、開いている Asciidoc 文書から相対で ``images/`` として見えるパスに画像ファイルが格納されます。
 
 [source]
 [caption=""]
@@ -159,7 +159,7 @@ Asciidoc 文書には次のように画像リンクが挿入されます。ま�
 image::2023-06-30-12-11-56.png[]
 ----
 
-挿入時のファイル名の命名規約などの設定は ``.vscode/setting.json`` で行うことができます。
+挿入時のファイル名の命名規約や出力先のフォルダ設定は ``.vscode/setting.json`` で行うことができます。
 
 [source, json]
 [caption=""]
@@ -195,7 +195,7 @@ $ ls -laF ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
 
 以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていくとよいでしょう。
 
-[plantuml, directory-structure-3, svg, pdfwidth=40%, width=440px]
+[plantuml, directory-structure-3, svg, pdfwidth=40%, width=390px]
 [caption=""]
 ----
 include::puml/directory-structure-3.puml[]
@@ -255,7 +255,7 @@ ____
 * 画像ファイルが必要な場合は、``src/docs/asciidocs/Chapter*/images`` フォルダに追加する。
 . 文書執筆の一定の区切りをもって ``./gradlew docs`` で文書のビルドを行い、HTML/PDF 文書を ``docs/index.html`` と ``docs/index.pdf`` で推敲する。
 +
-* ``./gradlew docs`` の入力は VS Code の統合ターミナルを使うと便利です。
+* ``./gradlew docs`` の入力は VS Code の統合ターミナルが使えます。
 . 必要ならばプロジェクトディレクトリを Git などのバージョン管理下として、コミットを行う。
 . 本日の執筆を終え、明日はまた 1. に戻る。
 
