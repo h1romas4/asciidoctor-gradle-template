@@ -265,7 +265,7 @@ include::puml/diag-nwdiag-network1.puml[]
 [caption=""]
 .``diag-timing-sample1.puml``（実際のソースより抜粋）
 -----
-[plantuml, diag-timing-sample1, svg]
+[plantuml, diag-timing-sample1, svg, pdfwidth=100%, width=100%]
 ----
 @startuml diag-timing-sample1
 scale 40 as 150 pixels
@@ -311,7 +311,7 @@ WR is high
 ----
 -----
 
-[plantuml, diag-timing-sample1, svg]
+[plantuml, diag-timing-sample1, svg, pdfwidth=100%, width=100%]
 [caption=""]
 ----
 include::puml/diag-timing-sample1.puml[]
