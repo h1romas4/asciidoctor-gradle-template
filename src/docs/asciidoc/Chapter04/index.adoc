@@ -323,7 +323,7 @@ include::puml/diag-timing-sample1.puml[]
 
 .Open Iconic アイコン
 ****
-PlantUML 内で ``<&アイコン名>`` 形式で使える Open Iconic アイコンは次の通りです。アイコン名は menu:ウェブブラウザ[右クリック > 画像を開く] するとコピーアンドペーストで取得できます。
+PlantUML 内で ``<&アイコン名>`` 形式で使える Open Iconic アイコンは次の通りです。アイコン名は HTML 版の場合 menu:ウェブブラウザ[右クリック > 画像を開く] するとコピーアンドペーストで取得できます。
 
 [plantuml, open-iconic-list, svg]
 [caption=""]
