@@ -265,7 +265,7 @@ include::puml/diag-nwdiag-network1.puml[]
 [caption=""]
 .``diag-timing-sample1.puml``（実際のソースより抜粋）
 -----
-[plantuml, diag-timing-sample1, svg, pdfwidth=100%, width=100%]
+[plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
 @startuml diag-timing-sample1
 scale 40 as 150 pixels
@@ -313,8 +313,29 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 ----
 -----
 
-[plantuml, diag-timing-sample1, svg, pdfwidth=100%, width=100%]
+[plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 [caption=""]
 ----
 include::puml/diag-timing-sample1.puml[]
+----
+
+<<<<
+
+=== マインドマップ
+
+PlantUML のマインドマップ記法を使い木構造を表現します。
+
+[source]
+-----
+[plantuml, diag-mindmap-sample1, svg]
+[caption=""]
+----
+include::puml/diag-mindmap-sample1.puml[]
+----
+-----
+
+[plantuml, diag-mindmap-sample1, svg]
+[caption=""]
+----
+include::puml/diag-mindmap-sample1.puml[]
 ----

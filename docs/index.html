@@ -894,6 +894,7 @@ pre.rouge {
 <li><a href="#_ブロック図">4.4. ブロック図</a></li>
 <li><a href="#_ネットワーク構成図">4.5. ネットワーク構成図</a></li>
 <li><a href="#_タイミングチャート">4.6. タイミングチャート</a></li>
+<li><a href="#_マインドマップ">4.7. マインドマップ</a></li>
 </ul>
 </li>
 </ul>
@@ -1277,7 +1278,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="277">
 </div>
 </div>
 <div class="paragraph">
@@ -1285,7 +1286,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="179">
 </div>
 </div>
 <div class="paragraph">
@@ -1461,7 +1462,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="358">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="291">
 </div>
 </div>
 <div class="listingblock">
@@ -2331,7 +2332,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="505">
 </div>
 </div>
 <div class="sidebarblock">
@@ -2396,7 +2397,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="151">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2560,7 +2561,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2573,7 +2574,7 @@ nwdiag {
 <div class="listingblock">
 <div class="title"><code>diag-timing-sample1.puml</code>（実際のソースより抜粋）</div>
 <div class="content">
-<pre class="rouge highlight"><code>[plantuml, diag-timing-sample1, svg, pdfwidth=100%, width=100%]
+<pre class="rouge highlight"><code>[plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
 @startuml diag-timing-sample1
 scale 40 as 150 pixels
@@ -2623,7 +2624,42 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="100%" height="350">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="336">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_マインドマップ">4.7. マインドマップ</h3>
+<div class="paragraph">
+<p>PlantUML のマインドマップ記法を使い木構造を表現します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-mindmap-sample1, svg]
+[caption=""]
+----
+@startmindmap diag-mindmap-sample1
+&lt;style&gt;
+mindmapDiagram {
+    FontSize 18
+    .rose {
+        BackgroundColor #ffbbcc
+    }
+}
+&lt;/style&gt;
+* ウェブブラウザー
+** HTML
+** CSS
+** JavaScript
+** &lt;&amp;star&gt; WebAssembly &lt;&lt;rose&gt;&gt;
+@endjson
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="406" height="265">
 </div>
 </div>
 </div>
@@ -2632,7 +2668,7 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-06-30 19:46:51 +0900
+最終更新 2023-07-01 21:10:06 +0900
 </div>
 </div>
 </body>

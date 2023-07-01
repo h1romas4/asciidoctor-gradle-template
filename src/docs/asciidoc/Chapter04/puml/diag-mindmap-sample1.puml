@@ -1,0 +1,15 @@
+@startmindmap diag-mindmap-sample1
+<style>
+mindmapDiagram {
+    FontSize 18
+    .rose {
+        BackgroundColor #ffbbcc
+    }
+}
+</style>
+* ウェブブラウザー
+** HTML
+** CSS
+** JavaScript
+** <&star> WebAssembly <<rose>>
+@endjson
