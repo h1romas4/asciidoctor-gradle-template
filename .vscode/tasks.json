@@ -32,6 +32,24 @@
                 "reveal": "always",
                 "panel": "shared"
             }
+        },
+        {
+            "label": "podman run plantuml-server",
+            "type": "shell",
+            "command": "podman run --name plantuml_server -d --rm -p 8080:8080 plantuml/plantuml-server:jetty",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "podman stop plantuml-server",
+            "type": "shell",
+            "command": "podman stop plantuml_server",
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
         }
     ]
 }
