@@ -206,7 +206,6 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 .``diag-nwdiag-network1.puml``（分かりやすいように実際のソースより簡略化）
 -----
 [plantuml, diag-nwdiag-network1, svg]
-[caption=""]
 ----
 @startuml diag-network1
 <style>
@@ -256,3 +255,64 @@ nwdiag {
 include::puml/diag-nwdiag-network1.puml[]
 ----
 
+<<<<
+
+=== タイミングチャート
+
+デジタル回路などのタイミングチャートを PlantUML で記述します。
+
+[source]
+[caption=""]
+.``diag-timing-sample1.puml``（実際のソースより抜粋）
+-----
+[plantuml, diag-timing-sample1, svg]
+----
+@startuml diag-timing-sample1
+scale 40 as 150 pixels
+clock "Clock" as clk with period 1
+binary "CS" as CS
+binary "WR" as WR
+binary "RD" as RD
+binary "A0" as A0
+binary "A1" as A1
+binary "IC" as IC
+concise "DataBus" as DB
+
+@0 as :start
+@20 as :set_addbus1
+@40 as :write_start1
+@60 as :write_end1
+@80 as :set_addbus2
+@100 as :write_start2
+@120 as :write_end2
+
+@:start
+IC is high
+CS is high
+WR is high
+RD is low
+A0 is low
+A1 is low
+
+@:set_addbus1
+DB is "0xff"
+DB -> WR@+20
+
+@:write_start1
+A0 is high : アドレスは WR/CS と同時に設定
+A1 is low
+CS is low
+WR is low
+
+@:write_end1
+CS is high
+WR is high
+@enduml
+----
+-----
+
+[plantuml, diag-timing-sample1, svg]
+[caption=""]
+----
+include::puml/diag-timing-sample1.puml[]
+----

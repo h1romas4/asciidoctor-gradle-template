@@ -1,0 +1,58 @@
+@startuml diag-timing-sample1
+scale 40 as 150 pixels
+clock "Clock" as clk with period 1
+binary "CS" as CS
+binary "WR" as WR
+binary "RD" as RD
+binary "A0" as A0
+binary "A1" as A1
+binary "IC" as IC
+concise "DataBus" as DB
+
+@0 as :start
+@20 as :set_addbus1
+@40 as :write_start1
+@60 as :write_end1
+@80 as :set_addbus2
+@100 as :write_start2
+@120 as :write_end2
+
+@:start
+IC is high
+CS is high
+WR is high
+RD is low
+A0 is low
+A1 is low
+
+@:set_addbus1
+DB is "0xff"
+DB -> WR@+20
+
+@:write_start1
+A0 is high : アドレスは WR/CS と同時に設定
+A1 is low
+CS is low
+WR is low
+
+@:write_end1
+CS is high
+WR is high
+
+@:set_addbus2
+DB is "0x01"
+DB -> WR@+20
+
+@:write_start2
+A0 is low
+A1 is high
+CS is low
+WR is low
+
+@:write_end2
+CS is high
+WR is high
+
+highlight 40 to 60 #Gold;line:DimGrey : 書き込み
+highlight 100 to 120 #Gold;line:DimGrey : 書き込み
+@enduml

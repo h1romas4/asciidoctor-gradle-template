@@ -893,6 +893,7 @@ pre.rouge {
 <li><a href="#_数式">4.3. 数式</a></li>
 <li><a href="#_ブロック図">4.4. ブロック図</a></li>
 <li><a href="#_ネットワーク構成図">4.5. ネットワーク構成図</a></li>
+<li><a href="#_タイミングチャート">4.6. タイミングチャート</a></li>
 </ul>
 </li>
 </ul>
@@ -2514,7 +2515,6 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 <div class="title"><code>diag-nwdiag-network1.puml</code>（分かりやすいように実際のソースより簡略化）</div>
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-nwdiag-network1, svg]
-[caption=""]
 ----
 @startuml diag-network1
 &lt;style&gt;
@@ -2561,6 +2561,67 @@ nwdiag {
 <div class="imageblock">
 <div class="content">
 <img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_タイミングチャート">4.6. タイミングチャート</h3>
+<div class="paragraph">
+<p>デジタル回路などのタイミングチャートを PlantUML で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>diag-timing-sample1.puml</code>（実際のソースより抜粋）</div>
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-timing-sample1, svg]
+----
+@startuml diag-timing-sample1
+scale 40 as 150 pixels
+clock "Clock" as clk with period 1
+binary "CS" as CS
+binary "WR" as WR
+binary "RD" as RD
+binary "A0" as A0
+binary "A1" as A1
+binary "IC" as IC
+concise "DataBus" as DB
+
+@0 as :start
+@20 as :set_addbus1
+@40 as :write_start1
+@60 as :write_end1
+@80 as :set_addbus2
+@100 as :write_start2
+@120 as :write_end2
+
+@:start
+IC is high
+CS is high
+WR is high
+RD is low
+A0 is low
+A1 is low
+
+@:set_addbus1
+DB is "0xff"
+DB -&gt; WR@+20
+
+@:write_start1
+A0 is high : アドレスは WR/CS と同時に設定
+A1 is low
+CS is low
+WR is low
+
+@:write_end1
+CS is high
+WR is high
+@enduml
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="680" height="336">
 </div>
 </div>
 </div>
