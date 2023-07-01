@@ -24,10 +24,10 @@ nwdiag {
     network LAN {
         address = "192.168.0.0/24"
         router [address = "192.168.0.1"];
-        thinkpad-p14s [address = "192.168.0.w", description = "        <$device_laptop>\nthinkpad-p14s"];
-        minis-um690 [address = "192.168.0.x", description = "        <$workstation>\nminis-um690"];
-        xbox-series-s [address = "192.168.0.y", description = "        <$workstation>\nxbox-series-s"];
-        atom-server [address = "192.168.0.z", shape = database, description = "         <$database_server>\n atom-server"]
+        thinkpad-p14s [address = "192.168.0.w", description = "      <$device_laptop>\nthinkpad-p14s"];
+        minis-um690 [address = "192.168.0.x", description = "       <$workstation>\nminis-um690"];
+        xbox-series-s [address = "192.168.0.y", description = "       <$workstation>\nxbox-series-s"];
+        atom-server [address = "192.168.0.z", shape = database, description = "       <$database_server>\n atom-server"]
     }
     network WLAN {
         address = "172.16.15.0/24"
