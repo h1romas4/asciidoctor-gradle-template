@@ -214,7 +214,7 @@ src/docs/asciidoc/@font/**/*.ttf # <5>
 src/docs/asciidoc/Chapter{number}/index.adoc <6>
 ----
 
-<1> 文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を ``include`` して構成していきます。
+<1> 文書を作成する起点となる Asciidoc 文書です。表紙となる文書のタイトルなどを記載し、その後から章ごとの Asciidoc 文書を ``include`` して構成していきます。
 <2> 文書設定をするためのファイルです。各文書から ``incliude`` します。
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
 <4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。
@@ -246,9 +246,24 @@ https://asciidoctor.org/docs/user-manual/#attributes
 Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.
 ____
 
+=== 執筆の開始
+
+一通りのサンプル文書の構成確認が終りましたら、次のような流れでご自身の執筆を開始してみてください。
+
+. サンプル文書の ``src/docs/asciidoc/Cahpter02`` 以降のフォルダの削除を行い見通しを良くする。
+. ``src/docs/asciidoc/index.adoc`` からの 1. で削除した ``Chapter*`` の``include`` を削除する。
+. ``src/docs/asciidoc/index.adoc`` で文書のタイトルや版数などを設定する。
+. ``src/docs/asciidoc/Cahpter00/index.adoc`` を空にして目次前に挿入される「はじめに」や「謝辞」「本書の読み方」等の執筆。
+. ``src/docs/asciidoc/Cahpter01/index.adoc`` を空にして本編の執筆を開始。
+. 事前に目次案がある場合は、このタイミングで ``Chapter*`` フォルダと対応する ``index.adoc`` を新規作成し、目次案にあった章や節などの大項目のみを準備するのも良い方法です。目次が完成し全体の把握がしやすくなります。
+. ここで一度 ``./gradlew docs`` を行い、想定通りの HTML/PDF 文書が ``docs/`` 内に生成されていることを確認する。外観の修正点があれば、
+** 文書形式の場合は ``src/docs/asciidoc/attribute.adoc`` を調整。
+** PDF テーマの場合は ``src/docs/asciidoc/@style/pdf-theme.yml`` を調整。
+** HTML テーマの場合は ``src/docs/asciidoc/@style/asciidoctor.css`` を調整。
+
 === 執筆のイテレーション
 
-環境が整った後の文書執筆の進め方のイメージは次のようになります。
+ここまでの手順で執筆環境が整った後の、文書執筆の進め方のイメージは次のようになります。
 
 . プロジェクトフォルダを VS Code で開く。
 . ``src/docs/asciidocs`` 配下の Asciidoc 文書を VS Code でプレビューしながら執筆する。
@@ -262,3 +277,12 @@ ____
 . 本日の執筆を終え、明日はまた 1. に戻る。
 
 TIP: 推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
+
+.VS Code の Zen Mode
+****
+VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは btn:[Ctrl + k, z] でモードが遷移し、再度同じ操作で元の画面に戻ります。
+
+image::2023-07-01-02-47-37.png[pdfwidth=84%, width=90%]
+
+Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適に執筆の助けになります。
+****

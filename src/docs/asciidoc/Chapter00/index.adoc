@@ -51,6 +51,9 @@ Asciidoc::
     * Asciidoctor Gradle Plugin Suite - Apache License 2.0 - https://github.com/asciidoctor/asciidoctor-gradle-plugin
     * asciidoctor-pdf-linewrap-ja - MIT License - https://github.com/fuka/asciidoctor-pdf-linewrap-ja
     * asciidoctor-nabetani - MIT License - https://github.com/nabetani/asciidoctor-nabetani
+Diagram::
+    * PlantUML - Multi(MIT/Apache/BSD/EPL/GPLv3/LGPL) - https://github.com/plantuml/plantuml
+    * ditaa - LGPL-3.0 license - https://github.com/stathissideris/ditaa
 Build Tool::
     * SDKMAN - Apache License 2.0 - https://sdkman.io/
     * Gradle - Apache License 2.0 - https://gradle.org/
@@ -58,6 +61,7 @@ Text Editor::
     * Visual Studio Code - Microsoft - https://code.visualstudio.com/
     * asciidoctor-vscode - MIT License - https://github.com/asciidoctor/asciidoctor-vscode
     * vscode-paste-image - MIT License - https://github.com/mushanshitiancai/vscode-paste-image
+    * vscode-plantuml - MIT License - https://github.com/qjebbs/vscode-plantuml
 Guide::
     * asciidoctor-pdfでかっこいいPDFを作る - https://qiita.com/kuboaki/items/67774c5ebd41467b83e2
 

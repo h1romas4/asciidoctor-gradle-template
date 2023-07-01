@@ -115,6 +115,31 @@ include::puml/math-sample1.puml[]
 include::puml/math-sample1.puml[]
 ----
 
+- - -
+
+.PlantUML の Salt 記法のフォントサイズ
+****
+Salt は現在のところ残念ながらフォントサイズの指定をすることができません。このため任意のフォントサイズにするためには出力画像の ``pdfwidth`` と ``width`` を設定して算出する必要があります。
+
+[source]
+----
+@startsalt
+<style>
+saltDiagram {
+  FontSize 10 // <1>
+}
+</style>
+{
+{T
+ + <&folder> wp-admin
+}
+}
+@endsalt
+----
+
+<1> 未実装で効果がない
+****
+
 <<<<
 
 === ブロック図

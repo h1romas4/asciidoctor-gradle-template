@@ -784,6 +784,19 @@ pre.rouge {
 </ul>
 </div>
 </dd>
+<dt class="hdlist1">Diagram</dt>
+<dd>
+<div class="ulist">
+<ul>
+<li>
+<p>PlantUML - Multi(MIT/Apache/BSD/EPL/GPLv3/LGPL) - <a href="https://github.com/plantuml/plantuml" class="bare">https://github.com/plantuml/plantuml</a></p>
+</li>
+<li>
+<p>ditaa - LGPL-3.0 license - <a href="https://github.com/stathissideris/ditaa" class="bare">https://github.com/stathissideris/ditaa</a></p>
+</li>
+</ul>
+</div>
+</dd>
 <dt class="hdlist1">Build Tool</dt>
 <dd>
 <div class="ulist">
@@ -809,6 +822,9 @@ pre.rouge {
 </li>
 <li>
 <p>vscode-paste-image - MIT License - <a href="https://github.com/mushanshitiancai/vscode-paste-image" class="bare">https://github.com/mushanshitiancai/vscode-paste-image</a></p>
+</li>
+<li>
+<p>vscode-plantuml - MIT License - <a href="https://github.com/qjebbs/vscode-plantuml" class="bare">https://github.com/qjebbs/vscode-plantuml</a></p>
 </li>
 </ul>
 </div>
@@ -848,7 +864,8 @@ pre.rouge {
 <li><a href="#_変換後の文書">2.2. 変換後の文書</a></li>
 <li><a href="#_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</a></li>
 <li><a href="#_文書のファイル構成">2.4. 文書のファイル構成</a></li>
-<li><a href="#_執筆のイテレーション">2.5. 執筆のイテレーション</a></li>
+<li><a href="#_執筆の開始">2.5. 執筆の開始</a></li>
+<li><a href="#_執筆のイテレーション">2.6. 執筆のイテレーション</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -1459,7 +1476,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>文書を作成する起点となる Asciidoc 文書です。大きな文書の場合はここから他の Asciidoc 文書を <code>include</code> して構成していきます。</td>
+<td>文書を作成する起点となる Asciidoc 文書です。表紙となる文書のタイトルなどを記載し、その後から章ごとの Asciidoc 文書を <code>include</code> して構成していきます。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -1517,9 +1534,53 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_執筆のイテレーション">2.5. 執筆のイテレーション</h3>
+<h3 id="_執筆の開始">2.5. 執筆の開始</h3>
 <div class="paragraph">
-<p>環境が整った後の文書執筆の進め方のイメージは次のようになります。</p>
+<p>一通りのサンプル文書の構成確認が終りましたら、次のような流れでご自身の執筆を開始してみてください。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>サンプル文書の <code>src/docs/asciidoc/Cahpter02</code> 以降のフォルダの削除を行い見通しを良くする。</p>
+</li>
+<li>
+<p><code>src/docs/asciidoc/index.adoc</code> からの 1. で削除した <code>Chapter*</code> の<code>include</code> を削除する。</p>
+</li>
+<li>
+<p><code>src/docs/asciidoc/index.adoc</code> で文書のタイトルや版数などを設定する。</p>
+</li>
+<li>
+<p><code>src/docs/asciidoc/Cahpter00/index.adoc</code> を空にして目次前に挿入される「はじめに」や「謝辞」「本書の読み方」等の執筆。</p>
+</li>
+<li>
+<p><code>src/docs/asciidoc/Cahpter01/index.adoc</code> を空にして本編の執筆を開始。</p>
+</li>
+<li>
+<p>事前に目次案がある場合は、このタイミングで <code>Chapter*</code> フォルダと対応する <code>index.adoc</code> を新規作成し、目次案にあった章や節などの大項目のみを準備するのも良い方法です。目次が完成し全体の把握がしやすくなります。</p>
+</li>
+<li>
+<p>ここで一度 <code>./gradlew docs</code> を行い、想定通りの HTML/PDF 文書が <code>docs/</code> 内に生成されていることを確認する。外観の修正点があれば、</p>
+<div class="ulist">
+<ul>
+<li>
+<p>文書形式の場合は <code>src/docs/asciidoc/attribute.adoc</code> を調整。</p>
+</li>
+<li>
+<p>PDF テーマの場合は <code>src/docs/asciidoc/@style/pdf-theme.yml</code> を調整。</p>
+</li>
+<li>
+<p>HTML テーマの場合は <code>src/docs/asciidoc/@style/asciidoctor.css</code> を調整。</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_執筆のイテレーション">2.6. 執筆のイテレーション</h3>
+<div class="paragraph">
+<p>ここまでの手順で執筆環境が整った後の、文書執筆の進め方のイメージは次のようになります。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1568,6 +1629,22 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">VS Code の Zen Mode</div>
+<div class="paragraph">
+<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-07-01-02-47-37.png" alt="2023 07 01 02 47 37" width="90%">
+</div>
+</div>
+<div class="paragraph">
+<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適に執筆の助けになります。</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1689,6 +1766,7 @@ ____</code></pre>
 &#8212; Asciidoctor Documentation Site
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_画像">3.4. 画像</h3>
@@ -1754,6 +1832,7 @@ function hello() {
 </tr>
 </table>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_インラインコマンドファイル名">3.6. インラインコマンド・ファイル名</h3>
@@ -1812,11 +1891,12 @@ include::source/hello.rs[]
 <span class="p">}</span></code></pre>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_表形式">3.9. 表形式</h3>
 <div class="paragraph">
-<p>表形式は次のようなコードで定義します。属性の <code>cols="1,2"</code> はカラムの比率です。また、データ形式、罫線表現に関していくつかのオプションが設定できます。</p>
+<p>表形式は次のようなコードで定義します。データ形式、罫線表現に関していくつかのオプションが設定できます。</p>
 </div>
 <div class="listingblock">
 <div class="title">表形式の例1（CSV 形式、ヘッダーなし、グリッドなし）</div>
@@ -1893,6 +1973,18 @@ include::source/hello.rs[]
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+属性の <code>cols="1,2"</code> はカラムの比率を指定します。
+</td>
+</tr>
+</table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_リスト">3.10. リスト</h3>
@@ -2317,6 +2409,39 @@ f(t)=(a_0)/2 + sum_(n=1)^ooa_ncos((npit)/L)+sum_(n=1)^oo b_n\ sin((npit)/L)
 <div class="imageblock">
 <div class="content">
 <img src="Chapter04/images/math-sample1.svg" alt="math sample1" width="70%" height="68">
+</div>
+</div>
+<hr>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">PlantUML の Salt 記法のフォントサイズ</div>
+<div class="paragraph">
+<p>Salt は現在のところ残念ながらフォントサイズの指定をすることができません。このため任意のフォントサイズにするためには出力画像の <code>pdfwidth</code> と <code>width</code> を設定して算出する必要があります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>@startsalt
+&lt;style&gt;
+saltDiagram {
+  FontSize 10 <i class="conum" data-value="1"></i><b>(1)</b>
+}
+&lt;/style&gt;
+{
+{T
+ + &lt;&amp;folder&gt; wp-admin
+}
+}
+@endsalt</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>未実装で効果がない</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
