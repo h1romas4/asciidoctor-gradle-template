@@ -1,0 +1,48 @@
+@startuml diag-network1
+<style>
+nwdiagDiagram {
+    FontSize 14
+    group {
+        BackGroundColor cadetblue
+    }
+}
+</style>
+// https://github.com/Roemer/plantuml-office
+!include <office/Servers/application_server>
+!include <office/Servers/database_server>
+!include <office/Devices/router>
+!include <office/Devices/cell_phone_iphone_stand_alone>
+!include <office/Devices/device_tablet_ipad>
+!include <office/Devices/device_tablet_android>
+!include <office/Devices/device_laptop>
+!include <office/Devices/workstation>
+
+nwdiag {
+    internet [shape = cloud];
+    internet -- router;
+    router [address = "210.x.x.x"];
+    network LAN {
+        address = "192.168.0.0/24"
+        router [address = "192.168.0.1"];
+        thinkpad-p14s [address = "192.168.0.w", description = "        <$device_laptop>\nthinkpad-p14s"];
+        minis-um690 [address = "192.168.0.x", description = "        <$workstation>\nminis-um690"];
+        xbox-series-s [address = "192.168.0.y", description = "        <$workstation>\nxbox-series-s"];
+        atom-server [address = "192.168.0.z", shape = database, description = "         <$database_server>\n atom-server"]
+    }
+    network WLAN {
+        address = "172.16.15.0/24"
+        router [address = "172.16.15.1"];
+        group {
+            description = モバイル
+            iphone01 [address = "172.16.15.w", description = "   <$cell_phone_iphone_stand_alone>\niPhone"];
+            ipad01 [address = "172.16.15.x", description = "<$device_tablet_ipad>\n iPad"];
+        }
+        group {
+            color = "#add8e6"
+            description = 据え置き
+            fire01 [address = "172.16.15.y", description = "      <$device_tablet_ipad>\nAmazon Fire"];
+            echo01 [address = "172.16.15.z", description = "      <$device_tablet_android>\nAmazon Echo"];
+        }
+    }
+}
+@enduml

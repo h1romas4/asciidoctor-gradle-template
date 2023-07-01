@@ -178,6 +178,7 @@
         "prefix": "plantuml",
         "body": [
             "[plantuml, ${1:diag-sequence-sample1}, svg, pdfwidth=${2:pdfwidth}%, width=${3:pdfwidth}%]",
+            "[caption=\"\"]",
             "----",
             "@startuml",
             "skinparam monochrome true",
@@ -189,6 +190,17 @@
             "----",
         ],
         "description": "plantuml"
+    },
+    "asciidoc-plantuml-include": {
+        "prefix": "plantuml-include",
+        "body": [
+            "[plantuml, ${1:diag-sequence-sample1}, svg, pdfwidth=${2:pdfwidth}%, width=${3:pdfwidth}%]",
+            "[caption=\"\"]",
+            "----",
+            "include::puml/${filepath}[]",
+            "----",
+        ],
+        "description": "plantuml-include"
     },
     "asciidoc-image": {
         "prefix": "image",

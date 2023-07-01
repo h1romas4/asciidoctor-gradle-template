@@ -892,6 +892,7 @@ pre.rouge {
 <li><a href="#_フォルダファイルツリー">4.2. フォルダ・ファイルツリー</a></li>
 <li><a href="#_数式">4.3. 数式</a></li>
 <li><a href="#_ブロック図">4.4. ブロック図</a></li>
+<li><a href="#_ネットワーク構成図">4.5. ネットワーク構成図</a></li>
 </ul>
 </li>
 </ul>
@@ -2502,13 +2503,81 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 <img src="Chapter04/images/diag-ditaa-block.svg" alt="diag ditaa block" width="70%" height="294">
 </div>
 </div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_ネットワーク構成図">4.5. ネットワーク構成図</h3>
+<div class="paragraph">
+<p>ネットワーク構成図を PlantUML の nwdiag で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-nwdiag-network1, svg]
+[caption=""]
+----
+@startuml diag-network1
+&lt;style&gt;
+nwdiagDiagram {
+    FontSize 14
+    group {
+        BackGroundColor cadetblue
+    }
+}
+&lt;/style&gt;
+// https://github.com/Roemer/plantuml-office
+!include &lt;office/Servers/application_server&gt;
+!include &lt;office/Servers/database_server&gt;
+!include &lt;office/Devices/router&gt;
+!include &lt;office/Devices/cell_phone_iphone_stand_alone&gt;
+!include &lt;office/Devices/device_tablet_ipad&gt;
+!include &lt;office/Devices/device_tablet_android&gt;
+!include &lt;office/Devices/device_laptop&gt;
+!include &lt;office/Devices/workstation&gt;
+
+nwdiag {
+    internet [shape = cloud];
+    internet -- router;
+    router [address = "210.x.x.x"];
+    network LAN {
+        address = "192.168.0.0/24"
+        router [address = "192.168.0.1"];
+        thinkpad-p14s [address = "192.168.0.w", description = "        &lt;$device_laptop&gt;\nthinkpad-p14s"];
+        minis-um690 [address = "192.168.0.x", description = "        &lt;$workstation&gt;\nminis-um690"];
+        xbox-series-s [address = "192.168.0.y", description = "        &lt;$workstation&gt;\nxbox-series-s"];
+        atom-server [address = "192.168.0.z", shape = database, description = "         &lt;$database_server&gt;\n atom-server"]
+    }
+    network WLAN {
+        address = "172.16.15.0/24"
+        router [address = "172.16.15.1"];
+        group {
+            description = モバイル
+            iphone01 [address = "172.16.15.w", description = "   &lt;$cell_phone_iphone_stand_alone&gt;\niPhone"];
+            ipad01 [address = "172.16.15.x", description = "&lt;$device_tablet_ipad&gt;\n iPad"];
+        }
+        group {
+            color = "#add8e6"
+            description = 据え置き
+            fire01 [address = "172.16.15.y", description = "      &lt;$device_tablet_ipad&gt;\nAmazon Fire"];
+            echo01 [address = "172.16.15.z", description = "      &lt;$device_tablet_android&gt;\nAmazon Echo"];
+        }
+    }
+}
+@enduml
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-06-30 19:46:51 +0900
+最終更新 2023-07-01 13:54:10 +0900
 </div>
 </div>
 </body>

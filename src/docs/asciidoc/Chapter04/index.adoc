@@ -194,3 +194,25 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 |cBLK BLK     |cYEL YEL     |
 \-------------+-------------/
 ----
+
+<<<<
+
+=== ネットワーク構成図
+
+ネットワーク構成図を PlantUML の nwdiag で記述します。
+
+[source]
+-----
+[plantuml, diag-nwdiag-network1, svg]
+[caption=""]
+----
+include::puml/diag-nwdiag-network1.puml[]
+----
+-----
+
+[plantuml, diag-nwdiag-network1, svg]
+[caption=""]
+----
+include::puml/diag-nwdiag-network1.puml[]
+----
+
