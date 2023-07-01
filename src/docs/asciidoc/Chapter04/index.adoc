@@ -202,11 +202,51 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 ネットワーク構成図を PlantUML の nwdiag で記述します。
 
 [source]
+[caption=""]
+.``diag-nwdiag-network1.puml``（分かりやすいように実際のソースより簡略化）
 -----
 [plantuml, diag-nwdiag-network1, svg]
 [caption=""]
 ----
-include::puml/diag-nwdiag-network1.puml[]
+@startuml diag-network1
+<style>
+nwdiagDiagram {
+    FontSize 14
+    group {
+        BackGroundColor cadetblue
+    }
+}
+</style>
+
+nwdiag {
+    internet [shape = cloud];
+    internet -- router;
+    router [address = "210.x.x.x"];
+    network LAN {
+        address = "192.168.0.0/24"
+        router [address = "192.168.0.1"];
+        thinkpad-p14s [address = "192.168.0.w"];
+        minis-um690 [address = "192.168.0.x"];
+        xbox-series-s [address = "192.168.0.y"];
+        atom-server [address = "192.168.0.z", shape = database"]
+    }
+    network WLAN {
+        address = "172.16.15.0/24"
+        router [address = "172.16.15.1"];
+        group {
+            description = モバイル
+            iphone01 [address = "172.16.15.w"];
+            ipad01 [address = "172.16.15.x"];
+        }
+        group {
+            color = "#add8e6"
+            description = 据え置き
+            fire01 [address = "172.16.15.y"];
+            echo01 [address = "172.16.15.z"];
+        }
+    }
+}
+@enduml
 ----
 -----
 
