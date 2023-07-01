@@ -72,7 +72,7 @@ $ sdk install java 11.0.16.1-tem # <4>
 
 <<<
 
-また、Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、``.bashrc`` で次のように ``JAVA_HOME`` を設定します。
+また、Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、``.bashrc`` や ``.zshrc`` で次のように ``JAVA_HOME`` を設定します。
 
 [source]
 [caption="手順. "]

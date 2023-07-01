@@ -1012,7 +1012,7 @@ $ sdk install java 11.0.16.1-tem <i class="conum" data-value="4"></i><b>(4)</b><
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bashrc</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
+<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bashrc</code> や <code>.zshrc</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. JAVA_HOME の設定</div>
@@ -1180,7 +1180,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。</td>
+<td>Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は30秒程度で完了します。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -1223,7 +1223,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </li>
 <li>
-<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回は数秒で完了します。</p>
+<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は30秒程度で完了します。</p>
 </li>
 <li>
 <p><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</p>
@@ -1334,7 +1334,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect3">
 <h4 id="_vs_code_によるリアルタイムプレビュー">2.3.1. VS Code によるリアルタイムプレビュー</h4>
 <div class="paragraph">
-<p>プロジェクトフォルダに配置された Asciidoc 文書は Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
+<p>プロジェクトフォルダに配置された Asciidoc 文書は、Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
 </div>
 <div class="paragraph">
 <p>プロジェクトフォルダを Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。</p>
@@ -1898,6 +1898,18 @@ include::source/hello.rs[]
 <div class="paragraph">
 <p>表形式は次のようなコードで定義します。データ形式、罫線表現に関していくつかのオプションが設定できます。</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+属性の <code>cols="1,2"</code> ではカラムの比率を指定します。
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">表形式の例1（CSV 形式、ヘッダーなし、グリッドなし）</div>
 <div class="content">
@@ -1973,6 +1985,12 @@ include::source/hello.rs[]
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect2">
+<h3 id="_リスト">3.10. リスト</h3>
+<div class="paragraph">
+<p>箇条書き表現は次のように記述します。</p>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -1980,19 +1998,10 @@ include::source/hello.rs[]
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-属性の <code>cols="1,2"</code> はカラムの比率を指定します。
+Asciidoc はリスト中にリスト継続マーカ（<code>+</code>）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入をします。
 </td>
 </tr>
 </table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_リスト">3.10. リスト</h3>
-<div class="paragraph">
-<p>箇条書き表現は次のように記述します。</p>
-</div>
-<div class="paragraph">
-<p>Asciidoc はリスト中にリスト継続マーカ（<code>+</code>）を使うことでブロックのネストが可能です。手順を順序ありリストで表現し、順序やインデントを維持しながら画像や表形式などの挿入をします。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2458,7 +2467,7 @@ saltDiagram {
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー <code>shadows</code> 設定は HTML 版に対してのみ有効で PDF 版に対しては効果がないようです。
+ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー <code>shadows</code> 設定は HTML 版に対してのみ有効で、現在のところ PDF 版に対しては効果がないようです。
 </td>
 </tr>
 </table>
