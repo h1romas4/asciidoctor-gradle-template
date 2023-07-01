@@ -319,6 +319,21 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 include::puml/diag-timing-sample1.puml[]
 ----
 
+- - -
+
+.Open Iconic アイコン
+****
+PlantUML 内で ``<&アイコン名>`` 形式で使える Open Iconic アイコンは次の通りです。
+
+[plantuml, open-iconic-list, svg]
+[caption=""]
+----
+@startuml
+listopeniconic
+@enduml
+----
+****
+
 <<<<
 
 === マインドマップ
