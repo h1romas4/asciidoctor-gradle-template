@@ -10,12 +10,14 @@ binary "IC" as IC
 concise "DataBus" as DB
 
 @0 as :start
-@20 as :set_addbus1
-@40 as :write_start1
-@60 as :write_end1
-@80 as :set_addbus2
-@100 as :write_start2
-@120 as :write_end2
+@20 as :set_data_bus_1
+@30 as :set_addr_1
+@40 as :write_start_1
+@60 as :write_end_1
+@80 as :set_data_bus_2
+@90 as :set_addr_2
+@100 as :write_start_2
+@120 as :write_end_2
 
 @:start
 IC is high
@@ -25,31 +27,35 @@ RD is low
 A0 is low
 A1 is low
 
-@:set_addbus1
+@:set_data_bus_1
 DB is "0xff"
 DB -> WR@+20
 
-@:write_start1
-A0 is high : アドレスは WR/CS と同時に設定
+@:set_addr_1
+A0 is high
 A1 is low
-CS is low
+
+@:write_start_1
+CS is low : WR/CS と同時に設定
 WR is low
 
-@:write_end1
+@:write_end_1
 CS is high
 WR is high
 
-@:set_addbus2
+@:set_data_bus_2
 DB is "0x01"
 DB -> WR@+20
 
-@:write_start2
+@:set_addr_2
 A0 is low
 A1 is high
+
+@:write_start_2
 CS is low
 WR is low
 
-@:write_end2
+@:write_end_2
 CS is high
 WR is high
 

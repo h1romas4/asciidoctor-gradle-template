@@ -2560,7 +2560,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2587,12 +2587,10 @@ binary "IC" as IC
 concise "DataBus" as DB
 
 @0 as :start
-@20 as :set_addbus1
-@40 as :write_start1
-@60 as :write_end1
-@80 as :set_addbus2
-@100 as :write_start2
-@120 as :write_end2
+@20 as :set_data_bus_1
+@30 as :set_addr_1
+@40 as :write_start_1
+@60 as :write_end_1
 
 @:start
 IC is high
@@ -2602,26 +2600,30 @@ RD is low
 A0 is low
 A1 is low
 
-@:set_addbus1
+@:set_data_bus_1
 DB is "0xff"
 DB -&gt; WR@+20
 
-@:write_start1
-A0 is high : アドレスは WR/CS と同時に設定
+@:set_addr_1
+A0 is high
 A1 is low
-CS is low
+
+@:write_start_1
+CS is low : WR/CS と同時に設定
 WR is low
 
-@:write_end1
+@:write_end_1
 CS is high
 WR is high
+
+highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 @enduml
 ----</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="100%" height="336">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="100%" height="350">
 </div>
 </div>
 </div>
@@ -2630,7 +2632,7 @@ WR is high
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-07-01 13:54:10 +0900
+最終更新 2023-06-30 19:46:51 +0900
 </div>
 </div>
 </body>
