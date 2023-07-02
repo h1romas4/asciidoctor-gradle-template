@@ -1,0 +1,55 @@
+@startuml diag-c4-component-sample1
+!include <C4/C4_Container>
+!include <office/users/users.puml>
+!include <office/Servers/database_server>
+!include <office/Servers/file_server>
+!include <office/Servers/application_server>
+!include <office/Concepts/service_application>
+!include <office/Concepts/firewall>
+!include <office/Devices/workstation>
+
+skinparam linetype ortho
+top to bottom direction
+'left to right direction
+HIDE_STEREOTYPE()
+
+AddContainerTag("webApp", $sprite="application_server")
+AddContainerTag("linux", $sprite="file_server")
+
+Person(user_person, "ウェブサイト\n閲覧者", $sprite="users")
+
+System_Boundary(system_1, "Application") {
+    Container_Boundary(bound_backend_1, "Backend") {
+        ContainerDb(rel_db, "RDBMS", "MySQL 8.0", $sprite="database_server")
+        Container(filesystem, "File System", "ext4", $tags="linux")
+        Container(batch, "Bacth Server", "Java, Spring Boot", $tags="linux")
+    }
+    Container_Boundary(bound_frontend_1, "Frontend") {
+        Container(load_balancer, "Load balancer", "nginx", $sprite="application_server")
+        Container_Boundary(bound_cluster_1, "Cluster") {
+            Container(web_app_1, "Web Application", "Java, Spring Boot", $tags="webApp")
+            Container(web_app_2, "Web Application", "Java, Spring Boot", $tags="webApp")
+        }
+    }
+    Person(user_admnin, "アプリケーション\n管理者", $sprite="workstation")
+}
+
+Lay_R(user_person, system_1)
+Lay_D(user_admnin, batch)
+Lay_R(bound_backend_1, bound_frontend_1)
+
+Lay_R(load_balancer, web_app_1)
+Lay_D(web_app_1, web_app_2)
+Lay_D(rel_db, filesystem)
+Lay_R(rel_db, batch)
+
+Rel_R(user_person, load_balancer, "https")
+Rel_R(load_balancer, web_app_1, "http")
+Rel_R(load_balancer, web_app_2, "http")
+
+Rel_R(bound_cluster_1, rel_db, "JDBC")
+Rel_R(bound_cluster_1, filesystem, "NFS")
+
+Rel_R(batch, rel_db, "JDBC")
+Rel_R(user_admnin, batch, "ssh")
+@enduml

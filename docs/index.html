@@ -893,8 +893,9 @@ pre.rouge {
 <li><a href="#_数式">4.3. 数式</a></li>
 <li><a href="#_ブロック図">4.4. ブロック図</a></li>
 <li><a href="#_ネットワーク構成図">4.5. ネットワーク構成図</a></li>
-<li><a href="#_タイミングチャート">4.6. タイミングチャート</a></li>
-<li><a href="#_マインドマップ">4.7. マインドマップ</a></li>
+<li><a href="#_システム構成図">4.6. システム構成図</a></li>
+<li><a href="#_タイミングチャート">4.7. タイミングチャート</a></li>
+<li><a href="#_マインドマップ">4.8. マインドマップ</a></li>
 </ul>
 </li>
 </ul>
@@ -2366,37 +2367,6 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 </div>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">WSL2 上の VS Code で Paste Image 拡張を使う</div>
-<div class="paragraph">
-<p>本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
-</div>
-<div class="paragraph">
-<p>これを解決するために、ワークアラウンドですが次のように拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
-</div>
-<div class="listingblock">
-<div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
-<span class="c"># change current directoru</span>
-<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
-<span class="c"># set dist path</span>
-<span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="c"># call Windows PowerShell</span>
-powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-File</span> pc.ps1 <span class="k">${</span><span class="nv">DISTPATH</span><span class="k">}</span><span class="nv">$1</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>利用しているディストリビューションのパスを設定する。</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
@@ -2598,10 +2568,116 @@ nwdiag {
 <img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">WSL2 上の VS Code で Paste Image 拡張を使う</div>
+<div class="paragraph">
+<p>本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
+</div>
+<div class="paragraph">
+<p>これを解決するために、ワークアラウンドですが次のように拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="c"># change current directoru</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+<span class="c"># set dist path</span>
+<span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="c"># call Windows PowerShell</span>
+powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-File</span> pc.ps1 <span class="k">${</span><span class="nv">DISTPATH</span><span class="k">}</span><span class="nv">$1</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>利用しているディストリビューションのパスを設定する。</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_タイミングチャート">4.6. タイミングチャート</h3>
+<h3 id="_システム構成図">4.6. システム構成図</h3>
+<div class="paragraph">
+<p>簡単なシステム構成図を PlantUML/C4 コンポーネントで記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[plantuml, diag-c4-component-sample1, svg]
+[caption=""]
+----
+@startuml diag-c4-component-sample1
+!include &lt;C4/C4_Container&gt;
+!include &lt;office/users/users.puml&gt;
+!include &lt;office/Servers/database_server&gt;
+!include &lt;office/Servers/file_server&gt;
+!include &lt;office/Servers/application_server&gt;
+!include &lt;office/Concepts/service_application&gt;
+!include &lt;office/Concepts/firewall&gt;
+!include &lt;office/Devices/workstation&gt;
+
+skinparam linetype ortho
+top to bottom direction
+'left to right direction
+HIDE_STEREOTYPE()
+
+AddContainerTag("webApp", $sprite="application_server")
+AddContainerTag("linux", $sprite="file_server")
+
+Person(user_person, "ウェブサイト\n閲覧者", $sprite="users")
+
+System_Boundary(system_1, "Application") {
+    Container_Boundary(bound_backend_1, "Backend") {
+        ContainerDb(rel_db, "RDBMS", "MySQL 8.0", $sprite="database_server")
+        Container(filesystem, "File System", "ext4", $tags="linux")
+        Container(batch, "Bacth Server", "Java, Spring Boot", $tags="linux")
+    }
+    Container_Boundary(bound_frontend_1, "Frontend") {
+        Container(load_balancer, "Load balancer", "nginx", $sprite="application_server")
+        Container_Boundary(bound_cluster_1, "Cluster") {
+            Container(web_app_1, "Web Application", "Java, Spring Boot", $tags="webApp")
+            Container(web_app_2, "Web Application", "Java, Spring Boot", $tags="webApp")
+        }
+    }
+    Person(user_admnin, "アプリケーション\n管理者", $sprite="workstation")
+}
+
+Lay_R(user_person, system_1)
+Lay_D(user_admnin, batch)
+Lay_R(bound_backend_1, bound_frontend_1)
+
+Lay_R(load_balancer, web_app_1)
+Lay_D(web_app_1, web_app_2)
+Lay_D(rel_db, filesystem)
+Lay_R(rel_db, batch)
+
+Rel_R(user_person, load_balancer, "https")
+Rel_R(load_balancer, web_app_1, "http")
+Rel_R(load_balancer, web_app_2, "http")
+
+Rel_R(bound_cluster_1, rel_db, "JDBC")
+Rel_R(bound_cluster_1, filesystem, "NFS")
+
+Rel_R(batch, rel_db, "JDBC")
+Rel_R(user_admnin, batch, "ssh")
+@enduml
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1096" height="705">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_タイミングチャート">4.7. タイミングチャート</h3>
 <div class="paragraph">
 <p>デジタル回路などのタイミングチャートを PlantUML で記述します。</p>
 </div>
@@ -2678,7 +2754,7 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_マインドマップ">4.7. マインドマップ</h3>
+<h3 id="_マインドマップ">4.8. マインドマップ</h3>
 <div class="paragraph">
 <p>PlantUML のマインドマップ記法を使い木構造を表現します。</p>
 </div>
