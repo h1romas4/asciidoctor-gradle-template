@@ -298,6 +298,8 @@ include::puml/diag-c4-component-sample1.puml[]
 include::puml/diag-c4-component-sample1.puml[]
 ----
 
+TIP: 現在のところ ``$shadowing="true"`` 指定のドロップシャドーは HTML 版のみ反映します。
+
 <<<<
 
 === タイミングチャート

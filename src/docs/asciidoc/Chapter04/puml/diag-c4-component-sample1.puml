@@ -13,25 +13,25 @@ top to bottom direction
 'left to right direction
 HIDE_STEREOTYPE()
 
-AddContainerTag("webApp", $sprite="application_server")
-AddContainerTag("linux", $sprite="file_server")
+AddContainerTag("user", , $bgColor="#5f9ea0", $shadowing="true")
+AddContainerTag("linux", $sprite="application_server", $bgColor="#dcdcdc", $fontColor="#000000", $borderColor="#696969", $sprite="file_server", $shadowing="true")
 
-Person(user_person, "ウェブサイト\n閲覧者", $sprite="users")
+Person(user_person, "ウェブサイト\n閲覧者", $sprite="users", $tags="user")
 
 System_Boundary(system_1, "Application") {
     Container_Boundary(bound_backend_1, "Backend") {
-        ContainerDb(rel_db, "RDBMS", "MySQL 8.0", $sprite="database_server")
+        ContainerDb(rel_db, "Database", "MySQL 8.0", $sprite="database_server", $tags="linux")
         Container(filesystem, "File System", "ext4", $tags="linux")
         Container(batch, "Bacth Server", "Java, Spring Boot", $tags="linux")
     }
     Container_Boundary(bound_frontend_1, "Frontend") {
-        Container(load_balancer, "Load balancer", "nginx", $sprite="application_server")
+        Container(load_balancer, "Load balancer", "nginx", $sprite="application_server", $tags="linux")
         Container_Boundary(bound_cluster_1, "Cluster") {
-            Container(web_app_1, "Web Application", "Java, Spring Boot", $tags="webApp")
-            Container(web_app_2, "Web Application", "Java, Spring Boot", $tags="webApp")
+            Container(web_app_1, "Web Application", "Java, Spring Boot", $tags="linux")
+            Container(web_app_2, "Web Application", "Java, Spring Boot", $tags="linux")
         }
     }
-    Person(user_admnin, "アプリケーション\n管理者", $sprite="workstation")
+    Person(user_admnin, "アプリケーション\n管理者", $sprite="workstation", $tags="user")
 }
 
 Lay_R(user_person, system_1)
@@ -43,13 +43,16 @@ Lay_D(web_app_1, web_app_2)
 Lay_D(rel_db, filesystem)
 Lay_R(rel_db, batch)
 
-Rel_R(user_person, load_balancer, "https")
-Rel_R(load_balancer, web_app_1, "http")
-Rel_R(load_balancer, web_app_2, "http")
+AddRelTag("rel_line", $textColor="black", $lineColor="#696969", $lineStyle=BoldLine())
 
-Rel_R(bound_cluster_1, rel_db, "JDBC")
-Rel_R(bound_cluster_1, filesystem, "NFS")
+Rel_R(user_person, load_balancer, "https", $tags="rel_line")
+Rel_R(load_balancer, web_app_1, "http", $tags="rel_line")
+Rel_R(load_balancer, web_app_2, "http", $tags="rel_line")
 
-Rel_R(batch, rel_db, "JDBC")
-Rel_R(user_admnin, batch, "ssh")
+Rel_R(bound_cluster_1, rel_db, "JDBC", $tags="rel_line")
+Rel_R(bound_cluster_1, filesystem, "NFS", $tags="rel_line")
+
+Rel_R(batch, rel_db, "JDBC", $tags="rel_line")
+Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
+
 @enduml
