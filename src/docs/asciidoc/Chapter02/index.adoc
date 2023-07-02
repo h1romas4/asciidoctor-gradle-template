@@ -178,7 +178,9 @@ AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` �
 
 .クリップボード連携のシステムインターフェース
 ****
-Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。動作しない場合などに参考にしてください。
+Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
+
+クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作しますので、動作をご理解の上設定してください。
 
 [source, bash]
 ----
