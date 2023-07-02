@@ -2363,6 +2363,37 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">WSL2 上の VS Code で Paste Image 拡張を使う</div>
+<div class="paragraph">
+<p>本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
+</div>
+<div class="paragraph">
+<p>これを解決するために、ワークアラウンドですが次のように拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="c"># change current directoru</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+<span class="c"># set dist path</span>
+<span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="c"># call Windows PowerShell</span>
+powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-File</span> pc.ps1 <span class="k">${</span><span class="nv">DISTPATH</span><span class="k">}</span><span class="nv">$1</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>利用しているディストリビューションのパスを設定する。</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
