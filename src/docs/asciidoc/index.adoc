@@ -1,5 +1,19 @@
 include::./attribute.adoc[]
 
+// 表紙デザインの PDF がある場合 true を、Asciidoc 標準の表紙を使う場合は false を設定。
+:cover-on-pdf: true
+
+// PDF 出力時の分岐
+ifdef::backend-pdf[]
+// PDF 版の表紙を Chapter00/images/cover.pdf に設定し標準の表紙をオフにする。
+ifeval::["{cover-on-pdf}" == "true"]
+:imagesdir: Chapter00/images
+:notitle:
+:front-cover-image: image:cover.pdf[]
+endif::[]
+endif::[]
+
+// 文書属性設定（HTML版、PDF版標準表紙及び PDF プロパティに使用される）
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
 2023-07-03
