@@ -203,7 +203,7 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 
 [source]
 [caption=""]
-.``diag-nwdiag-network1.puml``（分かりやすいように実際のソースより簡略化）
+.``diag-nwdiag-network1.puml``（分かりやすいように https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml[実際のソース]より簡略化）
 -----
 [plantuml, diag-nwdiag-network1, svg]
 ----
@@ -308,7 +308,7 @@ TIP: 現在のところ ``$shadowing="true"`` 指定のドロップシャドー�
 
 [source]
 [caption=""]
-.``diag-timing-sample1.puml``（実際のソースより抜粋）
+.``diag-timing-sample1.puml``（分かりやすいよう https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml[実際のソース]より抜粋）
 -----
 [plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
@@ -346,14 +346,15 @@ A0 is high
 A1 is low
 
 @:write_start_1
-CS is low : WR/CS と同時に設定
+CS is low : WR/CS 同時に設定
 WR is low
+DB@40 <-> @60 : {10 us}
 
 @:write_end_1
 CS is high
 WR is high
 
-highlight 40 to 60 #Gold;line:DimGrey : 書き込み
+highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 @enduml
 ----
 -----

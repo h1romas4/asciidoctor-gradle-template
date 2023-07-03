@@ -1,4 +1,5 @@
 ' https://github.com/iconic/open-iconic/
+' ⓿❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴
 @startsalt directory-structure-3
 {
 {T
@@ -22,6 +23,7 @@
  ++++ <&folder> ..snip..
  ++++ <&file> attribute.adoc                | ❷
  ++++ <&file> index.adoc                    | ❶
+ + <&file> build.gradle                     | ❼
 }
 }
 @endsalt

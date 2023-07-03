@@ -178,7 +178,7 @@ AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` �
 
 .クリップボード連携のシステムインターフェース
 ****
-Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
+Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
 
 クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作しますので、動作をご理解の上設定してください。
 
@@ -214,6 +214,7 @@ src/docs/asciidoc/@style/asciidoctor.css # <3>
 src/docs/asciidoc/@style/pdf-theme.yml # <4>
 src/docs/asciidoc/@font/**/*.ttf # <5>
 src/docs/asciidoc/Chapter{number}/index.adoc <6>
+build.gradle <7>
 ----
 
 <1> 文書を作成する起点となる Asciidoc 文書です。表紙となる文書のタイトルなどを記載し、その後から章ごとの Asciidoc 文書を ``include`` して構成していきます。
@@ -221,7 +222,8 @@ src/docs/asciidoc/Chapter{number}/index.adoc <6>
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
 <4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
-<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。後述の ``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
+<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
+<7> 文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。
 
 ``src/docs/asciidoc/attribute.adoc`` では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。
 
@@ -286,5 +288,5 @@ VS Code には執筆に集中したい場合に、不要な UI を隠しなが�
 
 image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
 
-Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適に執筆の助けになります。
+Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。
 ****

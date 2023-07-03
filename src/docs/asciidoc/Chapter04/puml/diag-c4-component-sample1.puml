@@ -13,7 +13,7 @@ top to bottom direction
 'left to right direction
 HIDE_STEREOTYPE()
 
-AddContainerTag("user", , $bgColor="#5f9ea0", $shadowing="true")
+AddContainerTag("user", $bgColor="#5f9ea0", $shadowing="true")
 AddContainerTag("linux", $sprite="application_server", $bgColor="#dcdcdc", $fontColor="#000000", $borderColor="#696969", $sprite="file_server", $shadowing="true")
 
 Person(user_person, "ウェブサイト\n閲覧者", $sprite="users", $tags="user")

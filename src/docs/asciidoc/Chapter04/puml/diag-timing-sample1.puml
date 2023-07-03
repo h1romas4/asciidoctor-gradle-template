@@ -1,4 +1,11 @@
 @startuml diag-timing-sample1
+<style>
+timingDiagram {
+    LineColor gray
+    FontSize 14
+}
+</style>
+'mode compact
 scale 40 as 150 pixels
 clock "Clock" as clk with period 1
 binary "CS" as CS
@@ -36,8 +43,9 @@ A0 is high
 A1 is low
 
 @:write_start_1
-CS is low : WR/CS と同時に設定
+CS is low : WR/CS 同時に設定
 WR is low
+DB@40 <-> @60 : {10 us}
 
 @:write_end_1
 CS is high
@@ -59,6 +67,6 @@ WR is low
 CS is high
 WR is high
 
-highlight 40 to 60 #Gold;line:DimGrey : 書き込み
-highlight 100 to 120 #Gold;line:DimGrey : 書き込み
+highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
+highlight 100 to 120 #SkyBlue;line:DimGrey : 書き込み
 @enduml
