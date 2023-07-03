@@ -28,7 +28,7 @@ OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
 OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)
 ----
 
-NOTE: 本文書では Java 11 を用いて解説します。
+NOTE: 本文書では Java 11 を用いて解説します。また、ビルド時に若干ワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
 
 <<<
 

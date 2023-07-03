@@ -5,7 +5,7 @@ include::../attribute.adoc[]
 
 ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。
 
-なお、プロジェクトフォルダの ``.vscode/asciidoc.code-snippets`` 設定には VS Code の btn:[Ctrl + Spaec] 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。
+入力の助けになるよう、プロジェクトフォルダの ``.vscode/asciidoc.code-snippets`` 設定には VS Code の btn:[Ctrl + Spaec] 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。
 
 image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 
@@ -87,7 +87,7 @@ image::2023-06-30-12-11-56.png[pdfwidth=70%, width=600px]
 
 なお、本手順の Asciidoc 文書の構成では ``images`` に格納されている画像ファイルパスに ``images/`` を付与する必要はありません。
 
-TIP: これは ``src/docs/asciidoc/attribute.adoc`` で ``:imagesdir: ./images`` が設定済みであるための動作です。
+NOTE: これは ``src/docs/asciidoc/attribute.adoc`` で ``:imagesdir: ./images`` が設定済みであるための動作です。
 
 === ソースコードシンタックスハイライト
 
@@ -99,24 +99,26 @@ TIP: これは ``src/docs/asciidoc/attribute.adoc`` で ``:imagesdir: ./images``
 [caption=""]
 .JavaScript ソースコードのシンタックスハイライトの例
 ----
-function hello() {
-    console.log("Hello, World!"); // \<1>
+function hello() { // \<1>
+    console.log("Hello, World!"); // \<2>
 }
 ----
 
-<1> コンソールに ``Hello, World`` を出力
+<1> 関数定義
+<2> コンソールに ``Hello, World`` を出力
 -----
 
 [source, javascript]
 [caption=""]
 .JavaScript ソースコードのシンタックスハイライトの例
 ----
-function hello() {
-    console.log("Hello, World!"); // <1>
+function hello() { // <1>
+    console.log("Hello, World!"); // <2>
 }
 ----
 
-<1> コンソールに ``Hello, World`` を出力
+<1> 関数定義
+<2> コンソールに ``Hello, World`` を出力
 
 <<<<
 

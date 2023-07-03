@@ -657,7 +657,7 @@ pre.rouge {
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revdate">2023-06-28</span>
+<span id="revdate">2023-07-03</span>
 </div>
 </div>
 <div id="content">
@@ -703,10 +703,13 @@ pre.rouge {
 <p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備してあります。PDF 出力に関しては、フォントセットや禁則処理設定をプロジェクトにもたせることにより、実行環境に関わらず同一出力が得られるようになっています。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
 </div>
 <div class="paragraph">
-<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入もサポートしました。</p>
+<p>手間がかかることが多い PDF 出力に関しても、フォントセットや禁則処理設定をプロジェクトに持たせることにより、実行環境に関わらず同一出力が得られるように調整しました。</p>
+</div>
+<div class="paragraph">
+<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入をサポートしています。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -974,7 +977,7 @@ OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pr
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-本文書では Java 11 を用いて解説します。
+本文書では Java 11 を用いて解説します。また、ビルド時に若干ワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
 </td>
 </tr>
 </table>
@@ -1445,7 +1448,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>画像ファイル名の命名規約や出力先のフォルダ設定は <code>.vscode/setting.json</code> で行うことができます。</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>vscode/setting.json</code></div>
+<div class="title"><code>.vscode/setting.json</code></div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nl">"pasteImage.path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${currentFileDir}/images"</span><span class="p">,</span><span class="w">
@@ -1513,7 +1516,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>文書設定をするためのファイルです。各文書から <code>incliude</code> します。</td>
+<td>文書設定をするためのファイルです。各文書から <code>include</code> します。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -1521,7 +1524,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。<a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc">Asciidoctor PDF Theming Guide</a> からドキュメントが参照できます。本ファイルの修正は <code>.adoc</code> 修正後のビルド時に反映することに注意してください。</td>
+<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -1537,6 +1540,8 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </tr>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_文書属性定義">2.4.1. 文書属性定義</h4>
 <div class="paragraph">
 <p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。</p>
 </div>
@@ -1570,6 +1575,44 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_pdf_テーマ定義">2.4.2. PDF テーマ定義</h4>
+<div class="paragraph">
+<p><code>src/docs/asciidoc/@style/pdf-theme.yml</code> では PDF 文書のスタイルを定義することができます。</p>
+</div>
+<div class="paragraph">
+<p>属性の詳細は次から参照できます。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://docs.asciidoctor.org/pdf-converter/latest/" class="bare">https://docs.asciidoctor.org/pdf-converter/latest/</a></p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor PDF Theming Guide</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; asciidoctor.org
+</div>
+</div>
+<div class="paragraph">
+<p><code>pdf-theme.yml</code> の修正は <code>.adoc</code> 修正時のビルドで PDF 文書に反映します。<code>pdf-theme.yml</code> の修正だけを反映したい場合は、いずれかの <code>.adoc</code> 文書に影響のない修正を加えてファイルを更新するか、 <code>./gradlew clean</code> してからビルドを実行してください。</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="重要"></i>
+</td>
+<td class="content">
+本手順で採用している Asciidoctor PDF のバージョンは <code>1.6.2</code> です。日本語禁則処理を正しく動作させるために、現在のところ最新の <code>2.3</code> にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_執筆の開始">2.5. 執筆の開始</h3>
 <div class="paragraph">
@@ -1587,7 +1630,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p><code>src/docs/asciidoc/index.adoc</code> で文書のタイトルや版数などを設定する。</p>
 </li>
 <li>
-<p><code>src/docs/asciidoc/Cahpter00/index.adoc</code> を空にして目次前に挿入される「はじめに」や「謝辞」「本書の読み方」等の執筆。</p>
+<p><code>src/docs/asciidoc/Cahpter00/index.adoc</code> を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。</p>
 </li>
 <li>
 <p><code>src/docs/asciidoc/Cahpter01/index.adoc</code> を空にして本編の執筆を開始。</p>
@@ -1604,9 +1647,6 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </li>
 <li>
 <p>PDF テーマの場合は <code>src/docs/asciidoc/@style/pdf-theme.yml</code> を調整。</p>
-<div class="paragraph">
-<p>なお、<code>.adoc</code> の変更がなく <code>pdf-theme.yml</code> のみ修正した場合は、ビルドが更新を検知できないため <code>./gradlew clean</code> を行うか <code>.adoc</code> に修正を加えた後に <code>./gradlew docs</code> を実行してください。</p>
-</div>
 </li>
 <li>
 <p>HTML テーマの場合は <code>src/docs/asciidoc/@style/asciidoctor.css</code> を調整。</p>
@@ -1670,28 +1710,11 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </tr>
 </table>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">VS Code の Zen Mode</div>
-<div class="paragraph">
-<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/2023-07-02-15-09-43.png" alt="2023 07 02 15 09 43" width="90%">
-</div>
-</div>
-<div class="paragraph">
-<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。</p>
-</div>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_クラウドによる執筆">2.7. クラウドによる執筆</h3>
 <div class="paragraph">
-<p>クラウド統合環境である <a href="https://www.gitpod.io/">Gitpod</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF文書の変換が可能です。サブマシンや iPad などタブレット端末向けに準備しておくと便利かもしれません。</p>
+<p>クラウド統合環境である <a href="https://www.gitpod.io/">Gitpod</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。サブマシンや iPad などタブレット端末でも執筆が行えます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1712,7 +1735,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>本手順のリポジトリ一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）</p>
+<p>文書ファイル一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）</p>
 </li>
 <li>
 <p>2023-07 現在 Gitpod の無料枠は 50時間/月です。それ以上は利用料が必要です。</p>
@@ -1720,23 +1743,23 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみると良いでしょう。</p>
+<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみるのも良いでしょう。</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-Gitpod 向けの設定はリポジトリの <code>.gitpod.yml</code> ファイルで定義されています。
+Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義されています。
 </td>
 </tr>
 </table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">https</span><span class="p">:</span><span class="c1">//gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template </span><i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="rouge highlight"><code>https://gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1756,6 +1779,22 @@ Gitpod 向けの設定はリポジトリの <code>.gitpod.yml</code> ファイ�
 <div class="paragraph">
 <p>起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">VS Code の Zen Mode</div>
+<div class="paragraph">
+<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-07-02-15-09-43.png" alt="2023 07 02 15 09 43" width="90%">
+</div>
+</div>
+<div class="paragraph">
+<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆のユーティリティとなります。</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1766,7 +1805,7 @@ Gitpod 向けの設定はリポジトリの <code>.gitpod.yml</code> ファイ�
 <p>ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
 </div>
 <div class="paragraph">
-<p>なお、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
+<p>入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1894,11 +1933,11 @@ ____</code></pre>
 <div class="paragraph">
 <p>なお、本手順の Asciidoc 文書の構成では <code>images</code> に格納されている画像ファイルパスに <code>images/</code> を付与する必要はありません。</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
 これは <code>src/docs/asciidoc/attribute.adoc</code> で <code>:imagesdir: ./images</code> が設定済みであるための動作です。
@@ -1918,19 +1957,20 @@ ____</code></pre>
 [caption=""]
 .JavaScript ソースコードのシンタックスハイライトの例
 ----
-function hello() {
-    console.log("Hello, World!"); // &lt;1&gt;
+function hello() { // &lt;1&gt;
+    console.log("Hello, World!"); // &lt;2&gt;
 }
 ----
 
-&lt;1&gt; コンソールに ``Hello, World`` を出力</code></pre>
+&lt;1&gt; 関数定義
+&lt;2&gt; コンソールに ``Hello, World`` を出力</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">JavaScript ソースコードのシンタックスハイライトの例</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">);</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="rouge highlight"><code data-lang="javascript"><span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">);</span> <i class="conum" data-value="2"></i><b>(2)</b>
 <span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1938,6 +1978,10 @@ function hello() {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>関数定義</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>コンソールに <code>Hello, World</code> を出力</td>
 </tr>
 </table>
@@ -2378,11 +2422,11 @@ CAUTION: 注意</code></pre>
 &#8212; PlantUML
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
 変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
@@ -2570,11 +2614,11 @@ saltDiagram {
 <div class="paragraph">
 <p>ブロック図を ditaa 記法で記述します。</p>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
 ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー <code>shadows</code> 設定は HTML 版に対してのみ有効で、現在のところ PDF 版に対しては効果がないようです。
@@ -2822,11 +2866,11 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 <img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1056" height="754">
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
 現在のところ <code>$shadowing="true"</code> 指定のドロップシャドーは HTML 版のみ反映します。
@@ -2954,7 +2998,7 @@ mindmapDiagram {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-07-01 21:17:02 +0900
+最終更新 2023-07-03 17:39:58 +0900
 </div>
 </div>
 </body>

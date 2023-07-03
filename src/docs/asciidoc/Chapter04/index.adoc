@@ -20,7 +20,7 @@ https://plantuml.com/ja/
 PlantUML in a nutshell
 ____
 
-TIP: 変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
+NOTE: 変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
 
 [quote, ditaa]
 ____
@@ -146,7 +146,7 @@ saltDiagram {
 
 ブロック図を ditaa 記法で記述します。
 
-TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー ``shadows`` 設定は HTML 版に対してのみ有効で、現在のところ PDF 版に対しては効果がないようです。
+NOTE: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角スペースなどで文字数を調整する必要があります。また、ドロップシャドー ``shadows`` 設定は HTML 版に対してのみ有効で、現在のところ PDF 版に対しては効果がないようです。
 
 [source]
 -----
@@ -288,7 +288,7 @@ include::puml/diag-c4-component-sample1.puml[]
 include::puml/diag-c4-component-sample1.puml[]
 ----
 
-TIP: 現在のところ ``$shadowing="true"`` 指定のドロップシャドーは HTML 版のみ反映します。
+NOTE: 現在のところ ``$shadowing="true"`` 指定のドロップシャドーは HTML 版のみ反映します。
 
 <<<<
 

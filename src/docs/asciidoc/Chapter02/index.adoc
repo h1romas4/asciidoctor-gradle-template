@@ -163,7 +163,7 @@ image::2023-06-30-12-11-56.png[]
 
 [source, json]
 [caption=""]
-.``vscode/setting.json``
+.``.vscode/setting.json``
 ----
 {
     "pasteImage.path": "${currentFileDir}/images",
@@ -218,12 +218,14 @@ build.gradle <7>
 ----
 
 <1> 文書を作成する起点となる Asciidoc 文書です。表紙となる文書のタイトルなどを記載し、その後から章ごとの Asciidoc 文書を ``include`` して構成していきます。
-<2> 文書設定をするためのファイルです。各文書から ``incliude`` します。
+<2> 文書設定をするためのファイルです。各文書から ``include`` します。
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
-<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。本ファイルの修正は ``.adoc`` 修正後のビルド時に反映することに注意してください。
+<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
 <6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
 <7> 文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。
+
+==== 文書属性定義
 
 ``src/docs/asciidoc/attribute.adoc`` では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。
 
@@ -250,6 +252,23 @@ https://asciidoctor.org/docs/user-manual/#attributes
 Attributes are one of the features that sets Asciidoctor apart from other lightweight markup languages. Attributes can activate features (behaviors, styles, integrations, etc) or hold replacement (i.e., variable) content.
 ____
 
+==== PDF テーマ定義
+
+``src/docs/asciidoc/@style/pdf-theme.yml`` では PDF 文書のスタイルを定義することができます。
+
+属性の詳細は次から参照できます。
+
+[quote, asciidoctor.org]
+____
+https://docs.asciidoctor.org/pdf-converter/latest/
+
+Asciidoctor PDF Theming Guide
+____
+
+``pdf-theme.yml`` の修正は ``.adoc`` 修正時のビルドで PDF 文書に反映します。``pdf-theme.yml`` の修正だけを反映したい場合は、いずれかの ``.adoc`` 文書に影響のない修正を加えてファイルを更新するか、 ``./gradlew clean`` してからビルドを実行してください。
+
+IMPORTANT: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6.2`` です。日本語禁則処理を正しく動作させるために、現在のところ最新の ``2.3`` にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
+
 === 執筆の開始
 
 一通りのサンプル文書の構成確認が終りましたら、次のような流れでご自身の執筆を開始してみてください。
@@ -257,14 +276,12 @@ ____
 . サンプル文書の ``src/docs/asciidoc/Cahpter02`` 以降のフォルダの削除を行い見通しを良くする。
 . ``src/docs/asciidoc/index.adoc`` からの 1. で削除した ``Chapter*`` の``include`` を削除する。
 . ``src/docs/asciidoc/index.adoc`` で文書のタイトルや版数などを設定する。
-. ``src/docs/asciidoc/Cahpter00/index.adoc`` を空にして目次前に挿入される「はじめに」や「謝辞」「本書の読み方」等の執筆。
+. ``src/docs/asciidoc/Cahpter00/index.adoc`` を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。
 . ``src/docs/asciidoc/Cahpter01/index.adoc`` を空にして本編の執筆を開始。
 . 事前に目次案がある場合は、このタイミングで ``Chapter*`` フォルダと対応する ``index.adoc`` を新規作成し、目次案にあった章や節などの大項目のみを準備するのも良い方法です。目次が完成し全体の把握がしやすくなります。
 . ここで一度 ``./gradlew docs`` を行い、想定通りの HTML/PDF 文書が ``docs/`` 内に生成されていることを確認する。外観の修正点があれば、
 ** 文書形式の場合は ``src/docs/asciidoc/attribute.adoc`` を調整。
 ** PDF テーマの場合は ``src/docs/asciidoc/@style/pdf-theme.yml`` を調整。
-+
-なお、``.adoc`` の変更がなく ``pdf-theme.yml`` のみ修正した場合は、ビルドが更新を検知できないため ``./gradlew clean`` を行うか ``.adoc`` に修正を加えた後に ``./gradlew docs`` を実行してください。
 ** HTML テーマの場合は ``src/docs/asciidoc/@style/asciidoctor.css`` を調整。
 
 === 執筆のイテレーション
@@ -284,20 +301,9 @@ ____
 
 TIP: 推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
 
-.VS Code の Zen Mode
-****
-VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは btn:[Ctrl + k, z] でモードが遷移し、再度同じ操作で元の画面に戻ります。
-
-image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
-
-Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。
-****
-
-<<<<
-
 === クラウドによる執筆
 
-クラウド統合環境である https://www.gitpod.io/[Gitpod] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF文書の変換が可能です。サブマシンや iPad などタブレット端末向けに準備しておくと便利かもしれません。
+クラウド統合環境である https://www.gitpod.io/[Gitpod] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。サブマシンや iPad などタブレット端末でも執筆が行えます。
 
 [quote, Gitpod]
 ____
@@ -308,14 +314,14 @@ ____
 
 実行にあたっての条件は次のとおりです。
 
-- 本手順のリポジトリ一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）
+- 文書ファイル一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）
 - 2023-07 現在 Gitpod の無料枠は 50時間/月です。それ以上は利用料が必要です。
 
-準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみると良いでしょう。
+準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみるのも良いでしょう。
 
-TIP: Gitpod 向けの設定はリポジトリの ``.gitpod.yml`` ファイルで定義されています。
+NOTE: Gitpod 向けの設定は ``.gitpod.yml`` ファイルで定義されています。
 
-[source, javascript]
+[source]
 ----
 https://gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template <1>
 ----
@@ -327,3 +333,12 @@ https://gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template <
 image::2023-07-03-14-28-22.png[pdfwidth=76%]
 
 起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。
+
+.VS Code の Zen Mode
+****
+VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは btn:[Ctrl + k, z] でモードが遷移し、再度同じ操作で元の画面に戻ります。
+
+image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
+
+Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆のユーティリティとなります。
+****
