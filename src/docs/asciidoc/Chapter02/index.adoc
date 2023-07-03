@@ -71,13 +71,13 @@ export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 
 ``./gradlew docs`` のビルド操作により Asciidoc から変換された文書は、``docs`` フォルダに HTML版(``index.html``)と PDF版（``index.pdf``）として格納されます。
 
-[caption=""]
-.PDF 文書
-image::pdf.png[pdf, pdfwidth=80%, width=80%]
-
-[caption=""]
+[caption="画像."]
 .HTML 文書
 image::html.png[html, pdfwidth=80%, width=80%]
+
+[caption="画像."]
+.PDF 文書
+image::pdf.png[pdf, pdfwidth=80%, width=80%]
 
 <<<<
 
@@ -220,7 +220,7 @@ build.gradle <7>
 <1> 文書を作成する起点となる Asciidoc 文書です。表紙となる文書のタイトルなどを記載し、その後から章ごとの Asciidoc 文書を ``include`` して構成していきます。
 <2> 文書設定をするためのファイルです。各文書から ``incliude`` します。
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
-<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。
+<4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] からドキュメントが参照できます。本ファイルの修正は ``.adoc`` 修正後のビルド時に反映することに注意してください。
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
 <6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
 <7> 文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。

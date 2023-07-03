@@ -192,6 +192,11 @@ example:
   padding: [$vertical_rhythm, $horizontal_rhythm, 0, $horizontal_rhythm]
 image:
   align: left
+  caption:
+    font_size: $base_font_size_small
+    # Ineffective
+    text_align: center
+    end: top
 prose:
   margin_top: $block_margin_top
   margin_bottom: $block_margin_bottom

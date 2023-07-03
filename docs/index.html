@@ -1263,15 +1263,15 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/pdf.png" alt="pdf" width="80%">
+<img src="Chapter02/images/html.png" alt="html" width="80%">
 </div>
-<div class="title">PDF 文書</div>
+<div class="title">画像.HTML 文書</div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/html.png" alt="html" width="80%">
+<img src="Chapter02/images/pdf.png" alt="pdf" width="80%">
 </div>
-<div class="title">HTML 文書</div>
+<div class="title">画像.PDF 文書</div>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
@@ -1279,7 +1279,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="277">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
 </div>
 </div>
 <div class="paragraph">
@@ -1287,7 +1287,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="179">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
 </div>
 </div>
 <div class="paragraph">
@@ -1439,7 +1439,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="content">
 <div class="title">クリップボード連携のシステムインターフェース</div>
 <div class="paragraph">
-<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も <code>.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。</p>
+<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も <code>~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。</p>
 </div>
 <div class="paragraph">
 <p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作しますので、動作をご理解の上設定してください。</p>
@@ -1466,7 +1466,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="291">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="375">
 </div>
 </div>
 <div class="listingblock">
@@ -1476,7 +1476,8 @@ src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
 src/docs/asciidoc/@style/asciidoctor.css <i class="conum" data-value="3"></i><b>(3)</b>
 src/docs/asciidoc/@style/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
 src/docs/asciidoc/@font/**/*.ttf <i class="conum" data-value="5"></i><b>(5)</b>
-src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
+src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b>
+build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1495,7 +1496,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。<a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc">Asciidoctor PDF Theming Guide</a> からドキュメントが参照できます。</td>
+<td>PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。<a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc">Asciidoctor PDF Theming Guide</a> からドキュメントが参照できます。本ファイルの修正は <code>.adoc</code> 修正後のビルド時に反映することに注意してください。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
@@ -1503,7 +1504,11 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。後述の <code>build.gradle</code> による画像パス解決のためフォルダ名は <code>Chapter{number}</code> とします。</td>
+<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。<code>build.gradle</code> による画像パス解決のためフォルダ名は <code>Chapter{number}</code> とします。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。</td>
 </tr>
 </table>
 </div>
@@ -1649,7 +1654,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 </div>
 </div>
 <div class="paragraph">
-<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適に執筆の助けになります。</p>
+<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。</p>
 </div>
 </div>
 </div>
@@ -2336,7 +2341,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="505">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
 </div>
 </div>
 <div class="sidebarblock">
@@ -2401,7 +2406,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="151">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2517,7 +2522,7 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 <p>ネットワーク構成図を PlantUML の nwdiag で記述します。</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>diag-nwdiag-network1.puml</code>（分かりやすいように実際のソースより簡略化）</div>
+<div class="title"><code>diag-nwdiag-network1.puml</code>（分かりやすいように <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml">実際のソース</a>より簡略化）</div>
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-nwdiag-network1, svg]
 ----
@@ -2565,7 +2570,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
 </div>
 </div>
 <div class="sidebarblock">
@@ -2626,7 +2631,7 @@ top to bottom direction
 'left to right direction
 HIDE_STEREOTYPE()
 
-AddContainerTag("user", , $bgColor="#5f9ea0", $shadowing="true")
+AddContainerTag("user", $bgColor="#5f9ea0", $shadowing="true")
 AddContainerTag("linux", $sprite="application_server", $bgColor="#dcdcdc", $fontColor="#000000", $borderColor="#696969", $sprite="file_server", $shadowing="true")
 
 Person(user_person, "ウェブサイト\n閲覧者", $sprite="users", $tags="user")
@@ -2674,7 +2679,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1106" height="705">
+<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1056" height="754">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2697,7 +2702,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 <p>デジタル回路などのタイミングチャートを PlantUML で記述します。</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>diag-timing-sample1.puml</code>（実際のソースより抜粋）</div>
+<div class="title"><code>diag-timing-sample1.puml</code>（分かりやすいよう <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml">実際のソース</a>より抜粋）</div>
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
@@ -2735,21 +2740,22 @@ A0 is high
 A1 is low
 
 @:write_start_1
-CS is low : WR/CS と同時に設定
+CS is low : WR/CS 同時に設定
 WR is low
+DB@40 &lt;-&gt; @60 : {10 us}
 
 @:write_end_1
 CS is high
 WR is high
 
-highlight 40 to 60 #Gold;line:DimGrey : 書き込み
+highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 @enduml
 ----</code></pre>
 </div>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="336">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="378">
 </div>
 </div>
 <hr>
@@ -2761,7 +2767,7 @@ highlight 40 to 60 #Gold;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="1034" height="466">
+<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="951" height="578">
 </div>
 </div>
 </div>
@@ -2798,7 +2804,7 @@ mindmapDiagram {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="406" height="265">
+<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="394" height="286">
 </div>
 </div>
 </div>
@@ -2807,7 +2813,7 @@ mindmapDiagram {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-07-01 21:10:06 +0900
+最終更新 2023-07-01 21:17:02 +0900
 </div>
 </div>
 </body>
