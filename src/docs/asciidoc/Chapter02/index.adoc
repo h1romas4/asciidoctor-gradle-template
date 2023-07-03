@@ -263,6 +263,8 @@ ____
 . ここで一度 ``./gradlew docs`` を行い、想定通りの HTML/PDF 文書が ``docs/`` 内に生成されていることを確認する。外観の修正点があれば、
 ** 文書形式の場合は ``src/docs/asciidoc/attribute.adoc`` を調整。
 ** PDF テーマの場合は ``src/docs/asciidoc/@style/pdf-theme.yml`` を調整。
++
+なお、``.adoc`` の変更がなく ``pdf-theme.yml`` のみ修正した場合は、ビルドが更新を検知できないため ``./gradlew clean`` を行うか ``.adoc`` に修正を加えた後に ``./gradlew docs`` を実行してください。
 ** HTML テーマの場合は ``src/docs/asciidoc/@style/asciidoctor.css`` を調整。
 
 === 執筆のイテレーション

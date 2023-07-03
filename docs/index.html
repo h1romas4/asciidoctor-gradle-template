@@ -1579,6 +1579,9 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </li>
 <li>
 <p>PDF テーマの場合は <code>src/docs/asciidoc/@style/pdf-theme.yml</code> を調整。</p>
+<div class="paragraph">
+<p>なお、<code>.adoc</code> の変更がなく <code>pdf-theme.yml</code> のみ修正した場合は、ビルドが更新を検知できないため <code>./gradlew clean</code> を行うか <code>.adoc</code> に修正を加えた後に <code>./gradlew docs</code> を実行してください。</p>
+</div>
 </li>
 <li>
 <p>HTML テーマの場合は <code>src/docs/asciidoc/@style/asciidoctor.css</code> を調整。</p>
@@ -2522,7 +2525,7 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 <p>ネットワーク構成図を PlantUML の nwdiag で記述します。</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>diag-nwdiag-network1.puml</code>（分かりやすいように <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml">実際のソース</a>より簡略化）</div>
+<div class="title"><code>diag-nwdiag-network1.puml</code> - <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml">ソース</a> より簡略化</div>
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-nwdiag-network1, svg]
 ----
@@ -2580,7 +2583,7 @@ nwdiag {
 <p>本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
 </div>
 <div class="paragraph">
-<p>これを解決するために、ワークアラウンドですが次のように拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
+<p>これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
@@ -2609,7 +2612,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="sect2">
 <h3 id="_システム構成図">4.6. システム構成図</h3>
 <div class="paragraph">
-<p>簡単なシステム構成図を PlantUML/C4 コンポーネントで記述します。</p>
+<p>簡単なシステム構成図を <a href="https://github.com/plantuml-stdlib/C4-PlantUML">PlantUML/C4 コンポーネント</a>で記述します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2702,7 +2705,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 <p>デジタル回路などのタイミングチャートを PlantUML で記述します。</p>
 </div>
 <div class="listingblock">
-<div class="title"><code>diag-timing-sample1.puml</code>（分かりやすいよう <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml">実際のソース</a>より抜粋）</div>
+<div class="title"><code>diag-timing-sample1.puml</code> - <a href="https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml">ソース</a> より抜粋</div>
 <div class="content">
 <pre class="rouge highlight"><code>[plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
@@ -2727,13 +2730,14 @@ concise "DataBus" as DB
 IC is high
 CS is high
 WR is high
-RD is low
+RD is high
 A0 is low
 A1 is low
 
 @:set_data_bus_1
 DB is "0xff"
 DB -&gt; WR@+20
+note bottom of DB : MCP23S17 GPIOB から
 
 @:set_addr_1
 A0 is high
@@ -2755,7 +2759,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="378">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="416">
 </div>
 </div>
 <hr>

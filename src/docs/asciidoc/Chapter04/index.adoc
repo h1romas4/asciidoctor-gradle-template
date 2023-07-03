@@ -203,7 +203,7 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 
 [source]
 [caption=""]
-.``diag-nwdiag-network1.puml``（分かりやすいように https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml[実際のソース]より簡略化）
+.``diag-nwdiag-network1.puml`` - https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-nwdiag-network1.puml[ソース] より簡略化
 -----
 [plantuml, diag-nwdiag-network1, svg]
 ----
@@ -249,7 +249,7 @@ nwdiag {
 ----
 -----
 
-[plantuml, diag-nwdiag-network1, svg, pdfwidth=95%]
+[plantuml, diag-nwdiag-network1, svg, pdfwidth=86%]
 [caption=""]
 ----
 include::puml/diag-nwdiag-network1.puml[]
@@ -259,7 +259,7 @@ include::puml/diag-nwdiag-network1.puml[]
 ****
 本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。
 
-これを解決するために、ワークアラウンドですが次のように拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。
+これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。
 
 [source, bash]
 [caption=""]
@@ -281,7 +281,7 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 
 === システム構成図
 
-簡単なシステム構成図を PlantUML/C4 コンポーネントで記述します。
+簡単なシステム構成図を https://github.com/plantuml-stdlib/C4-PlantUML[PlantUML/C4 コンポーネント]で記述します。
 
 [source]
 -----
@@ -308,7 +308,7 @@ TIP: 現在のところ ``$shadowing="true"`` 指定のドロップシャドー�
 
 [source]
 [caption=""]
-.``diag-timing-sample1.puml``（分かりやすいよう https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml[実際のソース]より抜粋）
+.``diag-timing-sample1.puml`` - https://github.com/h1romas4/asciidoctor-gradle-template/blob/master/src/docs/asciidoc/Chapter04/puml/diag-timing-sample1.puml[ソース] より抜粋
 -----
 [plantuml, diag-timing-sample1, svg, pdfwidth=90%, width=80%]
 ----
@@ -333,13 +333,14 @@ concise "DataBus" as DB
 IC is high
 CS is high
 WR is high
-RD is low
+RD is high
 A0 is low
 A1 is low
 
 @:set_data_bus_1
 DB is "0xff"
 DB -> WR@+20
+note bottom of DB : MCP23S17 GPIOB から
 
 @:set_addr_1
 A0 is high

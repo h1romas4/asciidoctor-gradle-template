@@ -3,6 +3,10 @@
 timingDiagram {
     LineColor gray
     FontSize 14
+    note {
+        FontSize 12
+        FontStyle normal
+    }
 }
 </style>
 'mode compact
@@ -30,13 +34,14 @@ concise "DataBus" as DB
 IC is high
 CS is high
 WR is high
-RD is low
+RD is high
 A0 is low
 A1 is low
 
 @:set_data_bus_1
 DB is "0xff"
 DB -> WR@+20
+note bottom of DB : MCP23S17 GPIOB から
 
 @:set_addr_1
 A0 is high
