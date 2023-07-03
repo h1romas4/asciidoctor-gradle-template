@@ -66,7 +66,7 @@ horizontal_rhythm: $base_line_height_length
 # QUESTION should vertical_spacing be block_spacing instead?
 vertical_spacing: $vertical_rhythm
 link:
-  font_color: 428bca
+  font_color: 3672a4
 button:
   font_family: GenShinGothic-P
 # literal is currently used for inline monospaced in prose and table cells
@@ -156,8 +156,8 @@ admonition:
 blockquote:
   font_color: $base_font_color
   font_size: $base_font_size
-  border_color: $link_font_color
-  border_width: 4
+  border_color: b0c4de
+  border_width: 3
   # FIXME disable negative padding bottom once margin collapsing is implemented
   padding: [0, $horizontal_rhythm, $block_margin_bottom * -0.75, $horizontal_rhythm + $blockquote_border_width / 2]
   cite:
