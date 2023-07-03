@@ -889,6 +889,7 @@ pre.rouge {
 <li><a href="#_文書のファイル構成">2.4. 文書のファイル構成</a></li>
 <li><a href="#_執筆の開始">2.5. 執筆の開始</a></li>
 <li><a href="#_執筆のイテレーション">2.6. 執筆のイテレーション</a></li>
+<li><a href="#_クラウドによる執筆">2.7. クラウドによる執筆</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -1683,6 +1684,76 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。</p>
 </div>
 </div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_クラウドによる執筆">2.7. クラウドによる執筆</h3>
+<div class="paragraph">
+<p>クラウド統合環境である <a href="https://www.gitpod.io/">Gitpod</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF文書の変換が可能です。サブマシンや iPad などタブレット端末向けに準備しておくと便利かもしれません。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://www.gitpod.io/" class="bare">https://www.gitpod.io/</a></p>
+</div>
+<div class="paragraph">
+<p>The developer platform for on-demand cloud development environments. Create software faster and more securely.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Gitpod
+</div>
+</div>
+<div class="paragraph">
+<p>実行にあたっての条件は次のとおりです。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>本手順のリポジトリ一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）</p>
+</li>
+<li>
+<p>2023-07 現在 Gitpod の無料枠は 50時間/月です。それ以上は利用料が必要です。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみると良いでしょう。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+Gitpod 向けの設定はリポジトリの <code>.gitpod.yml</code> ファイルで定義されています。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="nx">https</span><span class="p">:</span><span class="c1">//gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template </span><i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code><a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a></code> 部分を自身の GitHub リポジトリにしてウェブブラウザの URL 欄に貼り付けます。本手順の試用の場合はこのままでかまいません。</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-07-03-14-28-22.png" alt="2023 07 03 14 28 22">
+</div>
+<div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張</div>
+</div>
+<div class="paragraph">
+<p>起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。</p>
 </div>
 </div>
 </div>

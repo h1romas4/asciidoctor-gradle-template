@@ -292,3 +292,38 @@ image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
 
 Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆の助けになります。
 ****
+
+<<<<
+
+=== クラウドによる執筆
+
+クラウド統合環境である https://www.gitpod.io/[Gitpod] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF文書の変換が可能です。サブマシンや iPad などタブレット端末向けに準備しておくと便利かもしれません。
+
+[quote, Gitpod]
+____
+https://www.gitpod.io/
+
+The developer platform for on-demand cloud development environments. Create software faster and more securely.
+____
+
+実行にあたっての条件は次のとおりです。
+
+- 本手順のリポジトリ一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）
+- 2023-07 現在 Gitpod の無料枠は 50時間/月です。それ以上は利用料が必要です。
+
+準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみると良いでしょう。
+
+TIP: Gitpod 向けの設定はリポジトリの ``.gitpod.yml`` ファイルで定義されています。
+
+[source, javascript]
+----
+https://gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template <1>
+----
+
+<1> ``https://github.com/h1romas4/asciidoctor-gradle-template`` 部分を自身の GitHub リポジトリにしてウェブブラウザの URL 欄に貼り付けます。本手順の試用の場合はこのままでかまいません。
+
+[caption="画像."]
+.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張
+image::2023-07-03-14-28-22.png[pdfwidth=76%]
+
+起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。
