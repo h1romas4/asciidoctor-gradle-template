@@ -1,0 +1,27 @@
+// for preview ditaa
+@startditaa diag-plantuml-ditaa-sample1 -E
+'ditaa(--no-shadows, scale=0.7)
+0000H +-------------+ +-------------+ 0000H
+      | cGRE        | |             |
+      |             | |             |
+      |             | |             |
+      |             | |  BASIC ROM  |
+      |             | |             |
+      |             | |             |
+      |             | |             |
+8000H +- - - - - - -+ +-------------+ 8000H
+      |  Main RAM   |
+      |             |
+      |             |
+      |             |
+      |             |
+C000H +- - - - - - -+ +-------------+ C000H
+      |             | |             ++
+      |             | | VRAM 0,1,2  |++
+F3C8H +-------------+ | BANK SELECT |||
+      |  TEXT VRAM  | |             |||
+FFFFH +-------------+ ++------------+||
+                       ++------------+|
+                        +-------------+
+
+@endditaa

@@ -153,46 +153,36 @@ TIP: ditta 内で日本語を使う場合は、表示ずれを防ぐため半角
 [ditaa, diag-ditaa-block, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-+---------------------------------+
-|     baserCMS Plugin, Theme      |
-+----------------------------+    +
-| cPNK   baserCMS Core       |    |
-+----------------------------+----+
-|            CakePHP              |
-+---------------------------------+
-|             MySQL               |
-+---------------------------------+
-
-/-------------+-------------\
-|cRED RED     |cBLU BLU     |
-+-------------+-------------+
-|cGRE GRE     |cPNK PNK     |
-+-------------+-------------+
-|cBLK BLK     |cYEL YEL     |
-\-------------+-------------/
+include::ditaa/diag-ditaa-block.txt[]
 ----
+
 -----
 
 [ditaa, diag-ditaa-block, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
 [caption=""]
 ----
-+---------------------------------+
-|     baserCMS Plugin, Theme      |
-+----------------------------+    +
-| cPNK   baserCMS Core       |    |
-+----------------------------+----+
-|            CakePHP              |
-+---------------------------------+
-|             MySQL               |
-+---------------------------------+
+include::ditaa/diag-ditaa-block.txt[]
+----
 
-/-------------+-------------\
-|cRED RED     |cBLU BLU     |
-+-------------+-------------+
-|cGRE GRE     |cPNK PNK     |
-+-------------+-------------+
-|cBLK BLK     |cYEL YEL     |
-\-------------+-------------/
+<<<<
+
+=== メモリーマップ
+
+メモリーマップを ditaa 記法で記述します。
+
+[source]
+-----
+[ditaa, diag-ditaa-memory-map, svg, shadows=true, separation=false, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::ditaa/diag-ditaa-memory-map.txt[]
+----
+-----
+
+[ditaa, diag-ditaa-memory-map, svg, shadows=true, separation=false, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::ditaa/diag-ditaa-memory-map.txt[]
 ----
 
 <<<<

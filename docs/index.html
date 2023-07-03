@@ -916,10 +916,11 @@ pre.rouge {
 <li><a href="#_フォルダファイルツリー">4.2. フォルダ・ファイルツリー</a></li>
 <li><a href="#_数式">4.3. 数式</a></li>
 <li><a href="#_ブロック図">4.4. ブロック図</a></li>
-<li><a href="#_ネットワーク構成図">4.5. ネットワーク構成図</a></li>
-<li><a href="#_システム構成図">4.6. システム構成図</a></li>
-<li><a href="#_タイミングチャート">4.7. タイミングチャート</a></li>
-<li><a href="#_マインドマップ">4.8. マインドマップ</a></li>
+<li><a href="#_メモリーマップ">4.5. メモリーマップ</a></li>
+<li><a href="#_ネットワーク構成図">4.6. ネットワーク構成図</a></li>
+<li><a href="#_システム構成図">4.7. システム構成図</a></li>
+<li><a href="#_タイミングチャート">4.8. タイミングチャート</a></li>
+<li><a href="#_マインドマップ">4.9. マインドマップ</a></li>
 </ul>
 </li>
 </ul>
@@ -2614,7 +2615,49 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_ネットワーク構成図">4.5. ネットワーク構成図</h3>
+<h3 id="_メモリーマップ">4.5. メモリーマップ</h3>
+<div class="paragraph">
+<p>メモリーマップを ditaa 記法で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[ditaa, diag-ditaa-memory-map, svg, shadows=true, separation=false, pdfwidth=70%, width=70%]
+[caption=""]
+----
+0000H +-------------+ +-------------+ 0000H
+      | cGRE        | |             |
+      |             | |             |
+      |             | |             |
+      |             | |  BASIC ROM  |
+      |             | |             |
+      |             | |             |
+      |             | |             |
+8000H +- - - - - - -+ +-------------+ 8000H
+      |  Main RAM   |
+      |             |
+      |             |
+      |             |
+      |             |
+C000H +- - - - - - -+ +-------------+ C000H
+      |             | |             ++
+      |             | | VRAM 0,1,2  |++
+F3C8H +-------------+ | BANK SELECT |||
+      |  TEXT VRAM  | |             |||
+FFFFH +-------------+ ++------------+||
+                       ++------------+|
+                        +-------------+
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-ditaa-memory-map.svg" alt="diag ditaa memory map" width="70%" height="364">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_ネットワーク構成図">4.6. ネットワーク構成図</h3>
 <div class="paragraph">
 <p>ネットワーク構成図を PlantUML の nwdiag で記述します。</p>
 </div>
@@ -2704,7 +2747,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_システム構成図">4.6. システム構成図</h3>
+<h3 id="_システム構成図">4.7. システム構成図</h3>
 <div class="paragraph">
 <p>簡単なシステム構成図を <a href="https://github.com/plantuml-stdlib/C4-PlantUML">PlantUML/C4 コンポーネント</a>で記述します。</p>
 </div>
@@ -2794,7 +2837,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_タイミングチャート">4.7. タイミングチャート</h3>
+<h3 id="_タイミングチャート">4.8. タイミングチャート</h3>
 <div class="paragraph">
 <p>デジタル回路などのタイミングチャートを PlantUML で記述します。</p>
 </div>
@@ -2873,7 +2916,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_マインドマップ">4.8. マインドマップ</h3>
+<h3 id="_マインドマップ">4.9. マインドマップ</h3>
 <div class="paragraph">
 <p>PlantUML のマインドマップ記法を使い木構造を表現します。</p>
 </div>
