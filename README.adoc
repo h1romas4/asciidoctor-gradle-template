@@ -6,6 +6,10 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Java%20
 
 @see https://h1romas4.github.io/asciidoctor-gradle-template/index.pdf[AsciidoctorとGradleでつくる文書執筆環境(PDF version)]
 
+== Donate
+
+https://h1romas4.booth.pm/items/4906527[AsciidoctorとGradleでつくる文書執筆環境 [応援版]]
+
 == Try with Gitpod
 
 image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://gitpod.io/#https://github.com/h1romas4/asciidoctor-gradle-template]
