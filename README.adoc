@@ -6,18 +6,10 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Java%20
 
 @see https://h1romas4.github.io/asciidoctor-gradle-template/index.pdf[AsciidoctorとGradleでつくる文書執筆環境(PDF version)]
 
-== Donate
-
-https://h1romas4.booth.pm/items/4906527[AsciidoctorとGradleでつくる文書執筆環境 [応援版]]
-
 == Try with Gitpod
 
 image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://gitpod.io/#https://github.com/h1romas4/asciidoctor-gradle-template]
 
-== Include fonts
+== Donate
 
-* http://jikasei.me/font/genshin/[源真ゴシック] - https://raw.githubusercontent.com/h1romas4/asciidoctor-gradle-template/master/src/docs/asciidoc/%40font/genshin/SIL_Open_Font_License_1.1.txt[SIL Open Font License 1.1]
-* https://github.com/ButTaiwan/genyo-font[源様明朝] - https://github.com/ButTaiwan/genyo-font/blob/master/SIL_Open_Font_License_1.1.txt[SIL Open Font License 1.1]
-* https://github.com/edihbrandon/RictyDiminished[Ricty Diminished] - https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=ofl[SIL Open Font License 1.1]
-* https://github.com/googlefonts/morisawa-biz-ud-gothic[Morisawa BIZ UDGothic] - https://github.com/googlefonts/morisawa-biz-ud-gothic/blob/main/OFL.txt[SIL Open Font License 1.1]
-* https://github.com/googlefonts/morisawa-biz-ud-mincho[Morisawa BIZ UDMincho] - https://github.com/googlefonts/morisawa-biz-ud-mincho/blob/main/OFL.txt[SIL Open Font License 1.1]
+BOOTH https://h1romas4.booth.pm/items/4906527[AsciidoctorとGradleでつくる文書執筆環境 応援版]
