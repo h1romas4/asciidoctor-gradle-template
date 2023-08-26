@@ -2665,6 +2665,37 @@ ditta 内で日本語を使う場合は、表示ずれを防ぐため半角ス�
 </div>
 </div>
 <div style="page-break-after: always;"></div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>[ditaa, diag-ditaa-block-2, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+/--------------------------------\
+|                                |
+|          program.wasm          |
+|   ^                        |   |
++---|------------------------|---+
+|   |                        v   |
+|       WebAssembly Runtime      |
+|   ^                        |   |
++---|------------------------|---+
+|   |                        v   |
+|         clang/libc/SDK         |
+|                            |   |
++----------------------------|---+
+|                            v   |
+| cGRE       Hardware            |
+|                                |
+\--------------------------------/
+----</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/diag-ditaa-block-2.svg" alt="diag ditaa block 2" width="70%" height="294">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_メモリーマップ">4.5. メモリーマップ</h3>

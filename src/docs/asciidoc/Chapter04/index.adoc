@@ -166,6 +166,24 @@ include::ditaa/diag-ditaa-block.txt[]
 
 <<<<
 
+[source]
+-----
+[ditaa, diag-ditaa-block-2, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::ditaa/diag-ditaa-block-2.txt[]
+----
+
+-----
+
+[ditaa, diag-ditaa-block-2, svg, shadows=true, separation=true, pdfwidth=70%, width=70%]
+[caption=""]
+----
+include::ditaa/diag-ditaa-block-2.txt[]
+----
+
+<<<<
+
 === メモリーマップ
 
 メモリーマップを ditaa 記法で記述します。
