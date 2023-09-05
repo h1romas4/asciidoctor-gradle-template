@@ -4,14 +4,14 @@ on: [push]
 
 jobs:
   build:
-
-    runs-on: ubuntu-22.04
-
     strategy:
       matrix:
+        os: [ ubuntu-22.04, windows-latest ]
         java: [ '11', '17' ]
 
-    name: Java ${{ matrix.Java }} build test
+    runs-on: ${{ matrix.os }}
+
+    name: ${{ matrix.os }} - Java ${{ matrix.java }} build test
 
     steps:
     - uses: actions/checkout@v1
@@ -25,7 +25,8 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew docs
 
-    - name: Check
+    - name: Check (Linux)
+      if: startsWith(matrix.os, 'ubuntu')
       run: |
         find docs/ -type f -ls
         find docs/ -type f -ls | wc
@@ -34,3 +35,15 @@ jobs:
         # test asciidoctor
         file docs/index.pdf | grep PDF
         file docs/index.html | grep HTML
+
+    - name: Check (Windows)
+      if: startsWith(matrix.os, 'windows')
+      shell: pwsh
+      run: |
+        Get-ChildItem -Recurse -File -Name docs
+        $(Get-ChildItem -Recurse -File docs).Length
+        Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs
+        (Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0
+        # test asciidoctor
+        Get-ChildItem docs/index.pdf
+        Get-ChildItem docs/index.html
