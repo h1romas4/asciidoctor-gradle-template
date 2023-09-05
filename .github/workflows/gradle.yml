@@ -40,7 +40,7 @@ jobs:
       if: startsWith(matrix.os, 'windows')
       shell: pwsh
       run: |
-        Get-ChildItem -Recurse -File -Name docs
+        Get-ChildItem -Recurse -File docs
         $(Get-ChildItem -Recurse -File docs).Length
         # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
         Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs
