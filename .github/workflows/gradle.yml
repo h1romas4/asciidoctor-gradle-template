@@ -30,7 +30,7 @@ jobs:
       run: |
         find docs/ -type f -ls
         find docs/ -type f -ls | wc
-        # test asciidoctor-diagram
+        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
         find docs/ -type f -ls | egrep 'svg$'
         # test asciidoctor
         file docs/index.pdf | grep PDF
@@ -42,6 +42,7 @@ jobs:
       run: |
         Get-ChildItem -Recurse -File -Name docs
         $(Get-ChildItem -Recurse -File docs).Length
+        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
         Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs
         (Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0
         # test asciidoctor
