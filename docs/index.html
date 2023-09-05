@@ -958,24 +958,23 @@ Java 実行環境は、文書変換スクリプトを動作させる過程で唯
 </table>
 </div>
 <div class="paragraph">
-<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 8 以上のバージョンが表示されるようであれば既に準備は整っています。</p>
+<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。</p>
 </div>
 <div class="listingblock">
 <div class="title">macOS/Linux の場合</div>
 <div class="content">
-<pre class="rouge highlight"><code>$ java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (Zulu 8.33.0.1-macosx) (build 1.8.0_192-b01)
-OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)</code></pre>
+<pre class="rouge highlight"><code>$ openjdk 11.0.20.1 2023-08-24
+OpenJDK Runtime Environment Temurin-11.0.20.1+1 (build 11.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Windows の場合</div>
 <div class="content">
 <pre class="rouge highlight"><code>C:¥&gt; java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
-OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)</code></pre>
+openjdk version "11.0.20.1" 2023-08-24
+OpenJDK Runtime Environment Temurin-11.0.20.1+1 (build 11.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1020,14 +1019,16 @@ Available Java Versions for Linux 64bit
 ================================================================================
  Vendor        | Use | Version      | Dist    | Status     | Identifier
 --------------------------------------------------------------------------------
- Temurin       |     | 19           | tem     |            | 19-tem
+ Temurin       |     | 20.0.2       | tem     |            | 20.0.2-tem
+               |     | 20.0.1       | tem     |            | 20.0.1-tem
+               |     | 17.0.8       | tem     | installed  | 17.0.8-tem
+               |     | 17.0.8.1     | tem     |            | 17.0.8.1-tem
+               |     | 17.0.7       | tem     | installed  | 17.0.7-tem
                |     | 17.0.4       | tem     | local only | 17.0.4-tem
-               |     | 17.0.4.1     | tem     |            | 17.0.4.1-tem
-               |     | 11.0.16.1    | tem     |            | 11.0.16.1-tem
-               |     | 8.0.345      | tem     |            | 8.0.345-tem
-               |     | 8.0.342      | tem     |            | 8.0.342-tem
-               |     | 8.0.332      | tem     |            | 8.0.332-tem
-$ sdk install java 11.0.16.1-tem <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+               |     | 11.0.20      | tem     |            | 11.0.20-tem
+               | &gt;&gt;&gt; | 11.0.20.1    | tem     | installed  | 11.0.20.1-tem
+               |     | 11.0.19      | tem     | installed  | 11.0.19-tem
+$ sdk install java 11.0.20.1-tem <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1088,29 +1089,29 @@ $ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 <p>SDKMAN は主に Java エコシステムの開発環境をコマンドラインから簡単に導入・設定するためにつくたれた管理ソフトウェアです。</p>
 </div>
 <div class="paragraph">
-<p>たとえば簡単に各種 Java のバージョンを導入し切り替えることができます。</p>
+<p>たとえば次のように簡単に各種 Java のバージョンを導入し切り替えることができます。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. SDKMAN による Java のバージョン切り替え</div>
 <div class="content">
-<pre class="rouge highlight"><code>$ sdk install java 8.0.345-tem <i class="conum" data-value="1"></i><b>(1)</b>
-$ sdk default java 8.0.345-tem <i class="conum" data-value="2"></i><b>(2)</b>
-$ sdk default java 11.0.16.1-tem <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="rouge highlight"><code>$ sdk install java 11.0.20.1-tem <i class="conum" data-value="1"></i><b>(1)</b>
+$ sdk default java 11.0.20.1-tem <i class="conum" data-value="2"></i><b>(2)</b>
+$ sdk default java 17.0.4.1-tem <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Java 8 を導入</td>
+<td>Java 11 を導入</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Java 8 をデフォルトに設定</td>
+<td>Java 11 をデフォルトに設定</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Java 11 をデフォルトに戻す</td>
+<td>Java 17 をデフォルトに戻す</td>
 </tr>
 </table>
 </div>

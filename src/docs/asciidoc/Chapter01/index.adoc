@@ -6,16 +6,15 @@ include::../attribute.adoc[]
 
 NOTE: Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
 
-お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 8 以上のバージョンが表示されるようであれば既に準備は整っています。
+お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。
 
 [source]
 [caption=""]
 .macOS/Linux の場合
 ----
-$ java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (Zulu 8.33.0.1-macosx) (build 1.8.0_192-b01)
-OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)
+$ openjdk 11.0.20.1 2023-08-24
+OpenJDK Runtime Environment Temurin-11.0.20.1+1 (build 11.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)
 ----
 
 [source]
@@ -23,9 +22,9 @@ OpenJDK 64-Bit Server VM (Zulu 8.33.0.1-macosx) (build 25.192-b01, mixed mode)
 .Windows の場合
 ----
 C:¥> java -version
-openjdk version "1.8.0_192"
-OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_192-b12)
-OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.192-b12, mixed mode)
+openjdk version "11.0.20.1" 2023-08-24
+OpenJDK Runtime Environment Temurin-11.0.20.1+1 (build 11.0.20.1+1)
+OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)
 ----
 
 NOTE: 本文書では Java 11 を用いて解説します。また、ビルド時に若干ワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
@@ -55,14 +54,16 @@ Available Java Versions for Linux 64bit
 ================================================================================
  Vendor        | Use | Version      | Dist    | Status     | Identifier
 --------------------------------------------------------------------------------
- Temurin       |     | 19           | tem     |            | 19-tem
+ Temurin       |     | 20.0.2       | tem     |            | 20.0.2-tem
+               |     | 20.0.1       | tem     |            | 20.0.1-tem
+               |     | 17.0.8       | tem     | installed  | 17.0.8-tem
+               |     | 17.0.8.1     | tem     |            | 17.0.8.1-tem
+               |     | 17.0.7       | tem     | installed  | 17.0.7-tem
                |     | 17.0.4       | tem     | local only | 17.0.4-tem
-               |     | 17.0.4.1     | tem     |            | 17.0.4.1-tem
-               |     | 11.0.16.1    | tem     |            | 11.0.16.1-tem
-               |     | 8.0.345      | tem     |            | 8.0.345-tem
-               |     | 8.0.342      | tem     |            | 8.0.342-tem
-               |     | 8.0.332      | tem     |            | 8.0.332-tem
-$ sdk install java 11.0.16.1-tem # <4>
+               |     | 11.0.20      | tem     |            | 11.0.20-tem
+               | >>> | 11.0.20.1    | tem     | installed  | 11.0.20.1-tem
+               |     | 11.0.19      | tem     | installed  | 11.0.19-tem
+$ sdk install java 11.0.20.1-tem # <4>
 ----
 
 <1> SDKMAN を導入します。
@@ -93,20 +94,20 @@ $ source ~/.bashrc # <3>
 ****
 SDKMAN は主に Java エコシステムの開発環境をコマンドラインから簡単に導入・設定するためにつくたれた管理ソフトウェアです。
 
-たとえば簡単に各種 Java のバージョンを導入し切り替えることができます。
+たとえば次のように簡単に各種 Java のバージョンを導入し切り替えることができます。
 
 [source]
 [caption="手順. "]
 .SDKMAN による Java のバージョン切り替え
 ----
-$ sdk install java 8.0.345-tem # <1>
-$ sdk default java 8.0.345-tem # <2>
-$ sdk default java 11.0.16.1-tem # <3>
+$ sdk install java 11.0.20.1-tem # <1>
+$ sdk default java 11.0.20.1-tem # <2>
+$ sdk default java 17.0.4.1-tem # <3>
 ----
 
-<1> Java 8 を導入
-<2> Java 8 をデフォルトに設定
-<3> Java 11 をデフォルトに戻す
+<1> Java 11 を導入
+<2> Java 11 をデフォルトに設定
+<3> Java 17 をデフォルトに戻す
 ****
 
 // 改ページ

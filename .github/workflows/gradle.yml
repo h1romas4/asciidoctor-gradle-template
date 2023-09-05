@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ '8', '11', '17' ]
+        java: [ '11', '17' ]
 
     name: Java ${{ matrix.Java }} build test
 
@@ -28,5 +28,9 @@ jobs:
     - name: Check
       run: |
         find docs/ -type f -ls
+        find docs/ -type f -ls | wc
+        # test asciidoctor-diagram
+        find docs/ -type f -ls | egrep 'svg$'
+        # test asciidoctor
         file docs/index.pdf | grep PDF
         file docs/index.html | grep HTML
