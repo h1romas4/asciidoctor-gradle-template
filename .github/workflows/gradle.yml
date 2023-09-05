@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-22.04, windows-latest ]
+        os: [ ubuntu-22.04, windows-latest, macos-latest ]
         java: [ '11', '17' ]
 
     runs-on: ${{ matrix.os }}
@@ -25,8 +25,8 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew docs
 
-    - name: Check (Linux)
-      if: startsWith(matrix.os, 'ubuntu')
+    - name: Check (UNIX)
+      if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
       run: |
         find docs/ -type f -ls
         find docs/ -type f -ls | wc
