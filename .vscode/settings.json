@@ -7,6 +7,8 @@
         "**/.factorypath": true
     },
     "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css",
+    "editor.stickyScroll.defaultModel": "outlineModel",
+    "editor.stickyScroll.enabled": true,
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
