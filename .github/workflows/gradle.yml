@@ -53,5 +53,7 @@ jobs:
       if: startsWith(matrix.os, 'ubuntu')
       run: |
         sudo apt install poppler-utils
+        echo "# PDF information"
         pdfinfo docs/index.pdf
-        pdfinfo -url docs/index.pdf
+        echo "# URLs in document"
+        pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
