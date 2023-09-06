@@ -25,7 +25,7 @@ jobs:
       run: ./gradlew docs
 
     - name: Arcive
-      run: tar zcvf docs.tar.gz docs/
+      run: tar zcvf docs.tar.gz docs
 
     - uses: ncipollo/release-action@v1
       with:
