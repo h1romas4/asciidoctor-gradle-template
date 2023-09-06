@@ -48,3 +48,10 @@ jobs:
         # test asciidoctor
         Get-ChildItem docs/index.pdf
         Get-ChildItem docs/index.html
+
+    - name: Output PDF information
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        sudo apt install poppler-utils
+        pdfinfo docs/index.pdf
+        pdfinfo -url docs/index.pdf

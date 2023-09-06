@@ -14,6 +14,10 @@ endif::[]
 endif::[]
 
 // 文書属性設定（HTML版、PDF版標準表紙及び PDF プロパティに使用される）
+// Title:    AsciidoctorとGradleでつくる文書執筆環境
+// Author:   https://github.com/h1romas4/asciidoctor-gradle-template
+// Creator:  Asciidoctor PDF 1.6.2, based on Prawn 2.4.0
+// Producer: https://github.com/h1romas4/asciidoctor-gradle-template
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
 2023-09-06
