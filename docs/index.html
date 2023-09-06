@@ -1907,7 +1907,7 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
   <span class="na">build</span><span class="pi">:</span>
     <span class="na">strategy</span><span class="pi">:</span>
       <span class="na">matrix</span><span class="pi">:</span>
-        <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">ubuntu-22.04</span><span class="pi">,</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="na">java</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">11'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">17'</span> <span class="pi">]</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -1932,9 +1932,6 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <td class="content">
 <div class="paragraph">
 <p>Windows と Java 11 の選択は広く使われており、よくテストされています。</p>
-</div>
-<div class="paragraph">
-<p>なお、GitHub Actions の Ubuntu コンテナを使うとダイアログ記法の SVG で日本語フォントが重なって出力される不具合を確認されています。このためいったん本機能からはサポートをドロップしています。（WSL2 を含め通常の日本語設定されたデスクトップ Ubuntu ではこの問題は発生せず、原因を調査中です）</p>
 </div>
 </td>
 </tr>
