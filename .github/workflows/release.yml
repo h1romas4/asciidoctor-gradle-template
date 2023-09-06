@@ -1,9 +1,12 @@
-name: Java Release CI
+name: Release
 
 on:
   push:
     tags:
     - '*'
+
+permissions:
+  contents: write
 
 jobs:
   build:
