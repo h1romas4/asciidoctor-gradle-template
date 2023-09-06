@@ -49,7 +49,7 @@ jobs:
           java-version: ${{ matrix.java }}
 
       - name: Build with Gradle (Ubuntu)
-        if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
+        if: startsWith(matrix.os, 'ubuntu')
         run: |
           export LANG=ja_JP.UTF-8
           fc-match sans-serif | grep NotoSansCJK
