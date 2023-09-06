@@ -397,11 +397,15 @@ https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg
 image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]
 ```
 
+image::2023-09-06-10-41-11.png[pdfwidth=60%]
+
 #### `.github/workflows/release.yml`
 
-git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と `docs.tar.gz` を掲載する GitHub Actions 定義です。
+git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と GitHub Actions 上で変換処理された `docs` 配下のファイル `docs.tar.gz` を掲載する GitHub Actions 定義です。
 
-頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。版管理に活用してみてください。
+頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。文書の版管理に活用してみてください。
+
+- - -
 
 .VS Code の Zen Mode
 ****
