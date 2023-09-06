@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-22.04, windows-latest, macos-latest ]
+        os: [ windows-latest, macos-latest ]
         java: [ '11', '17' ]
 
     runs-on: ${{ matrix.os }}
@@ -61,10 +61,10 @@ jobs:
           .\gradlew docs
 
       - name: Arcive
-        run: tar zcvf release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
+        run: tar zcvf release-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
+          artifacts: "release-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}

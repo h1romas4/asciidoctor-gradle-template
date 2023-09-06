@@ -946,18 +946,6 @@ pre.rouge {
 <div class="paragraph">
 <p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。</p>
 </div>
@@ -990,6 +978,26 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 </td>
 </tr>
 </table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Graphviz の導入</div>
+<div class="paragraph">
+<p>macOS 及び Linux の場合で、後述する PlantUML 以外のダイアグラム記法を使う場合は Graphviz の導入が必要です。この文書のサンプルソースでも使っている部分が一部ありますので、ワーニングなしに本文書の完全なファイルを生成したい場合は次のようにインストールしてください。Windows の場合、この操作は不要です。</p>
+</div>
+<div class="listingblock">
+<div class="title">macOS</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">brew <span class="nb">install </span>graphviz</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Ubuntu</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nb">sudo </span>apt <span class="nb">install </span>graphviz</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">
@@ -1082,7 +1090,7 @@ $ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </table>
 </div>
 <div class="paragraph">
-<p>これで準備完了です。</p>
+<p>以上で準備完了です。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1177,7 +1185,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </table>
 </div>
 <div class="paragraph">
-<p>これで準備完了です。</p>
+<p>以上で準備完了です。</p>
 </div>
 </div>
 </div>
@@ -1318,7 +1326,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="277">
 </div>
 </div>
 <div class="paragraph">
@@ -1326,7 +1334,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="179">
 </div>
 </div>
 <div class="paragraph">
@@ -1505,7 +1513,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="375">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="305">
 </div>
 </div>
 <div class="listingblock">
@@ -1888,12 +1896,53 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <div class="sect3">
 <h4 id="_githubworkflowsrelease_yml">2.8.2. <code>.github/workflows/release.yml</code></h4>
 <div class="paragraph">
-<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と GitHub Actions 上で変換処理された <code>docs</code> 配下のファイル <code>docs.tar.gz</code> を掲載する GitHub Actions 定義です。</p>
+<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>release-by-*.tar.gz</code> ファイルとして掲載する GitHub Actions 定義です。</p>
 </div>
 <div class="paragraph">
-<p>頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。文書の版管理に活用してみてください。</p>
+<p><code>release-by-*</code> の部分にはビルドした環境名が <code>release-by-windows-latest-java-11</code> や <code>release-by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境で十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ると良いでしょう。</p>
 </div>
-<hr>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml"><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">strategy</span><span class="pi">:</span>
+      <span class="na">matrix</span><span class="pi">:</span>
+        <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="na">java</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">11'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">17'</span> <span class="pi">]</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>os: [ windows-latest ]</code> とすると Windows のみでビルドされます。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>java: [ '11' ]</code> とすると Java 11 のみでビルドされます。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Windows と Java 11 の選択は広く使われており、よくテストされています。</p>
+</div>
+<div class="paragraph">
+<p>なお、GitHub Actions の Ubuntu コンテナを使うとダイアログ記法の SVG で日本語フォントが重なって出力される不具合を確認されています。このためいったん本機能からはサポートをドロップしています。（WSL2 を含め通常の日本語設定されたデスクトップ Ubuntu ではこの問題は発生せず、原因を調査中です）</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。文書の版管理に活用してみてください。</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">VS Code の Zen Mode</div>
@@ -2611,7 +2660,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="505">
 </div>
 </div>
 <div class="sidebarblock">
@@ -2676,7 +2725,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="151">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -2913,7 +2962,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
 </div>
 </div>
 <div class="sidebarblock">
@@ -3022,7 +3071,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1056" height="754">
+<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1107" height="705">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -3099,7 +3148,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="416">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="394">
 </div>
 </div>
 <hr>
@@ -3111,7 +3160,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="951" height="578">
+<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="1034" height="466">
 </div>
 </div>
 </div>
@@ -3148,7 +3197,7 @@ mindmapDiagram {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="394" height="286">
+<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="406" height="265">
 </div>
 </div>
 </div>

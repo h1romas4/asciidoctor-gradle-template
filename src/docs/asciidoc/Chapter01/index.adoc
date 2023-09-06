@@ -4,8 +4,6 @@ include::../attribute.adoc[]
 
 本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
 
-NOTE: Java 実行環境は、文書変換スクリプトを動作させる過程で唯一 OS 環境に手動で導入する必要があるプロダクトです。それ以外のものは Gradle によりプロジェクトとして独立した形で自動的に導入されます。
-
 お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。
 
 [source]
@@ -29,6 +27,26 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)
 ----
 
 NOTE: 本文書では Java 11 を用いて解説します。また、ビルド時に若干ワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
+
+.Graphviz の導入
+****
+macOS 及び Linux の場合で、後述する PlantUML 以外のダイアグラム記法を使う場合は Graphviz の導入が必要です。この文書のサンプルソースでも使っている部分が一部ありますので、ワーニングなしに本文書の完全なファイルを生成したい場合は次のようにインストールしてください。Windows の場合、この操作は不要です。
+
+[source, bash]
+[caption=""]
+.macOS
+----
+brew install graphviz
+----
+
+[source, bash]
+[caption=""]
+.Ubuntu
+----
+sudo apt install graphviz
+----
+
+****
 
 <<<
 
@@ -89,7 +107,7 @@ $ source ~/.bashrc # <3>
 <2> 本ラインをファイルの最下部に追加し vi を保存終了します。
 <3> 設定を適用します。
 
-これで準備完了です。
+以上で準備完了です。
 
 .SDKMAN について
 ****
@@ -141,4 +159,4 @@ image::windows-02.png[環境変数, pdfwidth=60%, width=60%]
 
 TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 
-これで準備完了です。
+以上で準備完了です。
