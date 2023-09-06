@@ -10,24 +10,45 @@ permissions:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [ ubuntu-22.04, windows-latest, macos-latest ]
+        java: [ '11', '17' ]
 
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+
+    name: ${{ matrix.os }} - Java ${{ matrix.java }} release
 
     steps:
-    - uses: actions/checkout@v1
+      - uses: actions/checkout@v1
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
+      - name: Setup Environment (Ubuntu)
+        if: startsWith(matrix.os, 'ubuntu')
+        run: |
+          sudo apt -y install language-pack-ja
+          sudo update-locale LANG=ja_JP.UTF8
+          sudo apt install graphviz
+          # for GitHub Actions test
+          sudo apt install poppler-utils
 
-    - name: Build with Gradle
-      run: ./gradlew docs
+      - name: Setup Environment (macOS)
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          brew install graphviz
 
-    - name: Arcive
-      run: tar zcvf docs.tar.gz docs
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java }}
 
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "docs.tar.gz"
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build with Gradle
+        run: ./gradlew docs
+
+      - name: Arcive
+        run: tar zcvf release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
+          token: ${{ secrets.GITHUB_TOKEN }}
