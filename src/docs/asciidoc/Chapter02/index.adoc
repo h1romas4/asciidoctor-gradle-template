@@ -334,6 +334,75 @@ image::2023-07-03-14-28-22.png[pdfwidth=76%]
 
 起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。
 
+<<<
+
+=== GitHub Actions によるビルド
+
+本手順のリポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書の変換テスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
+
+これらのファイルを文書ファイルとともにお使いの GitHub にコミットすることで、変換テストとリリースが git の操作を契機として GitHub サーバ上で自動的に動作します。
+
+#### `.github/workflows/gradle.yml`
+
+git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
+
+環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果を知ることができます。自分の執筆環境以外のさまざまな環境で、変換処理が実行できることへの確信を得ることができるはずです。
+
+検査に関しては、文書が生成されたかを基本として確認を行い、文書の内容自体に対しては行われません。
+
+- HTML、PDF 文書ファイルが存在するか。
+- 後述の asciidoctor-diagram による .svg 画像生成が動作したか。
+- GitHub Actions ログへのファイル数、一覧の出力。
+
+検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合は Linux、macOS ではシェルスクリプトで、Windows では PowerShell の記述でカスタマイズしてください。
+
+.`.github/workflows/gradle.yml`
+[caption=""]
+```yml
+    - name: Check (UNIX)
+      if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
+      run: |
+        find docs/ -type f -ls
+        find docs/ -type f -ls | wc
+        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
+        find docs/ -type f -ls | egrep 'svg$' # <1>
+        # test asciidoctor
+        file docs/index.pdf | grep PDF
+        file docs/index.html | grep HTML
+
+    - name: Check (Windows)
+      if: startsWith(matrix.os, 'windows')
+      shell: pwsh
+      run: |
+        Get-ChildItem -Recurse -File docs
+        $(Get-ChildItem -Recurse -File docs).Length
+        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
+        Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs # <1>
+        (Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0 # <1>
+        # test asciidoctor
+        Get-ChildItem docs/index.pdf
+        Get-ChildItem docs/index.html
+```
+<1> asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中にない場合はチェックを削除するか、コメントアウトしてください。
+
+なお、文書の変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
+
+```
+https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg
+```
+
+具体的には、本手順のリポジトリの GitHub 向けの README.adoc は次のようになっています。
+
+```
+image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]
+```
+
+#### `.github/workflows/release.yml`
+
+git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と `docs.tar.gz` を掲載する GitHub Actions 定義です。
+
+頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。版管理に活用してみてください。
+
 .VS Code の Zen Mode
 ****
 VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは btn:[Ctrl + k, z] でモードが遷移し、再度同じ操作で元の画面に戻ります。

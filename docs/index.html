@@ -901,6 +901,7 @@ pre.rouge {
 <li><a href="#_執筆の開始">2.5. 執筆の開始</a></li>
 <li><a href="#_執筆のイテレーション">2.6. 執筆のイテレーション</a></li>
 <li><a href="#_クラウドによる執筆">2.7. クラウドによる執筆</a></li>
+<li><a href="#_github_actions_によるビルド">2.8. GitHub Actions によるビルド</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -963,7 +964,8 @@ Java 実行環境は、文書変換スクリプトを動作させる過程で唯
 <div class="listingblock">
 <div class="title">macOS/Linux の場合</div>
 <div class="content">
-<pre class="rouge highlight"><code>$ openjdk 11.0.20.1 2023-08-24
+<pre class="rouge highlight"><code>$ java -version
+openjdk 11.0.20.1 2023-08-24
 OpenJDK Runtime Environment Temurin-11.0.20.1+1 (build 11.0.20.1+1)
 OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</code></pre>
 </div>
@@ -1788,6 +1790,104 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <div class="paragraph">
 <p>起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。</p>
 </div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_github_actions_によるビルド">2.8. GitHub Actions によるビルド</h3>
+<div class="paragraph">
+<p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書の変換テスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
+</div>
+<div class="paragraph">
+<p>これらのファイルを文書ファイルとともにお使いの GitHub にコミットすることで、変換テストとリリースが git の操作を契機として GitHub サーバ上で自動的に動作します。</p>
+</div>
+<div class="sect3">
+<h4 id="_githubworkflowsgradle_yml">2.8.1. <code>.github/workflows/gradle.yml</code></h4>
+<div class="paragraph">
+<p>git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
+</div>
+<div class="paragraph">
+<p>環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果を知ることができます。自分の執筆環境以外のさまざまな環境で、変換処理が実行できることへの確信を得ることができるはずです。</p>
+</div>
+<div class="paragraph">
+<p>検査に関しては、文書が生成されたかを基本として確認を行い、文書の内容自体に対しては行われません。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HTML、PDF 文書ファイルが存在するか。</p>
+</li>
+<li>
+<p>後述の asciidoctor-diagram による .svg 画像生成が動作したか。</p>
+</li>
+<li>
+<p>GitHub Actions ログへのファイル数、一覧の出力。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合は Linux、macOS ではシェルスクリプトで、Windows では PowerShell の記述でカスタマイズしてください。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>.github/workflows/gradle.yml</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml">    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check (UNIX)</span>
+      <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">find docs/ -type f -ls</span>
+        <span class="s">find docs/ -type f -ls | wc</span>
+        <span class="s"># test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)</span>
+        <span class="s">find docs/ -type f -ls | egrep 'svg$' </span><i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="s"># test asciidoctor</span>
+        <span class="s">file docs/index.pdf | grep PDF</span>
+        <span class="s">file docs/index.html | grep HTML</span>
+
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check (Windows)</span>
+      <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'windows')</span>
+      <span class="na">shell</span><span class="pi">:</span> <span class="s">pwsh</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Get-ChildItem -Recurse -File docs</span>
+        <span class="s">$(Get-ChildItem -Recurse -File docs).Length</span>
+        <span class="s"># test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)</span>
+        <span class="s">Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs </span><i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="s">(Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0 </span><i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="s"># test asciidoctor</span>
+        <span class="s">Get-ChildItem docs/index.pdf</span>
+        <span class="s">Get-ChildItem docs/index.html</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中にない場合はチェックを削除するか、コメントアウトしてください。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>なお、文書の変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>具体的には、本手順のリポジトリの GitHub 向けの README.adoc は次のようになっています。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_githubworkflowsrelease_yml">2.8.2. <code>.github/workflows/release.yml</code></h4>
+<div class="paragraph">
+<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と <code>docs.tar.gz</code> を掲載する GitHub Actions 定義です。</p>
+</div>
+<div class="paragraph">
+<p>頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。版管理に活用してみてください。</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">VS Code の Zen Mode</div>
@@ -1801,6 +1901,7 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </div>
 <div class="paragraph">
 <p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆のユーティリティとなります。</p>
+</div>
 </div>
 </div>
 </div>

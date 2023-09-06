@@ -1,4 +1,4 @@
-image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Java%20CI/badge.svg[]
+image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]
 
 = asciidoctor-gradle-template
 
