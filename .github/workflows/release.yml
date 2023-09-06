@@ -26,7 +26,8 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: |
           sudo apt update
-          sudo apt install language-pack-ja
+          sudo apt upgrade
+          sudo apt install language-pack-ja-base language-pack-ja
           sudo update-locale LANG=ja_JP.UTF8
           sudo apt install graphviz
           # for GitHub Actions test
@@ -43,8 +44,21 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
 
-      - name: Build with Gradle
-        run: ./gradlew docs
+      - name: Build with Gradle (Ubuntu)
+        if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
+        run: |
+          export LANG=ja_JP.UTF-8
+          ./gradlew docs
+
+      - name: Build with Gradle (macOS)
+        if: startsWith(matrix.os, 'macos')
+        run: |
+          ./gradlew docs
+
+      - name: Build with Gradle (Windows)
+        if: startsWith(matrix.os, 'windows')
+        run: |
+          .\gradlew docs
 
       - name: Arcive
         run: tar zcvf release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
