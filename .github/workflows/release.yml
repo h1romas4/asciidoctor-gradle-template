@@ -25,7 +25,8 @@ jobs:
       - name: Setup Environment (Ubuntu)
         if: startsWith(matrix.os, 'ubuntu')
         run: |
-          sudo apt -y install language-pack-ja
+          sudo apt update
+          sudo apt install language-pack-ja
           sudo update-locale LANG=ja_JP.UTF8
           sudo apt install graphviz
           # for GitHub Actions test
@@ -51,4 +52,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "release-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
+          allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}

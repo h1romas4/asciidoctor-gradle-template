@@ -19,7 +19,8 @@ jobs:
     - name: Setup Environment (Ubuntu)
       if: startsWith(matrix.os, 'ubuntu')
       run: |
-        sudo apt -y install language-pack-ja
+        sudo apt update
+        sudo apt install language-pack-ja
         sudo update-locale LANG=ja_JP.UTF8
         sudo apt install graphviz
         # for GitHub Actions test
