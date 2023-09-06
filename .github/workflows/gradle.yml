@@ -16,6 +16,20 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
+    - name: Setup Environment (Ubuntu)
+      if: startsWith(matrix.os, 'ubuntu')
+      run: |
+        sudo apt -y install language-pack-ja
+        sudo update-locale LANG=ja_JP.UTF8
+        sudo apt install graphviz
+        # for GitHub Actions test
+        sudo apt install poppler-utils
+
+    - name: Setup Environment (macOS)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        brew install graphviz
+
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
@@ -52,7 +66,6 @@ jobs:
     - name: Output PDF information
       if: startsWith(matrix.os, 'ubuntu')
       run: |
-        sudo apt install poppler-utils
         echo "# PDF information"
         pdfinfo docs/index.pdf
         echo "# URLs in document"
