@@ -65,11 +65,26 @@ jobs:
         run: |
           .\gradlew docs
 
+      - name: Set archive attribute
+        id: get-attr
+        shell: bash
+        run: |
+          # document filename
+          echo "doc-name=asciidoctor-gradle-book" >> $GITHUB_OUTPUT
+          # document version from git tag
+          echo "version=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
       - name: Arcive
-        run: tar zcvf release-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
+        shell: bash
+        run: |
+          DOCNAME=${{ steps.get-attr.outputs.doc-name }}
+          VERSION=${{ steps.get-attr.outputs.version }}
+          mv docs/index.pdf docs/${DOCNAME}-${VERSION}.pdf
+          mv docs/index.html docs/${DOCNAME}-${VERSION}.html
+          tar zcvf ${DOCNAME}-${VERSION}-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz docs
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "release-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
+          artifacts: "${{ steps.get-attr.outputs.doc-name }}-${{ steps.get-attr.outputs.version }}-by-${{ matrix.os }}-java-${{ matrix.java }}.tar.gz"
           allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}

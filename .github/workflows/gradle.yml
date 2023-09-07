@@ -59,8 +59,8 @@ jobs:
       run: |
         .\gradlew docs
 
-    - name: Check (UNIX)
-      if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
+    - name: Check
+      shell: bash
       run: |
         find docs/ -type f -ls
         find docs/ -type f -ls | wc
@@ -69,19 +69,6 @@ jobs:
         # test asciidoctor
         file docs/index.pdf | grep PDF
         file docs/index.html | grep HTML
-
-    - name: Check (Windows)
-      if: startsWith(matrix.os, 'windows')
-      shell: pwsh
-      run: |
-        Get-ChildItem -Recurse -File docs
-        $(Get-ChildItem -Recurse -File docs).Length
-        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
-        Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs
-        (Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0
-        # test asciidoctor
-        Get-ChildItem docs/index.pdf
-        Get-ChildItem docs/index.html
 
     - name: Output PDF information
       if: startsWith(matrix.os, 'ubuntu')
