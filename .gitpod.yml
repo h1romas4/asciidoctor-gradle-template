@@ -2,11 +2,11 @@ image: gitpod/workspace-full
 tasks:
   - name: Setup
     before: |
-      sudo apt update
-      sudo apt upgrade
-      sudo apt install language-pack-ja graphviz fonts-noto* language-selector-common
+      sudo apt-get -y update
+      sudo apt-get -y upgrade
+      sudo apt-get -y install language-pack-ja graphviz fonts-noto* language-selector-common
       sudo update-locale LANG=ja_JP.UTF8
-      sudo echo 'export LANG=ja_JP.UTF-8' >> /etc/bash.bashrc
+      echo 'export LANG=ja_JP.UTF-8' >> ~/.bashrc
       export LANG=ja_JP.UTF-8
       fc-cache -f
       fc-match sans-serif
