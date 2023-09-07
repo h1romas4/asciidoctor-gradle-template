@@ -25,17 +25,17 @@ jobs:
       - name: Setup Environment (Ubuntu)
         if: startsWith(matrix.os, 'ubuntu')
         run: |
-          sudo apt update
-          sudo apt upgrade
-          sudo apt install language-pack-ja-base language-pack-ja
+          sudo apt-get -y update
+          sudo apt-get -y upgrade
+          sudo apt-get -y install language-pack-ja-base language-pack-ja
           sudo update-locale LANG=ja_JP.UTF8
-          sudo apt install fonts-noto* language-selector-common
+          sudo apt-get -y install fonts-noto* language-selector-common
           export LANG=ja_JP.UTF-8
           fc-cache -f
-          fc-match sans-serif | grep NotoSansCJK
-          sudo apt install graphviz
+          fc-match Dialog | grep "Noto Sans CJK JP"
+          sudo apt-get -y install graphviz
           # for GitHub Actions test
-          sudo apt install poppler-utils
+          sudo apt-get -y install poppler-utils
 
       - name: Setup Environment (macOS)
         if: startsWith(matrix.os, 'macos')
@@ -52,7 +52,7 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: |
           export LANG=ja_JP.UTF-8
-          fc-match sans-serif | grep NotoSansCJK
+          fc-match Dialog | grep "Noto Sans CJK JP"
           ./gradlew docs
 
       - name: Build with Gradle (macOS)
