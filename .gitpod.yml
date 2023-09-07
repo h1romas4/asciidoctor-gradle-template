@@ -1,6 +1,6 @@
 image: gitpod/workspace-full
 tasks:
-  init: |
+  - init: |
     sudo apt update
     sudo apt upgrade
     sudo apt install language-pack-ja graphviz fonts-noto* language-selector-common
