@@ -1,6 +1,6 @@
 image: gitpod/workspace-full
 tasks:
-  - name: Setup
+  - name: Setup Build Container
     before: |
       sudo apt-get -y update
       sudo apt-get -y upgrade
@@ -9,7 +9,17 @@ tasks:
       echo 'export LANG=ja_JP.UTF-8' >> ~/.bashrc
       export LANG=ja_JP.UTF-8
       fc-cache -f
-      fc-match Dialog | grep "Noto Sans CJK JP"
+      echo "#"
+      echo "# asciidoctor-gradle-template"
+      echo "#"
+      echo "# Setup Done! Build document here. (./gradlew docs)"
+      echo "#"
+      echo "# It will build correctly, if the following conditions 'OK'"
+      echo "#"
+      echo "#  Java(openjdk): $(java -version 2>&1 | grep openjdk >/dev/null && echo "OK")"
+      echo "#  Dialog Font(Noto Sans CJK JP): $(fc-match Dialog | grep 'Noto Sans CJK JP' >/dev/null && echo "OK")"
+      echo "#  LANG(ja_JP.UTF-8): $(echo $LANG | grep 'ja_JP.UTF-8' >/dev/null && echo "OK")"
+      echo "#"
 vscode:
   extensions:
     - asciidoctor.asciidoctor-vscode
