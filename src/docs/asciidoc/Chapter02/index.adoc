@@ -340,7 +340,12 @@ image::2023-07-03-14-28-22.png[pdfwidth=76%]
 
 本手順のリポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書の変換テスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
 
-これらのファイルを文書ファイルとともにお使いの GitHub にコミットすることで、変換テストとリリースが git の操作を契機として GitHub サーバ上で自動的に動作します。
+これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。
+
+[NOTE]
+====
+本項「GitHub Actions によるビルド」機能の利用は必須ではありません。大人数で継続的に執筆を行いたいケースなどに採用してみてください。HTML/PDF 変換処理の自動化やファイルリリースの版数管理で大きな力を発揮することでしょう。
+====
 
 #### `.github/workflows/gradle.yml`
 
@@ -354,38 +359,39 @@ git による main ブランチへの push 操作から自動的に動作する�
 - 後述の asciidoctor-diagram による .svg 画像生成が動作したか。
 - GitHub Actions ログへのファイル数、一覧の出力。
 
-検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合は Linux、macOS ではシェルスクリプトで、Windows では PowerShell の記述でカスタマイズしてください。
+検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合はシェルスクリプトでカスタマイズしてください。
 
 .`.github/workflows/gradle.yml`
 [caption=""]
 ```yml
-    - name: Check (UNIX)
-      if: startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')
-      run: |
-        find docs/ -type f -ls
-        find docs/ -type f -ls | wc
-        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
-        find docs/ -type f -ls | egrep 'svg$' # <1>
-        # test asciidoctor
-        file docs/index.pdf | grep PDF
-        file docs/index.html | grep HTML
-
-    - name: Check (Windows)
-      if: startsWith(matrix.os, 'windows')
-      shell: pwsh
-      run: |
-        Get-ChildItem -Recurse -File docs
-        $(Get-ChildItem -Recurse -File docs).Length
-        # test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)
-        Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs # <1>
-        (Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0 # <1>
-        # test asciidoctor
-        Get-ChildItem docs/index.pdf
-        Get-ChildItem docs/index.html
+- name: Check
+  shell: bash
+  run: |
+    find docs/ -type f -ls
+    find docs/ -type f -ls | wc
+    # test asciidoctor-diagram (If you are not using diagram, comment out the next)
+    find docs/ -type f -ls | egrep 'svg$' # <1>
+    # test asciidoctor
+    file docs/index.pdf | grep PDF
+    file docs/index.html | grep HTML
 ```
-<1> asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中にない場合はチェックを削除するか、コメントアウトしてください。
+<1> asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中で使用していない場合は削除するか、コメントアウトしてください。
 
-なお、文書の変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
+また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。
+
+NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
+
+```yml
+- name: Output PDF information
+  if: startsWith(matrix.os, 'ubuntu')
+  run: |
+    echo "# PDF information"
+    pdfinfo docs/index.pdf
+    echo "# URLs in document"
+    pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
+```
+
+なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
 
 ```
 https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg
@@ -401,9 +407,9 @@ image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
 #### `.github/workflows/release.yml`
 
-git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と GitHub Actions 上で変換処理された `docs` 配下のファイルを `release-by-*.tar.gz` ファイルとして掲載する GitHub Actions 定義です。
+git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `{doc-name}-{verison}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
 
-`release-by-*` の部分にはビルドした環境名が `release-by-windows-latest-java-11` や `release-by-macos-latest-java-17` のような形で付与されます。通常はひとつの環境で十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ると良いでしょう。
+ファイル名の `by-*` 以下の部分にはビルドした環境名が `by-windows-latest-java-11` や `by-macos-latest-java-17` のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。
 
 [source, yml]
 [caption=""]
@@ -421,10 +427,29 @@ jobs:
 
 [NOTE]
 ====
-Windows と Java 11 の選択は広く使われており、よくテストされています。
+設定する OS や Java のバージョンは、メインで使われている執筆環境と合わせると良いでしょう。
+
+本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11 | 17 の計 6 環境で文書のビルドと確認を実施しています。
 ====
 
-本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。文書の版管理に活用してみてください。
+リリースされる文書のファイル名やバージョンについては、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。
+
+[source, yml]
+[caption=""]
+----
+- name: Set archive attribute
+  id: get-attr
+  shell: bash
+  run: |
+    # document filename
+    echo "doc-name=asciidoctor-gradle-book" >> $GITHUB_OUTPUT # <1>
+    # document version from git tag
+    echo "version=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT # <2>
+----
+<1> `asciidoctor-gradle-book` 部分が出力されるファイル名に前置されます。
+<2> Git のタグ名がそのままバージョン名となります。
+
+本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で永続化できます。文書の版管理にご活用ください。
 
 .VS Code の Zen Mode
 ****

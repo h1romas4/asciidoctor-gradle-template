@@ -1806,7 +1806,21 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書の変換テスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
 </div>
 <div class="paragraph">
-<p>これらのファイルを文書ファイルとともにお使いの GitHub にコミットすることで、変換テストとリリースが git の操作を契機として GitHub サーバ上で自動的に動作します。</p>
+<p>これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>本項「GitHub Actions によるビルド」機能の利用は必須ではありません。大人数で継続的に執筆を行いたいケースなどに採用してみてください。HTML/PDF 変換処理の自動化やファイルリリースの版数管理で大きな力を発揮することでしょう。</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="_githubworkflowsgradle_yml">2.8.1. <code>.github/workflows/gradle.yml</code></h4>
@@ -1833,46 +1847,59 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </ul>
 </div>
 <div class="paragraph">
-<p>検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合は Linux、macOS ではシェルスクリプトで、Windows では PowerShell の記述でカスタマイズしてください。</p>
+<p>検査は以下の部分で行われます。文書に合わせたさらなる検査が必要な場合はシェルスクリプトでカスタマイズしてください。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>.github/workflows/gradle.yml</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="yml">    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check (UNIX)</span>
-      <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu') || startsWith(matrix.os, 'macos')</span>
-      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-        <span class="s">find docs/ -type f -ls</span>
-        <span class="s">find docs/ -type f -ls | wc</span>
-        <span class="s"># test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)</span>
-        <span class="s">find docs/ -type f -ls | egrep 'svg$' </span><i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s"># test asciidoctor</span>
-        <span class="s">file docs/index.pdf | grep PDF</span>
-        <span class="s">file docs/index.html | grep HTML</span>
-
-    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check (Windows)</span>
-      <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'windows')</span>
-      <span class="na">shell</span><span class="pi">:</span> <span class="s">pwsh</span>
-      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-        <span class="s">Get-ChildItem -Recurse -File docs</span>
-        <span class="s">$(Get-ChildItem -Recurse -File docs).Length</span>
-        <span class="s"># test asciidoctor-diagram (If you are not using diagram, comment out the next two lines)</span>
-        <span class="s">Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs </span><i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">(Get-ChildItem -Recurse -File -Name -Filter "*.svg" docs).Length -ne 0 </span><i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s"># test asciidoctor</span>
-        <span class="s">Get-ChildItem docs/index.pdf</span>
-        <span class="s">Get-ChildItem docs/index.html</span></code></pre>
+<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Check</span>
+  <span class="na">shell</span><span class="pi">:</span> <span class="s">bash</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">find docs/ -type f -ls</span>
+    <span class="s">find docs/ -type f -ls | wc</span>
+    <span class="s"># test asciidoctor-diagram (If you are not using diagram, comment out the next)</span>
+    <span class="s">find docs/ -type f -ls | egrep 'svg$' </span><i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="s"># test asciidoctor</span>
+    <span class="s">file docs/index.pdf | grep PDF</span>
+    <span class="s">file docs/index.html | grep HTML</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中にない場合はチェックを削除するか、コメントアウトしてください。</td>
+<td>asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中で使用していない場合は削除するか、コメントアウトしてください。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>なお、文書の変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。</p>
+<p>また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+この部分は <code>pdfinfo</code> コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Output PDF information</span>
+  <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu')</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">echo "# PDF information"</span>
+    <span class="s">pdfinfo docs/index.pdf</span>
+    <span class="s">echo "# URLs in document"</span>
+    <span class="s">pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1896,10 +1923,10 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <div class="sect3">
 <h4 id="_githubworkflowsrelease_yml">2.8.2. <code>.github/workflows/release.yml</code></h4>
 <div class="paragraph">
-<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>release-by-*.tar.gz</code> ファイルとして掲載する GitHub Actions 定義です。</p>
+<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{verison}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
 </div>
 <div class="paragraph">
-<p><code>release-by-*</code> の部分にはビルドした環境名が <code>release-by-windows-latest-java-11</code> や <code>release-by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境で十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ると良いでしょう。</p>
+<p>ファイル名の <code>by-*</code> 以下の部分にはビルドした環境名が <code>by-windows-latest-java-11</code> や <code>by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1931,14 +1958,44 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Windows と Java 11 の選択は広く使われており、よくテストされています。</p>
+<p>設定する OS や Java のバージョンは、メインで使われている執筆環境と合わせると良いでしょう。</p>
+</div>
+<div class="paragraph">
+<p>本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11 | 17 の計 6 環境で文書のビルドと確認を実施しています。</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で固定化できます。文書の版管理に活用してみてください。</p>
+<p>リリースされる文書のファイル名やバージョンについては、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set archive attribute</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s">get-attr</span>
+  <span class="na">shell</span><span class="pi">:</span> <span class="s">bash</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s"># document filename</span>
+    <span class="s">echo "doc-name=asciidoctor-gradle-book" &gt;&gt; $GITHUB_OUTPUT </span><i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="s"># document version from git tag</span>
+    <span class="s">echo "version=${GITHUB_REF#refs/*/}" &gt;&gt; $GITHUB_OUTPUT </span><i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>asciidoctor-gradle-book</code> 部分が出力されるファイル名に前置されます。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Git のタグ名がそのままバージョン名となります。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で永続化できます。文書の版管理にご活用ください。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
