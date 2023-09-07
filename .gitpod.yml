@@ -1,1 +1,18 @@
 image: gitpod/workspace-full
+  vscode:
+    extensions:
+      - asciidoctor.asciidoctor-vscode
+      - EditorConfig.EditorConfig
+      - mushan.vscode-paste-image
+      - anwar.papyrus-pdf
+      - jebbs.plantuml
+  tasks:
+    init: |
+      sudo apt update
+      sudo apt upgrade
+      sudo apt install language-pack-ja graphviz fonts-noto* language-selector-common
+      sudo update-locale LANG=ja_JP.UTF8
+      echo 'export LANG=ja_JP.UTF-8' >> /etc/bash.bashrc
+      export LANG=ja_JP.UTF-8
+      fc-cache -f
+      fc-match sans-serif | grep NotoSansCJK
