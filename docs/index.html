@@ -657,7 +657,8 @@ pre.rouge {
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revdate">2023-09-06</span>
+<span id="revnumber">バージョン 4.1.0,</span>
+<span id="revdate">2023-09-09</span>
 </div>
 </div>
 <div id="content">
@@ -2293,9 +2294,9 @@ include::source/hello.rs[]
 [caption=""]
 .表形式の例1
 |======
-カラム1,カラム2
 キー1,バリュー1
 キー2,バリュー2
+キー3,バリュー3
 |======</code></pre>
 </div>
 </div>
@@ -2357,6 +2358,55 @@ include::source/hello.rs[]
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">キー2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">バリュー2</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>また、<code>cols="1,2a"</code> のように <code>a</code> を付与したセルは Asciidoc 記法がそのまま反映します。</p>
+</div>
+<div class="listingblock">
+<div class="title">表形式の例3（Asciidoc 形式セル）</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="javascript"><span class="p">[</span><span class="nx">cols</span><span class="o">=</span><span class="dl">"</span><span class="s2">1,2a</span><span class="dl">"</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="dl">"</span><span class="s2">topbot</span><span class="dl">"</span><span class="p">]</span>
+<span class="o">|======</span>
+<span class="o">|</span><span class="nx">通常カラム</span>
+<span class="o">|</span><span class="nx">Asciidoc</span> <span class="nx">形式付きカラム</span>
+
+<span class="o">|</span>
+<span class="p">.</span> <span class="nx">リスト1</span>
+<span class="p">.</span> <span class="nx">リスト2</span>
+<span class="o">|</span>
+<span class="p">.</span> <span class="nx">リスト1</span>
+<span class="p">.</span> <span class="nx">リスト2</span>
+<span class="o">|======</span></code></pre>
+</div>
+</div>
+<table class="tableblock frame-ends grid-all stripes-even stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">通常カラム</th>
+<th class="tableblock halign-left valign-top">Asciidoc 形式付きカラム</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">. リスト1
+. リスト2</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>リスト1</p>
+</li>
+<li>
+<p>リスト2</p>
+</li>
+</ol>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -2616,6 +2666,18 @@ CAUTION: 注意</code></pre>
 <div class="paragraph">
 <p>本変換スクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。</p>
 </div>
@@ -2640,7 +2702,13 @@ CAUTION: 注意</code></pre>
 <p><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定します。</p>
 </div>
 <div class="paragraph">
-<p>本章では PlantUML と ditaa ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述法を示します。詳しくはそれぞれのドキュメントを参考にしてください。</p>
+<p>本項では PlantUML と ditaa ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述法を示します。</p>
+</div>
+<div class="paragraph">
+<p>コピーして使いやすいよう各ダイアグラム内で頻出する記法をなるべくピックアップする形で描いています。作成したい図表と似たようなものからアレンジして使うと良いでしょう。</p>
+</div>
+<div class="paragraph">
+<p>記法の詳細については、次のドキュメントから参照できます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2654,18 +2722,6 @@ CAUTION: 注意</code></pre>
 <div class="attribution">
 &#8212; PlantUML
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-変換スクリプトは PlantUML ダイアグラムの PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
-</td>
-</tr>
-</table>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -3262,7 +3318,8 @@ mindmapDiagram {
 </div>
 <div id="footer">
 <div id="footer-text">
-最終更新 2023-09-06 12:16:34 +0900
+バージョン 4.1.0<br>
+最終更新 2023-09-10 15:34:11 +0900
 </div>
 </div>
 </body>
