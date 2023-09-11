@@ -400,12 +400,12 @@ NOTE: Codespaces 向けの設定は `.devcontainer.json` 及び `.vscode/build-c
 .Gitpod の場合
 https://gitpod.io/workspaces
 
-image::2023-09-11-20-13-04.png[]
+image::2023-09-11-20-13-04.png[width=80%, pdfWidth=80%]
 
 .Codespaces の場合
 https://github.com/codespaces
 
-image::2023-09-11-20-10-35.png[]
+image::2023-09-11-20-10-35.png[width=80%, pdfWidth=80%]
 
 NOTE: クラウド上で起動していた環境は最終利用時からある一定期間（数日）は残ります。この動作を利用して未コミット・プッシュのファイルを取り戻すことができます。
 
