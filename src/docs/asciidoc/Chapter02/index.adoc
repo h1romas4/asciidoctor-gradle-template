@@ -231,7 +231,7 @@ build.gradle <7>
 
 ``src/docs/asciidoc/attribute.adoc`` では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。
 
-[source, javascript]
+[source]
 [caption=""]
 .``src/docs/asciidoc/attribute.adoc``
 ----
