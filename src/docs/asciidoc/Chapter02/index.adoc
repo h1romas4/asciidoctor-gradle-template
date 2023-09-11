@@ -387,7 +387,7 @@ image::2023-09-11-19-06-20.png[]
 Codespaces 上でビルドを行う場合は、起動時に自動的に行われる統合ターミナル上でのコンテナ構築が終わった後、起動時に開かれた統合ターミナルを再起動し `echo $LANG` が `ja_JP.UTF-8` になっていることを確認した上で `./gradlew docs` コマンドを実行してください。環境が日本語設定になっていない場合、ダイアログ記法の図表の日本語出力が崩れる場合があります。
 ====
 
-NOTE: Codespaces 向けの設定は `.devcontainer.json` 及び `.vscode/build-codespaces-contaner.sh` ファイルで定義されています。
+NOTE: Codespaces 向けの設定は `.devcontainer/devcontainer.json` 及び `.devcontainer/build-codespaces-contaner.sh` ファイルで定義されています。
 
 === クラウド環境でのファイル保存と執筆の再開
 
