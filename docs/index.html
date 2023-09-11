@@ -704,7 +704,7 @@ pre.rouge {
 <p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
 </div>
 <div class="paragraph">
 <p>手間がかかることが多い PDF 出力に関しても、フォントセットや禁則処理設定をプロジェクトに持たせることにより、実行環境に関わらず同一出力が得られるように調整しました。</p>
@@ -901,8 +901,9 @@ pre.rouge {
 <li><a href="#_文書のファイル構成">2.4. 文書のファイル構成</a></li>
 <li><a href="#_執筆の開始">2.5. 執筆の開始</a></li>
 <li><a href="#_執筆のイテレーション">2.6. 執筆のイテレーション</a></li>
-<li><a href="#_クラウドによる執筆">2.7. クラウドによる執筆</a></li>
-<li><a href="#_github_actions_によるビルド">2.8. GitHub Actions によるビルド</a></li>
+<li><a href="#_クラウド環境による執筆">2.7. クラウド環境による執筆</a></li>
+<li><a href="#_クラウド環境でのファイル保存と執筆の再開">2.8. クラウド環境でのファイル保存と執筆の再開</a></li>
+<li><a href="#_github_actions_によるビルド">2.9. GitHub Actions によるビルド</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -1734,9 +1735,9 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_クラウドによる執筆">2.7. クラウドによる執筆</h3>
+<h3 id="_クラウド環境による執筆">2.7. クラウド環境による執筆</h3>
 <div class="paragraph">
-<p>クラウド統合環境である <a href="https://www.gitpod.io/">Gitpod</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。サブマシンや iPad などタブレット端末でも執筆が行えます。</p>
+<p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1751,8 +1752,23 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 &#8212; Gitpod
 </div>
 </div>
+<div class="quoteblock">
+<blockquote>
 <div class="paragraph">
-<p>実行にあたっての条件は次のとおりです。</p>
+<p><a href="https://github.co.jp/features/codespaces" class="bare">https://github.co.jp/features/codespaces</a></p>
+</div>
+<div class="paragraph">
+<p>超高速で構築するクラウド開発環境</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Codespaces | GitHub
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gitpid">2.7.1. Gitpid</h4>
+<div class="paragraph">
+<p>Gitpod クラウド上での執筆にあたっての条件は次のとおりです。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1760,24 +1776,12 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p>文書ファイル一式を GitHub、GitLab、Bitbucket のいずれかに配置する必要があります。（プライベートリポジトリも利用可能です）</p>
 </li>
 <li>
-<p>2023-07 現在 Gitpod の無料枠は 50時間/月です。それ以上は利用料が必要です。</p>
+<p>2023-07 現在 Gitpod の無料枠は 50時間/月です。最新情報は <a href="https://www.gitpod.io/pricing" class="bare">https://www.gitpod.io/pricing</a> から確認できます。</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスすると環境が起動します。まずは本手順のリポジトリで試してみるのも良いでしょう。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義されています。
-</td>
-</tr>
-</table>
+<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスするとクラウド環境が起動します。まずは本手順のリポジトリで試してみるのも良いでしょう。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1796,15 +1800,172 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 <div class="content">
 <img src="Chapter02/images/2023-07-03-14-28-22.png" alt="2023 07 03 14 28 22">
 </div>
-<div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張</div>
+<div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Gitpod）</div>
 </div>
 <div class="paragraph">
-<p>起動後に VS Code 推奨拡張導入のダイアログが出力されますので、確認してインストールしてください。</p>
+<p>本手順向けの VS Code 用の推奨拡張が自動導入されるように設定されていますので、特に操作をせずそのまま文書の執筆が開始できます。</p>
+</div>
+<div class="paragraph">
+<p>また合わせて、統合ターミナルから HTML/PDF のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで <code>./gradlew docs</code> することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#</span>
+<span class="c"># asciidoctor-gradle-template</span>
+<span class="c">#</span>
+<span class="c"># Setup Done! Build document here. (./gradlew docs)</span>
+<span class="c">#</span>
+<span class="c"># It will build correctly, if the following conditions 'OK'</span>
+<span class="c">#</span>
+<span class="c">#  Java(openjdk): OK</span>
+<span class="c">#  Dialog Font(Noto Sans CJK JP): OK</span>
+<span class="c">#  LANG(ja_JP.UTF-8): OK</span>
+<span class="c">#</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+これらの Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義されています。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_codespaces">2.7.2. Codespaces</h4>
+<div class="paragraph">
+<p>Codespaces クラウド上での執筆にあたっての条件は次のとおりです。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>文書ファイル一式を GitHub に配置する必要があります。（プライベートリポジトリも利用可能です）</p>
+</li>
+<li>
+<p>2023-07 現在 Codespaces の無料枠は 60時間/月ほどです。最新情報は各自の GitHub アカウント <a href="https://github.com/settings/billing" class="bare">https://github.com/settings/billing</a> の Codespaces 項から確認できます。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>準備ができれば、GitHub サイトにログインした上でファイル一式をコミットしたリポジトリを開き <span class="menuseq"><b class="menu">Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">Codespaces</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create codespace on ブランチ名</b></span> を押下します。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-11-18-58-47.png" alt="2023 09 11 18 58 47" width="80%">
+</div>
+</div>
+<div class="paragraph">
+<p>押下後、コンテナのビルド画面に遷移し、完了するとウェブブラウザー上で VS Code が起動します。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-11-19-06-20.png" alt="2023 09 11 19 06 20">
+</div>
+<div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Codespaces）</div>
+</div>
+<div class="paragraph">
+<p>前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="警告"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Codespaces 上でビルドを行う場合は、起動時に自動的に行われる統合ターミナル上でのコンテナ構築が終わった後、起動時に開かれた統合ターミナルを再起動し <code>echo $LANG</code> が <code>ja_JP.UTF-8</code> になっていることを確認した上で <code>./gradlew docs</code> コマンドを実行してください。環境が日本語設定になっていない場合、ダイアログ記法の図表の日本語出力が崩れる場合があります。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+Codespaces 向けの設定は <code>.devcontainer.json</code> 及び <code>.vscode/build-codespaces-contaner.sh</code> ファイルで定義されています。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_クラウド環境でのファイル保存と執筆の再開">2.8. クラウド環境でのファイル保存と執筆の再開</h3>
+<div class="paragraph">
+<p>クライド環境上での文書ファイルの保存は、基本的に Git のコミット・プッシュ操作になります。通常の <b class="button">Ctrl + s</b> のファイル保存操作とともに、一区切りの間隔で Git のコミットとプッシュの操作を行うのを忘れないようにしてください。</p>
+</div>
+<div class="paragraph">
+<p>もし Git の操作を行わずにウェブブラウザーを閉じてしまった場合はファイルが失われる可能性がありますので十分に注意を払います。</p>
+</div>
+<div class="paragraph">
+<p>とは言ってもウェブブラウザのタブは閉じやすいもの。もしうっかり閉じてしまった場合は、GitHub にログインした状態で以下の URL にアクセスしてください。</p>
+</div>
+<div class="paragraph">
+<div class="title">Gitpod の場合</div>
+<p><a href="https://gitpod.io/workspaces" class="bare">https://gitpod.io/workspaces</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-11-20-13-04.png" alt="2023 09 11 20 13 04">
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Codespaces の場合</div>
+<p><a href="https://github.com/codespaces" class="bare">https://github.com/codespaces</a></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-11-20-10-35.png" alt="2023 09 11 20 10 35">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+クラウド上で起動していた環境は最終利用時からある一定期間（数日）は残ります。この動作を利用して未コミット・プッシュのファイルを取り戻すことができます。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では <b class="button">Open</b>、Codespaces では <span class="menuseq"><b class="menu">Open in</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open in browser</b></span> を押下します。</p>
+</div>
+<div class="paragraph">
+<p>また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンすると良いでしょう。クラウドのリソース削減になるとともに、VS Code の操作状態が維持されたままになるため便利です。</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">VS Code の Zen Mode</div>
+<div class="paragraph">
+<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-07-02-15-09-43.png" alt="2023 07 02 15 09 43" width="90%">
+</div>
+</div>
+<div class="paragraph">
+<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆をする上での良いツールとなることでしょう。</p>
+</div>
+</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_github_actions_によるビルド">2.8. GitHub Actions によるビルド</h3>
+<h3 id="_github_actions_によるビルド">2.9. GitHub Actions によるビルド</h3>
 <div class="paragraph">
 <p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書の変換テスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
 </div>
@@ -1826,7 +1987,7 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </table>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsgradle_yml">2.8.1. <code>.github/workflows/gradle.yml</code></h4>
+<h4 id="_githubworkflowsgradle_yml">2.9.1. <code>.github/workflows/gradle.yml</code></h4>
 <div class="paragraph">
 <p>git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
 </div>
@@ -1924,7 +2085,7 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsrelease_yml">2.8.2. <code>.github/workflows/release.yml</code></h4>
+<h4 id="_githubworkflowsrelease_yml">2.9.2. <code>.github/workflows/release.yml</code></h4>
 <div class="paragraph">
 <p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{verison}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
 </div>
@@ -1999,22 +2160,6 @@ Gitpod 向けの設定は <code>.gitpod.yml</code> ファイルで定義され�
 </div>
 <div class="paragraph">
 <p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で永続化できます。文書の版管理にご活用ください。</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">VS Code の Zen Mode</div>
-<div class="paragraph">
-<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/2023-07-02-15-09-43.png" alt="2023 07 02 15 09 43" width="90%">
-</div>
-</div>
-<div class="paragraph">
-<p>Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆のユーティリティとなります。</p>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -2323,20 +2468,20 @@ include::source/hello.rs[]
 <div class="listingblock">
 <div class="title">表形式の例2（デフォルト形式、ヘッダーあり、グリッドあり）</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="p">[</span><span class="nx">cols</span><span class="o">=</span><span class="dl">"</span><span class="s2">1,2</span><span class="dl">"</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">]</span>
-<span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="dl">"</span><span class="s2">topbot</span><span class="dl">"</span><span class="p">]</span>
-<span class="p">[</span><span class="nx">caption</span><span class="o">=</span><span class="dl">""</span><span class="p">]</span>
-<span class="p">.</span><span class="nx">表形式の例2</span>
-<span class="o">|======</span>
-<span class="o">|</span><span class="nx">カラム名1</span>
-<span class="o">|</span><span class="nx">カラム名2</span>
+<pre class="rouge highlight"><code>[cols="1,2", options="header"]
+[frame="topbot"]
+[caption=""]
+.表形式の例2
+|======
+|カラム名1
+|カラム名2
 
-<span class="o">|</span><span class="nx">キー1</span>
-<span class="o">|</span><span class="nx">バリュー1</span>
+|キー1
+|バリュー1
 
-<span class="o">|</span><span class="nx">キー2</span>
-<span class="o">|</span><span class="nx">バリュー2</span>
-<span class="o">|======</span></code></pre>
+|キー2
+|バリュー2
+|======</code></pre>
 </div>
 </div>
 <table class="tableblock frame-ends grid-all stripes-even stretch">
@@ -2367,19 +2512,19 @@ include::source/hello.rs[]
 <div class="listingblock">
 <div class="title">表形式の例3（Asciidoc 形式セル）</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="javascript"><span class="p">[</span><span class="nx">cols</span><span class="o">=</span><span class="dl">"</span><span class="s2">1,2a</span><span class="dl">"</span><span class="p">,</span> <span class="nx">options</span><span class="o">=</span><span class="dl">"</span><span class="s2">header</span><span class="dl">"</span><span class="p">]</span>
-<span class="p">[</span><span class="nx">frame</span><span class="o">=</span><span class="dl">"</span><span class="s2">topbot</span><span class="dl">"</span><span class="p">]</span>
-<span class="o">|======</span>
-<span class="o">|</span><span class="nx">通常カラム</span>
-<span class="o">|</span><span class="nx">Asciidoc</span> <span class="nx">形式付きカラム</span>
+<pre class="rouge highlight"><code>[cols="1,2a", options="header"]
+[frame="topbot"]
+|======
+|通常カラム
+|Asciidoc 形式付きカラム
 
-<span class="o">|</span>
-<span class="p">.</span> <span class="nx">リスト1</span>
-<span class="p">.</span> <span class="nx">リスト2</span>
-<span class="o">|</span>
-<span class="p">.</span> <span class="nx">リスト1</span>
-<span class="p">.</span> <span class="nx">リスト2</span>
-<span class="o">|======</span></code></pre>
+|
+. リスト1
+. リスト2
+|
+. リスト1
+. リスト2
+|======</code></pre>
 </div>
 </div>
 <table class="tableblock frame-ends grid-all stripes-even stretch">
