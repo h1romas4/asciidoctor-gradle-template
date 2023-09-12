@@ -403,6 +403,10 @@ image::2023-09-12-12-49-52.png[width=50%, pdfWidth=50%]
 [caption="画面. "]
 image::2023-09-12-12-51-08.png[width=50%, pdfWidth=50%]
 
+.VS Code から GitHub Repository へのプッシュ
+[caption="画面. "]
+image::2023-09-12-12-58-10.png[]
+
 === クラウド環境による執筆
 
 クラウド開発環境である https://www.gitpod.io/[Gitpod] や GitHub の https://github.co.jp/features/codespaces[Codespaces] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。
