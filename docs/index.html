@@ -901,9 +901,10 @@ pre.rouge {
 <li><a href="#_文書のファイル構成">2.4. 文書のファイル構成</a></li>
 <li><a href="#_執筆の開始">2.5. 執筆の開始</a></li>
 <li><a href="#_執筆のイテレーション">2.6. 執筆のイテレーション</a></li>
-<li><a href="#_クラウド環境による執筆">2.7. クラウド環境による執筆</a></li>
-<li><a href="#_クラウド環境でのファイル保存と執筆の再開">2.8. クラウド環境でのファイル保存と執筆の再開</a></li>
-<li><a href="#_github_actions_によるビルド">2.9. GitHub Actions によるビルド</a></li>
+<li><a href="#_文書の_git_管理">2.7. 文書の Git 管理</a></li>
+<li><a href="#_クラウド環境による執筆">2.8. クラウド環境による執筆</a></li>
+<li><a href="#_クラウド環境でのファイル保存と執筆の再開">2.9. クラウド環境でのファイル保存と執筆の再開</a></li>
+<li><a href="#_github_actions_によるビルド">2.10. GitHub Actions によるビルド</a></li>
 </ul>
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
@@ -1735,7 +1736,260 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_クラウド環境による執筆">2.7. クラウド環境による執筆</h3>
+<h3 id="_文書の_git_管理">2.7. 文書の Git 管理</h3>
+<div class="paragraph">
+<p>執筆中の文書をインターネット上に配置した Git リポジトリで管理すると次のようなメリットがあります。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>文書の修正差分、版数管理ができる。</p>
+</li>
+<li>
+<p>バックアップ・情報保全。</p>
+</li>
+<li>
+<p>クラウド環境での執筆が可能になる。</p>
+</li>
+<li>
+<p>複数環境での執筆、及び共同執筆時にファイルの混乱がなくなる。</p>
+</li>
+<li>
+<p>GitHub Actions などの CI 機能を使い継続的な文書の公開ができる。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>本項ではインターネット上の Git リポジトリとして GitHub を使うことを例に、プロジェクトファイルを管理する手順を示します。</p>
+</div>
+<div class="sect3">
+<h4 id="_git_クライアントの導入">2.7.1. Git クライアントの導入</h4>
+<div class="paragraph">
+<p>お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。</p>
+</div>
+<div class="listingblock">
+<div class="title">Windows の場合（PowerShell ウインドウで以下のコマンドを実行）</div>
+<div class="content">
+<pre class="rouge highlight"><code>winget install --id Git.Git -e --source winget</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">macOS の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
+<div class="content">
+<pre class="rouge highlight"><code>brew install git</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Ubuntu の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
+<div class="content">
+<pre class="rouge highlight"><code>sudo apt install git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Git クライアントの導入後、次のドキュメントを参考に GitHub アカウントへの公開鍵設定を行ってください。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" class="bare">https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account</a></p>
+</div>
+<div class="paragraph">
+<p>新しい (または既存の) SSH キーを使うように GitHub.com 上のアカウントを構成するには、アカウントにキーを追加する必要もあります。</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; GitHub アカウントへの新しい SSH キーの追加
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_github_上に文書用のリポジトリを作成">2.7.2. GitHub 上に文書用のリポジトリを作成</h4>
+<div class="paragraph">
+<p>GitHub にご自身のアカウントでログインした上で、次のように <span class="menuseq"><b class="menu">Repositories</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">New</b></span> を押下します。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-11-51.png" alt="2023 09 12 12 11 51" width="80%">
+</div>
+<div class="title">画面. GitHub の Repositories</div>
+</div>
+<div class="paragraph">
+<p>Create a new repository 画面で Repository name を入力し、リポジトリが公開（Public）か非公開（Private）かを選択し、最後にページ下にある <b class="button">Create repository</b> を押下します。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+ここでは <code>wasm-micro-book</code> というリポジトリ名で、執筆者のみが文書ファイルが閲覧・操作できる <code>Private</code> を選択しました。
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-17-12.png" alt="2023 09 12 12 17 12" width="80%">
+</div>
+<div class="title">画面. GitHub の Create a new repository</div>
+</div>
+<div class="paragraph">
+<p>リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れますので、表示されたコマンドをクリップボードに保持しておきます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-23-52.png" alt="2023 09 12 12 23 52" width="80%">
+</div>
+<div class="title">画面. GitHub の Quick setup</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_github_上に文書を初期プッシュ">2.7.3. GitHub 上に文書を初期プッシュ</h4>
+<div class="paragraph">
+<p>お使いの PC の VS Code をつかい、文書が配置されているプロジェクトフォルダを開き、統合ターミナルから次のようにしてローカルの Git リポジトリを初期化します。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+プロジェクトフォルダは、ルートに <code>gradlew</code> などの本手順のビルドスクリプトが配置されている構成になっていることを確認してください。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">VS Code 統合ターミナルから Git リポジトリを初期化</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">git init
+git config <span class="nt">--local</span> user.name h1romas4 <i class="conum" data-value="1"></i><b>(1)</b>
+git config <span class="nt">--local</span> user.email h1romas4@gmail.com <i class="conum" data-value="2"></i><b>(2)</b>
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s1">'initial commit'</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>h1romas4</code> 任意の名前に変更。コミットログの名称になります。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>h1romas4@gmail.com</code> 同上。コミットログのメールアドレスになります。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>ローカルの Git リポジトリの初期化が完了したら、続けて統合ターミナルで前項でクリップボードに保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。</p>
+</div>
+<div class="listingblock">
+<div class="title">VS Code 統合ターミナルから GitHub にプッシュ</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">git remote add origin git@github.com:h1romas4/wasm-micro-book.git <i class="conum" data-value="1"></i><b>(1)</b>
+git branch <span class="nt">-M</span> main
+git push <span class="nt">-u</span> origin main</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>h1romas4/wasm-micro-book.git</code> 部分が前項で作成したリポジトリ名になります。</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_修正したファイルのコミットプッシュ">2.7.4. 修正したファイルのコミット・プッシュ</h4>
+<div class="paragraph">
+<p>VS Code 上で文書の編集を行うと、修正や追加の会ったファイルが左のサイドバーに通知されます。修正が完了したファイルは <b class="button">+</b> で Git 上にステージングし、任意のコミットコメントを記載して <b class="button">Commit</b> を押下することで、Git にコミットされます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-49-52.png" alt="2023 09 12 12 49 52" width="50%">
+</div>
+<div class="title">画面. VS Code のファイル修正通知</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-51-08.png" alt="2023 09 12 12 51 08" width="50%">
+</div>
+<div class="title">画面. VS Code から Git へのコミット</div>
+</div>
+<div class="paragraph">
+<p>コミット後、ボタンが bnt:[Sync Changes] となりますので押下して GitHub リポジトリーへプッシュします。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="警告"></i>
+</td>
+<td class="content">
+プッシュ操作を行わない場合 GitHub リポジトリに文書の修正が反映されませんので忘れずに実施してください。
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-12-12-58-10.png" alt="2023 09 12 12 58 10" width="50%">
+</div>
+<div class="title">画面. VS Code から GitHub Repository へのプッシュ</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_異なる執筆環境での_git_操作">2.7.5. 異なる執筆環境での Git 操作</h4>
+<div class="paragraph">
+<p>ここまでの手順と異なる PC から GitHub リポジトリの文書を取得するには次の操作を行います。</p>
+</div>
+<div class="paragraph">
+<p>初回の操作の場合は、次のようにして GitHub 上のリポジトリをクローンしプロジェクトフォルダを得ます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">git clone git@github.com:h1romas4/wasm-micro-book.git <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>h1romas4/wasm-micro-book.git</code> 部分が前項で作成したリポジトリ名になります。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>クローン操作で作成されたプロジェクトフォルダを VS Code で開くと GitHub リポジトリの最新の内容が取得されているのが分かります。</p>
+</div>
+<div class="paragraph">
+<p>クローン後は各環境において統合ターミナルから <code>git pull</code> コマンドを入力することで、別な環境からプッシュされた最新ファイルを同期することができます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">git pull</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+執筆開始前に <code>git pull</code>、当日の執筆完了時に <code>commit</code> と <code>push</code> と覚えておけば個人の執筆活動としては十分機能するはずです。もし、複数人での執筆時ではマージなどのより高度な Git の操作が必要になった場合はインターネット上のドキュメントや書籍を参照ください。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_クラウド環境による執筆">2.8. クラウド環境による執筆</h3>
 <div class="paragraph">
 <p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。</p>
 </div>
@@ -1766,7 +2020,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gitpid">2.7.1. Gitpid</h4>
+<h4 id="_gitpid">2.8.1. Gitpid</h4>
 <div class="paragraph">
 <p>Gitpod クラウド上での執筆にあたっての条件は次のとおりです。</p>
 </div>
@@ -1849,7 +2103,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_codespaces">2.7.2. Codespaces</h4>
+<h4 id="_codespaces">2.8.2. Codespaces</h4>
 <div class="paragraph">
 <p>Codespaces クラウド上での執筆にあたっての条件は次のとおりです。</p>
 </div>
@@ -1965,7 +2219,7 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_クラウド環境でのファイル保存と執筆の再開">2.8. クラウド環境でのファイル保存と執筆の再開</h3>
+<h3 id="_クラウド環境でのファイル保存と執筆の再開">2.9. クラウド環境でのファイル保存と執筆の再開</h3>
 <div class="paragraph">
 <p>クライド環境上での文書ファイルの保存は、基本的に Git のコミット・プッシュ操作になります。通常の <b class="button">Ctrl + s</b> のファイル保存操作とともに、一区切りの間隔で Git のコミットとプッシュの操作を行うのを忘れないようにしてください。</p>
 </div>
@@ -2031,7 +2285,7 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_github_actions_によるビルド">2.9. GitHub Actions によるビルド</h3>
+<h3 id="_github_actions_によるビルド">2.10. GitHub Actions によるビルド</h3>
 <div class="paragraph">
 <p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書の変換テスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
 </div>
@@ -2053,7 +2307,7 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 </table>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsgradle_yml">2.9.1. <code>.github/workflows/gradle.yml</code></h4>
+<h4 id="_githubworkflowsgradle_yml">2.10.1. <code>.github/workflows/gradle.yml</code></h4>
 <div class="paragraph">
 <p>git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
 </div>
@@ -2151,7 +2405,7 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsrelease_yml">2.9.2. <code>.github/workflows/release.yml</code></h4>
+<h4 id="_githubworkflowsrelease_yml">2.10.2. <code>.github/workflows/release.yml</code></h4>
 <div class="paragraph">
 <p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{verison}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
 </div>
