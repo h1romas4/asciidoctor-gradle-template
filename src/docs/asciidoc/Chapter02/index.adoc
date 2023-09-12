@@ -14,9 +14,9 @@ macOS / Linux の場合は次のようにします。
 [caption="手順. "]
 .PDF 変換ビルドスクリプトの取得と実行
 ----
-$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip # <1>
-$ unzip master.zip # <2>
-$ cd asciidoctor-gradle-template-master # <3>
+$ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/main.zip # <1>
+$ unzip main.zip # <2>
+$ cd asciidoctor-gradle-template-main # <3>
 $ ./gradlew docs # <4>
 BUILD SUCCESSFUL in 19s <5>
 2 actionable tasks: 2 executed
@@ -37,7 +37,7 @@ Windows をお使いの場合は同等の操作をブラウザとエクスプロ
 Windows の場合 .zip ファイルの展開先はマルチバイト文字を含まないパスにしてください。JRuby の制約により変換処理がエラーとなります。また、プロジェクト内部で使うフォルダやファイル名のマルチバイト名も同様です。
 ====
 
-. ブラウザを使って ``https://github.com/h1romas4/asciidoctor-gradle-template/archive/master.zip`` にアクセスしリポジトリのファイルを取得します。
+. ブラウザを使って ``https://github.com/h1romas4/asciidoctor-gradle-template/archive/main.zip`` にアクセスしリポジトリのファイルを取得します。
 . ダウンロードした .zip ファイルを右クリックし展開します。フォルダ名は任意のものに変更可能です。本手順ではプロジェクトフォルダと呼称します。
 . 展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに ``cmd.exe`` と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。
 +
