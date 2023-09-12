@@ -305,6 +305,98 @@ IMPORTANT: 本手順で採用している Asciidoctor PDF のバージョンは 
 
 TIP: 推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
 
+=== 文書の Git 管理
+
+執筆中の文書を、インターネット上に配置した Git リポジトリで管理すると次のようなメリットがあります。
+
+- 修正差分、版数管理ができる。
+- 複数環境での執筆、及び共同執筆時にファイルの混乱がなくなる。
+- 次項のクラウドでの執筆が可能になる。
+
+ここではインターネット上の Git リポジトリとして GitHub にプロジェクトを格納する手順を示します。
+
+==== Git クライアントの導入
+
+お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。
+
+[source]
+[caption=""]
+.Windows の場合（PowerShell ウインドウで以下のコマンドを実行）
+----
+winget install --id Git.Git -e --source winget
+----
+
+[source]
+[caption=""]
+.macOS の場合（ターミナルエミュレータで以下のコマンドを実行）
+----
+brew install git
+----
+
+[source]
+[caption=""]
+.Ubuntu の場合（ターミナルエミュレータで以下のコマンドを実行）
+----
+sudo apt install git
+----
+
+==== GitHub 上に文書用のリポジトリを作成
+
+GitHub にご自身のアカウントでログインした上で、次のように menu:Repositories[New] を押下します。
+
+.GitHub の Repositories
+[caption="画面. "]
+image::2023-09-12-12-11-51.png[width=80%, pdfWidth=80%]
+
+Create a new repository 画面で Repository name を入力し、リポジトリが公開（Public）か非公開（Private）かを選択し、最後にページ下にある btn:[Create repository] を押下します。
+
+NOTE: ここでは `wasm-micro-book` というリポジトリ名で、執筆者のみが文書ファイルが閲覧・操作できる `Private` を選択しました。
+
+.GitHub の Create a new repository
+[caption="画面. "]
+image::2023-09-12-12-17-12.png[width=80%, pdfWidth=80%]
+
+リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れますので、表示されたコマンドをクリップボードに保持しておきます。
+
+.GitHub の Quick setup
+[caption="画面. "]
+image::2023-09-12-12-23-52.png[width=80%, pdfWidth=80%]
+
+==== GitHub 上に文書を初期プッシュ
+
+お使いの PC の VS Code をつかい、文書が配置されているプロジェクトフォルダを開き、統合ターミナルから次のようにしてローカルの Git リポジトリを初期化します。
+
+NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手順のビルドスクリプトが配置されている構成になっていることを確認してください。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
+
+.VS Code 統合ターミナルから Git リポジトリを初期化
+[caption=""]
+```bash
+git init
+git config --local user.name h1romas4 # <1>
+git config --local user.email h1romas4@gmail.com # <2>
+git add .
+git commit -m 'initial commit'
+```
+<1> `h1romas4` 任意の名前に変更。コミットログの名称になります。
+<2> `h1romas4@gmail.com` 同上。コミットログのメールアドレスになります。
+
+ローカルの Git リポジトリの初期化が完了したら、続けて統合ターミナルで前項でクリップボードに保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイルをプッシュ操作します。
+
+.VS Code 統合ターミナルから GitHub にプッシュ
+[caption=""]
+```bash
+git remote add origin git@github.com:h1romas4/wasm-micro-book.git # <1>
+git branch -M main
+git push -u origin main
+```
+<1> `h1romas4/wasm-micro-book.git` 部分が前項で作成したリポジトリ名になります。
+
+==== 修正したファイルのコミット・プッシュ
+
+image::2023-09-12-12-49-52.png[]
+
+image::2023-09-12-12-51-08.png[]
+
 === クラウド環境による執筆
 
 クラウド開発環境である https://www.gitpod.io/[Gitpod] や GitHub の https://github.co.jp/features/codespaces[Codespaces] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。
