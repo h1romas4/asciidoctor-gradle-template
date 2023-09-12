@@ -20,7 +20,7 @@ endif::[]
 // Producer: https://github.com/h1romas4/asciidoctor-gradle-template
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
-v4.1.0, 2023-09-09
+v4.1.0, 2023-09-12
 :toc: macro
 
 // 章ごとにインクルードしていく（画像パスも上書きすること）
