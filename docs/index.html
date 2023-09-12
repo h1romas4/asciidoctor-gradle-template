@@ -1781,7 +1781,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスするとクラウド環境が起動します。まずは本手順のリポジトリで試してみるのも良いでしょう。</p>
+<p>準備ができれば、次の要領で URL を作成しウェブブラウザでアクセスするとクラウド環境が起動します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1792,7 +1792,19 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code><a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a></code> 部分を自身の GitHub リポジトリにしてウェブブラウザの URL 欄に貼り付けます。本手順の試用の場合はこのままでかまいません。</td>
+<td>URL の先頭に <code><a href="https://gitpod.io/new/#" class="bare">https://gitpod.io/new/#</a></code> という Gitpod の URL を前置し、その後の <code><a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a></code> 部分に自身の GitHub リポジトリ URL を付与してウェブブラウザの URL 欄に貼り付けます。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+上記記載通りの URL にアクセスすると本手順のリポジトリで Gitpod クラウドを試用できます。
+</td>
 </tr>
 </table>
 </div>
@@ -1859,6 +1871,18 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <img src="Chapter02/images/2023-09-11-18-58-47.png" alt="2023 09 11 18 58 47" width="80%">
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a> にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>押下後、コンテナのビルド画面に遷移し、完了するとウェブブラウザー上で VS Code が起動します。</p>
 </div>
@@ -1869,7 +1893,45 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Codespaces）</div>
 </div>
 <div class="paragraph">
-<p>前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。</p>
+<p>前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">Use Cmd/Ctrl + Shift + P -&gt; View Creation Log to see full logs
+✔ Finishing up...
+   Running postCreateCommand...
+ <span class="o">&gt;</span> bash .devcontainer/build-codespaces-contaner.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 <code>./gradlew docs</code> を実行します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">echo</span> <span class="nv">$LANG</span>
+ja_JP.UTF-8 <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nv">$ </span>fc-match Dialog
+NotoSansCJK-Regular.ttc: <span class="s2">"Noto Sans CJK JP"</span> <span class="s2">"Regular"</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="nv">$ </span>./gradlew docs <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="c"># ..snip..</span>
+BUILD SUCCESSFUL <span class="k">in </span>3m 19s</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>ja_JP.UTF-8</code> になっていること</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>Noto Sans CJK JP</code> になっていること</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>文書のビルドを開始</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1879,7 +1941,10 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Codespaces 上でビルドを行う場合は、起動時に自動的に行われる統合ターミナル上でのコンテナ構築が終わった後、起動時に開かれた統合ターミナルを再起動し <code>echo $LANG</code> が <code>ja_JP.UTF-8</code> になっていることを確認した上で <code>./gradlew docs</code> コマンドを実行してください。環境が日本語設定になっていない場合、ダイアログ記法の図表の日本語出力が崩れる場合があります。</p>
+<p>統合ターミナルの環境が日本語設定になっていない場合、文書中のダイアログ記法で生成された図表の日本語出力が崩れる場合があります。</p>
+</div>
+<div class="paragraph">
+<p>クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように <code>exit</code> コマンドで一旦閉じた上で再起動すると良いでしょう。</p>
 </div>
 </td>
 </tr>
@@ -1892,7 +1957,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-Codespaces 向けの設定は <code>.devcontainer.json</code> 及び <code>.vscode/build-codespaces-contaner.sh</code> ファイルで定義されています。
+Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及び <code>.devcontainer/build-codespaces-contaner.sh</code> ファイルで定義されています。
 </td>
 </tr>
 </table>
@@ -1944,8 +2009,9 @@ Codespaces 向けの設定は <code>.devcontainer.json</code> 及び <code>.vsco
 <p>一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では <b class="button">Open</b>、Codespaces では <span class="menuseq"><b class="menu">Open in</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open in browser</b></span> を押下します。</p>
 </div>
 <div class="paragraph">
-<p>また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンすると良いでしょう。クラウドのリソース削減になるとともに、VS Code の操作状態が維持されたままになるため便利です。</p>
+<p>また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、VS Code の操作状態が維持されたままになるため時間の短縮となります。</p>
 </div>
+<hr>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">VS Code の Zen Mode</div>
@@ -2172,7 +2238,7 @@ Codespaces 向けの設定は <code>.devcontainer.json</code> 及び <code>.vsco
 <p>ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
 </div>
 <div class="paragraph">
-<p>入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
+<p>Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Spaec</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
 </div>
 <div class="imageblock">
 <div class="content">
