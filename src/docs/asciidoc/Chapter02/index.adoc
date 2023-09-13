@@ -180,7 +180,7 @@ AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` �
 ****
 Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
 
-クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作しますので、動作をご理解の上設定してください。
+クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上設定してください。
 
 [source, bash]
 ----
@@ -229,7 +229,7 @@ build.gradle <7>
 
 ==== 文書属性定義
 
-``src/docs/asciidoc/attribute.adoc`` では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。
+``src/docs/asciidoc/attribute.adoc`` では文書のデフォルトキャプション名などの属性定義が行えます。画像挿入時の「図. 」など標準で付与されるキャプション文字列が定義できます。必要に応じて修正してください。
 
 [source]
 [caption=""]
@@ -256,7 +256,7 @@ ____
 
 ==== PDF テーマ定義
 
-``src/docs/asciidoc/@style/pdf-theme.yml`` では PDF 文書のスタイルを定義することができます。
+``src/docs/asciidoc/@style/pdf-theme.yml`` では PDF 文書のスタイルを定義することができます。PDF 文書の紙サイズやマージン、フォント・行送り幅などが設定できます。必要に応じて修正してください。
 
 属性の詳細は次から参照できます。
 
@@ -269,7 +269,7 @@ ____
 
 ``pdf-theme.yml`` の修正は ``.adoc`` 修正時のビルドで PDF 文書に反映します。``pdf-theme.yml`` の修正だけを反映したい場合は、いずれかの ``.adoc`` 文書に影響のない修正を加えてファイルを更新するか、 ``./gradlew clean`` してからビルドを実行してください。
 
-IMPORTANT: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6.2`` です。日本語禁則処理を正しく動作させるために、現在のところ最新の ``2.3`` にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
+NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6.2`` です。日本語禁則処理を正しく動作させるために、現在のところ最新の ``2.3`` にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
 
 <<<<
 
@@ -303,30 +303,32 @@ IMPORTANT: 本手順で採用している Asciidoctor PDF のバージョンは 
 . 必要ならばプロジェクトディレクトリを Git などのバージョン管理下として、コミットを行う。
 . 本日の執筆を終え、明日はまた 1. に戻る。
 
-TIP: 推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
+.文書の推敲
+****
+文書の推敲は、iPad などのペンシルデバイスを持つ機械に PDF 文書ファイルを転送して「赤入れ」すると便利です。さらに、Dropbox や OneDrive などのクラウドストレージにファイルを配置すると執筆環境と推敲情報を共有することができます。
+
+.iPad の Goodnotes アプリによる PDF 文書の推敲
+[caption="画面. "]
+image::2023-09-13-14-48-50.png[]
+****
+
+<<<<
 
 === 文書の Git 管理
 
 執筆中の文書をインターネット上に配置した Git リポジトリで管理すると次のようなメリットがあります。
 
 - 文書の修正差分、版数管理ができる。
-- バックアップ・情報保全。
+- 信頼できる場所にバックアップ・情報保全がされる。
 - クラウド環境での執筆が可能になる。
 - 複数環境での執筆、及び共同執筆時にファイルの混乱がなくなる。
 - GitHub Actions などの CI 機能を使い継続的な文書の公開ができる。
 
-本項ではインターネット上の Git リポジトリとして GitHub を使うことを例に、プロジェクトファイルを管理する手順を示します。
+本項では Git リポジトリとして GitHub サービスを使うことを例に、文書のプロジェクトファイルを Git 管理する手順を示します。
 
 ==== Git クライアントの導入
 
 お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。
-
-[source]
-[caption=""]
-.Windows の場合（PowerShell ウインドウで以下のコマンドを実行）
-----
-winget install --id Git.Git -e --source winget
-----
 
 [source]
 [caption=""]
@@ -342,6 +344,13 @@ brew install git
 sudo apt install git
 ----
 
+[source]
+[caption=""]
+.Windows の場合（PowerShell ウインドウで以下のコマンドを実行）
+----
+winget install --id Git.Git -e --source winget
+----
+
 Git クライアントの導入後、次のドキュメントを参考に GitHub アカウントへの公開鍵設定を行ってください。
 
 [quote, GitHub アカウントへの新しい SSH キーの追加]
@@ -351,9 +360,11 @@ https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a
 新しい (または既存の) SSH キーを使うように GitHub.com 上のアカウントを構成するには、アカウントにキーを追加する必要もあります。
 ____
 
+<<<<
+
 ==== GitHub 上に文書用のリポジトリを作成
 
-GitHub にご自身のアカウントでログインした上で、次のように menu:Repositories[New] を押下します。
+GitHub にログインし、各自のホーム画面から menu:Repositories[New] を押下します。
 
 .GitHub の Repositories
 [caption="画面. "]
@@ -361,13 +372,13 @@ image::2023-09-12-12-11-51.png[width=80%, pdfWidth=80%]
 
 Create a new repository 画面で Repository name を入力し、リポジトリが公開（Public）か非公開（Private）かを選択し、最後にページ下にある btn:[Create repository] を押下します。
 
-NOTE: ここでは `wasm-micro-book` というリポジトリ名で、執筆者のみが文書ファイルが閲覧・操作できる `Private` を選択しました。
+NOTE: ここではリポジトリ名として `wasm-micro-book` を、公開範囲を執筆者のみが文書ファイルが閲覧・操作が可能となる `Private` を選択しました。なお、公開範囲に Public を指定した場合は、インターネット上の全てのユーザから文書ファイルの読み取りが可能になりますので注意してください。
 
 .GitHub の Create a new repository
 [caption="画面. "]
 image::2023-09-12-12-17-12.png[width=80%, pdfWidth=80%]
 
-リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れますので、表示されたコマンドをクリップボードに保持しておきます。
+リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れます。次項の手順で必要になりますので、表示されたコマンドをクリップボード等に保持しておきます。
 
 .GitHub の Quick setup
 [caption="画面. "]
@@ -375,7 +386,7 @@ image::2023-09-12-12-23-52.png[width=80%, pdfWidth=80%]
 
 ==== GitHub 上に文書を初期プッシュ
 
-お使いの PC の VS Code をつかい、文書が配置されているプロジェクトフォルダを開き、統合ターミナルから次のようにしてローカルの Git リポジトリを初期化します。
+GitHub リポジトリに文書を配置するため、VS Code で PC 上の文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。
 
 NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手順のビルドスクリプトが配置されている構成になっていることを確認してください。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
 
@@ -388,10 +399,10 @@ git config --local user.email h1romas4@gmail.com # <2>
 git add .
 git commit -m 'initial commit'
 ```
-<1> `h1romas4` 任意の名前に変更。コミットログの名称になります。
-<2> `h1romas4@gmail.com` 同上。コミットログのメールアドレスになります。
+<1> `h1romas4` 任意の名前に変更。Git コミットログの記載される氏名になります。
+<2> `h1romas4@gmail.com` 同上。Git コミットログに記載されるメールアドレスになります。
 
-ローカルの Git リポジトリの初期化が完了したら、続けて統合ターミナルで前項でクリップボードに保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。
+ローカルの Git リポジトリの初期化完了後、続けて統合ターミナルで前項「GitHub の Create a new repository」画面でクリップボード等に保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。
 
 .VS Code 統合ターミナルから GitHub にプッシュ
 [caption=""]
@@ -402,9 +413,13 @@ git push -u origin main
 ```
 <1> `h1romas4/wasm-micro-book.git` 部分が前項で作成したリポジトリ名になります。
 
+以上で GitHub リポジトリーへの文書の配置が完了しました。ウェブブラウザーで GitHub リポジトリにアクセスしすると、プッシュした文書ファイルがあることが確認できるでしょう。
+
 ==== 修正したファイルのコミット・プッシュ
 
-VS Code 上で文書の編集を行うと、修正や追加の会ったファイルが左のサイドバーに通知されます。修正が完了したファイルは btn:[+] で Git 上にステージングし、任意のコミットコメントを記載して btn:[Commit] を押下することで、Git にコミットされます。
+Git によるファイル管理を始めた後、VS Code 上で文書の編集を行うと修正や追加のあったファイルが左のサイドバーに通知されます。
+
+この修正を Git に反映させるために、btn:[+] で Git 上にステージングし、任意のコミットコメントを記載して btn:[Commit] を押下するコミット操作を行います。
 
 .VS Code のファイル修正通知
 [caption="画面. "]
@@ -414,42 +429,54 @@ image::2023-09-12-12-49-52.png[width=50%, pdfWidth=50%]
 [caption="画面. "]
 image::2023-09-12-12-51-08.png[width=50%, pdfWidth=50%]
 
-コミット後、ボタンが bnt:[Sync Changes] となりますので押下して GitHub リポジトリーへプッシュします。
+コミットはローカル上の Git に対して行われます。この後 GitHub のリモートリポジトリに反映させるため btn:[Sync Changes] を押下しプッシュ操作を行います。
 
-WARNING: プッシュ操作を行わない場合 GitHub リポジトリに文書の修正が反映されませんので忘れずに実施してください。
+WARNING: プッシュ操作を行うまで GitHub リモートリポジトリには文書の修正が反映されません。忘れずに実施してください。操作に慣れるまでは、プッシュ操作後にウェブブラウザで GitHub リポジトリにアクセスしファイルの更新を確認すると良いでしょう。
 
 .VS Code から GitHub Repository へのプッシュ
 [caption="画面. "]
 image::2023-09-12-12-58-10.png[width=50%, pdfWidth=50%]
 
+なお、btn:[Sync Changes] ボタン押下操作の他、統合ターミナルから `git push` コマンドを入力することでも同様の結果が得られます。
+
+.統合ターミナルから `git push` を実行
+[caption=""]
+```bash
+git push
+```
+
 ==== 異なる執筆環境での Git 操作
 
-ここまでの手順と異なる PC から GitHub リポジトリの文書を取得するには次の操作を行います。
+異なる執筆環境から GitHub リポジトリの文書を取得するには次の操作を行います。
 
-初回の操作の場合は、次のようにして GitHub 上のリポジトリをクローンしプロジェクトフォルダを得ます。
-
+. GitHub 上のリポジトリをクローンしプロジェクトフォルダを得る。（初回のみ操作）
++
 [source, bash]
 [caption=""]
 ----
 git clone git@github.com:h1romas4/wasm-micro-book.git # <1>
 ----
 <1> `h1romas4/wasm-micro-book.git` 部分が前項で作成したリポジトリ名になります。
-
-クローン操作で作成されたプロジェクトフォルダを VS Code で開くと GitHub リポジトリの最新の内容が取得されているのが分かります。
-
-クローン後は各環境において統合ターミナルから `git pull` コマンドを入力することで、別な環境からプッシュされた最新ファイルを同期することができます。
-
++
+. 別の執筆環境からの修正（プッシュ）を取得するために `git pull` 操作を実施。
++
+.統合ターミナルから `git pull` を実行
 [source, bash]
 [caption=""]
 ----
 git pull
 ----
 
-NOTE: 執筆開始前に `git pull`、当日の執筆完了時に `commit` と `push` と覚えておけば個人の執筆活動としては十分機能するはずです。もし、複数人での執筆時ではマージなどのより高度な Git の操作が必要になった場合はインターネット上のドキュメントや書籍を参照ください。
+[NOTE]
+====
+個人の執筆活動の Git 操作としては「執筆開始前に `git pull`」「執筆区切りで `commit` と `push`」 と覚えておくだけで十分機能するはずです。
+
+もし共同著者間での文書マージ操作等、より高度な Git の操作が必要になってきた場合は、ウェブサイトや書籍から Git についての優れたドキュメントを得ることができます。
+====
 
 === クラウド環境による執筆
 
-クラウド開発環境である https://www.gitpod.io/[Gitpod] や GitHub の https://github.co.jp/features/codespaces[Codespaces] を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。
+クラウド開発環境である https://www.gitpod.io/[Gitpod] や GitHub の https://github.co.jp/features/codespaces[Codespaces] を活用すると、ローカル環境の準備なしにウェブブラウザだけで執筆と HTML/PDF 文書変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆活動が行えます。
 
 [quote, Gitpod]
 ____
@@ -481,7 +508,7 @@ https://gitpod.io/new/#https://github.com/h1romas4/asciidoctor-gradle-template <
 
 <1> URL の先頭に `https://gitpod.io/new/#` という Gitpod の URL を前置し、その後の `https://github.com/h1romas4/asciidoctor-gradle-template` 部分に自身の GitHub リポジトリ URL を付与してウェブブラウザの URL 欄に貼り付けます。
 
-NOTE: 上記記載通りの URL にアクセスすると本手順のリポジトリで Gitpod クラウドを試用できます。
+NOTE: 上記記載通りの URL にアクセスすると本手順のリポジトリで Gitpod クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 
 [caption="画像."]
 .ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Gitpod）
@@ -512,15 +539,17 @@ NOTE: これらの Gitpod 向けの設定は `.gitpod.yml` ファイルで定義
 Codespaces クラウド上での執筆にあたっての条件は次のとおりです。
 
 - 文書ファイル一式を GitHub に配置する必要があります。（プライベートリポジトリも利用可能です）
-- 2023-07 現在 Codespaces の無料枠は 60時間/月ほどです。最新情報は各自の GitHub アカウント https://github.com/settings/billing の Codespaces 項から確認できます。
+- 2023-07 現在 Codespaces の無料枠はおおよそ 60時間/月ほどです。最新情報は各自の GitHub アカウント https://github.com/settings/billing の Codespaces 項から確認できます。
 
 準備ができれば、GitHub サイトにログインした上でファイル一式をコミットしたリポジトリを開き menu:Code[Codespaces > Create codespace on ブランチ名] を押下します。
 
 image::2023-09-11-18-58-47.png[width=80%, pdfWidth=80%]
 
-NOTE: https://github.com/h1romas4/asciidoctor-gradle-template にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。
+NOTE: https://github.com/h1romas4/asciidoctor-gradle-template にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 
-押下後、コンテナのビルド画面に遷移し、完了するとウェブブラウザー上で VS Code が起動します。
+<<<<
+
+ボタン押下後コンテナのビルドに画面が遷移し、完了するとウェブブラウザー上で VS Code が起動します。
 
 [caption="画像."]
 .ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Codespaces）
@@ -563,7 +592,7 @@ NOTE: Codespaces 向けの設定は `.devcontainer/devcontainer.json` 及び `.d
 
 クライド環境上での文書ファイルの保存は、基本的に Git のコミット・プッシュ操作になります。通常の btn:[Ctrl + s] のファイル保存操作とともに、一区切りの間隔で Git のコミットとプッシュの操作を行うのを忘れないようにしてください。
 
-もし Git の操作を行わずにウェブブラウザーを閉じてしまった場合はファイルが失われる可能性がありますので十分に注意を払います。
+CAUTION: Git プッシュの操作を行わずにウェブブラウザーを閉じてしまった場合はファイルが失われる可能性があります。十分注意をしてください。
 
 とは言ってもウェブブラウザのタブは閉じやすいもの。もしうっかり閉じてしまった場合は、GitHub にログインした状態で以下の URL にアクセスしてください。
 
@@ -579,11 +608,11 @@ image::2023-09-11-20-10-35.png[width=80%, pdfWidth=80%]
 
 NOTE: クラウド上で起動していた環境は最終利用時からある一定期間（数日）は残ります。この動作を利用して未コミット・プッシュのファイルを取り戻すことができます。
 
-一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では btn:[Open]、Codespaces では menu:Open in[Open in browser] を押下します。
+一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では btn:[Open]、Codespaces では menu:Open in[Open in browser] を押下すると、未プッシュのファイルとともに環境が復元します。
 
-また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、VS Code の操作状態が維持されたままになるため時間の短縮となります。
+また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、これまでの VS Code の操作状態が維持されているため時間の短縮にもなります。
 
----
+<<<<
 
 .VS Code の Zen Mode
 ****

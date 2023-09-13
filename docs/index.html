@@ -1329,7 +1329,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="277">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
 </div>
 </div>
 <div class="paragraph">
@@ -1337,7 +1337,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="179">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
 </div>
 </div>
 <div class="paragraph">
@@ -1492,7 +1492,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も <code>~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。</p>
 </div>
 <div class="paragraph">
-<p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作しますので、動作をご理解の上設定してください。</p>
+<p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上設定してください。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1516,7 +1516,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="305">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="375">
 </div>
 </div>
 <div class="listingblock">
@@ -1566,7 +1566,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_文書属性定義">2.4.1. 文書属性定義</h4>
 <div class="paragraph">
-<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。必要に応じて修正してください。</p>
+<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。画像挿入時の「図. 」など標準で付与されるキャプション文字列が定義できます。必要に応じて修正してください。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>src/docs/asciidoc/attribute.adoc</code></div>
@@ -1601,7 +1601,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_pdf_テーマ定義">2.4.2. PDF テーマ定義</h4>
 <div class="paragraph">
-<p><code>src/docs/asciidoc/@style/pdf-theme.yml</code> では PDF 文書のスタイルを定義することができます。</p>
+<p><code>src/docs/asciidoc/@style/pdf-theme.yml</code> では PDF 文書のスタイルを定義することができます。PDF 文書の紙サイズやマージン、フォント・行送り幅などが設定できます。必要に応じて修正してください。</p>
 </div>
 <div class="paragraph">
 <p>属性の詳細は次から参照できます。</p>
@@ -1622,11 +1622,11 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="paragraph">
 <p><code>pdf-theme.yml</code> の修正は <code>.adoc</code> 修正時のビルドで PDF 文書に反映します。<code>pdf-theme.yml</code> の修正だけを反映したい場合は、いずれかの <code>.adoc</code> 文書に影響のない修正を加えてファイルを更新するか、 <code>./gradlew clean</code> してからビルドを実行してください。</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
 本手順で採用している Asciidoctor PDF のバージョンは <code>1.6.2</code> です。日本語禁則処理を正しく動作させるために、現在のところ最新の <code>2.3</code> にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
@@ -1722,18 +1722,21 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </li>
 </ol>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-推敲は、生成された PDF 文書を iPad などペンシルデバイスを持つ機械に転送し「赤入れ」すると便利かもしれません。
-</td>
-</tr>
-</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">文書の推敲</div>
+<div class="paragraph">
+<p>文書の推敲は、iPad などのペンシルデバイスを持つ機械に PDF 文書ファイルを転送して「赤入れ」すると便利です。さらに、Dropbox や OneDrive などのクラウドストレージにファイルを配置すると執筆環境と推敲情報を共有することができます。</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-13-14-48-50.png" alt="2023 09 13 14 48 50">
+</div>
+<div class="title">画面. iPad の Goodnotes アプリによる PDF 文書の推敲</div>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_文書の_git_管理">2.7. 文書の Git 管理</h3>
@@ -1746,7 +1749,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p>文書の修正差分、版数管理ができる。</p>
 </li>
 <li>
-<p>バックアップ・情報保全。</p>
+<p>信頼できる場所にバックアップ・情報保全がされる。</p>
 </li>
 <li>
 <p>クラウド環境での執筆が可能になる。</p>
@@ -1760,18 +1763,12 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>本項ではインターネット上の Git リポジトリとして GitHub を使うことを例に、プロジェクトファイルを管理する手順を示します。</p>
+<p>本項では Git リポジトリとして GitHub サービスを使うことを例に、文書のプロジェクトファイルを Git 管理する手順を示します。</p>
 </div>
 <div class="sect3">
 <h4 id="_git_クライアントの導入">2.7.1. Git クライアントの導入</h4>
 <div class="paragraph">
 <p>お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。</p>
-</div>
-<div class="listingblock">
-<div class="title">Windows の場合（PowerShell ウインドウで以下のコマンドを実行）</div>
-<div class="content">
-<pre class="rouge highlight"><code>winget install --id Git.Git -e --source winget</code></pre>
-</div>
 </div>
 <div class="listingblock">
 <div class="title">macOS の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
@@ -1783,6 +1780,12 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="title">Ubuntu の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code>sudo apt install git</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Windows の場合（PowerShell ウインドウで以下のコマンドを実行）</div>
+<div class="content">
+<pre class="rouge highlight"><code>winget install --id Git.Git -e --source winget</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1801,11 +1804,12 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 &#8212; GitHub アカウントへの新しい SSH キーの追加
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
 <h4 id="_github_上に文書用のリポジトリを作成">2.7.2. GitHub 上に文書用のリポジトリを作成</h4>
 <div class="paragraph">
-<p>GitHub にご自身のアカウントでログインした上で、次のように <span class="menuseq"><b class="menu">Repositories</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">New</b></span> を押下します。</p>
+<p>GitHub にログインし、各自のホーム画面から <span class="menuseq"><b class="menu">Repositories</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">New</b></span> を押下します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1823,7 +1827,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-ここでは <code>wasm-micro-book</code> というリポジトリ名で、執筆者のみが文書ファイルが閲覧・操作できる <code>Private</code> を選択しました。
+ここではリポジトリ名として <code>wasm-micro-book</code> を、公開範囲を執筆者のみが文書ファイルが閲覧・操作が可能となる <code>Private</code> を選択しました。なお、公開範囲に Public を指定した場合は、インターネット上の全てのユーザから文書ファイルの読み取りが可能になりますので注意してください。
 </td>
 </tr>
 </table>
@@ -1835,7 +1839,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="title">画面. GitHub の Create a new repository</div>
 </div>
 <div class="paragraph">
-<p>リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れますので、表示されたコマンドをクリップボードに保持しておきます。</p>
+<p>リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れます。次項の手順で必要になりますので、表示されたコマンドをクリップボード等に保持しておきます。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1847,7 +1851,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_github_上に文書を初期プッシュ">2.7.3. GitHub 上に文書を初期プッシュ</h4>
 <div class="paragraph">
-<p>お使いの PC の VS Code をつかい、文書が配置されているプロジェクトフォルダを開き、統合ターミナルから次のようにしてローカルの Git リポジトリを初期化します。</p>
+<p>GitHub リポジトリに文書を配置するため、VS Code で PC 上の文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1875,16 +1879,16 @@ git commit <span class="nt">-m</span> <span class="s1">'initial commit'</span></
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td><code>h1romas4</code> 任意の名前に変更。コミットログの名称になります。</td>
+<td><code>h1romas4</code> 任意の名前に変更。Git コミットログの記載される氏名になります。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>h1romas4@gmail.com</code> 同上。コミットログのメールアドレスになります。</td>
+<td><code>h1romas4@gmail.com</code> 同上。Git コミットログに記載されるメールアドレスになります。</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>ローカルの Git リポジトリの初期化が完了したら、続けて統合ターミナルで前項でクリップボードに保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。</p>
+<p>ローカルの Git リポジトリの初期化完了後、続けて統合ターミナルで前項「GitHub の Create a new repository」画面でクリップボード等に保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。</p>
 </div>
 <div class="listingblock">
 <div class="title">VS Code 統合ターミナルから GitHub にプッシュ</div>
@@ -1902,11 +1906,17 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>以上で GitHub リポジトリーへの文書の配置が完了しました。ウェブブラウザーで GitHub リポジトリにアクセスしすると、プッシュした文書ファイルがあることが確認できるでしょう。</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_修正したファイルのコミットプッシュ">2.7.4. 修正したファイルのコミット・プッシュ</h4>
 <div class="paragraph">
-<p>VS Code 上で文書の編集を行うと、修正や追加の会ったファイルが左のサイドバーに通知されます。修正が完了したファイルは <b class="button">+</b> で Git 上にステージングし、任意のコミットコメントを記載して <b class="button">Commit</b> を押下することで、Git にコミットされます。</p>
+<p>Git によるファイル管理を始めた後、VS Code 上で文書の編集を行うと修正や追加のあったファイルが左のサイドバーに通知されます。</p>
+</div>
+<div class="paragraph">
+<p>この修正を Git に反映させるために、<b class="button">+</b> で Git 上にステージングし、任意のコミットコメントを記載して <b class="button">Commit</b> を押下するコミット操作を行います。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1921,7 +1931,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="title">画面. VS Code から Git へのコミット</div>
 </div>
 <div class="paragraph">
-<p>コミット後、ボタンが bnt:[Sync Changes] となりますので押下して GitHub リポジトリーへプッシュします。</p>
+<p>コミットはローカル上の Git に対して行われます。この後 GitHub のリモートリポジトリに反映させるため <b class="button">Sync Changes</b> を押下しプッシュ操作を行います。</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1930,7 +1940,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <i class="fa icon-warning" title="警告"></i>
 </td>
 <td class="content">
-プッシュ操作を行わない場合 GitHub リポジトリに文書の修正が反映されませんので忘れずに実施してください。
+プッシュ操作を行うまで GitHub リモートリポジトリには文書の修正が反映されません。忘れずに実施してください。操作に慣れるまでは、プッシュ操作後にウェブブラウザで GitHub リポジトリにアクセスしファイルの更新を確認すると良いでしょう。
 </td>
 </tr>
 </table>
@@ -1941,15 +1951,25 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </div>
 <div class="title">画面. VS Code から GitHub Repository へのプッシュ</div>
 </div>
+<div class="paragraph">
+<p>なお、<b class="button">Sync Changes</b> ボタン押下操作の他、統合ターミナルから <code>git push</code> コマンドを入力することでも同様の結果が得られます。</p>
+</div>
+<div class="listingblock">
+<div class="title">統合ターミナルから <code>git push</code> を実行</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">git push</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_異なる執筆環境での_git_操作">2.7.5. 異なる執筆環境での Git 操作</h4>
 <div class="paragraph">
-<p>ここまでの手順と異なる PC から GitHub リポジトリの文書を取得するには次の操作を行います。</p>
+<p>異なる執筆環境から GitHub リポジトリの文書を取得するには次の操作を行います。</p>
 </div>
-<div class="paragraph">
-<p>初回の操作の場合は、次のようにして GitHub 上のリポジトリをクローンしプロジェクトフォルダを得ます。</p>
-</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>GitHub 上のリポジトリをクローンしプロジェクトフォルダを得る。（初回のみ操作）</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git clone git@github.com:h1romas4/wasm-micro-book.git <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
@@ -1963,16 +1983,17 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>クローン操作で作成されたプロジェクトフォルダを VS Code で開くと GitHub リポジトリの最新の内容が取得されているのが分かります。</p>
-</div>
-<div class="paragraph">
-<p>クローン後は各環境において統合ターミナルから <code>git pull</code> コマンドを入力することで、別な環境からプッシュされた最新ファイルを同期することができます。</p>
-</div>
+</li>
+<li>
+<p>別の執筆環境からの修正（プッシュ）を取得するために <code>git pull</code> 操作を実施。</p>
 <div class="listingblock">
+<div class="title">統合ターミナルから <code>git pull</code> を実行</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git pull</code></pre>
 </div>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1981,7 +2002,12 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-執筆開始前に <code>git pull</code>、当日の執筆完了時に <code>commit</code> と <code>push</code> と覚えておけば個人の執筆活動としては十分機能するはずです。もし、複数人での執筆時ではマージなどのより高度な Git の操作が必要になった場合はインターネット上のドキュメントや書籍を参照ください。
+<div class="paragraph">
+<p>個人の執筆活動の Git 操作としては「執筆開始前に <code>git pull</code>」「執筆区切りで <code>commit</code> と <code>push</code>」 と覚えておくだけで十分機能するはずです。</p>
+</div>
+<div class="paragraph">
+<p>もし共同著者間での文書マージ操作等、より高度な Git の操作が必要になってきた場合は、ウェブサイトや書籍から Git についての優れたドキュメントを得ることができます。</p>
+</div>
 </td>
 </tr>
 </table>
@@ -1991,7 +2017,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="sect2">
 <h3 id="_クラウド環境による執筆">2.8. クラウド環境による執筆</h3>
 <div class="paragraph">
-<p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザ上での執筆と HTML/PDF 文書の変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆が行えるようになります。</p>
+<p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザだけで執筆と HTML/PDF 文書変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆活動が行えます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2057,7 +2083,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-上記記載通りの URL にアクセスすると本手順のリポジトリで Gitpod クラウドを試用できます。
+上記記載通りの URL にアクセスすると本手順のリポジトリで Gitpod クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 </td>
 </tr>
 </table>
@@ -2113,7 +2139,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <p>文書ファイル一式を GitHub に配置する必要があります。（プライベートリポジトリも利用可能です）</p>
 </li>
 <li>
-<p>2023-07 現在 Codespaces の無料枠は 60時間/月ほどです。最新情報は各自の GitHub アカウント <a href="https://github.com/settings/billing" class="bare">https://github.com/settings/billing</a> の Codespaces 項から確認できます。</p>
+<p>2023-07 現在 Codespaces の無料枠はおおよそ 60時間/月ほどです。最新情報は各自の GitHub アカウント <a href="https://github.com/settings/billing" class="bare">https://github.com/settings/billing</a> の Codespaces 項から確認できます。</p>
 </li>
 </ul>
 </div>
@@ -2132,13 +2158,14 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-<a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a> にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。
+<a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a> にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 </td>
 </tr>
 </table>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>押下後、コンテナのビルド画面に遷移し、完了するとウェブブラウザー上で VS Code が起動します。</p>
+<p>ボタン押下後コンテナのビルドに画面が遷移し、完了するとウェブブラウザー上で VS Code が起動します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2223,8 +2250,17 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 <div class="paragraph">
 <p>クライド環境上での文書ファイルの保存は、基本的に Git のコミット・プッシュ操作になります。通常の <b class="button">Ctrl + s</b> のファイル保存操作とともに、一区切りの間隔で Git のコミットとプッシュの操作を行うのを忘れないようにしてください。</p>
 </div>
-<div class="paragraph">
-<p>もし Git の操作を行わずにウェブブラウザーを閉じてしまった場合はファイルが失われる可能性がありますので十分に注意を払います。</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="注意"></i>
+</td>
+<td class="content">
+Git プッシュの操作を行わずにウェブブラウザーを閉じてしまった場合はファイルが失われる可能性があります。十分注意をしてください。
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>とは言ってもウェブブラウザのタブは閉じやすいもの。もしうっかり閉じてしまった場合は、GitHub にログインした状態で以下の URL にアクセスしてください。</p>
@@ -2260,12 +2296,12 @@ Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及�
 </table>
 </div>
 <div class="paragraph">
-<p>一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では <b class="button">Open</b>、Codespaces では <span class="menuseq"><b class="menu">Open in</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open in browser</b></span> を押下します。</p>
+<p>一覧画面にはこれまで使っていた環境が表示されますので、選択して「開く」操作をしてください。どちらも右の三点リーダメニューより、Gitpod では <b class="button">Open</b>、Codespaces では <span class="menuseq"><b class="menu">Open in</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open in browser</b></span> を押下すると、未プッシュのファイルとともに環境が復元します。</p>
 </div>
 <div class="paragraph">
-<p>また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、VS Code の操作状態が維持されたままになるため時間の短縮となります。</p>
+<p>また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、これまでの VS Code の操作状態が維持されているため時間の短縮にもなります。</p>
 </div>
-<hr>
+<div style="page-break-after: always;"></div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">VS Code の Zen Mode</div>
@@ -3237,7 +3273,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="505">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
 </div>
 </div>
 <div class="sidebarblock">
@@ -3302,7 +3338,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="151">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3539,7 +3575,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
 </div>
 </div>
 <div class="sidebarblock">
@@ -3648,7 +3684,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1107" height="705">
+<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1056" height="754">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -3725,7 +3761,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="394">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="416">
 </div>
 </div>
 <hr>
@@ -3737,7 +3773,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="1034" height="466">
+<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="951" height="578">
 </div>
 </div>
 </div>
@@ -3774,7 +3810,7 @@ mindmapDiagram {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="406" height="265">
+<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="394" height="286">
 </div>
 </div>
 </div>
@@ -3784,7 +3820,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-12 11:46:22 +0900
+最終更新 2023-09-13 12:13:19 +0900
 </div>
 </div>
 </body>
