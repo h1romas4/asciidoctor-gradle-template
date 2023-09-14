@@ -15,9 +15,10 @@ Asciidoctor と Gradle でつくる執筆環境::
     2023年 9月 14日 v4.1.0 発行
 
 [format="csv",cols="1,3"]
-[frame="topbot",grid="none"]
+[frame="topbot",grid="none",stripes="none"]
 |======
 著者, 田中 広将 （ひろましゃ - `h1romas4`）
+カバーデザイン, Fujix
 発行, https://github.com/h1romas4/asciidoctor-gradle-template
 ライセンス, MIT License
 |======
