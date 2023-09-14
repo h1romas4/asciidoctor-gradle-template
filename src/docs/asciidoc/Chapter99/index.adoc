@@ -1,5 +1,7 @@
 include::../attribute.adoc[]
 
+// TODO: notitle は asciidoctor-pdf 2.0 以降で対応のため効果がない。
+[%notitle]
 [colophon]
 == 奥付
 
