@@ -13,7 +13,7 @@ ifeval::["{front-cover-on-pdf}" == "true"]
 :notitle:
 :front-cover-image: image:front-cover.pdf[]
 endif::[]
-// PDF 版の表紙を Chapter00/images/back-cover.pdf に設定する。
+// PDF 版の表紙を Chapter99/images/back-cover.pdf に設定する。
 // 裏表紙の PDF は最終章の imagesdir から取得されるので注意（本手順では Chapter99 になる）
 ifeval::["{back-cover-on-pdf}" == "true"]
 :back-cover-image: image:back-cover.pdf[]
