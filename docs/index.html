@@ -701,7 +701,7 @@ pre.rouge {
 </table>
 </div>
 <div class="paragraph">
-<p>一般的にこのようなテキストプロセッサーを用いた執筆環境を構築するためには多くの準備が必要となりますが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
+<p>一般的にテキストプロセッサーを用いた執筆環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
 <p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
@@ -710,7 +710,7 @@ pre.rouge {
 <p>手間がかかることが多い PDF 出力に関しても、フォントセットや禁則処理設定をプロジェクトに持たせることにより、実行環境に関わらず同一出力が得られるように調整しました。</p>
 </div>
 <div class="paragraph">
-<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入をサポートしています。</p>
+<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため、文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入をサポートしています。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -978,7 +978,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-本文書では Java 11 を用いて解説します。また、ビルド時に若干ワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
+本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
 </td>
 </tr>
 </table>
@@ -1067,7 +1067,7 @@ $ sdk install java 11.0.20.1-tem <i class="conum" data-value="4"></i><b>(4)</b><
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<code>.bashrc</code> や <code>.zshrc</code> で次のように <code>JAVA_HOME</code> を設定します。</p>
+<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、利用しているシェル環境に合わせ <code>.bashrc</code> や <code>.zshrc</code> 等で次のように <code>JAVA_HOME</code> を設定します。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. JAVA_HOME の設定</div>
@@ -1081,15 +1081,15 @@ $ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>vi エディタで <code>.bashrc</code> を開きます。</td>
+<td>エディタで <code>.bashrc</code> や <code>.zshrc</code> を開きます。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>本ラインをファイルの最下部に追加し vi を保存終了します。</td>
+<td>本ラインをファイルの最下部に追加し保存終了します。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>設定を適用します。</td>
+<td>設定を適用します。<code>source</code> コマンドを使わず、ターミナルを再起動する操作でも反映されます。</td>
 </tr>
 </table>
 </div>
@@ -1200,13 +1200,18 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <div class="sect2">
 <h3 id="_サンプル文書の変換を試す">2.1. サンプル文書の変換を試す</h3>
 <div class="paragraph">
-<p>環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。</p>
+<p>本項では準備した環境を元に、Asciidoc 文書を HTML/PDF に変換する手順を示します。</p>
 </div>
 <div class="paragraph">
-<p>変換に使うスクリプトは GitHub のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく変換できるかを試してみましょう。</p>
+<p>変換に使うスクリプトは GitHub のリポジトリに公開されており、HTML/PDF 変換に使うファイル一式と、文書のサンプルとして "この文書" の Asciidoc ファイルが配置されています。</p>
 </div>
 <div class="paragraph">
-<p>macOS / Linux の場合は次のようにします。</p>
+<p>最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。</p>
+</div>
+<div class="sect3">
+<h4 id="_macos_linux_の場合">2.1.1. macOS / Linux の場合</h4>
+<div class="paragraph">
+<p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. PDF 変換ビルドスクリプトの取得と実行</div>
@@ -1244,8 +1249,11 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </table>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="_windows_の場合">2.1.2. Windows の場合</h4>
 <div class="paragraph">
-<p>Windows をお使いの場合は同等の操作をブラウザとエクスプローラーを使って行います。</p>
+<p>ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1307,6 +1315,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="_変換後の文書">2.2. 変換後の文書</h3>
 <div class="paragraph">
@@ -1330,7 +1339,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="277">
 </div>
 </div>
 <div class="paragraph">
@@ -1338,7 +1347,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="179">
 </div>
 </div>
 <div class="paragraph">
@@ -1442,7 +1451,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>本手順で VS Code の推奨拡張として導入される <a href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image</a>（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。</p>
 </div>
 <div class="paragraph">
-<p>特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。</p>
+<p>特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。サンプル文書内で操作を試してみると良いでしょう。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1484,7 +1493,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。</p>
 </div>
 <div class="paragraph">
-<p>AsciiDoc: Paste Image は現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
+<p>AsciiDoc: Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1493,7 +1502,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も <code>~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。</p>
 </div>
 <div class="paragraph">
-<p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上設定してください。</p>
+<p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上活用してください。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1504,6 +1513,32 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <span class="nt">-rw-r--r--</span> 1 hiromasa hiromasa   680  6月 26  2021 pc.ps1
 ..snip..</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>また、本文書の手順は Windows WSL2 上の Ubuntu と VS Code の WSL Remote 拡張を使うことでも問題なく構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
+</div>
+<div class="paragraph">
+<p>これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="c"># change current directoru</span>
+<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
+<span class="c"># set dist path</span>
+<span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="c"># call Windows PowerShell</span>
+powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-File</span> pc.ps1 <span class="k">${</span><span class="nv">DISTPATH</span><span class="k">}</span><span class="nv">$1</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>利用しているディストリビューションのパスを設定する。</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1517,7 +1552,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="375">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="305">
 </div>
 </div>
 <div class="listingblock">
@@ -1923,7 +1958,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="content">
 <img src="Chapter02/images/2023-09-12-12-49-52.png" alt="2023 09 12 12 49 52" width="50%">
 </div>
-<div class="title">画面. VS Code のファイル修正通知</div>
+<div class="title">画面. VS Code のファイル修正通知と Git へのステージング</div>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2533,8 +2568,20 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter03/images/2023-06-30-15-39-26.png" alt="2023 06 30 15 39 26" width="60%">
+<img src="Chapter03/images/2023-09-14-18-52-05.png" alt="2023 09 14 18 52 05" width="60%">
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+補完文字列は他の補完と区別しやすいよう <code>ag-</code> が先頭に付与されています。補完操作後、最初に <code>ag-</code> と入力することで一覧することができます。
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_文書中の相互参照">3.1. 文書中の相互参照</h3>
@@ -3210,7 +3257,7 @@ PDF 出力時に日本語が化けないよう、自動的にフォントパッ�
 <p>コピーして使いやすいよう各ダイアグラム内で頻出する記法をなるべくピックアップする形で描いています。作成したい図表と似たようなものからアレンジして使うと良いでしょう。</p>
 </div>
 <div class="paragraph">
-<p>記法の詳細については、次のドキュメントから参照できます。</p>
+<p>PlantUML と ditta 記法の詳細な仕様については、次のドキュメントから参照できます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -3274,7 +3321,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="560">
+<img src="Chapter04/images/diag-sequence-sample2.svg" alt="diag sequence sample2" width="70%" height="505">
 </div>
 </div>
 <div class="sidebarblock">
@@ -3339,7 +3386,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="184">
+<img src="Chapter04/images/diag-salt-sample1.svg" alt="diag salt sample1" width="280px" height="151">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3576,38 +3623,7 @@ nwdiag {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="785" height="698">
-</div>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">WSL2 上の VS Code で Paste Image 拡張を使う</div>
-<div class="paragraph">
-<p>本手順は Windows WSL2 上の Linux と VS Code の WSL Remote 拡張でも構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
-</div>
-<div class="paragraph">
-<p>これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると動作するようになります。Asciidoc 拡張も同じ方法で修正できます。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
-</div>
-<div class="listingblock">
-<div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
-<span class="c"># change current directoru</span>
-<span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
-<span class="c"># set dist path</span>
-<span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
-<span class="c"># call Windows PowerShell</span>
-powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">-File</span> pc.ps1 <span class="k">${</span><span class="nv">DISTPATH</span><span class="k">}</span><span class="nv">$1</span></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>利用しているディストリビューションのパスを設定する。</td>
-</tr>
-</table>
-</div>
+<img src="Chapter04/images/diag-nwdiag-network1.svg" alt="diag nwdiag network1" width="811" height="656">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -3685,7 +3701,7 @@ Rel_R(user_admnin, batch, "ssh", $tags="rel_line")
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1056" height="754">
+<img src="Chapter04/images/diag-c4-component-sample1.svg" alt="diag c4 component sample1" width="1106" height="705">
 </div>
 </div>
 <div class="admonitionblock note">
@@ -3762,7 +3778,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="416">
+<img src="Chapter04/images/diag-timing-sample1.svg" alt="diag timing sample1" width="80%" height="394">
 </div>
 </div>
 <hr>
@@ -3774,7 +3790,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="951" height="578">
+<img src="Chapter04/images/open-iconic-list.svg" alt="open iconic list" width="1034" height="466">
 </div>
 </div>
 </div>
@@ -3811,7 +3827,7 @@ mindmapDiagram {
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="394" height="286">
+<img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="406" height="265">
 </div>
 </div>
 </div>
@@ -3870,7 +3886,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-14 13:00:26 +0900
+最終更新 2023-09-14 15:30:59 +0900
 </div>
 </div>
 </body>

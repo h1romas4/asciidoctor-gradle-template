@@ -4,11 +4,15 @@ include::../attribute.adoc[]
 
 === サンプル文書の変換を試す
 
-環境の準備ができましたので Asciidoc 文書を HTML/PDF に変換してみます。
+本項では準備した環境を元に、Asciidoc 文書を HTML/PDF に変換する手順を示します。
 
-変換に使うスクリプトは GitHub のリポジトリに公開されており、リポジトリには HTML/PDF 変換に使うファイル一式と、文書サンプルとして "この文書" の Asciidoc ファイルが置かれています。まずはサンプル文書が正しく変換できるかを試してみましょう。
+変換に使うスクリプトは GitHub のリポジトリに公開されており、HTML/PDF 変換に使うファイル一式と、文書のサンプルとして "この文書" の Asciidoc ファイルが配置されています。
 
-macOS / Linux の場合は次のようにします。
+最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。
+
+==== macOS / Linux の場合
+
+ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。
 
 [source]
 [caption="手順. "]
@@ -30,7 +34,9 @@ BUILD SUCCESSFUL in 19s <5>
 
 <<<
 
-Windows をお使いの場合は同等の操作をブラウザとエクスプローラーを使って行います。
+==== Windows の場合
+
+ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。
 
 [IMPORTANT]
 ====
@@ -144,7 +150,7 @@ image::vscode-asciidoc.png[vscode, 600]
 
 本手順で VS Code の推奨拡張として導入される https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image[Paste Image]（``mushan.vscode-paste-image``） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。
 
-特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。
+特にコンピュータの操作手順文書をつくる場合に活用すると強力です。次のような簡単な操作でクリップボードの画像を Asciidoc 文書に挿入できます。サンプル文書内で操作を試してみると良いでしょう。
 
 . スクリーンキャプチャなどの機能でクリップボードに画像を保持する。
 . VS Code で Asciidoc 文書を開き、menu:VS Code[F1 キー押下 > Paste Image と入力 > エンターキーで選択]する。
@@ -174,13 +180,13 @@ image::2023-06-30-12-11-56.png[]
 
 Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。
 
-AsciiDoc: Paste Image は現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
+AsciiDoc: Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
 .クリップボード連携のシステムインターフェース
 ****
 Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
 
-クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上設定してください。
+クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上活用してください。
 
 [source, bash]
 ----
@@ -191,6 +197,25 @@ $ ls -laF ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
 -rw-r--r-- 1 hiromasa hiromasa   680  6月 26  2021 pc.ps1
 ..snip..
 ----
+
+また、本文書の手順は Windows WSL2 上の Ubuntu と VS Code の WSL Remote 拡張を使うことでも問題なく構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。
+
+これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。
+
+[source, bash]
+[caption=""]
+.``~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh``
+----
+#!/bin/sh
+# change current directoru
+cd `dirname $0`
+# set dist path
+DISTPATH=//wsl.localhost/Ubuntu-22.04 # <1>
+# call Windows PowerShell
+powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
+----
+
+<1> 利用しているディストリビューションのパスを設定する。
 ****
 
 <<<<
@@ -421,7 +446,7 @@ Git によるファイル管理を始めた後、VS Code 上で文書の編集�
 
 この修正を Git に反映させるために、btn:[+] で Git 上にステージングし、任意のコミットコメントを記載して btn:[Commit] を押下するコミット操作を行います。
 
-.VS Code のファイル修正通知
+.VS Code のファイル修正通知と Git へのステージング
 [caption="画面. "]
 image::2023-09-12-12-49-52.png[width=50%, pdfWidth=50%]
 
