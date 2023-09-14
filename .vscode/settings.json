@@ -13,5 +13,11 @@
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
     // docker run -d -p 8080:8080 plantuml/plantuml-server:jetty
-    "plantuml.server": "http://localhost:8080"
+    "plantuml.server": "http://localhost:8080",
+    "search.exclude": {
+        "docs/**": true
+    },
+    "files.readonlyInclude": {
+        "docs/**": true
+    }
 }
