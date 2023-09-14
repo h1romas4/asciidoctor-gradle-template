@@ -12,7 +12,7 @@ image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://g
 
 == License
 
-MIT license
+MIT License
 
 == Donate
 

@@ -1,15 +1,22 @@
 include::./attribute.adoc[]
 
 // 表紙デザインの PDF がある場合 true を、Asciidoc 標準の表紙を使う場合は false を設定。
-:cover-on-pdf: true
+:front-cover-on-pdf: true
+// 裏表紙デザインの PDF がある場合 true を、ない場合は false を設定。
+:back-cover-on-pdf: true
 
-// PDF 出力時の分岐
+// PDF 表紙・裏表紙設定
 ifdef::backend-pdf[]
-// PDF 版の表紙を Chapter00/images/cover.pdf に設定し標準の表紙をオフにする。
-ifeval::["{cover-on-pdf}" == "true"]
+// PDF 版の表紙を Chapter00/images/front-cover.pdf に設定し標準の表紙をオフにする。
+ifeval::["{front-cover-on-pdf}" == "true"]
 :imagesdir: Chapter00/images
 :notitle:
-:front-cover-image: image:cover.pdf[]
+:front-cover-image: image:front-cover.pdf[]
+endif::[]
+// PDF 版の表紙を Chapter00/images/back-cover.pdf に設定する。
+// 裏表紙の PDF は最終章の imagesdir から取得されるので注意（本手順では Chapter99 になる）
+ifeval::["{back-cover-on-pdf}" == "true"]
+:back-cover-image: image:back-cover.pdf[]
 endif::[]
 endif::[]
 
@@ -47,3 +54,7 @@ include::Chapter03/index.adoc[]
 // 4章
 :imagesdir: Chapter04/images
 include::Chapter04/index.adoc[]
+
+// 奥付
+:imagesdir: Chapter99/images
+include::Chapter99/index.adoc[]
