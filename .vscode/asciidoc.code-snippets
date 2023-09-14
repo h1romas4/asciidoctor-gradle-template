@@ -1,48 +1,48 @@
 {
     "asciidoc-menu": {
-        "prefix": "menu",
+        "prefix": "ag-menu",
         "body": [
             "menu:${1:menu}[${2:menu-button} > ${3:menu-button}] "
         ],
         "description": "menu(inline)"
     },
     "asciidoc-button": {
-        "prefix": "button",
+        "prefix": "ag-button",
         "body": [
             "btn:[${1:button-name}] "
         ],
         "description": "button(inline)"
     },
     "asciidoc-command": {
-        "prefix": "command",
+        "prefix": "ag-command",
         "body": [
             "``${1:command-name}`` "
         ],
         "description": "command(inline)"
     },
     "asciidoc-h2": {
-        "prefix": "h2",
+        "prefix": "ag-h2",
         "body": [
             "== ${1:header}"
         ],
         "description": "h2"
     },
     "asciidoc-h3": {
-        "prefix": "h3",
+        "prefix": "ag-h3",
         "body": [
             "=== ${1:header}"
         ],
         "description": "h3"
     },
     "asciidoc-note": {
-        "prefix": "note",
+        "prefix": "ag-note",
         "body": [
             "NOTE: ${1:note}"
         ],
         "description": "note"
     },
     "asciidoc-note-block": {
-        "prefix": "note-block",
+        "prefix": "ag-note-block",
         "body": [
             "[NOTE]",
             "====",
@@ -52,14 +52,14 @@
         "description": "note block"
     },
     "asciidoc-important": {
-        "prefix": "important",
+        "prefix": "ag-important",
         "body": [
             "IMPORTANT: ${1:important}"
         ],
         "description": "important"
     },
     "asciidoc-important-block": {
-        "prefix": "important-block",
+        "prefix": "ag-important-block",
         "body": [
             "[IMPORTANT]",
             "====",
@@ -69,14 +69,14 @@
         "description": "important block"
     },
     "asciidoc-tip": {
-        "prefix": "tip",
+        "prefix": "ag-tip",
         "body": [
             "TIP: ${1:tip}"
         ],
         "description": "tip"
     },
     "asciidoc-tip-block": {
-        "prefix": "tip-block",
+        "prefix": "ag-tip-block",
         "body": [
             "[TIP]",
             "====",
@@ -86,14 +86,14 @@
         "description": "tip block"
     },
     "asciidoc-warning": {
-        "prefix": "warning",
+        "prefix": "ag-warning",
         "body": [
             "WARNING: ${1:warning}"
         ],
         "description": "warning"
     },
     "asciidoc-warning-block": {
-        "prefix": "warning-block",
+        "prefix": "ag-warning-block",
         "body": [
             "[WARNING]",
             "====",
@@ -103,14 +103,14 @@
         "description": "warning block"
     },
     "asciidoc-caution": {
-        "prefix": "caution",
+        "prefix": "ag-caution",
         "body": [
             "caution: ${1:caution}"
         ],
         "description": "caution"
     },
     "asciidoc-caution-block": {
-        "prefix": "caution-block",
+        "prefix": "ag-caution-block",
         "body": [
             "[CAUTION]",
             "====",
@@ -120,7 +120,7 @@
         "description": "caution block"
     },
     "asciidoc-pdf-nextpage": {
-        "prefix": "pdf-next-page",
+        "prefix": "ag-pdf-next-page",
         "body": [
             "// pdf next page",
             "<<<"
@@ -128,7 +128,7 @@
         "description": "pdf next page"
     },
     "asciidoc-source": {
-        "prefix": "source",
+        "prefix": "ag-source",
         "body": [
             "[source, ${1:javascript}]",
             "----",
@@ -140,7 +140,7 @@
         "description": "source code"
     },
     "asciidoc-source-with-caption": {
-        "prefix": "source-with-caption",
+        "prefix": "ag-source-with-caption",
         "body": [
             "[source, ${1:javascript}]",
             "[caption=\"\"]",
@@ -154,7 +154,7 @@
         "description": "source code with caption"
     },
     "asciidoc-quote": {
-        "prefix": "quote",
+        "prefix": "ag-quote",
         "body": [
             "[quote, ${1:origin}]",
             "____",
@@ -165,7 +165,7 @@
         "description": "quote"
     },
     "asciidoc-column": {
-        "prefix": "column",
+        "prefix": "ag-column",
         "body": [
             ".${1:column-name}",
             "****",
@@ -175,7 +175,7 @@
         "description": "column"
     },
     "asciidoc-plantuml": {
-        "prefix": "plantuml",
+        "prefix": "ag-plantuml",
         "body": [
             "[plantuml, ${1:diag-sequence-sample1}, svg, pdfwidth=${2:pdfwidth}%, width=${3:pdfwidth}%]",
             "[caption=\"\"]",
@@ -192,7 +192,7 @@
         "description": "plantuml"
     },
     "asciidoc-plantuml-include": {
-        "prefix": "plantuml-include",
+        "prefix": "ag-plantuml-include",
         "body": [
             "[plantuml, ${1:diag-sequence-sample1}, svg, pdfwidth=${2:pdfwidth}%, width=${3:pdfwidth}%]",
             "[caption=\"\"]",
@@ -203,14 +203,14 @@
         "description": "plantuml-include"
     },
     "asciidoc-image": {
-        "prefix": "image",
+        "prefix": "ag-image",
         "body": [
             "image::${1:filepath}[${2:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
         ],
         "description": "image"
     },
     "asciidoc-image-with-caption": {
-        "prefix": "image-with-caption",
+        "prefix": "ag-image-with-caption",
         "body": [
             ".${1:caption}",
             "image::${2:filepath}[${1:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
@@ -218,14 +218,14 @@
         "description": "image"
     },
     "asciidoc-ol": {
-        "prefix": "ol",
+        "prefix": "ag-ol",
         "body": [
             ". ${1:ol}"
         ],
         "description": "ol"
     },
     "asciidoc-ol-with-image": {
-        "prefix": "ol-with-image",
+        "prefix": "ag-ol-with-image",
         "body": [
             ". ${1:ol}",
             "+",
@@ -234,28 +234,28 @@
         "description": "ol with image"
     },
     "asciidoc-ul": {
-        "prefix": "ul",
+        "prefix": "ag-ul",
         "body": [
             "* ${1:ul}"
         ],
         "description": "ul"
     },
     "asciidoc-link-internal": {
-        "prefix": "link-internal",
+        "prefix": "ag-link-internal",
         "body": [
             "<<${1:_文書のファイル構成},${2:章の冒頭}>>"
         ],
         "description": "link asciidoc internal"
     },
     "asciidoc-link-external": {
-        "prefix": "link-external",
+        "prefix": "ag-link-external",
         "body": [
             "<<${1:Chapter01/index.adoc#_はじめに},${2:はじめに}>>"
         ],
         "description": "link asciidoc external"
     },
     "asciidoc-table": {
-        "prefix": "table",
+        "prefix": "ag-table",
         "body": [
             "[format=\"csv\",cols=\"2,1\"]",
             "[frame=\"topbot\",grid=\"none\"]",
@@ -266,14 +266,14 @@
         "description": "link asciidoc external"
     },
     "asciidoc-hr": {
-        "prefix": "hr",
+        "prefix": "ag-hr",
         "body": [
             "- - -"
         ],
         "description": "horizon line"
     },
     "asciidoc-comment": {
-        "prefix": "comment",
+        "prefix": "ag-comment",
         "body": [
             "// ${1:asciidoc-comment}"
         ],
