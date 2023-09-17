@@ -136,6 +136,10 @@ NOTE: 拡張機能の推奨は ``.vscode/extention.json`` で設定されてい�
 . btn:[すべてインストール] ボタンをクリックします。
 +
 image::vscode-extention1.png[vscode, pdfwidth=50%]
++
+WSL2 Ubuntu 環境を使っている場合は合わせて WSL2 側にも拡張の導入を行います。
++
+image::2023-09-17-13-30-33.png[pdfwidth=60%, width=60%]
 
 . btn:[再読み込み] ボタンをクリックします。
 +
@@ -145,6 +149,8 @@ image::vscode-extention2.png[vscode, pdfwidth=50%]
 . Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 +
 image::vscode-asciidoc.png[vscode, 600]
+
+WSL2 Ubuntu からの VS Code 起動後、推奨拡張として導入される Asciidoc 拡張などを次の形で WSL2 側にもインストールしてください。
 
 ==== クリップボードからの画像挿入
 
