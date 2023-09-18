@@ -125,6 +125,70 @@ PDF 文書, ``docs/index.pdf`` のみを配布。
 
 === テキストエディタで Asciidoc 文書を編集する
 
+==== Visual Studio Code の導入（macOS、Ubuntu、Windows）
+
+Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。
+
+本手順のプロジェクトフォルダには VS Code 用の設定ファイル（``.vscode``配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。
+
+次のサイトからお使いの OS に合わせた VS Code を導入してください。
+
+[quote, Visual Studio Code - Code Editing. Redefined]
+____
+https://code.visualstudio.com/
+
+Free. Built on open source. Runs everywhere.
+____
+
+以上で、VS Code の準備は完了です。
+
+==== Visual Studio Code の導入（WSL2 Ubuntu 環境）
+
+WSL2 環境上の Ubuntu で VS Code を使う場合は、Windows 版 VS Code 導入後さらに次の WSL 拡張をインストールします。
+
+[quote, WSL - Visual Studio Marketplace]
+____
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+
+The WSL extension lets you use VS Code on Windows to build Linux applications
+that run on the Windows Subsystem for Linux (WSL).
+You get all the productivity of Windows while developing with Linux-based tools, runtimes, and utilities.
+____
+
+拡張導入後、一度 VS Code を終了します。
+
+次に、WSL2 Ubuntu のターミナル画面で `code` コマンドを入力することで WSL2 Ubuntu 上で VS Code サーバの初期セットアップが動作しその後 VS Code 画面が立ち上がります。
+
+[source, bash]
+[caption=""]
+.WSL2 Ubuntu 22.04 への VS Code サーバの導入
+----
+$ code # <1>
+----
+<1> WSL Ubuntu 環境上から Windows 側の VS Code を起動する。
+
+以上で、VS Code の準備は完了です。
+
+ここから先の手順で VS Code を起動する場合は同様に WSL2 Ubuntu のターミナル画面から `code` コマンドで起動してください。
+
+[source, bash]
+.WSL2 Ubuntu 22.04 からの VS Code 起動
+----
+$ cd asciidoctor-gradle-template <1>
+$ code . <2>
+----
+<1> 編集したいファイルがあるフォルダにカレントディレクトリを移します。
+<2> `.` とカレントディレクトリを指定して VS Code を起動します。
+
+VS Code WSL2 拡張の動作の詳細については、以下のドキュメントを参照してください。
+
+[quote, Developing in the Windows Subsystem for Linux with Visual Studio Code]
+____
+https://code.visualstudio.com/docs/remote/wsl
+
+The Visual Studio Code WSL extension lets you use the Windows Subsystem for Linux (WSL) as your full-time development environment right from VS Code. You can develop in a Linux-based environment, use Linux-specific toolchains and utilities, and run and debug your Linux-based applications all from the comfort of Windows.
+____
+
 ==== VS Code によるリアルタイムプレビュー
 
 プロジェクトフォルダに配置された Asciidoc 文書は、Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。
@@ -149,8 +213,6 @@ image::vscode-extention2.png[vscode, pdfwidth=50%]
 . Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 +
 image::vscode-asciidoc.png[vscode, 600]
-
-WSL2 Ubuntu からの VS Code 起動後、推奨拡張として導入される Asciidoc 拡張などを次の形で WSL2 側にもインストールしてください。
 
 ==== クリップボードからの画像挿入
 

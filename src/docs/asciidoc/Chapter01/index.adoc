@@ -165,7 +165,7 @@ TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すた
 
 Windows の WSL2 Linux 仮想環境上の Ubuntu 22.04 でも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。
 
-WSL2 に Ubuntu 22.04 LTS が導入済みであること、Windows に VS Code が導入されていることを前提に、環境構築手順は次のようになります。
+WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。
 
 [source, bash]
 [caption=""]
@@ -203,54 +203,15 @@ $ echo 'export JAVA_HOME=~/.sdkman/candidates/java/current' >> ~/.bashrc # <4>
 
 この操作後 ``LANG`` と ``JAVA_HOME`` 環境変数設定を反映させるため一度シェルを再起動してください。
 
-次に WSL2 環境上の Ubuntu と連携して VS Code を起動するため、Windows 側の VS Code を起動し次の拡張を導入します。
-
-[quote, WSL - Visual Studio Marketplace]
-____
-https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
-
-The WSL extension lets you use VS Code on Windows to build Linux applications
-that run on the Windows Subsystem for Linux (WSL).
-You get all the productivity of Windows while developing with Linux-based tools, runtimes, and utilities.
-____
-
-拡張導入後、一度 VS Code を終了します。
-
-次に、WSL2 Ubuntu のターミナル画面でカレントディレクトリをプロジェクトフォルダに移し、`code .` コマンドを入力することで VS Code が WSL2 Ubuntu から起動します。
-
-[source, bash]
-[caption=""]
-.WSL2 Ubuntu 22.04 LTS への Java の導入
-----
-$ cd asciidoctor-gradle-template # <1>
-$ code . # <2>
-----
-<1> VS Code のワークスペースとして開きたいフォルダにカレントディレクトリを移動する。
-<2> ``.``（カレントディレクトリ）を指定して VS Code を起動する。
-
-初回起動時は Linux 側に VS Code のサーバサイドモジュールのダウンロード処理が動作するため僅かに時間がかかります。
-
-[NOTE]
-====
-VS Code WSL2 拡張は Linux 側で VS Code 内部処理が、クライアント Windows 側で画面のフロントエンドが連携しながら動作するイメージです。詳細については以下のドキュメントを参照してください。
-
-[quote, Developing in the Windows Subsystem for Linux with Visual Studio Code]
-____
-https://code.visualstudio.com/docs/remote/wsl
-
-The Visual Studio Code WSL extension lets you use the Windows Subsystem for Linux (WSL) as your full-time development environment right from VS Code. You can develop in a Linux-based environment, use Linux-specific toolchains and utilities, and run and debug your Linux-based applications all from the comfort of Windows.
-____
-====
-
 以上で準備完了です。
 
-NOTE: WSL2 環境の場合は次項以降の手順の Ubuntu 項を参照して操作してください。
+NOTE: 次項以降 WSL2 環境の手順は特別な記載がある場合を除き Ubuntu 項を参照して操作してください。
 
-.WSL2 Linux 環境の作業ディレクトリ
+.WSL2 Ubuntu 環境の作業ディレクトリ
 ****
-WSL2 Linux 上で文書の編集などを行う作業ディレクトリは、Linux 側のホームディレクトリ（``/home/[ユーザ名]/``）配下が良いでしょう。 ``/mnt/c/`` から見える Windows 側のファイルシステムを作業フォルダとして使うこともできますが、I/O 処理速度が遅くなるため文書の変換処理のボトルネックになる場合があります。
+WSL2 Ubuntu 上で文書の編集などを行う作業ディレクトリは、Ubuntu 側のホームディレクトリ（``/home/[ユーザ名]/``）配下が良いでしょう。 ``/mnt/c/`` から見える Windows 側のファイルシステムを作業フォルダとして使うこともできますが、I/O 処理速度がシミュレーションにより遅くなるため文書の変換処理のボトルネックになる場合があります。
 
-なお、逆に Windows 側から Linux のファイルシステムをエクスプローラから見ることができます。WSL2 上で作成した文書を Windows 側で取得する場合にこの機能を使うと便利でしょう。
+なお、Ubuntu のファイルシステムは Windows 側からエクスプローラからアクセス可能です。WSL2 上で作成した文書を Windows 側で取得する場合にはこの機能を使うと便利です。
 
 .Windows エクスプローラからみた WSL2 ファイルシステム
 [caption="画面. "]
