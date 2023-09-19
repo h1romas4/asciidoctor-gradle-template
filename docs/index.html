@@ -889,8 +889,8 @@ pre.rouge {
 </li>
 <li><a href="#_asciidoc_文書変換用スクリプトを使う準備">1. Asciidoc 文書変換用スクリプトを使う準備</a>
 <ul class="sectlevel2">
-<li><a href="#_java_実行環境の導入macos_linux_の場合">1.1. Java 実行環境の導入（macOS / Linux の場合）</a></li>
-<li><a href="#_java_実行環境の導入windows_の場合">1.2. Java 実行環境の導入（Windows の場合）</a></li>
+<li><a href="#_java_実行環境の導入macos_linux">1.1. Java 実行環境の導入（macOS / Linux）</a></li>
+<li><a href="#_java_実行環境の導入windows">1.2. Java 実行環境の導入（Windows）</a></li>
 </ul>
 </li>
 <li><a href="#_asciidoc_から_htmlpdf_文書を作成する">2. Asciidoc から HTML/PDF 文書を作成する</a>
@@ -1005,7 +1005,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入macos_linux_の場合">1.1. Java 実行環境の導入（macOS / Linux の場合）</h3>
+<h3 id="_java_実行環境の導入macos_linux">1.1. Java 実行環境の導入（macOS / Linux）</h3>
 <div class="paragraph">
 <p>もし macOS / Linux 環境に Java 実行環境がなければ <code>SDKMAN</code> を利用することで、ターミナルから簡単に導入することができます。</p>
 </div>
@@ -1134,7 +1134,7 @@ $ sdk default java 17.0.4.1-tem <i class="conum" data-value="3"></i><b>(3)</b></
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_java_実行環境の導入windows_の場合">1.2. Java 実行環境の導入（Windows の場合）</h3>
+<h3 id="_java_実行環境の導入windows">1.2. Java 実行環境の導入（Windows）</h3>
 <div class="paragraph">
 <p>もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。</p>
 </div>
@@ -1191,6 +1191,125 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <div class="paragraph">
 <p>以上で準備完了です。</p>
 </div>
+<div class="sect3">
+<h4 id="_windows_環境の_wsl2_上の_ubuntu_を使う">1.2.1. Windows 環境の WSL2 上の Ubuntu を使う</h4>
+<div class="paragraph">
+<p>Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 22.04 を使うことでも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。</p>
+</div>
+<div class="paragraph">
+<p>WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。</p>
+</div>
+<div class="listingblock">
+<div class="title">WSL2 Ubuntu 22.04 LTS の初期設定</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>apt update
+<span class="nv">$ </span><span class="nb">sudo </span>apt upgrade
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>language-pack-ja graphviz fontconfig fonts-noto<span class="k">*</span> language-selector-common <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nv">$ </span><span class="nb">sudo </span>update-locale <span class="nv">LANG</span><span class="o">=</span>ja_JP.UTF8 <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'export LANG=ja_JP.UTF-8'</span> <span class="o">&gt;&gt;</span> ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="nv">$ </span>fc-cache <span class="nt">-f</span> <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>日本語の言語設定とデフォルトフォント関連の導入。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>日本語ロケールの設定。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>起動シェル環境を <code>UTF-8</code> に設定。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>念のためフォントキャッシュを更新。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+これらの日本語ロケール設定は、後述のダイアログ表記を使う場合に出力される図表内のフォントが正しく配置されるように行っています。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>次に、通常の Ubuntu の手順と同様に sdkman で Java 環境の導入を行います。</p>
+</div>
+<div class="listingblock">
+<div class="title">WSL2 Ubuntu 22.04 LTS への Java の導入</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-s</span> <span class="s2">"https://get.sdkman.io"</span> | bash <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nv">$ </span><span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.sdkman/bin/sdkman-init.sh"</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="nv">$ </span>sdk <span class="nb">install </span>java 11.0.20.1-tem <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="nv">$ </span><span class="nb">echo</span> <span class="s1">'export JAVA_HOME=~/.sdkman/candidates/java/current'</span> <span class="o">&gt;&gt;</span> ~/.bashrc <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>SDKMAN を導入。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>SDKMAN を環境に設定。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Java 11 系を指定して Java を導入。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td><code>JAVA_HOME</code> を設定。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>この操作後 <code>LANG</code> と <code>JAVA_HOME</code> 環境変数設定を反映させるため一度シェルを再起動してください。</p>
+</div>
+<div class="paragraph">
+<p>以上で準備完了です。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+次項以降 WSL2 Ubuntu 環境を使う場合の手順は、特別な記載がある場合を除き Linux 項を参照して操作してください。
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">WSL2 Ubuntu 環境の作業ディレクトリ</div>
+<div class="paragraph">
+<p>WSL2 Ubuntu 上で文書の編集などを行う作業ディレクトリは、Ubuntu 側のホームディレクトリ（<code>/home/[ユーザ名]/</code>）配下が良いでしょう。 <code>/mnt/c/</code> から見える Windows 側のファイルシステムを作業フォルダとして使うこともできますが、I/O 処理速度がシミュレーションにより遅くなるため文書の変換処理のボトルネックになる場合があります。</p>
+</div>
+<div class="paragraph">
+<p>この構成をとった場合、Windows 側のエクスプローラから Ubuntu のファイルシステムにアクセスする機能が便利です。エクスプローラの操作で、WSL2 上で作成した文書を Windows 側で簡単に取得できます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter01/images/2023-09-17-13-43-06.png" alt="2023 09 17 13 43 06" width="80%">
+</div>
+<div class="title">画面. Windows エクスプローラからみた WSL2 ファイルシステム</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1209,7 +1328,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。</p>
 </div>
 <div class="sect3">
-<h4 id="_macos_linux_の場合">2.1.1. macOS / Linux の場合</h4>
+<h4 id="_サンプル文書の変換macoslinux">2.1.1. サンプル文書の変換（macOS、Linux）</h4>
 <div class="paragraph">
 <p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。</p>
 </div>
@@ -1251,7 +1370,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
-<h4 id="_windows_の場合">2.1.2. Windows の場合</h4>
+<h4 id="_サンプル文書の変換windows">2.1.2. サンプル文書の変換（Windows）</h4>
 <div class="paragraph">
 <p>ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。</p>
 </div>
@@ -1396,12 +1515,135 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect2">
 <h3 id="_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</h3>
 <div class="sect3">
-<h4 id="_vs_code_によるリアルタイムプレビュー">2.3.1. VS Code によるリアルタイムプレビュー</h4>
+<h4 id="_visual_studio_code_の導入macoslinuxwindows">2.3.1. Visual Studio Code の導入（macOS、Linux、Windows）</h4>
 <div class="paragraph">
-<p>プロジェクトフォルダに配置された Asciidoc 文書は、Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。</p>
+<p>Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。</p>
 </div>
 <div class="paragraph">
-<p>プロジェクトフォルダを Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。</p>
+<p>本手順のプロジェクトフォルダには VS Code 用の設定ファイル（<code>.vscode</code>配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。</p>
+</div>
+<div class="paragraph">
+<p>次のサイトからお使いの OS に合わせた VS Code を導入してください。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://code.visualstudio.com/" class="bare">https://code.visualstudio.com/</a></p>
+</div>
+<div class="paragraph">
+<p>Free. Built on open source. Runs everywhere.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Visual Studio Code - Code Editing. Redefined
+</div>
+</div>
+<div class="paragraph">
+<p>VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作が可能です。インストールプロセスで次のように指定しコンテキストメニューに追加すると便利です。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-19-20-26-44.png" alt="2023 09 19 20 26 44" width="60%">
+</div>
+</div>
+<div class="paragraph">
+<p>以上で、VS Code の準備は完了です。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_visual_studio_code_の導入wsl2_ubuntu_環境">2.3.2. Visual Studio Code の導入（WSL2 Ubuntu 環境）</h4>
+<div class="paragraph">
+<p>WSL2 環境上の Ubuntu で VS Code を使う場合は「Windows 版 VS Code」を導入後さらに次の WSL 拡張をインストールします。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl" class="bare">https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl</a></p>
+</div>
+<div class="paragraph">
+<p>The WSL extension lets you use VS Code on Windows to build Linux applications
+that run on the Windows Subsystem for Linux (WSL).
+You get all the productivity of Windows while developing with Linux-based tools, runtimes, and utilities.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; WSL - Visual Studio Marketplace
+</div>
+</div>
+<div class="paragraph">
+<p>拡張導入後、一度 VS Code を終了してください。</p>
+</div>
+<div class="paragraph">
+<p>次に、WSL2 Ubuntu のターミナル画面で <code>code</code> コマンドを入力することで WSL2 Ubuntu 上で VS Code サーバの初期セットアップが動作しその後 VS Code 画面が立ち上がります。</p>
+</div>
+<div class="listingblock">
+<div class="title">WSL2 Ubuntu 22.04 への VS Code サーバの導入</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>code <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>WSL Ubuntu 環境上から Windows 側の VS Code を起動する。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>以上で、VS Code の準備は完了です。</p>
+</div>
+<div class="paragraph">
+<p>ここから先の手順で VS Code を起動する場合は同様に WSL2 Ubuntu のターミナル画面から <code>code</code> コマンドで起動してください。</p>
+</div>
+<div class="listingblock">
+<div class="title">リスト 1. WSL2 Ubuntu 22.04 からの VS Code 起動</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>asciidoctor-gradle-template <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="nv">$ </span>code <span class="nb">.</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>編集したいプロジェクトにカレントディレクトリを移します。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>.</code> とカレントディレクトリを指定して VS Code を起動します。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>VS Code WSL2 拡張の動作の詳細については、以下のドキュメントを参照してください。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://code.visualstudio.com/docs/remote/wsl" class="bare">https://code.visualstudio.com/docs/remote/wsl</a></p>
+</div>
+<div class="paragraph">
+<p>The Visual Studio Code WSL extension lets you use the Windows Subsystem for Linux (WSL) as your full-time development environment right from VS Code. You can develop in a Linux-based environment, use Linux-specific toolchains and utilities, and run and debug your Linux-based applications all from the comfort of Windows.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Developing in the Windows Subsystem for Linux with Visual Studio Code
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vs_code_による_asciidoc_文書のリアルタイムプレビュー">2.3.3. VS Code による Asciidoc 文書のリアルタイムプレビュー</h4>
+<div class="paragraph">
+<p>本手順のプロジェクトフォルダに配置された Asciidoc 文書は、VS Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように設定されています。</p>
+</div>
+<div class="paragraph">
+<p>まず最初のステップとして、プロジェクトフォルダを VS Code を開きます。VS Code でプロジェクトを開く場合は、次のように「フォルダで開く」などの操作でプロジェクトフォルダがルートになる形で行うことに注意してください。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-19-16-33-05.png" alt="2023 09 19 16 33 05" width="70%">
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1410,18 +1652,31 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-拡張機能の推奨は <code>.vscode/extention.json</code> で設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+<div class="paragraph">
+<p>プロジェクトフォルダのオープンは、エクスプローラなどのシェルからフォルダを右クリックして表示されるコンテキストメニューの <b class="button">Code で開く</b> 操作や、ターミナル画面からカレントディレクトリを <code>cd</code> コマンドで移動し <code>code .</code> と入力することでも可能です。</p>
+</div>
 </td>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>次に VS Code から推奨拡張機能に関する問い合わせが表示されますので、確認の上、次のような操作で導入してください。</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><b class="button">すべてインストール</b> ボタンをクリックします。</p>
+<p><span class="menuseq"><b class="menu">このワークスペースには拡張機能の推奨事項があります。</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">すべてインストール</b></span> ボタンをクリックします。</p>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/vscode-extention1.png" alt="vscode">
+</div>
+</div>
+<div class="paragraph">
+<p>WSL2 Ubuntu 環境を使っている場合は合わせて WSL2 側にも拡張の導入を行います。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-17-13-30-33.png" alt="2023 09 17 13 30 33" width="60%">
 </div>
 </div>
 </li>
@@ -1432,21 +1687,39 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <img src="Chapter02/images/vscode-extention2.png" alt="vscode">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </li>
-<li>
-<p>Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+導入推奨拡張は <code>.vscode/extention.json</code> ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>以上で Asciidoc 文書編集のための準備が完了しました。</p>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>VS Code 左パネルのエクスプローラーから、Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/vscode-asciidoc.png" alt="vscode" width="600">
 </div>
 </div>
-</li>
-</ol>
+<div class="paragraph">
+<p><code>.adoc</code> ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_クリップボードからの画像挿入">2.3.2. クリップボードからの画像挿入</h4>
+<h4 id="_クリップボードからの画像挿入">2.3.4. クリップボードからの画像挿入</h4>
 <div class="paragraph">
 <p>本手順で VS Code の推奨拡張として導入される <a href="https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image">Paste Image</a>（<code>mushan.vscode-paste-image</code>） は、クリップボード上にある画像をファイルとして指定の位置に格納した上で、Asciidoc 文書にリンクを挿入する便利な拡張です。</p>
 </div>
@@ -1490,19 +1763,16 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。</p>
+<p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。</p>
 </div>
 <div class="paragraph">
-<p>AsciiDoc: Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
+<p>AsciiDoc 版の Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">クリップボード連携のシステムインターフェース</div>
 <div class="paragraph">
-<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も <code>~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。</p>
-</div>
-<div class="paragraph">
-<p>クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上活用してください。</p>
+<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1515,10 +1785,13 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>また、本文書の手順は Windows WSL2 上の Ubuntu と VS Code の WSL Remote 拡張を使うことでも問題なく構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。</p>
+<p>Asciidoc 拡張も <code>~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res</code> 配下に同様のファイルがあります。これらの拡張のクリップボード連携は各 OS のクリップボード操作のコマンドを呼び出して動作しています。動作をご理解の上活用してください。</p>
 </div>
 <div class="paragraph">
-<p>これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。</p>
+<p>また、WSL2 Ubuntu と VS Code の WSL Remote 拡張を使った環境では、Paste Image は Windows - Ubuntu 間のクリップボードがそのままでは跨げないためうまく動作しません。</p>
+</div>
+<div class="paragraph">
+<p>これを解決するためのワークアラウンドですが、次のように WSL2 側の Paste Image 拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
@@ -1539,6 +1812,9 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <td>利用しているディストリビューションのパスを設定する。</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また <code>-ExecutionPolicy Bypass</code> 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。</p>
 </div>
 </div>
 </div>
@@ -3886,7 +4162,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-14 14:37:03 +0900
+最終更新 2023-09-14 15:30:59 +0900
 </div>
 </div>
 </body>

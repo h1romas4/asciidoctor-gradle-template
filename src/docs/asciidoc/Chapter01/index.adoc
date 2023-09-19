@@ -50,7 +50,7 @@ sudo apt install graphviz
 
 <<<
 
-=== Java 実行環境の導入（macOS / Linux の場合）
+=== Java 実行環境の導入（macOS / Linux）
 
 もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入することができます。
 
@@ -132,7 +132,7 @@ $ sdk default java 17.0.4.1-tem # <3>
 // 改ページ
 <<<
 
-=== Java 実行環境の導入（Windows の場合）
+=== Java 実行環境の導入（Windows）
 
 もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。
 
@@ -161,9 +161,9 @@ TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すた
 
 以上で準備完了です。
 
-#### Windows 環境の WSL2 上の Ubuntu を使う場合
+#### Windows 環境の WSL2 上の Ubuntu を使う
 
-Windows の WSL2 Linux 仮想環境上の Ubuntu 22.04 でも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。
+Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 22.04 を使うことでも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。
 
 WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。
 
@@ -183,7 +183,7 @@ $ fc-cache -f # <4>
 <3> 起動シェル環境を ``UTF-8`` に設定。
 <4> 念のためフォントキャッシュを更新。
 
-NOTE: 日本語設定は後述のダイアログ表記を使う場合に図表がずれないようにするために必要です。
+NOTE: これらの日本語ロケール設定は、後述のダイアログ表記を使う場合に出力される図表内のフォントが正しく配置されるように行っています。
 
 次に、通常の Ubuntu の手順と同様に sdkman で Java 環境の導入を行います。
 
@@ -196,22 +196,22 @@ $ source "$HOME/.sdkman/bin/sdkman-init.sh" # <2>
 $ sdk install java 11.0.20.1-tem # <3>
 $ echo 'export JAVA_HOME=~/.sdkman/candidates/java/current' >> ~/.bashrc # <4>
 ----
-<1> SDKMAN を導入します。
-<2> SDKMAN を環境に設定します。
-<3> Java 11 系を指定して Java を導入します。
+<1> SDKMAN を導入。
+<2> SDKMAN を環境に設定。
+<3> Java 11 系を指定して Java を導入。
 <4> ``JAVA_HOME`` を設定。
 
 この操作後 ``LANG`` と ``JAVA_HOME`` 環境変数設定を反映させるため一度シェルを再起動してください。
 
 以上で準備完了です。
 
-NOTE: 次項以降 WSL2 環境の手順は特別な記載がある場合を除き Ubuntu 項を参照して操作してください。
+NOTE: 次項以降 WSL2 Ubuntu 環境を使う場合の手順は、特別な記載がある場合を除き Linux 項を参照して操作してください。
 
 .WSL2 Ubuntu 環境の作業ディレクトリ
 ****
 WSL2 Ubuntu 上で文書の編集などを行う作業ディレクトリは、Ubuntu 側のホームディレクトリ（``/home/[ユーザ名]/``）配下が良いでしょう。 ``/mnt/c/`` から見える Windows 側のファイルシステムを作業フォルダとして使うこともできますが、I/O 処理速度がシミュレーションにより遅くなるため文書の変換処理のボトルネックになる場合があります。
 
-なお、Ubuntu のファイルシステムは Windows 側からエクスプローラからアクセス可能です。WSL2 上で作成した文書を Windows 側で取得する場合にはこの機能を使うと便利です。
+この構成をとった場合、Windows 側のエクスプローラから Ubuntu のファイルシステムにアクセスする機能が便利です。エクスプローラの操作で、WSL2 上で作成した文書を Windows 側で簡単に取得できます。
 
 .Windows エクスプローラからみた WSL2 ファイルシステム
 [caption="画面. "]

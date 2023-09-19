@@ -10,7 +10,7 @@ include::../attribute.adoc[]
 
 最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。
 
-==== macOS / Linux の場合
+==== サンプル文書の変換（macOS、Linux）
 
 ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。
 
@@ -34,7 +34,7 @@ BUILD SUCCESSFUL in 19s <5>
 
 <<<
 
-==== Windows の場合
+==== サンプル文書の変換（Windows）
 
 ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。
 
@@ -125,7 +125,7 @@ PDF 文書, ``docs/index.pdf`` のみを配布。
 
 === テキストエディタで Asciidoc 文書を編集する
 
-==== Visual Studio Code の導入（macOS、Ubuntu、Windows）
+==== Visual Studio Code の導入（macOS、Linux、Windows）
 
 Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。
 
@@ -140,11 +140,15 @@ https://code.visualstudio.com/
 Free. Built on open source. Runs everywhere.
 ____
 
+VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作が可能です。インストールプロセスで次のように指定しコンテキストメニューに追加すると便利です。
+
+image::2023-09-19-20-26-44.png[width=60%, pdfWidth=60%]
+
 以上で、VS Code の準備は完了です。
 
 ==== Visual Studio Code の導入（WSL2 Ubuntu 環境）
 
-WSL2 環境上の Ubuntu で VS Code を使う場合は、Windows 版 VS Code 導入後さらに次の WSL 拡張をインストールします。
+WSL2 環境上の Ubuntu で VS Code を使う場合は「Windows 版 VS Code」を導入後さらに次の WSL 拡張をインストールします。
 
 [quote, WSL - Visual Studio Marketplace]
 ____
@@ -155,7 +159,7 @@ that run on the Windows Subsystem for Linux (WSL).
 You get all the productivity of Windows while developing with Linux-based tools, runtimes, and utilities.
 ____
 
-拡張導入後、一度 VS Code を終了します。
+拡張導入後、一度 VS Code を終了してください。
 
 次に、WSL2 Ubuntu のターミナル画面で `code` コマンドを入力することで WSL2 Ubuntu 上で VS Code サーバの初期セットアップが動作しその後 VS Code 画面が立ち上がります。
 
@@ -177,7 +181,7 @@ $ code # <1>
 $ cd asciidoctor-gradle-template <1>
 $ code . <2>
 ----
-<1> 編集したいファイルがあるフォルダにカレントディレクトリを移します。
+<1> 編集したいプロジェクトにカレントディレクトリを移します。
 <2> `.` とカレントディレクトリを指定して VS Code を起動します。
 
 VS Code WSL2 拡張の動作の詳細については、以下のドキュメントを参照してください。
@@ -189,15 +193,22 @@ https://code.visualstudio.com/docs/remote/wsl
 The Visual Studio Code WSL extension lets you use the Windows Subsystem for Linux (WSL) as your full-time development environment right from VS Code. You can develop in a Linux-based environment, use Linux-specific toolchains and utilities, and run and debug your Linux-based applications all from the comfort of Windows.
 ____
 
-==== VS Code によるリアルタイムプレビュー
+==== VS Code による Asciidoc 文書のリアルタイムプレビュー
 
-プロジェクトフォルダに配置された Asciidoc 文書は、Visual Studio Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように準備されています。
+本手順のプロジェクトフォルダに配置された Asciidoc 文書は、VS Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように設定されています。
 
-プロジェクトフォルダを Visual Studio Code で開き、拡張機能の推奨事項から拡張を導入します。
+まず最初のステップとして、プロジェクトフォルダを VS Code を開きます。VS Code でプロジェクトを開く場合は、次のように「フォルダで開く」などの操作でプロジェクトフォルダがルートになる形で行うことに注意してください。
 
-NOTE: 拡張機能の推奨は ``.vscode/extention.json`` で設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+image::2023-09-19-16-33-05.png[width=70%, pdfWidth=70%]
 
-. btn:[すべてインストール] ボタンをクリックします。
+[NOTE]
+====
+プロジェクトフォルダのオープンは、エクスプローラなどのシェルからフォルダを右クリックして表示されるコンテキストメニューの btn:[Code で開く] 操作や、ターミナル画面からカレントディレクトリを ``cd`` コマンドで移動し ``code .`` と入力することでも可能です。
+====
+
+次に VS Code から推奨拡張機能に関する問い合わせが表示されますので、確認の上、次のような操作で導入してください。
+
+. menu:このワークスペースには拡張機能の推奨事項があります。[すべてインストール] ボタンをクリックします。
 +
 image::vscode-extention1.png[vscode, pdfwidth=50%]
 +
@@ -208,11 +219,18 @@ image::2023-09-17-13-30-33.png[pdfwidth=60%, width=60%]
 . btn:[再読み込み] ボタンをクリックします。
 +
 image::vscode-extention2.png[vscode, pdfwidth=50%]
-+
-<<<
-. Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を Visual Studio Code のエクスプローラーから選択して開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
-+
+
+NOTE: 導入推奨拡張は ``.vscode/extention.json`` ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えることができます。
+
+以上で Asciidoc 文書編集のための準備が完了しました。
+
+<<<<
+
+VS Code 左パネルのエクスプローラーから、Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
+
 image::vscode-asciidoc.png[vscode, 600]
+
+``.adoc`` ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。
 
 ==== クリップボードからの画像挿入
 
@@ -246,15 +264,13 @@ image::2023-06-30-12-11-56.png[]
 }
 ----
 
-Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため本手順では Paste Image を紹介しています。
+Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。
 
-AsciiDoc: Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
+AsciiDoc 版の Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
 .クリップボード連携のシステムインターフェース
 ****
-Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。
-
-クリップボード連携は VS Code のセキュリティーポリシー外の世界で動作します。拡張の動作をご理解の上活用してください。
+Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。
 
 [source, bash]
 ----
@@ -266,9 +282,11 @@ $ ls -laF ~/.vscode/extensions/mushan.vscode-paste-image-1.0.4/res
 ..snip..
 ----
 
-また、本文書の手順は Windows WSL2 上の Ubuntu と VS Code の WSL Remote 拡張を使うことでも問題なく構成できますが、VS Code Paste Image 拡張はそのままでは OS のクリップボードを跨げないためうまく動作しません。
+Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/res`` 配下に同様のファイルがあります。これらの拡張のクリップボード連携は各 OS のクリップボード操作のコマンドを呼び出して動作しています。動作をご理解の上活用してください。
 
-これを解決するために、ワークアラウンドですが次のように WSL2 側の拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。なお、拡張にアップデートがあるとファイルが戻りますので注意してください。
+また、WSL2 Ubuntu と VS Code の WSL Remote 拡張を使った環境では、Paste Image は Windows - Ubuntu 間のクリップボードがそのままでは跨げないためうまく動作しません。
+
+これを解決するためのワークアラウンドですが、次のように WSL2 側の Paste Image 拡張のファイルを書き換えると画像のクリップボード連携が動作するようになります。
 
 [source, bash]
 [caption=""]
@@ -282,8 +300,9 @@ DISTPATH=//wsl.localhost/Ubuntu-22.04 # <1>
 # call Windows PowerShell
 powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 ----
-
 <1> 利用しているディストリビューションのパスを設定する。
+
+なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。
 ****
 
 <<<<
