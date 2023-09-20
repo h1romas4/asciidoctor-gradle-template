@@ -978,7 +978,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。
+本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。Java 21 に関しては周辺ツールの対応待ちのステータスです。
 </td>
 </tr>
 </table>
@@ -1218,11 +1218,11 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>日本語ロケールの設定。</td>
+<td>日本語ロケールを追加。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>起動シェル環境を <code>UTF-8</code> に設定。</td>
+<td>起動シェル環境を <code>ja_JP.UTF-8</code> に設定。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -1328,7 +1328,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。</p>
 </div>
 <div class="sect3">
-<h4 id="_サンプル文書の変換macoslinux">2.1.1. サンプル文書の変換（macOS、Linux）</h4>
+<h4 id="_サンプル文書の変換macos_linux">2.1.1. サンプル文書の変換（macOS / Linux）</h4>
 <div class="paragraph">
 <p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。</p>
 </div>
@@ -1419,15 +1419,15 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>もしお使いのコンピューターがプロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを <code>./gradlew docs</code> をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（<code>example.com</code>） と ポート番号（<code>8080</code>）部分はそれぞれの環境に合わせてください。</p>
 </div>
 <div class="listingblock">
-<div class="title">手順. プロキシーサーバー設定（Windows）</div>
+<div class="title">プロキシーサーバー設定（macOS / Linux）</div>
 <div class="content">
-<pre class="rouge highlight"><code>set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
+<pre class="rouge highlight"><code>export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">手順. プロキシーサーバー設定（macOS / Linux）</div>
+<div class="title">プロキシーサーバー設定（Windows）</div>
 <div class="content">
-<pre class="rouge highlight"><code>export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
+<pre class="rouge highlight"><code>set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080</code></pre>
 </div>
 </div>
 </div>
@@ -1497,11 +1497,11 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="paragraph">
 <p>なおいずれの場合も <code>index.*</code> のファイル名は任意の名称に変更可能です。</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1515,7 +1515,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect2">
 <h3 id="_テキストエディタで_asciidoc_文書を編集する">2.3. テキストエディタで Asciidoc 文書を編集する</h3>
 <div class="sect3">
-<h4 id="_visual_studio_code_の導入macoslinuxwindows">2.3.1. Visual Studio Code の導入（macOS、Linux、Windows）</h4>
+<h4 id="_visual_studio_code_の導入macos_linux_windows">2.3.1. Visual Studio Code の導入（macOS / Linux / Windows）</h4>
 <div class="paragraph">
 <p>Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。</p>
 </div>
@@ -1539,12 +1539,15 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作が可能です。インストールプロセスで次のように指定しコンテキストメニューに追加すると便利です。</p>
+<p>インストールプロセスではオプションを次のように指定し、コンテキストメニューに VS Code を追加すると今後の操作が便利になります。</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/2023-09-19-20-26-44.png" alt="2023 09 19 20 26 44" width="60%">
 </div>
+</div>
+<div class="paragraph">
+<p>VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作ができるようになります。</p>
 </div>
 <div class="paragraph">
 <p>以上で、VS Code の準備は完了です。</p>
@@ -1616,7 +1619,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 </table>
 </div>
 <div class="paragraph">
-<p>VS Code WSL2 拡張の動作の詳細については、以下のドキュメントを参照してください。</p>
+<p>なお、VS Code WSL2 拡張の動作の詳細について知りたい場合は以下のドキュメントを参照してください。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1645,11 +1648,11 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <img src="Chapter02/images/2023-09-19-16-33-05.png" alt="2023 09 19 16 33 05" width="70%">
 </div>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="注記"></i>
+<i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1709,9 +1712,21 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="paragraph">
 <p>VS Code 左パネルのエクスプローラーから、Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+プレビュー表示操作はキーボードショートカット <b class="button">Ctrl + k, v</b> でも可能です。また、画面右側ではなく現在のエディタグループに表示する場合は <b class="button">Ctrl + Shift + v</b> を押下します。
+</td>
+</tr>
+</table>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/vscode-asciidoc.png" alt="vscode" width="600">
+<img src="Chapter02/images/vscode-asciidoc.png" alt="vscode asciidoc" width="80%">
 </div>
 </div>
 <div class="paragraph">
@@ -1768,11 +1783,47 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="paragraph">
 <p>AsciiDoc 版の Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_統合ターミナルの活用">2.3.5. 統合ターミナルの活用</h4>
+<div class="paragraph">
+<p>VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、文書変換コマンドを実行することができます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-20-15-30-52.png" alt="2023 09 20 15 30 52" width="60%">
+</div>
+<div class="title">図 1. VS Code 統合ターミナルからの文書変換</div>
+</div>
+<div class="paragraph">
+<p>統合ターミナルを開く操作は <span class="menuseq"><b class="menu">表示</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">ターミナル</b></span> となります。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+キーボードショートカット btn[Ctrl + @] でも起動可能です。また、一般的なターミナルシェル内では <b class="button">↑</b> を押下することで前回入力した履歴が呼び出せます。文書変換コマンドを再実行する際に便利です。
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-20-15-26-40.png" alt="2023 09 20 15 26 40" width="60%">
+</div>
+<div class="title">図 2. VS Code 統合ターミナルの起動</div>
+</div>
+<div class="paragraph">
+<p>統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">クリップボード連携のシステムインターフェース</div>
 <div class="paragraph">
-<p>Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。</p>
+<p>VS Code Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1824,7 +1875,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="sect2">
 <h3 id="_文書のファイル構成">2.4. 文書のファイル構成</h3>
 <div class="paragraph">
-<p>以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていきます。</p>
+<p>以下に執筆で編集する Asciidoc 文書フォルダ（<code>src/docs/asciidoc</code> 配下）のファイル構成を示します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1873,6 +1924,9 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <td>文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。</td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>本構成を元に執筆したい文書に合わせカスタマイズしていきます。文書ファイルの編集や閲覧は VS Code のリアルタイムプレビューで確認しながら行うと分かりやすいでしょう。</p>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="sect3">

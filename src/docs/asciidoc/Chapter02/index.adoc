@@ -10,7 +10,7 @@ include::../attribute.adoc[]
 
 最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。
 
-==== サンプル文書の変換（macOS、Linux）
+==== サンプル文書の変換（macOS / Linux）
 
 ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。
 
@@ -57,17 +57,17 @@ image::windows-01.png[windows, pdfwidth=70%, width=70%]
 もしお使いのコンピューターがプロキシーサーバー経由のインターネットアクセスを行う場合は、次のコマンドを ``./gradlew docs`` をする前に入力してください。インターネットを使ったライブラリの取得が正しく行われるようになります。ホスト名（``example.com``） と ポート番号（``8080``）部分はそれぞれの環境に合わせてください。
 
 [source]
-[caption="手順. "]
-.プロキシーサーバー設定（Windows）
-----
-set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
-----
-
-[source]
-[caption="手順. "]
+[caption=""]
 .プロキシーサーバー設定（macOS / Linux）
 ----
 export JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
+----
+
+[source]
+[caption=""]
+.プロキシーサーバー設定（Windows）
+----
+set JAVA_OPTS=-DproxyHost=example.com -DproxyPort=8080
 ----
 ****
 
@@ -118,14 +118,14 @@ PDF 文書, ``docs/index.pdf`` のみを配布。
 
 なおいずれの場合も ``index.*`` のファイル名は任意の名称に変更可能です。
 
-[IMPORTANT]
+[CAUTION]
 ====
 ``docs`` フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、**自らが作成したファイルは配置しない**ように注意してください。執筆で作成するファイルは必ず ``src/docs/asciidoc`` 配下に配置します。
 ====
 
 === テキストエディタで Asciidoc 文書を編集する
 
-==== Visual Studio Code の導入（macOS、Linux、Windows）
+==== Visual Studio Code の導入（macOS / Linux / Windows）
 
 Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。
 
@@ -140,9 +140,11 @@ https://code.visualstudio.com/
 Free. Built on open source. Runs everywhere.
 ____
 
-VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作が可能です。インストールプロセスで次のように指定しコンテキストメニューに追加すると便利です。
+インストールプロセスではオプションを次のように指定し、コンテキストメニューに VS Code を追加すると今後の操作が便利になります。
 
 image::2023-09-19-20-26-44.png[width=60%, pdfWidth=60%]
+
+VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作ができるようになります。
 
 以上で、VS Code の準備は完了です。
 
@@ -184,7 +186,7 @@ $ code . <2>
 <1> 編集したいプロジェクトにカレントディレクトリを移します。
 <2> `.` とカレントディレクトリを指定して VS Code を起動します。
 
-VS Code WSL2 拡張の動作の詳細については、以下のドキュメントを参照してください。
+なお、VS Code WSL2 拡張の動作の詳細について知りたい場合は以下のドキュメントを参照してください。
 
 [quote, Developing in the Windows Subsystem for Linux with Visual Studio Code]
 ____
@@ -201,7 +203,7 @@ ____
 
 image::2023-09-19-16-33-05.png[width=70%, pdfWidth=70%]
 
-[NOTE]
+[TIP]
 ====
 プロジェクトフォルダのオープンは、エクスプローラなどのシェルからフォルダを右クリックして表示されるコンテキストメニューの btn:[Code で開く] 操作や、ターミナル画面からカレントディレクトリを ``cd`` コマンドで移動し ``code .`` と入力することでも可能です。
 ====
@@ -228,7 +230,9 @@ NOTE: 導入推奨拡張は ``.vscode/extention.json`` ファイルで設定さ�
 
 VS Code 左パネルのエクスプローラーから、Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 
-image::vscode-asciidoc.png[vscode, 600]
+TIP: プレビュー表示操作はキーボードショートカット btn:[Ctrl + k, v] でも可能です。また、画面右側ではなく現在のエディタグループに表示する場合は btn:[Ctrl + Shift + v] を押下します。
+
+image::vscode-asciidoc.png[width=80%, pdfWidth=80%]
 
 ``.adoc`` ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。
 
@@ -268,9 +272,25 @@ Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: 
 
 AsciiDoc 版の Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
+==== 統合ターミナルの活用
+
+VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、文書変換コマンドを実行することができます。
+
+.VS Code 統合ターミナルからの文書変換
+image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
+
+統合ターミナルを開く操作は menu:表示[ターミナル] となります。
+
+TIP: キーボードショートカット btn[Ctrl + @] でも起動可能です。また、一般的なターミナルシェル内では btn:[↑] を押下することで前回入力した履歴が呼び出せます。文書変換コマンドを再実行する際に便利です。
+
+.VS Code 統合ターミナルの起動
+image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
+
+統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。
+
 .クリップボード連携のシステムインターフェース
 ****
-Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。
+VS Code Paste Image 拡張のクリップボード連携のシステムインターフェースは次のシェルスクリプトで実装されています。
 
 [source, bash]
 ----
@@ -309,7 +329,7 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 
 === 文書のファイル構成
 
-以下に文書のフォルダとファイル構成を示します。VS Code でプレビュー確認を行いながら、サンプル文書から執筆したい文書に合わせカスタマイズしていきます。
+以下に執筆で編集する Asciidoc 文書フォルダ（``src/docs/asciidoc`` 配下）のファイル構成を示します。
 
 [plantuml, directory-structure-3, svg, pdfwidth=40%, width=390px]
 [caption=""]
@@ -336,6 +356,8 @@ build.gradle <7>
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
 <6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
 <7> 文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。
+
+本構成を元に執筆したい文書に合わせカスタマイズしていきます。文書ファイルの編集や閲覧は VS Code のリアルタイムプレビューで確認しながら行うと分かりやすいでしょう。
 
 <<<<
 
