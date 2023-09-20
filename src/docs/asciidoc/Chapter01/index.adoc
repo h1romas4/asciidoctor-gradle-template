@@ -161,7 +161,7 @@ TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すた
 
 以上で準備完了です。
 
-#### Windows 環境の WSL2 上の Ubuntu を使う
+==== Windows 環境の WSL2 上の Ubuntu を使う
 
 Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 22.04 を使うことでも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。
 
