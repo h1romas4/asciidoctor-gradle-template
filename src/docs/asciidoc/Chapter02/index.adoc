@@ -85,7 +85,7 @@ image::html.png[html, pdfwidth=80%, width=80%]
 .PDF 文書
 image::pdf.png[pdf, pdfwidth=80%, width=80%]
 
-<<<<
+<<<
 
 成果物の出力先となる ``docs`` フォルダの構成は次のとおりです。
 
@@ -226,7 +226,7 @@ NOTE: 導入推奨拡張は ``.vscode/extention.json`` ファイルで設定さ�
 
 以上で Asciidoc 文書編集のための準備が完了しました。
 
-<<<<
+<<<
 
 VS Code 左パネルのエクスプローラーから、Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 
@@ -264,7 +264,7 @@ image::2023-06-30-12-11-56.png[]
 {
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}/images",
-    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
+    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss"
 }
 ----
 
@@ -325,7 +325,7 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。
 ****
 
-<<<<
+<<<
 
 === 文書のファイル構成
 
@@ -359,7 +359,7 @@ build.gradle <7>
 
 本構成を元に執筆したい文書に合わせカスタマイズしていきます。文書ファイルの編集や閲覧は VS Code のリアルタイムプレビューで確認しながら行うと分かりやすいでしょう。
 
-<<<<
+<<<
 
 ==== 文書属性定義
 
@@ -405,7 +405,7 @@ ____
 
 NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6.2`` です。日本語禁則処理を正しく動作させるために、現在のところ最新の ``2.3`` にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
 
-<<<<
+<<<
 
 === 執筆の開始
 
@@ -446,7 +446,7 @@ NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6
 image::2023-09-13-14-48-50.png[]
 ****
 
-<<<<
+<<<
 
 === 文書の Git 管理
 
@@ -494,7 +494,7 @@ https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a
 新しい (または既存の) SSH キーを使うように GitHub.com 上のアカウントを構成するには、アカウントにキーを追加する必要もあります。
 ____
 
-<<<<
+<<<
 
 ==== GitHub 上に文書用のリポジトリを作成
 
@@ -685,7 +685,7 @@ image::2023-09-11-18-58-47.png[width=80%, pdfWidth=80%]
 
 NOTE: https://github.com/h1romas4/asciidoctor-gradle-template にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 
-<<<<
+<<<
 
 ボタン押下後コンテナのビルドに画面が遷移し、完了するとウェブブラウザー上で VS Code が起動します。
 
@@ -752,7 +752,7 @@ NOTE: クラウド上で起動していた環境は最終利用時からある�
 
 また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、これまでの VS Code の操作状態が維持されているため時間の短縮にもなります。
 
-<<<<
+<<<
 
 .VS Code の Zen Mode
 ****
@@ -763,7 +763,7 @@ image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
 Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆をする上での良いツールとなることでしょう。
 ****
 
-<<<<
+<<<
 
 === GitHub Actions によるビルド
 
@@ -776,7 +776,7 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 本項「GitHub Actions によるビルド」機能の利用は必須ではありません。大人数で継続的に執筆を行いたいケースなどに採用してみてください。HTML/PDF 変換処理の自動化やファイルリリースの版数管理で大きな力を発揮することでしょう。
 ====
 
-#### `.github/workflows/gradle.yml`
+==== `.github/workflows/gradle.yml`
 
 git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
 
@@ -838,7 +838,7 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/b
 
 image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
-#### `.github/workflows/release.yml`
+==== `.github/workflows/release.yml`
 
 git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `{doc-name}-{verison}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
 
