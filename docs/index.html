@@ -1773,7 +1773,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nl">"pasteImage.path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${currentFileDir}/images"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"pasteImage.basePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${currentFileDir}/images"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"pasteImage.defaultName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y-MM-DD-HH-mm-ss"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pasteImage.defaultName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y-MM-DD-HH-mm-ss"</span><span class="w">
 </span><span class="p">}</span></code></pre>
 </div>
 </div>
@@ -1782,42 +1782,6 @@ You get all the productivity of Windows while developing with Linux-based tools,
 </div>
 <div class="paragraph">
 <p>AsciiDoc 版の Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_統合ターミナルの活用">2.3.5. 統合ターミナルの活用</h4>
-<div class="paragraph">
-<p>VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、文書変換コマンドを実行することができます。</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/2023-09-20-15-30-52.png" alt="2023 09 20 15 30 52" width="60%">
-</div>
-<div class="title">図 1. VS Code 統合ターミナルからの文書変換</div>
-</div>
-<div class="paragraph">
-<p>統合ターミナルを開く操作は <span class="menuseq"><b class="menu">表示</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">ターミナル</b></span> となります。</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-キーボードショートカット btn[Ctrl + @] でも起動可能です。また、一般的なターミナルシェル内では <b class="button">↑</b> を押下することで前回入力した履歴が呼び出せます。文書変換コマンドを再実行する際に便利です。
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="Chapter02/images/2023-09-20-15-26-40.png" alt="2023 09 20 15 26 40" width="60%">
-</div>
-<div class="title">図 2. VS Code 統合ターミナルの起動</div>
-</div>
-<div class="paragraph">
-<p>統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1848,7 +1812,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="title"><code>~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh</code></div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="c">#!/bin/sh</span>
-<span class="c"># change current directoru</span>
+<span class="c"># change current directory</span>
 <span class="nb">cd</span> <span class="sb">`</span><span class="nb">dirname</span> <span class="nv">$0</span><span class="sb">`</span>
 <span class="c"># set dist path</span>
 <span class="nv">DISTPATH</span><span class="o">=</span>//wsl.localhost/Ubuntu-22.04 <i class="conum" data-value="1"></i><b>(1)</b>
@@ -1866,6 +1830,66 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 </div>
 <div class="paragraph">
 <p>なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また <code>-ExecutionPolicy Bypass</code> 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。</p>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="_統合ターミナルの活用">2.3.5. 統合ターミナルの活用</h4>
+<div class="paragraph">
+<p>VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、ここで文書変換コマンドを実行することができます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-20-15-30-52.png" alt="2023 09 20 15 30 52" width="60%">
+</div>
+<div class="title">VS Code 統合ターミナルからの文書変換</div>
+</div>
+<div class="paragraph">
+<p>統合ターミナルは <span class="menuseq"><b class="menu">表示</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">ターミナル</b></span> と操作して開きます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-20-15-26-40.png" alt="2023 09 20 15 26 40" width="60%">
+</div>
+<div class="title">図 1. VS Code 統合ターミナルの起動</div>
+</div>
+<div class="paragraph">
+<p>統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>統合ターミナルはキーボードショートカット <b class="button">Ctrl + @</b> でも起動可能です。</p>
+</div>
+<div class="paragraph">
+<p>また、統合ターミナル内では <b class="button">↑</b> を押下することで前回入力した履歴が呼び出せます。この操作は文書変換コマンドを再実行する際に便利です。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">その他の Asciidoc 文書編集が可能な統合開発環境</div>
+<div class="paragraph">
+<p>本手順では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-20-18-42-42.png" alt="2023 09 20 18 42 42" width="100%">
+</div>
+<div class="title">画像. IntelliJ IDEA の AsciiDoc Plugin で文書編集している例</div>
+</div>
+<div class="paragraph">
+<p>好きな統合開発環境があればプロジェクトフォルダにそれぞれの環境定義を入れ、自分に合った執筆環境を構築してみてください。</p>
 </div>
 </div>
 </div>
@@ -2412,7 +2436,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_gitpid">2.8.1. Gitpid</h4>
+<h4 id="_gitpod">2.8.1. Gitpod</h4>
 <div class="paragraph">
 <p>Gitpod クラウド上での執筆にあたっての条件は次のとおりです。</p>
 </div>
@@ -4216,7 +4240,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-14 15:30:59 +0900
+最終更新 2023-09-20 18:15:38 +0900
 </div>
 </div>
 </body>

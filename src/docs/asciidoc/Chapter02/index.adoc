@@ -85,7 +85,7 @@ image::html.png[html, pdfwidth=80%, width=80%]
 .PDF 文書
 image::pdf.png[pdf, pdfwidth=80%, width=80%]
 
-<<<<
+<<<
 
 成果物の出力先となる ``docs`` フォルダの構成は次のとおりです。
 
@@ -226,7 +226,7 @@ NOTE: 導入推奨拡張は ``.vscode/extention.json`` ファイルで設定さ�
 
 以上で Asciidoc 文書編集のための準備が完了しました。
 
-<<<<
+<<<
 
 VS Code 左パネルのエクスプローラーから、Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 
@@ -264,29 +264,13 @@ image::2023-06-30-12-11-56.png[]
 {
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}/images",
-    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
+    "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss"
 }
 ----
 
 Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。
 
 AsciiDoc 版の Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
-
-==== 統合ターミナルの活用
-
-VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、文書変換コマンドを実行することができます。
-
-.VS Code 統合ターミナルからの文書変換
-image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
-
-統合ターミナルを開く操作は menu:表示[ターミナル] となります。
-
-TIP: キーボードショートカット btn[Ctrl + @] でも起動可能です。また、一般的なターミナルシェル内では btn:[↑] を押下することで前回入力した履歴が呼び出せます。文書変換コマンドを再実行する際に便利です。
-
-.VS Code 統合ターミナルの起動
-image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
-
-統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。
 
 .クリップボード連携のシステムインターフェース
 ****
@@ -313,7 +297,7 @@ Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/r
 .``~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh``
 ----
 #!/bin/sh
-# change current directoru
+# change current directory
 cd `dirname $0`
 # set dist path
 DISTPATH=//wsl.localhost/Ubuntu-22.04 # <1>
@@ -325,7 +309,44 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。
 ****
 
-<<<<
+<<<
+
+==== 統合ターミナルの活用
+
+VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、ここで文書変換コマンドを実行することができます。
+
+.VS Code 統合ターミナルからの文書変換
+[caption=""]
+image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
+
+統合ターミナルは menu:表示[ターミナル] と操作して開きます。
+
+.VS Code 統合ターミナルの起動
+image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
+
+統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。
+
+[TIP]
+====
+統合ターミナルはキーボードショートカット btn:[Ctrl + @] でも起動可能です。
+
+また、統合ターミナル内では btn:[↑] を押下することで前回入力した履歴が呼び出せます。この操作は文書変換コマンドを再実行する際に便利です。
+====
+
+- - -
+
+.その他の Asciidoc 文書編集が可能な統合開発環境
+****
+本手順では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。
+
+.IntelliJ IDEA の AsciiDoc Plugin で文書編集している例
+[caption="画像. "]
+image::2023-09-20-18-42-42.png[pdfwidth=100%, width=100%]
+
+好きな統合開発環境があればプロジェクトフォルダにそれぞれの環境定義を入れ、自分に合った執筆環境を構築してみてください。
+****
+
+<<<
 
 === 文書のファイル構成
 
@@ -354,12 +375,12 @@ build.gradle <7>
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正することができます。
 <4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正することができます。
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
-<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter{number}`` とします。
+<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter\{number\}`` とします。
 <7> 文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。
 
 本構成を元に執筆したい文書に合わせカスタマイズしていきます。文書ファイルの編集や閲覧は VS Code のリアルタイムプレビューで確認しながら行うと分かりやすいでしょう。
 
-<<<<
+<<<
 
 ==== 文書属性定義
 
@@ -405,7 +426,7 @@ ____
 
 NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6.2`` です。日本語禁則処理を正しく動作させるために、現在のところ最新の ``2.3`` にはなっていません。新しい Theming Guide ドキュメントの属性や動作とは乖離している場合があることに注意してください。
 
-<<<<
+<<<
 
 === 執筆の開始
 
@@ -446,7 +467,7 @@ NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6
 image::2023-09-13-14-48-50.png[]
 ****
 
-<<<<
+<<<
 
 === 文書の Git 管理
 
@@ -494,7 +515,7 @@ https://docs.github.com/ja/authentication/connecting-to-github-with-ssh/adding-a
 新しい (または既存の) SSH キーを使うように GitHub.com 上のアカウントを構成するには、アカウントにキーを追加する必要もあります。
 ____
 
-<<<<
+<<<
 
 ==== GitHub 上に文書用のリポジトリを作成
 
@@ -526,13 +547,14 @@ NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手
 
 .VS Code 統合ターミナルから Git リポジトリを初期化
 [caption=""]
-```bash
+[source, bash]
+----
 git init
 git config --local user.name h1romas4 # <1>
 git config --local user.email h1romas4@gmail.com # <2>
 git add .
 git commit -m 'initial commit'
-```
+----
 <1> `h1romas4` 任意の名前に変更。Git コミットログの記載される氏名になります。
 <2> `h1romas4@gmail.com` 同上。Git コミットログに記載されるメールアドレスになります。
 
@@ -540,11 +562,12 @@ git commit -m 'initial commit'
 
 .VS Code 統合ターミナルから GitHub にプッシュ
 [caption=""]
-```bash
+[source, bash]
+----
 git remote add origin git@github.com:h1romas4/wasm-micro-book.git # <1>
 git branch -M main
 git push -u origin main
-```
+----
 <1> `h1romas4/wasm-micro-book.git` 部分が前項で作成したリポジトリ名になります。
 
 以上で GitHub リポジトリーへの文書の配置が完了しました。ウェブブラウザーで GitHub リポジトリにアクセスしすると、プッシュした文書ファイルがあることが確認できるでしょう。
@@ -575,9 +598,10 @@ image::2023-09-12-12-58-10.png[width=50%, pdfWidth=50%]
 
 .統合ターミナルから `git push` を実行
 [caption=""]
-```bash
+[source, bash]
+----
 git push
-```
+----
 
 ==== 異なる執筆環境での Git 操作
 
@@ -626,7 +650,7 @@ https://github.co.jp/features/codespaces
 超高速で構築するクラウド開発環境
 ____
 
-==== Gitpid
+==== Gitpod
 
 Gitpod クラウド上での執筆にあたっての条件は次のとおりです。
 
@@ -652,7 +676,8 @@ image::2023-07-03-14-28-22.png[]
 
 また合わせて、統合ターミナルから HTML/PDF のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで `./gradlew docs` することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。
 
-```bash
+[source, bash]
+----
 #
 # asciidoctor-gradle-template
 #
@@ -664,7 +689,7 @@ image::2023-07-03-14-28-22.png[]
 #  Dialog Font(Noto Sans CJK JP): OK
 #  LANG(ja_JP.UTF-8): OK
 #
-```
+----
 
 NOTE: これらの Gitpod 向けの設定は `.gitpod.yml` ファイルで定義されています。
 
@@ -681,7 +706,7 @@ image::2023-09-11-18-58-47.png[width=80%, pdfWidth=80%]
 
 NOTE: https://github.com/h1romas4/asciidoctor-gradle-template にアクセス後、上記の操作を行うと、本手順のリポジトリで Codespaces クラウドを試用できます。なお、リポジトリには筆者以外の書き込み権がついていないため Git への文書修正操作は試すことができません。
 
-<<<<
+<<<
 
 ボタン押下後コンテナのビルドに画面が遷移し、完了するとウェブブラウザー上で VS Code が起動します。
 
@@ -691,16 +716,18 @@ image::2023-09-11-19-06-20.png[]
 
 前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。
 
-```bash
+[source, bash]
+----
 Use Cmd/Ctrl + Shift + P -> View Creation Log to see full logs
 ✔ Finishing up...
    Running postCreateCommand...
  > bash .devcontainer/build-codespaces-contaner.sh
-```
+----
 
 PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 `./gradlew docs` を実行します。
 
-```bash
+[source, bash]
+----
 $ echo $LANG
 ja_JP.UTF-8 # <1>
 $ fc-match Dialog
@@ -708,7 +735,7 @@ NotoSansCJK-Regular.ttc: "Noto Sans CJK JP" "Regular" # <2>
 $ ./gradlew docs # <3>
 # ..snip..
 BUILD SUCCESSFUL in 3m 19s
-```
+----
 <1> `ja_JP.UTF-8` になっていること
 <2> `Noto Sans CJK JP` になっていること
 <3> 文書のビルドを開始
@@ -746,7 +773,7 @@ NOTE: クラウド上で起動していた環境は最終利用時からある�
 
 また、コミット・プッシュ済みに関わらず、翌日執筆を再開する際もこれらの画面から環境をリオープンします。クラウドのリソース削減になるとともに、これまでの VS Code の操作状態が維持されているため時間の短縮にもなります。
 
-<<<<
+<<<
 
 .VS Code の Zen Mode
 ****
@@ -757,7 +784,7 @@ image::2023-07-02-15-09-43.png[pdfwidth=84%, width=90%]
 Zen Mode は、VS Code や OS の不要なコンポーネントが見えなくなり画面が広く使えること、また思考を遮る要素がなくなることから快適な執筆をする上での良いツールとなることでしょう。
 ****
 
-<<<<
+<<<
 
 === GitHub Actions によるビルド
 
@@ -770,7 +797,7 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 本項「GitHub Actions によるビルド」機能の利用は必須ではありません。大人数で継続的に執筆を行いたいケースなどに採用してみてください。HTML/PDF 変換処理の自動化やファイルリリースの版数管理で大きな力を発揮することでしょう。
 ====
 
-#### `.github/workflows/gradle.yml`
+==== `.github/workflows/gradle.yml`
 
 git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
 
@@ -786,7 +813,8 @@ git による main ブランチへの push 操作から自動的に動作する�
 
 .`.github/workflows/gradle.yml`
 [caption=""]
-```yml
+[source,yml]
+----
 - name: Check
   shell: bash
   run: |
@@ -797,14 +825,15 @@ git による main ブランチへの push 操作から自動的に動作する�
     # test asciidoctor
     file docs/index.pdf | grep PDF
     file docs/index.html | grep HTML
-```
+----
 <1> asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中で使用していない場合は削除するか、コメントアウトしてください。
 
 また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。
 
 NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
 
-```yml
+[source,yml]
+----
 - name: Output PDF information
   if: startsWith(matrix.os, 'ubuntu')
   run: |
@@ -812,25 +841,27 @@ NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubunt
     pdfinfo docs/index.pdf
     echo "# URLs in document"
     pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
-```
+----
 
 なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
 
-```
+[source]
+----
 https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg
-```
+----
 
 具体的には、本手順のリポジトリの GitHub 向けの README.adoc は次のようになっています。
 
-```
+[source]
+----
 image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]
-```
+----
 
 image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
-#### `.github/workflows/release.yml`
+==== `.github/workflows/release.yml`
 
-git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `{doc-name}-{verison}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
+git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `\{doc-name\}-\{verison\}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
 
 ファイル名の `by-*` 以下の部分にはビルドした環境名が `by-windows-latest-java-11` や `by-macos-latest-java-17` のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。
 
