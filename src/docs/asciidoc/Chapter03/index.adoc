@@ -5,11 +5,11 @@ include::../attribute.adoc[]
 
 ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。
 
-Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの ``.vscode/asciidoc.code-snippets`` 設定には VS Code の btn:[Ctrl + Spaec] 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。
+Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの ``.vscode/asciidoc.code-snippets`` 設定には VS Code の btn:[Ctrl + Space] 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。
 
 image::2023-09-14-18-52-05.png[pdfwidth=60%, width=60%]
 
-NOTE: 補完文字列は他の補完と区別しやすいよう `ag-` が先頭に付与されています。補完操作後、最初に `ag-` と入力することで一覧することができます。
+NOTE: 補完文字列は他の補完と区別しやすいよう `ag-` が先頭に付与されています。補完操作後、最初に `ag-` と入力することで一覧できます。
 
 === 文書中の相互参照
 
@@ -73,7 +73,7 @@ https://docs.asciidoctor.org/
 Welcome to the Asciidoctor documentation site! Here you can find the reference material, guides, and examples to write content in AsciiDoc and publish it using Asciidoctor. This documentation will help you start your journey with AsciiDoc or dive deeper if you're already well on your way.
 ____
 
-<<<<
+<<<
 
 === 画像
 
@@ -122,7 +122,7 @@ function hello() { // <1>
 <1> 関数定義
 <2> コンソールに ``Hello, World`` を出力
 
-<<<<
+<<<
 
 === インラインコマンド・ファイル名
 
@@ -165,7 +165,7 @@ IMPORTANT: Gradle のファイル更新監視は `.adoc` からインクルー�
 include::source/hello.rs[]
 ----
 
-<<<<
+<<<
 
 === 表形式
 
@@ -298,7 +298,7 @@ image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 *** 順序なしリスト1
 *** 順序なしリスト2
 
-<<<<
+<<<
 
 === 脚注
 
@@ -346,7 +346,7 @@ CAUTION: 注意
 吾輩は脚注である。名前はまだ無い。
 ====
 
-<<<<
+<<<
 
 === 改ページ・水平線
 
@@ -354,7 +354,7 @@ CAUTION: 注意
 
 [source]
 ----
-<<<<
+<<<
 ----
 
 水平線は HTML/PDF 文書のどちらでも有効です。

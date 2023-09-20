@@ -2,7 +2,7 @@ include::../attribute.adoc[]
 
 == ダイアグラム記法
 
-本変換スクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使うことができます。
+本変換スクリプトでは `asciidoctorj-diagram` が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使えます。
 
 NOTE: PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
 
@@ -37,7 +37,7 @@ https://ditaa.sourceforge.net/
 DIagrams Through Ascii Art by Stathis Sideris
 ____
 
-<<<<
+<<<
 
 === シーケンス図
 
@@ -60,7 +60,7 @@ include::puml/diag-sequence-sample2.puml[]
 
 .PlantUML ダイアグラムのリアルタイムプレビュー編集
 ****
-本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（``jebbs.plantuml``）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューすることができます。
+本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（``jebbs.plantuml``）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューできます。
 
 プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書の変換では内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。
 
@@ -81,7 +81,7 @@ docker run -d --rm -p 8080:8080 plantuml/plantuml-server:jetty
 文書で使う PlantUML ダイアグラムを `.puml` 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに `.puml` ファイルの修正が反映されます。
 ****
 
-<<<<
+<<<
 
 === フォルダ・ファイルツリー
 
@@ -102,7 +102,7 @@ include::puml/diag-salt-sample1.puml[]
 include::puml/diag-salt-sample1.puml[]
 ----
 
-<<<<
+<<<
 
 === 数式
 
@@ -127,7 +127,7 @@ include::puml/math-sample1.puml[]
 
 .PlantUML の Salt 記法のフォントサイズ
 ****
-Salt は現在のところ残念ながらフォントサイズの指定をすることができません。このため任意のフォントサイズにするためには出力画像の ``pdfwidth`` と ``width`` を設定して算出する必要があります。
+Salt は現在のところ残念ながらフォントサイズの指定ができません。このため任意のフォントサイズにするためには出力画像の ``pdfwidth`` と ``width`` を設定して算出する必要があります。
 
 [source]
 ----
@@ -148,7 +148,7 @@ saltDiagram {
 <1> 未実装で効果がない
 ****
 
-<<<<
+<<<
 
 === ブロック図
 
@@ -172,7 +172,7 @@ include::ditaa/diag-ditaa-block.txt[]
 include::ditaa/diag-ditaa-block.txt[]
 ----
 
-<<<<
+<<<
 
 [source]
 -----
@@ -190,7 +190,7 @@ include::ditaa/diag-ditaa-block-2.txt[]
 include::ditaa/diag-ditaa-block-2.txt[]
 ----
 
-<<<<
+<<<
 
 === メモリーマップ
 
@@ -211,7 +211,7 @@ include::ditaa/diag-ditaa-memory-map.txt[]
 include::ditaa/diag-ditaa-memory-map.txt[]
 ----
 
-<<<<
+<<<
 
 === ネットワーク構成図
 
@@ -271,7 +271,7 @@ nwdiag {
 include::puml/diag-nwdiag-network1.puml[]
 ----
 
-<<<<
+<<<
 
 === システム構成図
 
@@ -294,7 +294,7 @@ include::puml/diag-c4-component-sample1.puml[]
 
 NOTE: 現在のところ ``$shadowing="true"`` 指定のドロップシャドーは HTML 版のみ反映します。
 
-<<<<
+<<<
 
 === タイミングチャート
 
@@ -375,7 +375,7 @@ listopeniconic
 ----
 ****
 
-<<<<
+<<<
 
 === マインドマップ
 
