@@ -313,7 +313,7 @@ Asciidoc 拡張も ``~/.vscode/extensions/asciidoctor.asciidoctor-vscode-2.9.8/r
 .``~/.vscode-server/extensions/mushan.vscode-paste-image-1.0.4/res/linux.sh``
 ----
 #!/bin/sh
-# change current directoru
+# change current directory
 cd `dirname $0`
 # set dist path
 DISTPATH=//wsl.localhost/Ubuntu-22.04 # <1>
@@ -526,7 +526,7 @@ NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手
 
 .VS Code 統合ターミナルから Git リポジトリを初期化
 [caption=""]
-[source,bash]
+[source, bash]
 ----
 git init
 git config --local user.name h1romas4 # <1>
@@ -541,7 +541,7 @@ git commit -m 'initial commit'
 
 .VS Code 統合ターミナルから GitHub にプッシュ
 [caption=""]
-[source,bash]
+[source, bash]
 ----
 git remote add origin git@github.com:h1romas4/wasm-micro-book.git # <1>
 git branch -M main
@@ -577,7 +577,7 @@ image::2023-09-12-12-58-10.png[width=50%, pdfWidth=50%]
 
 .統合ターミナルから `git push` を実行
 [caption=""]
-[source,bash]
+[source, bash]
 ----
 git push
 ----
@@ -655,7 +655,7 @@ image::2023-07-03-14-28-22.png[]
 
 また合わせて、統合ターミナルから HTML/PDF のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで `./gradlew docs` することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。
 
-[source,bash]
+[source, bash]
 ----
 #
 # asciidoctor-gradle-template
@@ -695,7 +695,7 @@ image::2023-09-11-19-06-20.png[]
 
 前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。
 
-[source,bash]
+[source, bash]
 ----
 Use Cmd/Ctrl + Shift + P -> View Creation Log to see full logs
 ✔ Finishing up...
@@ -705,7 +705,7 @@ Use Cmd/Ctrl + Shift + P -> View Creation Log to see full logs
 
 PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 `./gradlew docs` を実行します。
 
-[source,bash]
+[source, bash]
 ----
 $ echo $LANG
 ja_JP.UTF-8 # <1>
