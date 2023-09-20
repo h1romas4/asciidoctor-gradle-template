@@ -52,7 +52,7 @@ sudo apt install graphviz
 
 === Java 実行環境の導入（macOS / Linux）
 
-もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入することができます。
+もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入できます。
 
 [quote, SDKMAN]
 ____
@@ -113,7 +113,7 @@ $ source ~/.bashrc # <3>
 ****
 SDKMAN は主に Java エコシステムの開発環境をコマンドラインから簡単に導入・設定するためにつくたれた管理ソフトウェアです。
 
-たとえば次のように簡単に各種 Java のバージョンを導入し切り替えることができます。
+たとえば次のように簡単に各種 Java のバージョンを導入し切り替えできます。
 
 [source]
 [caption="手順. "]
