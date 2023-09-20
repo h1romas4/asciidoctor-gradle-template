@@ -37,7 +37,7 @@ https://ditaa.sourceforge.net/
 DIagrams Through Ascii Art by Stathis Sideris
 ____
 
-<<<<
+<<<
 
 === シーケンス図
 
@@ -81,7 +81,7 @@ docker run -d --rm -p 8080:8080 plantuml/plantuml-server:jetty
 文書で使う PlantUML ダイアグラムを `.puml` 拡張子で保存することで Asciidoc と同様にプレビューアイコンが表示され、プレビュー画面ではリアルタイムに `.puml` ファイルの修正が反映されます。
 ****
 
-<<<<
+<<<
 
 === フォルダ・ファイルツリー
 
@@ -102,7 +102,7 @@ include::puml/diag-salt-sample1.puml[]
 include::puml/diag-salt-sample1.puml[]
 ----
 
-<<<<
+<<<
 
 === 数式
 
@@ -148,7 +148,7 @@ saltDiagram {
 <1> 未実装で効果がない
 ****
 
-<<<<
+<<<
 
 === ブロック図
 
@@ -172,7 +172,7 @@ include::ditaa/diag-ditaa-block.txt[]
 include::ditaa/diag-ditaa-block.txt[]
 ----
 
-<<<<
+<<<
 
 [source]
 -----
@@ -190,7 +190,7 @@ include::ditaa/diag-ditaa-block-2.txt[]
 include::ditaa/diag-ditaa-block-2.txt[]
 ----
 
-<<<<
+<<<
 
 === メモリーマップ
 
@@ -211,7 +211,7 @@ include::ditaa/diag-ditaa-memory-map.txt[]
 include::ditaa/diag-ditaa-memory-map.txt[]
 ----
 
-<<<<
+<<<
 
 === ネットワーク構成図
 
@@ -271,7 +271,7 @@ nwdiag {
 include::puml/diag-nwdiag-network1.puml[]
 ----
 
-<<<<
+<<<
 
 === システム構成図
 
@@ -294,7 +294,7 @@ include::puml/diag-c4-component-sample1.puml[]
 
 NOTE: 現在のところ ``$shadowing="true"`` 指定のドロップシャドーは HTML 版のみ反映します。
 
-<<<<
+<<<
 
 === タイミングチャート
 
@@ -375,7 +375,7 @@ listopeniconic
 ----
 ****
 
-<<<<
+<<<
 
 === マインドマップ
 
