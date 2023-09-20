@@ -526,13 +526,14 @@ NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手
 
 .VS Code 統合ターミナルから Git リポジトリを初期化
 [caption=""]
-```bash
+[source,bash]
+----
 git init
 git config --local user.name h1romas4 # <1>
 git config --local user.email h1romas4@gmail.com # <2>
 git add .
 git commit -m 'initial commit'
-```
+----
 <1> `h1romas4` 任意の名前に変更。Git コミットログの記載される氏名になります。
 <2> `h1romas4@gmail.com` 同上。Git コミットログに記載されるメールアドレスになります。
 
@@ -540,11 +541,12 @@ git commit -m 'initial commit'
 
 .VS Code 統合ターミナルから GitHub にプッシュ
 [caption=""]
-```bash
+[source,bash]
+----
 git remote add origin git@github.com:h1romas4/wasm-micro-book.git # <1>
 git branch -M main
 git push -u origin main
-```
+----
 <1> `h1romas4/wasm-micro-book.git` 部分が前項で作成したリポジトリ名になります。
 
 以上で GitHub リポジトリーへの文書の配置が完了しました。ウェブブラウザーで GitHub リポジトリにアクセスしすると、プッシュした文書ファイルがあることが確認できるでしょう。
@@ -575,9 +577,10 @@ image::2023-09-12-12-58-10.png[width=50%, pdfWidth=50%]
 
 .統合ターミナルから `git push` を実行
 [caption=""]
-```bash
+[source,bash]
+----
 git push
-```
+----
 
 ==== 異なる執筆環境での Git 操作
 
@@ -626,7 +629,7 @@ https://github.co.jp/features/codespaces
 超高速で構築するクラウド開発環境
 ____
 
-==== Gitpid
+==== Gitpod
 
 Gitpod クラウド上での執筆にあたっての条件は次のとおりです。
 
@@ -652,7 +655,8 @@ image::2023-07-03-14-28-22.png[]
 
 また合わせて、統合ターミナルから HTML/PDF のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで `./gradlew docs` することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。
 
-```bash
+[source,bash]
+----
 #
 # asciidoctor-gradle-template
 #
@@ -664,7 +668,7 @@ image::2023-07-03-14-28-22.png[]
 #  Dialog Font(Noto Sans CJK JP): OK
 #  LANG(ja_JP.UTF-8): OK
 #
-```
+----
 
 NOTE: これらの Gitpod 向けの設定は `.gitpod.yml` ファイルで定義されています。
 
@@ -691,16 +695,18 @@ image::2023-09-11-19-06-20.png[]
 
 前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。
 
-```bash
+[source,bash]
+----
 Use Cmd/Ctrl + Shift + P -> View Creation Log to see full logs
 ✔ Finishing up...
    Running postCreateCommand...
  > bash .devcontainer/build-codespaces-contaner.sh
-```
+----
 
 PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 `./gradlew docs` を実行します。
 
-```bash
+[source,bash]
+----
 $ echo $LANG
 ja_JP.UTF-8 # <1>
 $ fc-match Dialog
@@ -708,7 +714,7 @@ NotoSansCJK-Regular.ttc: "Noto Sans CJK JP" "Regular" # <2>
 $ ./gradlew docs # <3>
 # ..snip..
 BUILD SUCCESSFUL in 3m 19s
-```
+----
 <1> `ja_JP.UTF-8` になっていること
 <2> `Noto Sans CJK JP` になっていること
 <3> 文書のビルドを開始
@@ -786,7 +792,8 @@ git による main ブランチへの push 操作から自動的に動作する�
 
 .`.github/workflows/gradle.yml`
 [caption=""]
-```yml
+[source,yml]
+----
 - name: Check
   shell: bash
   run: |
@@ -797,14 +804,15 @@ git による main ブランチへの push 操作から自動的に動作する�
     # test asciidoctor
     file docs/index.pdf | grep PDF
     file docs/index.html | grep HTML
-```
+----
 <1> asciidoctor-diagram を使った .svg 図表が生成されているかの検査。文書中で使用していない場合は削除するか、コメントアウトしてください。
 
 また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。
 
 NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
 
-```yml
+[source,yml]
+----
 - name: Output PDF information
   if: startsWith(matrix.os, 'ubuntu')
   run: |
@@ -812,19 +820,21 @@ NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubunt
     pdfinfo docs/index.pdf
     echo "# URLs in document"
     pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
-```
+----
 
 なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
 
-```
+[source]
+----
 https://github.com/[ユーザ名]/[リポジトリ名]/workflows/Build/badge.svg
-```
+----
 
 具体的には、本手順のリポジトリの GitHub 向けの README.adoc は次のようになっています。
 
-```
+[source]
+----
 image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/badge.svg[]
-```
+----
 
 image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
