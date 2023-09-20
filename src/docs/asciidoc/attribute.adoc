@@ -27,3 +27,10 @@
 ifndef::imagesdir[:imagesdir: ./images]
 ifndef::sourcedir[:sourcedir: ./src]
 ifndef::source-highlighter[:source-highlighter: highlightjs]
+
+// IntelliJ AsciiDoc Plugin
+ifdef::env-idea[]
+:stylesdir: ../@style
+:stylesheet: asciidoctor.css
+// :icons: font
+endif::[]
