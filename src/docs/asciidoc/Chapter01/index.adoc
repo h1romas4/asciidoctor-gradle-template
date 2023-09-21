@@ -4,7 +4,7 @@ include::../attribute.adoc[]
 
 本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
 
-お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。
+お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。
 
 [source]
 [caption=""]
