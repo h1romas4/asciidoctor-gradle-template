@@ -666,7 +666,7 @@ pre.rouge {
 <h2 id="introduction">はじめに</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本文書は <code>Asciidoc</code> とその Ruby による実装である <code>Asciidoctor</code> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
+<p>本文書は <strong>Asciidoc</strong> とその Ruby による実装である <strong>Asciidoctor</strong> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
 </div>
 <div class="paragraph">
 <p>この文書の手順より以下のことができるようになります。</p>
@@ -704,7 +704,7 @@ pre.rouge {
 <p>一般的にテキストプロセッサーを用いた執筆環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
-<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <code>AsciidoctorJ</code> と <code>Gradle</code> を活用し、執筆環境については <code>Visual Studio Code</code> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
+<p>具体的には文書の変換に、実行を JVM 環境だけに依存する <strong>AsciidoctorJ</strong> と <strong>Gradle</strong> を活用し、執筆環境については <strong>Visual Studio Code</strong> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
 </div>
 <div class="paragraph">
 <p>手間がかかることが多い PDF 出力に関しても、フォントセットや禁則処理設定をプロジェクトに持たせることにより、実行環境に関わらず同一出力が得られるように調整しました。</p>
@@ -951,7 +951,7 @@ pre.rouge {
 <p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
 </div>
 <div class="paragraph">
-<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に準備は整っています。</p>
+<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。</p>
 </div>
 <div class="listingblock">
 <div class="title">macOS/Linux の場合</div>
@@ -1359,11 +1359,11 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は30秒程度で完了します。</td>
+<td>Gradle のビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</td>
+<td><code>BUILD SUCCESSFUL</code> が出力されれば文書変換が正常終了しています。</td>
 </tr>
 </table>
 </div>
@@ -1397,7 +1397,7 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 <p>ダウンロードした .zip ファイルを右クリックし展開します。フォルダ名は任意のものに変更可能です。本手順ではプロジェクトフォルダと呼称します。</p>
 </li>
 <li>
-<p>展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに <code>cmd.exe</code> と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。</p>
+<p>展開したフォルダ内をエクスプローラーで表示した上で、アドレスバーに <code>cmd.exe</code> もしくは <code>powershell.exe</code> と入力し、このフォルダをカレントディレクトリとしてコマンドプロンプトを起動します。</p>
 <div class="imageblock">
 <div class="content">
 <img src="Chapter02/images/windows-01.png" alt="windows" width="70%">
@@ -1405,10 +1405,10 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </li>
 <li>
-<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は30秒程度で完了します。</p>
+<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。</p>
 </li>
 <li>
-<p><code>BUILD SUCCESSFUL</code> が出力されればビルド成功です。</p>
+<p><code>BUILD SUCCESSFUL</code> が出力されれば文書変換が正常終了しています。</p>
 </li>
 </ol>
 </div>
@@ -1856,7 +1856,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="title">図 1. VS Code 統合ターミナルの起動</div>
 </div>
 <div class="paragraph">
-<p>統合ターミナルを使うと VS Code を離れることなく文書の変換ができますので活用してみてください。</p>
+<p>統合ターミナルを活用すると VS Code を離れることなく文書の変換ができます。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1956,7 +1956,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_文書属性定義">2.4.1. 文書属性定義</h4>
 <div class="paragraph">
-<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。画像挿入時の「図. 」など標準で付与されるキャプション文字列が定義できます。必要に応じて修正してください。</p>
+<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。画像挿入時の「図. 」など標準で付与される文字列がありますので、必要に応じて修正します。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>src/docs/asciidoc/attribute.adoc</code></div>
@@ -1972,7 +1972,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Asciidoctor で利用可能な属性は次から参照できます。</p>
+<p>Asciidoctor で利用可能な属性は次のドキュメントから参照できます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1991,10 +1991,10 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_pdf_テーマ定義">2.4.2. PDF テーマ定義</h4>
 <div class="paragraph">
-<p><code>src/docs/asciidoc/@style/pdf-theme.yml</code> では PDF 文書のスタイルを定義できます。PDF 文書の紙サイズやマージン、フォント・行送り幅などが設定できます。必要に応じて修正してください。</p>
+<p><code>src/docs/asciidoc/@style/pdf-theme.yml</code> では PDF 文書のスタイルを定義できます。PDF 文書の紙サイズやマージン、フォント・行送り幅などの設定がありますので、必要に応じて修正します。</p>
 </div>
 <div class="paragraph">
-<p>属性の詳細は次から参照できます。</p>
+<p>PDF テーマの詳細は次のドキュメントから参照できます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2030,7 +2030,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect2">
 <h3 id="_執筆の開始">2.5. 執筆の開始</h3>
 <div class="paragraph">
-<p>一通りのサンプル文書の構成確認が終りましたら、次のような流れでご自身の執筆を開始してみてください。</p>
+<p>一通りのサンプル文書の構成確認が終りましたら、次のような流れで新しい執筆を開始します。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2089,13 +2089,14 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p>Chapter が増えた場合は <code>src/docs/asciidocs/index.adoc</code> に Chapter を追記し、<code>src/docs/asciidocs/Chapter*/index.adoc</code> ファイルを新規追加する。</p>
 </li>
 <li>
-<p>画像ファイルが必要な場合は、<code>src/docs/asciidocs/Chapter*/images</code> フォルダに追加する。</p>
+<p>画像ファイルが必要な場合は、<code>src/docs/asciidocs/Chapter*/images</code> フォルダに追加する。<br>
+画像の追加は VS Code の Paste Image 拡張を用いることで、クリップボード経由で自動的に行えます。</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>文書執筆の一定の区切りをもって <code>./gradlew docs</code> で文書のビルドを行い、HTML/PDF 文書を <code>docs/index.html</code> と <code>docs/index.pdf</code> で推敲する。</p>
+<p>文書執筆の一定の区切りをもって <code>./gradlew docs</code> で文書のビルドを行い、HTML/PDF 文書を <code>docs/index.html</code> や <code>docs/index.pdf</code> で推敲する。</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2161,19 +2162,20 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p>お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。</p>
 </div>
 <div class="listingblock">
-<div class="title">macOS の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
+<div class="title">macOS（ターミナルエミュレータで実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code>brew install git</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Ubuntu の場合（ターミナルエミュレータで以下のコマンドを実行）</div>
+<div class="title">Linux（ターミナルエミュレータで実行）</div>
 <div class="content">
-<pre class="rouge highlight"><code>sudo apt install git</code></pre>
+<pre class="rouge highlight"><code># Ubuntu
+sudo apt install git</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Windows の場合（PowerShell ウインドウで以下のコマンドを実行）</div>
+<div class="title">Windows（PowerShell ウインドウで実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code>winget install --id Git.Git -e --source winget</code></pre>
 </div>
@@ -2217,7 +2219,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-ここではリポジトリ名として <code>wasm-micro-book</code> を、公開範囲を執筆者のみが文書ファイルが閲覧・操作が可能となる <code>Private</code> を選択しました。なお、公開範囲に Public を指定した場合は、インターネット上の全てのユーザから文書ファイルの読み取りが可能になりますので注意してください。
+ここではリポジトリ名として <code>wasm-micro-book</code> を、公開範囲を執筆者のみが文書ファイルが閲覧・操作が可能となる <code>Private</code> を選択しました。なお、公開範囲に Public を指定した場合は、インターネット上の全てのユーザから文書ファイルの読み取りが可能になりますので注意します。
 </td>
 </tr>
 </table>
@@ -2229,7 +2231,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="title">画面. GitHub の Create a new repository</div>
 </div>
 <div class="paragraph">
-<p>リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れます。次項の手順で必要になりますので、表示されたコマンドをクリップボード等に保持しておきます。</p>
+<p>リポジトリの作成が終わると画面が遷移して "…or create a new repository on the command line" 項が現れます。次項の手順で必要になりますので、表示されたコマンドをクリップボード等に保持します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2250,7 +2252,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-プロジェクトフォルダは、ルートに <code>gradlew</code> などの本手順のビルドスクリプトが配置されている構成になっていることを確認してください。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
+プロジェクトフォルダは、ルートに <code>gradlew</code> などの本手順のビルドスクリプトが配置されている構成になっていることを確認します。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
 </td>
 </tr>
 </table>
@@ -2395,8 +2397,52 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="paragraph">
 <p>個人の執筆活動の Git 操作としては「執筆開始前に <code>git pull</code>」「執筆区切りで <code>commit</code> と <code>push</code>」 と覚えておくだけで十分機能するはずです。</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_git_による文書の差分比較">2.7.6. Git による文書の差分比較</h4>
 <div class="paragraph">
-<p>もし共同著者間での文書マージ操作等、より高度な Git の操作が必要になってきた場合は、ウェブサイトや書籍から Git についての優れたドキュメントを得られます。</p>
+<p>Git 管理された文書ファイルはコミットごとに履歴が取得され、各履歴ごとの差分比較が可能です。</p>
+</div>
+<div class="paragraph">
+<p>VS Code では統合ターミナルと同列のパネルに配置されたタイムラインから履歴をダブルクリックすることで、Git コミットごとの修正前後の比較ができます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-21-18-08-23.png" alt="2023 09 21 18 08 23" width="80%">
+</div>
+<div class="title">画面. VS Code タイムラインパネル</div>
+</div>
+<div class="paragraph">
+<p>タイムラインには標準で Git の履歴とともに、ファイル上書き保存ごとの修正差分も表示されます。状況に応じてパネル右上のフィルター項目からそれぞれの表示可否を選択してください。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-21-18-12-59.png" alt="2023 09 21 18 12 59" width="50%">
+</div>
+<div class="title">画面. VS Code タイムラインパネルのフィルター</div>
+</div>
+<div class="paragraph">
+<p>また Git コミット時に使うソース管理パネルでも、ファイルをダブルクリックすることでコミット前後の差分が表示され修正内容を確認できます。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-21-18-31-16.png" alt="2023 09 21 18 31 16" width="80%">
+</div>
+<div class="title">画面. VS Code ソース管理パネル</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>もし共同著者間での文書マージ操作等、より高度な Git の操作が必要になってきた場合は、ウェブサイトや書籍から Git についての優れたドキュメントが得られます。</p>
 </div>
 </td>
 </tr>
@@ -4240,7 +4286,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-20 18:15:38 +0900
+最終更新 2023-09-14 15:30:59 +0900
 </div>
 </div>
 </body>
