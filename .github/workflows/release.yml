@@ -76,7 +76,7 @@ jobs:
           # document version from git tag
           echo "version=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
-      - name: Arcive
+      - name: Archive
         shell: bash
         run: |
           DOCNAME=${{ steps.get-attr.outputs.doc-name }}

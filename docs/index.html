@@ -860,6 +860,9 @@ pre.rouge {
 <li>
 <p>vscode-plantuml - MIT License - <a href="https://github.com/qjebbs/vscode-plantuml" class="bare">https://github.com/qjebbs/vscode-plantuml</a></p>
 </li>
+<li>
+<p>Code Spell Checker - GPL - <a href="https://github.com/streetsidesoftware/vscode-spell-checker" class="bare">https://github.com/streetsidesoftware/vscode-spell-checker</a></p>
+</li>
 </ul>
 </div>
 </dd>
@@ -1671,7 +1674,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p><span class="menuseq"><b class="menu">このワークスペースには拡張機能の推奨事項があります。</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">すべてインストール</b></span> ボタンをクリックします。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/vscode-extention1.png" alt="vscode">
+<img src="Chapter02/images/vscode-extension1.png" alt="vscode">
 </div>
 </div>
 <div class="paragraph">
@@ -1687,7 +1690,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p><b class="button">再読み込み</b> ボタンをクリックします。</p>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/vscode-extention2.png" alt="vscode">
+<img src="Chapter02/images/vscode-extension2.png" alt="vscode">
 </div>
 </div>
 </li>
@@ -1700,7 +1703,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-導入推奨拡張は <code>.vscode/extention.json</code> ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
+導入推奨拡張は <code>.vscode/extensions.json</code> ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
 </td>
 </tr>
 </table>
@@ -2035,7 +2038,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>サンプル文書の <code>src/docs/asciidoc/Cahpter02</code> 以降のフォルダの削除を行い見通しを良くする。</p>
+<p>サンプル文書の <code>src/docs/asciidoc/Chapter02</code> 以降のフォルダの削除を行い見通しを良くする。</p>
 </li>
 <li>
 <p><code>src/docs/asciidoc/index.adoc</code> からの 1. で削除した <code>Chapter*</code> の<code>include</code> を削除する。</p>
@@ -2044,10 +2047,10 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <p><code>src/docs/asciidoc/index.adoc</code> で文書のタイトルや版数などを設定する。</p>
 </li>
 <li>
-<p><code>src/docs/asciidoc/Cahpter00/index.adoc</code> を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。</p>
+<p><code>src/docs/asciidoc/Chapter00/index.adoc</code> を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。</p>
 </li>
 <li>
-<p><code>src/docs/asciidoc/Cahpter01/index.adoc</code> を空にして本編の執筆を開始。</p>
+<p><code>src/docs/asciidoc/Chapter01/index.adoc</code> を空にして本編の執筆を開始。</p>
 </li>
 <li>
 <p>事前に目次案がある場合は、このタイミングで <code>Chapter*</code> フォルダと対応する <code>index.adoc</code> を新規作成し、目次案にあった章や節などの大項目のみを準備するのも良い方法です。目次が完成し全体の把握がしやすくなります。</p>
@@ -2617,7 +2620,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <pre class="rouge highlight"><code data-lang="bash">Use Cmd/Ctrl + Shift + P -&gt; View Creation Log to see full logs
 ✔ Finishing up...
    Running postCreateCommand...
- <span class="o">&gt;</span> bash .devcontainer/build-codespaces-contaner.sh</code></pre>
+ <span class="o">&gt;</span> bash .devcontainer/build-codespaces-container.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2674,7 +2677,7 @@ BUILD SUCCESSFUL <span class="k">in </span>3m 19s</code></pre>
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及び <code>.devcontainer/build-codespaces-contaner.sh</code> ファイルで定義されています。
+Codespaces 向けの設定は <code>.devcontainer/devcontainer.json</code> 及び <code>.devcontainer/build-codespaces-container.sh</code> ファイルで定義されています。
 </td>
 </tr>
 </table>
@@ -2879,7 +2882,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect3">
 <h4 id="_githubworkflowsrelease_yml">2.10.2. <code>.github/workflows/release.yml</code></h4>
 <div class="paragraph">
-<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{verison}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
+<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{version}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
 </div>
 <div class="paragraph">
 <p>ファイル名の <code>by-*</code> 以下の部分にはビルドした環境名が <code>by-windows-latest-java-11</code> や <code>by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。</p>
@@ -4286,7 +4289,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-20 18:15:38 +0900
+最終更新 2023-09-14 15:30:59 +0900
 </div>
 </div>
 </body>

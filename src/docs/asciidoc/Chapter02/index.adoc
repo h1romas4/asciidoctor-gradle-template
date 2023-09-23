@@ -212,7 +212,7 @@ image::2023-09-19-16-33-05.png[width=70%, pdfWidth=70%]
 
 . menu:このワークスペースには拡張機能の推奨事項があります。[すべてインストール] ボタンをクリックします。
 +
-image::vscode-extention1.png[vscode, pdfwidth=50%]
+image::vscode-extension1.png[vscode, pdfwidth=50%]
 +
 WSL2 Ubuntu 環境を使っている場合は合わせて WSL2 側にも拡張の導入を行います。
 +
@@ -220,9 +220,9 @@ image::2023-09-17-13-30-33.png[pdfwidth=60%, width=60%]
 
 . btn:[再読み込み] ボタンをクリックします。
 +
-image::vscode-extention2.png[vscode, pdfwidth=50%]
+image::vscode-extension2.png[vscode, pdfwidth=50%]
 
-NOTE: 導入推奨拡張は ``.vscode/extention.json`` ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
+NOTE: 導入推奨拡張は ``.vscode/extensions.json`` ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
 
 以上で Asciidoc 文書編集のための準備が完了しました。
 
@@ -432,11 +432,11 @@ NOTE: 本手順で採用している Asciidoctor PDF のバージョンは ``1.6
 
 一通りのサンプル文書の構成確認が終りましたら、次のような流れで新しい執筆を開始します。
 
-. サンプル文書の ``src/docs/asciidoc/Cahpter02`` 以降のフォルダの削除を行い見通しを良くする。
+. サンプル文書の ``src/docs/asciidoc/Chapter02`` 以降のフォルダの削除を行い見通しを良くする。
 . ``src/docs/asciidoc/index.adoc`` からの 1. で削除した ``Chapter*`` の``include`` を削除する。
 . ``src/docs/asciidoc/index.adoc`` で文書のタイトルや版数などを設定する。
-. ``src/docs/asciidoc/Cahpter00/index.adoc`` を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。
-. ``src/docs/asciidoc/Cahpter01/index.adoc`` を空にして本編の執筆を開始。
+. ``src/docs/asciidoc/Chapter00/index.adoc`` を空にして目次前に挿入される「はじめに」や「本書の読み方」等の執筆。
+. ``src/docs/asciidoc/Chapter01/index.adoc`` を空にして本編の執筆を開始。
 . 事前に目次案がある場合は、このタイミングで ``Chapter*`` フォルダと対応する ``index.adoc`` を新規作成し、目次案にあった章や節などの大項目のみを準備するのも良い方法です。目次が完成し全体の把握がしやすくなります。
 . ここで一度 ``./gradlew docs`` を行い、想定通りの HTML/PDF 文書が ``docs/`` 内に生成されていることを確認する。外観の修正点があれば、
 ** 文書形式の場合は ``src/docs/asciidoc/attribute.adoc`` を調整。
@@ -748,7 +748,7 @@ image::2023-09-11-19-06-20.png[]
 Use Cmd/Ctrl + Shift + P -> View Creation Log to see full logs
 ✔ Finishing up...
    Running postCreateCommand...
- > bash .devcontainer/build-codespaces-contaner.sh
+ > bash .devcontainer/build-codespaces-container.sh
 ----
 
 PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 `./gradlew docs` を実行します。
@@ -774,7 +774,7 @@ BUILD SUCCESSFUL in 3m 19s
 クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように `exit` コマンドで一旦閉じた上で再起動すると良いでしょう。
 ====
 
-NOTE: Codespaces 向けの設定は `.devcontainer/devcontainer.json` 及び `.devcontainer/build-codespaces-contaner.sh` ファイルで定義されています。
+NOTE: Codespaces 向けの設定は `.devcontainer/devcontainer.json` 及び `.devcontainer/build-codespaces-container.sh` ファイルで定義されています。
 
 === クラウド環境でのファイル保存と執筆の再開
 
@@ -888,7 +888,7 @@ image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
 ==== `.github/workflows/release.yml`
 
-git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `\{doc-name\}-\{verison\}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
+git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `\{doc-name\}-\{version\}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
 
 ファイル名の `by-*` 以下の部分にはビルドした環境名が `by-windows-latest-java-11` や `by-macos-latest-java-17` のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。
 

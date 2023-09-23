@@ -84,6 +84,7 @@ Text Editor::
     * asciidoctor-vscode - MIT License - https://github.com/asciidoctor/asciidoctor-vscode
     * vscode-paste-image - MIT License - https://github.com/mushanshitiancai/vscode-paste-image
     * vscode-plantuml - MIT License - https://github.com/qjebbs/vscode-plantuml
+    * Code Spell Checker - GPL - https://github.com/streetsidesoftware/vscode-spell-checker
 Guide::
     * asciidoctor-pdfでかっこいいPDFを作る - https://qiita.com/kuboaki/items/67774c5ebd41467b83e2
 
