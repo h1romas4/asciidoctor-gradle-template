@@ -1,13 +1,13 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2.5.3-linux",
-  "postCreateCommand": "bash .devcontainer/build-codespaces-container.sh",
   "customizations": {
     "vscode": {
       "extensions": [
         "asciidoctor.asciidoctor-vscode",
         "EditorConfig.EditorConfig",
         "anwar.papyrus-pdf",
-        "jebbs.plantuml"
+        "jebbs.plantuml",
+        "streetsidesoftware.code-spell-checker"
       ]
     }
   }
