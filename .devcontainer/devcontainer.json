@@ -1,6 +1,6 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2.5.3-linux",
-  "postCreateCommand": "bash .devcontainer/build-codespaces-contaner.sh",
+  "postCreateCommand": "bash .devcontainer/build-codespaces-container.sh",
   "customizations": {
     "vscode": {
       "extensions": [
