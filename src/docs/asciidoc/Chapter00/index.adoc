@@ -4,7 +4,7 @@ include::../attribute.adoc[]
 [preface]
 == はじめに
 
-本文書は **Asciidoc** とその Ruby による実装である **Asciidoctor** を用いて Asciidoc 文書を執筆する環境を構築するガイドです。実行環境は Windows、Linux、macOS の各 OS に対応しています。
+本文書は **Asciidoc** とその Ruby による実装である **Asciidoctor** を用いて Asciidoc 文書を執筆する環境を構築するガイドです。実行環境は macOS、Linux、Windows の各 OS に対応しています。
 
 この文書の手順から次のことができるようになります。
 
