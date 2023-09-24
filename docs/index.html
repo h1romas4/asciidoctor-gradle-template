@@ -1715,6 +1715,12 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="paragraph">
 <p>VS Code 左パネルのエクスプローラーから、Asciidoc 文書（<code>src/docs/asciidoc/index.adoc</code>など）を開き、文書を開いたエディタ部右上に配置された <b class="button">Open Preview to the Side</b>アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-24-15-34-04.png" alt="2023 09 24 15 34 04" width="70%">
+</div>
+<div class="title">画面. Asciidoc 拡張 Open Preview to the Side</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -1731,6 +1737,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="content">
 <img src="Chapter02/images/vscode-asciidoc.png" alt="vscode asciidoc" width="80%">
 </div>
+<div class="title">画面. Asciidoc のリアルタイムプレビュー</div>
 </div>
 <div class="paragraph">
 <p><code>.adoc</code> ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。</p>
@@ -2884,6 +2891,12 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="paragraph">
 <p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{version}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter02/images/2023-09-24-16-11-46.png" alt="2023 09 24 16 11 46" width="80%">
+</div>
+<div class="title">画面. GitHub のリリースページに掲載された変換後の文書</div>
+</div>
 <div class="paragraph">
 <p>ファイル名の <code>by-*</code> 以下の部分にはビルドした環境名が <code>by-windows-latest-java-11</code> や <code>by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。</p>
 </div>
@@ -2954,7 +2967,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </table>
 </div>
 <div class="paragraph">
-<p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で永続化できます。文書の版管理にご活用ください。</p>
+<p>本リリースの機能を使い頒布や出版時にタグを打つことで、その時点のファイル断面がダウンロード可能な形で永続化できます。文書の版管理に活用してください。</p>
 </div>
 </div>
 </div>
@@ -4289,7 +4302,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-14 15:30:59 +0900
+最終更新 2023-09-20 18:15:38 +0900
 </div>
 </div>
 </body>
