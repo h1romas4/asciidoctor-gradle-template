@@ -666,20 +666,20 @@ pre.rouge {
 <h2 id="introduction">はじめに</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本文書は <strong>Asciidoc</strong> とその Ruby による実装である <strong>Asciidoctor</strong> を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。</p>
+<p>本文書は <strong>Asciidoc</strong> とその Ruby による実装である <strong>Asciidoctor</strong> を用いて Asciidoc 文書を執筆する環境を構築するガイドです。実行環境は macOS、Linux、Windows の各 OS に対応しています。</p>
 </div>
 <div class="paragraph">
-<p>この文書の手順より以下のことができるようになります。</p>
+<p>この文書の手順から次のことができるようになります。</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換</dt>
 <dd>
-<p>Asciidoc 文書変換用 Gradle スクリプト</p>
+<p>Asciidoc 文書変換用 Gradle スクリプトの実行</p>
 </dd>
 <dt class="hdlist1">テキストエディターで変換結果をリアルタイムにプレビューしながら文書を編集</dt>
 <dd>
-<p>Visual Studio Code と AsciiDoc 拡張設定</p>
+<p>Visual Studio Code と AsciiDoc 拡張の設定</p>
 </dd>
 </dl>
 </div>
@@ -912,20 +912,23 @@ pre.rouge {
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
 <ul class="sectlevel2">
-<li><a href="#_文書中の相互参照">3.1. 文書中の相互参照</a></li>
-<li><a href="#_外部リンク">3.2. 外部リンク</a></li>
-<li><a href="#_引用">3.3. 引用</a></li>
-<li><a href="#_画像">3.4. 画像</a></li>
-<li><a href="#_ソースコードシンタックスハイライト">3.5. ソースコードシンタックスハイライト</a></li>
-<li><a href="#_インラインコマンドファイル名">3.6. インラインコマンド・ファイル名</a></li>
-<li><a href="#_メニューボタン">3.7. メニュー・ボタン</a></li>
-<li><a href="#_ファイルインクルード">3.8. ファイルインクルード</a></li>
-<li><a href="#_表形式">3.9. 表形式</a></li>
-<li><a href="#_リスト">3.10. リスト</a></li>
-<li><a href="#_脚注">3.11. 脚注</a></li>
-<li><a href="#_改ページ水平線">3.12. 改ページ・水平線</a></li>
-<li><a href="#_コラム表現">3.13. コラム表現</a></li>
-<li><a href="#_コメント行">3.14. コメント行</a></li>
+<li><a href="#_ドキュメントヘッダー">3.1. ドキュメントヘッダー</a></li>
+<li><a href="#_段落">3.2. 段落</a></li>
+<li><a href="#_文書中の相互参照">3.3. 文書中の相互参照</a></li>
+<li><a href="#_外部リンク">3.4. 外部リンク</a></li>
+<li><a href="#_引用">3.5. 引用</a></li>
+<li><a href="#_画像">3.6. 画像</a></li>
+<li><a href="#_ソースコードシンタックスハイライト">3.7. ソースコードシンタックスハイライト</a></li>
+<li><a href="#_インラインコマンドファイル名">3.8. インラインコマンド・ファイル名</a></li>
+<li><a href="#_メニューボタン">3.9. メニュー・ボタン</a></li>
+<li><a href="#_ファイルインクルード">3.10. ファイルインクルード</a></li>
+<li><a href="#_表形式">3.11. 表形式</a></li>
+<li><a href="#_リスト">3.12. リスト</a></li>
+<li><a href="#_脚注">3.13. 脚注</a></li>
+<li><a href="#_改ページ水平線">3.14. 改ページ・水平線</a></li>
+<li><a href="#_ラベル">3.15. ラベル</a></li>
+<li><a href="#_コラム表現">3.16. コラム表現</a></li>
+<li><a href="#_コメント行">3.17. コメント行</a></li>
 </ul>
 </li>
 <li><a href="#_ダイアグラム記法">4. ダイアグラム記法</a>
@@ -2789,9 +2792,9 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </table>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsgradle_yml">2.10.1. <code>.github/workflows/gradle.yml</code></h4>
+<h4 id="_文書ファイルの変換テストと検査gradle_yml">2.10.1. 文書ファイルの変換テストと検査（gradle.yml）</h4>
 <div class="paragraph">
-<p>git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
+<p>git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
 </div>
 <div class="paragraph">
 <p>環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、変換処理が実行できることへの確信が持てるはずです。</p>
@@ -2841,6 +2844,18 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="paragraph">
 <p>また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。</p>
 </div>
+<div class="listingblock">
+<div class="title"><code>.github/workflows/gradle.yml</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Output PDF information</span>
+  <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu')</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">echo "# PDF information"</span>
+    <span class="s">pdfinfo docs/index.pdf</span>
+    <span class="s">echo "# URLs in document"</span>
+    <span class="s">pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq</span></code></pre>
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -2853,19 +2868,8 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </tr>
 </table>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Output PDF information</span>
-  <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu')</span>
-  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-    <span class="s">echo "# PDF information"</span>
-    <span class="s">pdfinfo docs/index.pdf</span>
-    <span class="s">echo "# URLs in document"</span>
-    <span class="s">pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq</span></code></pre>
-</div>
-</div>
 <div class="paragraph">
-<p>なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。</p>
+<p>なお、文書が問題なく変換ができたことの証となる「バッジ」を以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2887,9 +2891,9 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_githubworkflowsrelease_yml">2.10.2. <code>.github/workflows/release.yml</code></h4>
+<h4 id="_文書ファイルの自動リリースrelease_yml">2.10.2. 文書ファイルの自動リリース（release.yml）</h4>
 <div class="paragraph">
-<p>git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された <code>docs</code> 配下のファイルを <code>{doc-name}-{version}-by-*.tar.gz</code> アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。</p>
+<p>git のバージョンタグを push する操作を契機として、GitHub のリリースページに GitHub Actions 上の環境で変換処理された HTML/PDF 文書をアーカイブファイルとして GitHub のダウンロードページにリリースします。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2901,6 +2905,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <p>ファイル名の <code>by-*</code> 以下の部分にはビルドした環境名が <code>by-windows-latest-java-11</code> や <code>by-macos-latest-java-17</code> のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。</p>
 </div>
 <div class="listingblock">
+<div class="title"><code>.github/workflows/release.yml</code></div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="yml"><span class="na">jobs</span><span class="pi">:</span>
   <span class="na">build</span><span class="pi">:</span>
@@ -2940,9 +2945,10 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </table>
 </div>
 <div class="paragraph">
-<p>リリースされる文書のファイル名やバージョンについては、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。</p>
+<p>リリースされる文書のファイル名や付与されるバージョン番号については、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。</p>
 </div>
 <div class="listingblock">
+<div class="title"><code>.github/workflows/release.yml</code></div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set archive attribute</span>
   <span class="na">id</span><span class="pi">:</span> <span class="s">get-attr</span>
@@ -2977,10 +2983,13 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <h2 id="project-structure">3. Asciidoc 記法</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ここでは Asciidoc 文書で利用可能な記法の中で、特に技術文書で使いそうなものを取り上げて解説します。</p>
+<p>Asciidoc ではテキスト中に特定の記法を挿入することで文書表現や付随情報を追加しながら執筆を進めます。</p>
 </div>
 <div class="paragraph">
-<p>Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Space</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
+<p>ここでは Asciidoc 文書で利用可能な記法の中で、この文書で使われている表現を取り上げて解説します。始めは本文書を手元に置いてコピーアンドペーストするのも良い方法です。</p>
+</div>
+<div class="paragraph">
+<p>また、Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Space</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3000,7 +3009,55 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </table>
 </div>
 <div class="sect2">
-<h3 id="_文書中の相互参照">3.1. 文書中の相互参照</h3>
+<h3 id="_ドキュメントヘッダー">3.1. ドキュメントヘッダー</h3>
+<div class="paragraph">
+<p>章やチャプターを表すヘッダーは次のように記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>= AsciidoctorとGradleでつくる文書執筆環境
+
+== はじめに</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>本文書で提供される <code>.adoc</code> はドキュメントタイプが <code>book</code> に指定され、ヘッダーのレベル1が文書名となります。ドキュメントタイプは <code>attribute.adoc</code> の <code>:doctype: book</code> で指定されています。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_段落">3.2. 段落</h3>
+<div class="paragraph">
+<p>文章の段落は改行で表現します。新しい段落にする場合は改行のみの空行を挿入します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>こんにちは。
+
+吾輩は段落である。（ここには空行はない）
+名前はまだない。</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>こんにちは。</p>
+</div>
+<div class="paragraph">
+<p>吾輩は段落である。（ここには空行はない）
+名前はまだない。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_文書中の相互参照">3.3. 文書中の相互参照</h3>
 <div class="paragraph">
 <p>文書内の参照リンクは <code>.adoc</code> 文書中で次のように指定します。HTML/PDF でクリックリンクが生成されます。</p>
 </div>
@@ -3043,7 +3100,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_外部リンク">3.2. 外部リンク</h3>
+<h3 id="_外部リンク">3.4. 外部リンク</h3>
 <div class="paragraph">
 <p>インターネット上の URL は自動的にリンクに変換されます。</p>
 </div>
@@ -3075,7 +3132,7 @@ PDF の印刷を考慮する場合は、文字列リンクを用いると URL �
 </div>
 </div>
 <div class="sect2">
-<h3 id="_引用">3.3. 引用</h3>
+<h3 id="_引用">3.5. 引用</h3>
 <div class="paragraph">
 <p>外部の文献を参照する引用は次のように記述します。執筆している文書が紙面となり、引用先がウェブサイトの場合はいずれかの位置に URL を掲載します。</p>
 </div>
@@ -3105,7 +3162,7 @@ ____</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_画像">3.4. 画像</h3>
+<h3 id="_画像">3.6. 画像</h3>
 <div class="paragraph">
 <p>画像の挿入は、画像ファイルを編集中の <code>.adoc</code> 文書から相対パスでみた <code>images/</code> フォルダに格納した上で、次のように記述します。</p>
 </div>
@@ -3134,7 +3191,7 @@ ____</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ソースコードシンタックスハイライト">3.5. ソースコードシンタックスハイライト</h3>
+<h3 id="_ソースコードシンタックスハイライト">3.7. ソースコードシンタックスハイライト</h3>
 <div class="paragraph">
 <p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに <code>// &lt;1&gt;</code> などのコメント形式でソースコード下部に対応する説明が記述できます。</p>
 </div>
@@ -3176,7 +3233,7 @@ function hello() { // &lt;1&gt;
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_インラインコマンドファイル名">3.6. インラインコマンド・ファイル名</h3>
+<h3 id="_インラインコマンドファイル名">3.8. インラインコマンド・ファイル名</h3>
 <div class="paragraph">
 <p>文中に現れるコマンドやファイル名などは <code>コマンド</code> で記述します。</p>
 </div>
@@ -3187,7 +3244,7 @@ function hello() { // &lt;1&gt;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_メニューボタン">3.7. メニュー・ボタン</h3>
+<h3 id="_メニューボタン">3.9. メニュー・ボタン</h3>
 <div class="paragraph">
 <p>コンピュータの操作で使われる <span class="menuseq"><b class="menu">メニュー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Open</b></span> や <b class="button">OK</b> ボタンなどは次のように記述します。</p>
 </div>
@@ -3200,7 +3257,7 @@ btn:[OK] ボタン</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ファイルインクルード">3.8. ファイルインクルード</h3>
+<h3 id="_ファイルインクルード">3.10. ファイルインクルード</h3>
 <div class="paragraph">
 <p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
 </div>
@@ -3235,21 +3292,9 @@ include::source/hello.rs[]
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_表形式">3.9. 表形式</h3>
+<h3 id="_表形式">3.11. 表形式</h3>
 <div class="paragraph">
-<p>表形式は次のようなコードで定義します。データ形式、罫線表現に関していくつかのオプションが設定できます。</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="ヒント"></i>
-</td>
-<td class="content">
-属性の <code>cols="1,2"</code> ではカラムの比率を指定します。
-</td>
-</tr>
-</table>
+<p>表形式は次のようなコードで定義します。データ形式、罫線表現に関していくつかの属性が設定できます。</p>
 </div>
 <div class="listingblock">
 <div class="title">表形式の例1（CSV 形式、ヘッダーなし、グリッドなし）</div>
@@ -3285,6 +3330,20 @@ include::source/hello.rs[]
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>cols="1,2"</code> 指定することでカラムの比率を <code>1:2</code> に設定しています。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="listingblock">
 <div class="title">表形式の例2（デフォルト形式、ヘッダーあり、グリッドあり）</div>
 <div class="content">
@@ -3327,7 +3386,7 @@ include::source/hello.rs[]
 </tbody>
 </table>
 <div class="paragraph">
-<p>また、<code>cols="1,2a"</code> のように <code>a</code> を付与したセルは Asciidoc 記法がそのまま反映します。</p>
+<p><code>cols="1,2a"</code> のように <code>a</code> を付与したセルは Asciidoc 記法がそのまま反映します。</p>
 </div>
 <div class="listingblock">
 <div class="title">表形式の例3（Asciidoc 形式セル）</div>
@@ -3377,7 +3436,7 @@ include::source/hello.rs[]
 </table>
 </div>
 <div class="sect2">
-<h3 id="_リスト">3.10. リスト</h3>
+<h3 id="_リスト">3.12. リスト</h3>
 <div class="paragraph">
 <p>箇条書き表現は次のように記述します。</p>
 </div>
@@ -3456,7 +3515,7 @@ image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_脚注">3.11. 脚注</h3>
+<h3 id="_脚注">3.13. 脚注</h3>
 <div class="paragraph">
 <p>補足点を脚注するいくつかの表現があります。</p>
 </div>
@@ -3566,7 +3625,7 @@ CAUTION: 注意</code></pre>
 <div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_改ページ水平線">3.12. 改ページ・水平線</h3>
+<h3 id="_改ページ水平線">3.14. 改ページ・水平線</h3>
 <div class="paragraph">
 <p>改ページは次の記述で挿入します。PDF 文書のみに効果があり HTML 文書には影響しません。</p>
 </div>
@@ -3586,7 +3645,33 @@ CAUTION: 注意</code></pre>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_コラム表現">3.13. コラム表現</h3>
+<h3 id="_ラベル">3.15. ラベル</h3>
+<div class="paragraph">
+<p>特定のラベルに対して定義文を記述する表現は次のように記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>対応 OS::
+    macOS、Linux、Windows 対応
+対応 JDK::
+    11 、17、21 の各 LTS バージョン</code></pre>
+</div>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">対応 OS</dt>
+<dd>
+<p>macOS、Linux、Windows 対応</p>
+</dd>
+<dt class="hdlist1">対応 JDK</dt>
+<dd>
+<p>11 、17、21 の各 LTS バージョン</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_コラム表現">3.16. コラム表現</h3>
 <div class="paragraph">
 <p>Asciidoc のサイドバーとブロック名称機能を組み合わせ、コラム表現を挿入します。</p>
 </div>
@@ -3613,7 +3698,7 @@ CAUTION: 注意</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_コメント行">3.14. コメント行</h3>
+<h3 id="_コメント行">3.17. コメント行</h3>
 <div class="paragraph">
 <p>成果物に現れない Asciidoc 文書へのコメントは次のように文頭に <code>//</code> で記述します。</p>
 </div>

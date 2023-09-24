@@ -4,14 +4,14 @@ include::../attribute.adoc[]
 [preface]
 == はじめに
 
-本文書は **Asciidoc** とその Ruby による実装である **Asciidoctor** を用いて Asciidoc 文書を執筆する環境を構築する手順を示します。実行環境は Windows、Linux、macOS の各 OS に対応しています。
+本文書は **Asciidoc** とその Ruby による実装である **Asciidoctor** を用いて Asciidoc 文書を執筆する環境を構築するガイドです。実行環境は macOS、Linux、Windows の各 OS に対応しています。
 
-この文書の手順より以下のことができるようになります。
+この文書の手順から次のことができるようになります。
 
 Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換::
-    Asciidoc 文書変換用 Gradle スクリプト
+    Asciidoc 文書変換用 Gradle スクリプトの実行
 テキストエディターで変換結果をリアルタイムにプレビューしながら文書を編集::
-    Visual Studio Code と AsciiDoc 拡張設定
+    Visual Studio Code と AsciiDoc 拡張の設定
 
 Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
 
