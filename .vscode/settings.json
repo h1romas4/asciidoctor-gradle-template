@@ -7,8 +7,6 @@
         "**/.factorypath": true
     },
     "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css",
-    "editor.stickyScroll.defaultModel": "outlineModel",
-    "editor.stickyScroll.enabled": true,
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
@@ -19,6 +17,12 @@
     },
     "files.readonlyInclude": {
         "docs/**": true
+    },
+    "[asciidoc]": {
+        "editor.stickyScroll.defaultModel": "outlineModel",
+        "editor.stickyScroll.enabled": true,
+        "editor.minimap.enabled": true,
+        "editor.minimap.autohide": true
     },
     "cSpell.words": [
         "adoc",
