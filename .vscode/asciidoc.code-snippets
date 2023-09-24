@@ -205,7 +205,7 @@
     "asciidoc-image": {
         "prefix": "ag-image",
         "body": [
-            "image::${1:filepath}[${2:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
+            "image::${1:filepath}[pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
         ],
         "description": "image"
     },
@@ -213,7 +213,8 @@
         "prefix": "ag-image-with-caption",
         "body": [
             ".${1:caption}",
-            "image::${2:filepath}[${1:caption}, pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
+            "[caption=\"\"]",
+            "image::${2:filepath}[pdfwidth=${3:pdfwidth}%, width=${4:width}%]"
         ],
         "description": "image"
     },
