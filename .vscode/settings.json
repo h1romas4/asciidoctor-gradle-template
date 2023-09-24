@@ -22,6 +22,7 @@
     },
     "[asciidoc]": {
         "editor.minimap.enabled": true,
+        "editor.minimap.autohide": true
     },
     "cSpell.words": [
         "adoc",
