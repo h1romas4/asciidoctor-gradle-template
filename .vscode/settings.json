@@ -20,6 +20,9 @@
     "files.readonlyInclude": {
         "docs/**": true
     },
+    "[asciidoc]": {
+        "editor.minimap.enabled": true,
+    },
     "cSpell.words": [
         "adoc",
         "anwar",
