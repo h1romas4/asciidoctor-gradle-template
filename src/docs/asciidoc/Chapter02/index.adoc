@@ -230,8 +230,14 @@ NOTE: 導入推奨拡張は ``.vscode/extensions.json`` ファイルで設定さ
 
 VS Code 左パネルのエクスプローラーから、Asciidoc 文書（``src/docs/asciidoc/index.adoc``など）を開き、文書を開いたエディタ部右上に配置された btn:[Open Preview to the Side]アイコンをクリックすると、画面右側に Asciidoc 文書の変換がリアルタイムに確認できるプレビューが表示されます。
 
+.Asciidoc 拡張 Open Preview to the Side
+[caption="画面. "]
+image::2023-09-24-15-34-04.png[pdfwidth=70%, width=70%]
+
 TIP: プレビュー表示操作はキーボードショートカット btn:[Ctrl + k, v] でも可能です。また、画面右側ではなく現在のエディタグループに表示する場合は btn:[Ctrl + Shift + v] を押下します。
 
+.Asciidoc のリアルタイムプレビュー
+[caption="画面. "]
 image::vscode-asciidoc.png[width=80%, pdfWidth=80%]
 
 ``.adoc`` ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。
