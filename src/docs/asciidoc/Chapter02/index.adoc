@@ -830,9 +830,9 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 本項「GitHub Actions によるビルド」機能の利用は必須ではありません。大人数で継続的に執筆を行いたいケースなどに採用してみてください。HTML/PDF 変換処理の自動化やファイルリリースの版数管理で大きな力を発揮することでしょう。
 ====
 
-==== `.github/workflows/gradle.yml`
+==== 文書ファイルの変換テストと検査（gradle.yml）
 
-git による main ブランチへの push 操作から自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
+git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
 
 環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、変換処理が実行できることへの確信が持てるはずです。
 
@@ -863,8 +863,8 @@ git による main ブランチへの push 操作から自動的に動作する�
 
 また 次の部分で PDF 文書のメタデータの出力を行うサンプルを組み込んでいます。PDF 文書に不要なメタデータが含まれていないか等の確認が行えます。
 
-NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
-
+.`.github/workflows/gradle.yml`
+[caption=""]
 [source,yml]
 ----
 - name: Output PDF information
@@ -876,7 +876,9 @@ NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubunt
     pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
 ----
 
-なお、文書が問題なく変換ができたことの証となる「バッジ」は以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
+NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
+
+なお、文書が問題なく変換ができたことの証となる「バッジ」を以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
 
 [source]
 ----
@@ -892,9 +894,9 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/b
 
 image::2023-09-06-10-41-11.png[pdfwidth=60%]
 
-==== `.github/workflows/release.yml`
+==== 文書ファイルの自動リリース（release.yml）
 
-git のバージョンタグを push する操作で、GitHub のリリースページにソースコード一式と、GitHub Actions 上で変換処理された `docs` 配下のファイルを `\{doc-name\}-\{version\}-by-*.tar.gz` アーカイブファイルとして GitHub のリリースダウンロードページに掲載する GitHub Actions 定義です。
+git のバージョンタグを push する操作を契機として、GitHub のリリースページに GitHub Actions 上の環境で変換処理された HTML/PDF 文書をアーカイブファイルとして GitHub のダウンロードページにリリースします。
 
 .GitHub のリリースページに掲載された変換後の文書
 [caption="画面. "]
@@ -902,6 +904,7 @@ image::2023-09-24-16-11-46.png[pdfwidth=80%, width=80%]
 
 ファイル名の `by-*` 以下の部分にはビルドした環境名が `by-windows-latest-java-11` や `by-macos-latest-java-17` のような形で付与されます。通常はひとつの環境でビルドした文書だけリリースできれば十分ですので、利用する時は次のマトリクスを変更してビルド環境を絞ってください。
 
+.`.github/workflows/release.yml`
 [source, yml]
 [caption=""]
 ----
@@ -923,8 +926,9 @@ jobs:
 本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11 | 17 の計 6 環境で文書のビルドと確認を実施しています。
 ====
 
-リリースされる文書のファイル名やバージョンについては、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。
+リリースされる文書のファイル名や付与されるバージョン番号については、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。
 
+.`.github/workflows/release.yml`
 [source, yml]
 [caption=""]
 ----
