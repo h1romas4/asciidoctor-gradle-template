@@ -1,5 +1,5 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2.5.3-linux",
+  "image": "mcr.microsoft.com/devcontainers/java:11",
   "postCreateCommand": "bash .devcontainer/build-codespaces-container.sh",
   "customizations": {
     "vscode": {
