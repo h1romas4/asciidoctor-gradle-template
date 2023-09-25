@@ -269,7 +269,7 @@
     "asciidoc-hr": {
         "prefix": "ag-hr",
         "body": [
-            "- - -"
+            "'''"
         ],
         "description": "horizon line"
     },

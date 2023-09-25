@@ -123,7 +123,7 @@ include::puml/math-sample1.puml[]
 include::puml/math-sample1.puml[]
 ----
 
-- - -
+'''
 
 .PlantUML の Salt 記法のフォントサイズ
 ****
@@ -360,7 +360,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 include::puml/diag-timing-sample1.puml[]
 ----
 
-- - -
+'''
 
 .Open Iconic アイコン
 ****

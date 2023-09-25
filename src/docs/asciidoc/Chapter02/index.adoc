@@ -322,12 +322,13 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、ここで文書変換コマンドを実行できます。
 
 .VS Code 統合ターミナルからの文書変換
-[caption=""]
+[caption="画面. "]
 image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
 
 統合ターミナルは menu:表示[ターミナル] と操作して開きます。
 
 .VS Code 統合ターミナルの起動
+[caption="画面. "]
 image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
 
 統合ターミナルを活用すると VS Code を離れることなく文書の変換ができます。
@@ -339,7 +340,7 @@ image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
 また、統合ターミナル内では btn:[↑] を押下することで前回入力した履歴が呼び出せます。この操作は文書変換コマンドを再実行する際に便利です。
 ====
 
-- - -
+'''
 
 .その他の Asciidoc 文書編集が可能な統合開発環境
 ****
