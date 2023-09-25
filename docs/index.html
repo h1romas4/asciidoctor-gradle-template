@@ -658,7 +658,7 @@ pre.rouge {
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
 <span id="revnumber">バージョン 4.1.0,</span>
-<span id="revdate">2023-09-12</span>
+<span id="revdate">2023-10-01</span>
 </div>
 </div>
 <div id="content">
@@ -912,21 +912,21 @@ pre.rouge {
 </li>
 <li><a href="#project-structure">3. Asciidoc 記法</a>
 <ul class="sectlevel2">
-<li><a href="#_ドキュメントヘッダー">3.1. ドキュメントヘッダー</a></li>
+<li><a href="#_ドキュメントヘッダーとセクションタイトル">3.1. ドキュメントヘッダーとセクションタイトル</a></li>
 <li><a href="#_段落">3.2. 段落</a></li>
-<li><a href="#_文書中の相互参照">3.3. 文書中の相互参照</a></li>
-<li><a href="#_外部リンク">3.4. 外部リンク</a></li>
-<li><a href="#_引用">3.5. 引用</a></li>
-<li><a href="#_画像">3.6. 画像</a></li>
-<li><a href="#_ソースコードシンタックスハイライト">3.7. ソースコードシンタックスハイライト</a></li>
-<li><a href="#_インラインコマンドファイル名">3.8. インラインコマンド・ファイル名</a></li>
+<li><a href="#_文章中のテキストフォーマット">3.3. 文章中のテキストフォーマット</a></li>
+<li><a href="#_文書中の相互参照">3.4. 文書中の相互参照</a></li>
+<li><a href="#_外部リンク">3.5. 外部リンク</a></li>
+<li><a href="#_引用">3.6. 引用</a></li>
+<li><a href="#_画像">3.7. 画像</a></li>
+<li><a href="#_ソースコードシンタックスハイライト">3.8. ソースコードシンタックスハイライト</a></li>
 <li><a href="#_メニューボタン">3.9. メニュー・ボタン</a></li>
 <li><a href="#_ファイルインクルード">3.10. ファイルインクルード</a></li>
 <li><a href="#_表形式">3.11. 表形式</a></li>
 <li><a href="#_リスト">3.12. リスト</a></li>
 <li><a href="#_脚注">3.13. 脚注</a></li>
-<li><a href="#_改ページ水平線">3.14. 改ページ・水平線</a></li>
-<li><a href="#_ラベル">3.15. ラベル</a></li>
+<li><a href="#_改ページブレイク表現">3.14. 改ページ・ブレイク表現</a></li>
+<li><a href="#_ラベル文言">3.15. ラベル文言</a></li>
 <li><a href="#_コラム表現">3.16. コラム表現</a></li>
 <li><a href="#_コメント行">3.17. コメント行</a></li>
 </ul>
@@ -1857,7 +1857,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="content">
 <img src="Chapter02/images/2023-09-20-15-30-52.png" alt="2023 09 20 15 30 52" width="60%">
 </div>
-<div class="title">VS Code 統合ターミナルからの文書変換</div>
+<div class="title">画面. VS Code 統合ターミナルからの文書変換</div>
 </div>
 <div class="paragraph">
 <p>統合ターミナルは <span class="menuseq"><b class="menu">表示</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">ターミナル</b></span> と操作して開きます。</p>
@@ -1866,7 +1866,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="content">
 <img src="Chapter02/images/2023-09-20-15-26-40.png" alt="2023 09 20 15 26 40" width="60%">
 </div>
-<div class="title">図 1. VS Code 統合ターミナルの起動</div>
+<div class="title">画面. VS Code 統合ターミナルの起動</div>
 </div>
 <div class="paragraph">
 <p>統合ターミナルを活用すると VS Code を離れることなく文書の変換ができます。</p>
@@ -2986,7 +2986,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <p>Asciidoc ではテキスト中に特定の記法を挿入することで文書表現や付随情報を追加しながら執筆を進めます。</p>
 </div>
 <div class="paragraph">
-<p>ここでは Asciidoc 文書で利用可能な記法の中で、この文書で使われている表現を取り上げて解説します。始めは本文書を手元に置いてコピーアンドペーストするのも良い方法です。</p>
+<p>本項では Asciidoc 文書で利用可能な記法の中で、この文書で使われている表現を取り上げて解説します。初めは本文書を手元に置いて、使いたい部分からコピーアンドペーストするのも良い方法です。</p>
 </div>
 <div class="paragraph">
 <p>また、Asciidoc 記法の入力の助けになるよう、プロジェクトフォルダの <code>.vscode/asciidoc.code-snippets</code> 設定には VS Code の <b class="button">Ctrl + Space</b> 操作で補完可能な形式で Asciidoc 記法のスニペットが格納されています。プロジェクトで定形の記法があれが追加・修正すると便利でしょう。</p>
@@ -3009,16 +3009,38 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </table>
 </div>
 <div class="sect2">
-<h3 id="_ドキュメントヘッダー">3.1. ドキュメントヘッダー</h3>
+<h3 id="_ドキュメントヘッダーとセクションタイトル">3.1. ドキュメントヘッダーとセクションタイトル</h3>
 <div class="paragraph">
-<p>章やチャプターを表すヘッダーは次のように記述します。</p>
+<p>文書名を表すドキュメントヘッダーや、章やチャプターを表すセクションタイトルは次のように記述します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>= AsciidoctorとGradleでつくる文書執筆環境
+<pre class="rouge highlight"><code>= AsciidoctorとGradleでつくる文書執筆環境 <i class="conum" data-value="1"></i><b>(1)</b>
 
-== はじめに</code></pre>
+== はじめに <i class="conum" data-value="2"></i><b>(2)</b>
+<i class="conum" data-value="3"></i><b>(3)</b>
+本文書は Asciidoc とその Ruby による実装である... <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ドキュメントヘッダー</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>セクションタイトル</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>本文との間には空行を入れる。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>ここから本文。</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -3028,7 +3050,8 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </td>
 <td class="content">
 <div class="paragraph">
-<p>本文書で提供される <code>.adoc</code> はドキュメントタイプが <code>book</code> に指定され、ヘッダーのレベル1が文書名となります。ドキュメントタイプは <code>attribute.adoc</code> の <code>:doctype: book</code> で指定されています。</p>
+<p>本文書で提供される <code>.adoc</code> はドキュメントタイプが <code>book</code> に指定され、<code>=</code>（レベル 0）がドキュメントヘッダー（文書名）となり、それ移行がセクションタイトルとなります。<br>
+なお、ドキュメントタイプは <code>attribute.adoc</code> の <code>:doctype: book</code> で指定されています。</p>
 </div>
 </td>
 </tr>
@@ -3038,15 +3061,27 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect2">
 <h3 id="_段落">3.2. 段落</h3>
 <div class="paragraph">
-<p>文章の段落は改行で表現します。新しい段落にする場合は改行のみの空行を挿入します。</p>
+<p>文章の段落は改行でコントロールします。新しい段落にする場合は改行のみの空行を挿入します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>こんにちは。
-
-吾輩は段落である。（ここには空行はない）
+<i class="conum" data-value="1"></i><b>(1)</b>
+吾輩は段落である。（ここには空行はない） <i class="conum" data-value="2"></i><b>(2)</b>
 名前はまだない。</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>空行により「こんにちは。」が段落となる。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>空行がない行は同一段落として扱われる。</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>こんにちは。</p>
@@ -3057,9 +3092,48 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_文書中の相互参照">3.3. 文書中の相互参照</h3>
+<h3 id="_文章中のテキストフォーマット">3.3. 文章中のテキストフォーマット</h3>
+<div class="sect3">
+<h4 id="_コマンドやファイル名などの等角フォント">3.3.1. コマンドやファイル名などの等角フォント</h4>
 <div class="paragraph">
-<p>文書内の参照リンクは <code>.adoc</code> 文書中で次のように指定します。HTML/PDF でクリックリンクが生成されます。</p>
+<p>文中に現れるコマンドやファイル名などは <code>コマンド</code> で記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>``コマンド``</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_強調">3.3.2. 強調</h4>
+<div class="paragraph">
+<p>文中の<strong>強調</strong>は <code>**</code> で括ることで記述します。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>文中の**強調**は ``**`` で括ることで記述します。</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_エスケープ">3.3.3. エスケープ</h4>
+<div class="paragraph">
+<p>文章中に Asciidoc 記法で使われる文字列と同一の文字が存在し、意図せず Asciidoc として解釈されてしまう場合は、<code>\</code> でエスケープすることができます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>...参照リンクは参照先に ``\[[ラベル名]]`` を付与して...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>&#8230;&#8203;参照リンクは参照先に <code>[[ラベル名]]</code> を付与して&#8230;&#8203;</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_文書中の相互参照">3.4. 文書中の相互参照</h3>
+<div class="paragraph">
+<p><code>.adoc</code> 文書内の参照リンクは参照先に <code>[[ラベル名]]</code> を付与して設定します。HTML/PDF 上はクリックリンクが生成されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3077,11 +3151,11 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>同一 <code>.adoc</code> 内での内部参照</td>
+<td>同一 <code>.adoc</code> 内での内部参照用のラベル定義と参照</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td><code>.adoc</code> をまたいだドキュメント間参照</td>
+<td>ファイルを跨いだ場合のラベル参照</td>
 </tr>
 </table>
 </div>
@@ -3100,7 +3174,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_外部リンク">3.4. 外部リンク</h3>
+<h3 id="_外部リンク">3.5. 外部リンク</h3>
 <div class="paragraph">
 <p>インターネット上の URL は自動的にリンクに変換されます。</p>
 </div>
@@ -3132,7 +3206,7 @@ PDF の印刷を考慮する場合は、文字列リンクを用いると URL �
 </div>
 </div>
 <div class="sect2">
-<h3 id="_引用">3.5. 引用</h3>
+<h3 id="_引用">3.6. 引用</h3>
 <div class="paragraph">
 <p>外部の文献を参照する引用は次のように記述します。執筆している文書が紙面となり、引用先がウェブサイトの場合はいずれかの位置に URL を掲載します。</p>
 </div>
@@ -3159,10 +3233,9 @@ ____</code></pre>
 &#8212; Asciidoctor Documentation Site
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_画像">3.6. 画像</h3>
+<h3 id="_画像">3.7. 画像</h3>
 <div class="paragraph">
 <p>画像の挿入は、画像ファイルを編集中の <code>.adoc</code> 文書から相対パスでみた <code>images/</code> フォルダに格納した上で、次のように記述します。</p>
 </div>
@@ -3189,9 +3262,37 @@ ____</code></pre>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>また、ブロックタイトルと画像を組み合わせることで画像キャプションを追加できます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>.VS Code の IntelliSense <i class="conum" data-value="1"></i><b>(1)</b>
+[caption="画像. "] <i class="conum" data-value="2"></i><b>(2)</b>
+image::2023-09-14-18-52-05.png[pdfwidth=70%, width=70%]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ブロックタイトルを指定</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>キャプションを指定</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter03/images/2023-09-14-18-52-05.png" alt="2023 09 14 18 52 05" width="70%">
+</div>
+<div class="title">画像. VS Code の IntelliSense</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_ソースコードシンタックスハイライト">3.7. ソースコードシンタックスハイライト</h3>
+<h3 id="_ソースコードシンタックスハイライト">3.8. ソースコードシンタックスハイライト</h3>
 <div class="paragraph">
 <p><code>[source]</code> ブロックを用いて文書中にソースコードをシンタックスハイライト付きで埋め込みます。また、ソースコードに <code>// &lt;1&gt;</code> などのコメント形式でソースコード下部に対応する説明が記述できます。</p>
 </div>
@@ -3230,18 +3331,6 @@ function hello() { // &lt;1&gt;
 </tr>
 </table>
 </div>
-<div style="page-break-after: always;"></div>
-</div>
-<div class="sect2">
-<h3 id="_インラインコマンドファイル名">3.8. インラインコマンド・ファイル名</h3>
-<div class="paragraph">
-<p>文中に現れるコマンドやファイル名などは <code>コマンド</code> で記述します。</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code>``コマンド``</code></pre>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_メニューボタン">3.9. メニュー・ボタン</h3>
@@ -3254,6 +3343,20 @@ function hello() { // &lt;1&gt;
 
 btn:[OK] ボタン</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>この表現は Asciidoc のマクロで実装されており、<code>attribute.adoc</code> の <code>:experimental:</code>（実験的） 指定で有効にされています。</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -3289,7 +3392,6 @@ include::source/hello.rs[]
 <span class="p">}</span></code></pre>
 </div>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_表形式">3.11. 表形式</h3>
@@ -3345,9 +3447,9 @@ include::source/hello.rs[]
 </table>
 </div>
 <div class="listingblock">
-<div class="title">表形式の例2（デフォルト形式、ヘッダーあり、グリッドあり）</div>
+<div class="title">表形式の例2（ヘッダーあり、グリッドあり、ストライプなし）</div>
 <div class="content">
-<pre class="rouge highlight"><code>[cols="1,2", options="header"]
+<pre class="rouge highlight"><code>[cols="1,2", options="header", stripes="none"]
 [frame="topbot"]
 [caption=""]
 .表形式の例2
@@ -3363,7 +3465,7 @@ include::source/hello.rs[]
 |======</code></pre>
 </div>
 </div>
-<table class="tableblock frame-ends grid-all stripes-even stretch">
+<table class="tableblock frame-ends grid-all stripes-none stretch">
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -3512,7 +3614,6 @@ image::2023-06-30-15-39-26.png[pdfwidth=60%, width=60%]
 </li>
 </ol>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
 <h3 id="_脚注">3.13. 脚注</h3>
@@ -3622,10 +3723,9 @@ CAUTION: 注意</code></pre>
 </tr>
 </table>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
 <div class="sect2">
-<h3 id="_改ページ水平線">3.14. 改ページ・水平線</h3>
+<h3 id="_改ページブレイク表現">3.14. 改ページ・ブレイク表現</h3>
 <div class="paragraph">
 <p>改ページは次の記述で挿入します。PDF 文書のみに効果があり HTML 文書には影響しません。</p>
 </div>
@@ -3635,19 +3735,19 @@ CAUTION: 注意</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>水平線は HTML/PDF 文書のどちらでも有効です。</p>
+<p>ブレイク表現（水平線）は HTML/PDF 文書のどちらでも有効です。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>- - -</code></pre>
+<pre class="rouge highlight"><code>'''</code></pre>
 </div>
 </div>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_ラベル">3.15. ラベル</h3>
+<h3 id="_ラベル文言">3.15. ラベル文言</h3>
 <div class="paragraph">
-<p>特定のラベルに対して定義文を記述する表現は次のように記述します。</p>
+<p>特定のラベル文言に対して定義文を記述する表現は次のように記述します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3673,7 +3773,7 @@ CAUTION: 注意</code></pre>
 <div class="sect2">
 <h3 id="_コラム表現">3.16. コラム表現</h3>
 <div class="paragraph">
-<p>Asciidoc のサイドバーとブロック名称機能を組み合わせ、コラム表現を挿入します。</p>
+<p>Asciidoc のサイドバーとブロックタイトル記法を組み合わせ、コラム表現を挿入します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4353,7 +4453,7 @@ mindmapDiagram {
 <dl>
 <dt class="hdlist1">Asciidoctor と Gradle でつくる執筆環境</dt>
 <dd>
-<p>2023年 9月 14日 v4.1.0 発行</p>
+<p>2023年 10月 1日 v4.1.0 発行</p>
 </dd>
 </dl>
 </div>
@@ -4365,19 +4465,23 @@ mindmapDiagram {
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">著者</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">田中 広将 （ひろましゃ - <code>h1romas4</code>）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">田中 広将</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">カバーデザイン</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fujix</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ライセンス</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MIT License</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">発行</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/h1romas4/asciidoctor-gradle-template" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ライセンス</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MIT License</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">連絡先</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/h1romas4/asciidoctor-gradle-template/issues" class="bare">https://github.com/h1romas4/asciidoctor-gradle-template/issues</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -4387,7 +4491,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-20 18:15:38 +0900
+最終更新 2023-09-25 16:33:05 +0900
 </div>
 </div>
 </body>
