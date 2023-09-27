@@ -675,7 +675,7 @@ pre.rouge {
 <dl>
 <dt class="hdlist1">Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換</dt>
 <dd>
-<p>Asciidoc 文書変換用 Gradle スクリプトの実行</p>
+<p>Asciidoc 文書変換用 Gradle ビルドの実行</p>
 </dd>
 <dt class="hdlist1">テキストエディターで変換結果をリアルタイムにプレビューしながら文書を編集</dt>
 <dd>
@@ -684,7 +684,7 @@ pre.rouge {
 </dl>
 </div>
 <div class="paragraph">
-<p>Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
+<p>Asciidoc は表現力の高い文書をテキストファイルベースで執筆できる軽量なマークアップ言語です。他の軽量テキストマークアップが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -701,7 +701,7 @@ pre.rouge {
 </table>
 </div>
 <div class="paragraph">
-<p>一般的にテキストプロセッサーを用いた執筆環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
+<p>一般的にテキストプロセッサーを用いた執筆とパブリッシング環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。</p>
 </div>
 <div class="paragraph">
 <p>具体的には文書の変換に、実行を JVM 環境だけに依存する <strong>AsciidoctorJ</strong> と <strong>Gradle</strong> を活用し、執筆環境については <strong>Visual Studio Code</strong> を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。</p>
@@ -716,6 +716,48 @@ pre.rouge {
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
 </div>
 <div style="page-break-after: always;"></div>
+<div class="sect2">
+<h3 id="_asciidoc_と_asciidoctor_について">Asciidoc と Asciidoctor について</h3>
+<div class="paragraph">
+<p>Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な出版形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>About AsciiDoc</p>
+</div>
+<div class="paragraph">
+<p>AsciiDoc is a lightweight and semantic markup language primarily designed for writing technical documentation. The language can be used to produce a variety of presentation-rich output formats, all from content encoded in a concise, human-readable, plain text format.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; AsciiDoc Language Documentation
+</div>
+</div>
+<div class="paragraph">
+<p>Asciidoctor は Ruby でかかれた Asciidoc の実装です。構文木解析や各種出版フォーマットへの変換を実現します。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://docs.asciidoctor.org/asciidoctor/latest/" class="bare">https://docs.asciidoctor.org/asciidoctor/latest/</a></p>
+</div>
+<div class="paragraph">
+<p>What is Asciidoctor?</p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor is a fast, open source, text processor for parsing AsciiDoc into a document model, then converting it to output formats such as HTML 5, DocBook 5, man(ual) pages, PDF, and EPUB 3. Asciidoctor is written in the Ruby programming language.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Asciidoctor Documentation
+</div>
+</div>
+<div class="paragraph">
+<p>同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトです。</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
 <div class="sect2">
 <h3 id="_ライセンス">ライセンス</h3>
 <div class="paragraph">
@@ -886,6 +928,7 @@ pre.rouge {
 <ul class="sectlevel1">
 <li><a href="#introduction">はじめに</a>
 <ul class="sectlevel2">
+<li><a href="#_asciidoc_と_asciidoctor_について">Asciidoc と Asciidoctor について</a></li>
 <li><a href="#_ライセンス">ライセンス</a></li>
 <li><a href="#_謝辞">謝辞</a></li>
 </ul>
@@ -1013,7 +1056,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <div class="sect2">
 <h3 id="_java_実行環境の導入macos_linux">1.1. Java 実行環境の導入（macOS / Linux）</h3>
 <div class="paragraph">
-<p>もし macOS / Linux 環境に Java 実行環境がなければ <code>SDKMAN</code> を利用することで、ターミナルから簡単に導入できます。</p>
+<p>もし macOS / Linux 環境に Java 実行環境がなければ <strong>SDKMAN</strong> を利用することで、ターミナルから簡単に導入できます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1073,7 +1116,7 @@ $ sdk install java 11.0.20.1-tem <i class="conum" data-value="4"></i><b>(4)</b><
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>また、Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、利用しているシェル環境に合わせ <code>.bashrc</code> や <code>.zshrc</code> 等で次のように <code>JAVA_HOME</code> を設定します。</p>
+<p>また、この後で実行する Gradle ビルドツールが <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、利用しているシェル環境に合わせ <code>.bashrc</code> や <code>.zshrc</code> 等で次のように <code>JAVA_HOME</code> を設定します。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. JAVA_HOME の設定</div>
@@ -1096,6 +1139,18 @@ $ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>設定を適用します。<code>source</code> コマンドを使わず、ターミナルを再起動する操作でも反映されます。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、<code>java</code> コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
+</td>
 </tr>
 </table>
 </div>
@@ -1175,7 +1230,7 @@ $ sdk default java 17.0.4.1-tem <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 </div>
 <div class="paragraph">
-<p>Gradle は <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk11</code> ）を設定します。</p>
+<p>また、この後で実行する Gradle ビルドツールが <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk11</code> ）を設定します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1331,12 +1386,29 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>変換に使うスクリプトは GitHub のリポジトリに公開されており、HTML/PDF 変換に使うファイル一式と、文書のサンプルとして "この文書" の Asciidoc ファイルが配置されています。</p>
 </div>
 <div class="paragraph">
-<p>最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。</p>
+<p>文書変換スクリプトの実行には、前項で導入した Java 上で動作する <strong>Gradle</strong> ビルドツールが使われ、リポジトリに含まれる <code>gradlew</code> シェルスクリプトから定義を元に各種設定が自動的に行われ Asciidoc 文書から HTML/PDF 文書への変換が実行されます。本文書ではこれを、文書のビルドもしくは単純にビルドと呼ぶこととします。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>gradlew</code> コマンドは <code>gradlew [タスク名]</code> として実行したい機能を呼び分けることができます。本手順では文書の変換をする場合のタスク名を <code>docs</code> と定義しています。この名称や操作の内容は、リポジトリ中の <code>build.gradle</code> ファイル中に含まれます。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>最初にリポジトリからこれらのファイルの取得を行い、次に Asciidoc 文書を HTML/PDF 変換するためにビルドを実行します。各 OS ごとの代表的な操作は次のようになります。</p>
 </div>
 <div class="sect3">
 <h4 id="_サンプル文書の変換macos_linux">2.1.1. サンプル文書の変換（macOS / Linux）</h4>
 <div class="paragraph">
-<p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。</p>
+<p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開とビルドの実行を行います。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. PDF 変換ビルドスクリプトの取得と実行</div>
@@ -1345,7 +1417,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 $ unzip main.zip <i class="conum" data-value="2"></i><b>(2)</b>
 $ cd asciidoctor-gradle-template-main <i class="conum" data-value="3"></i><b>(3)</b>
 $ ./gradlew docs <i class="conum" data-value="4"></i><b>(4)</b>
-BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
+BUILD SUCCESSFUL in 1m 13s <i class="conum" data-value="5"></i><b>(5)</b>
 2 actionable tasks: 2 executed</code></pre>
 </div>
 </div>
@@ -1411,10 +1483,22 @@ BUILD SUCCESSFUL in 19s <i class="conum" data-value="5"></i><b>(5)</b>
 </div>
 </li>
 <li>
-<p><code>.\gradlew.bat docs</code> と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。</p>
-</li>
-<li>
-<p><code>BUILD SUCCESSFUL</code> が出力されれば文書変換が正常終了しています。</p>
+<p><code>.\gradlew.bat docs</code> と入力しビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>&gt; .\gradlew docs
+BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
+2 actionable tasks: 2 executed</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>BUILD SUCCESSFUL</code> が出力されれば文書変換が正常終了しています。</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
@@ -1791,7 +1875,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 </div>
 </div>
 <div class="paragraph">
-<p>Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。</p>
+<p>なお、Asciidoc 拡張にも同様の機能（<span class="menuseq"><b class="menu">VS Code</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">F1 キー押下</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">AsciiDoc: Paste Image</b></span>）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であることから、本手順では Paste Image を紹介しています。</p>
 </div>
 <div class="paragraph">
 <p>AsciiDoc 版の Paste Image には現在の開いている Asciidoc の <code>:imagesdir:</code> 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。</p>
@@ -1842,7 +1926,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 </table>
 </div>
 <div class="paragraph">
-<p>なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また <code>-ExecutionPolicy Bypass</code> 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。</p>
+<p>なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また <code>-ExecutionPolicy Bypass</code> 指定より PowerShell のセキュリティをバイパスして動作させています。ファイルをリードオンリーに指定するなどして、取扱いには注意してください。</p>
 </div>
 </div>
 </div>
@@ -1869,7 +1953,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="title">画面. VS Code 統合ターミナルの起動</div>
 </div>
 <div class="paragraph">
-<p>統合ターミナルを活用すると VS Code を離れることなく文書の変換ができます。</p>
+<p>統合ターミナルを活用すると VS Code を離れることなく文書のビルドができます。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2772,7 +2856,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect2">
 <h3 id="_github_actions_によるビルド">2.10. GitHub Actions によるビルド</h3>
 <div class="paragraph">
-<p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書の変換テスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
+<p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書のビルドテスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
 </div>
 <div class="paragraph">
 <p>これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。</p>
@@ -3371,7 +3455,7 @@ btn:[OK] ボタン</code></pre>
 <i class="fa icon-important" title="重要"></i>
 </td>
 <td class="content">
-Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> するなどしてからリビルドしてください。
+Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> と <code>clean</code> タスクを起動し <code>docs</code> フォルダをクリーニングしてから再ビルドしてください。
 </td>
 </tr>
 </table>
@@ -3932,7 +4016,7 @@ basercms -&gt; admin: 管理画面 HTML/CSS 返却
 <p>本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（<code>jebbs.plantuml</code>）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューできます。</p>
 </div>
 <div class="paragraph">
-<p>プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書の変換では内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。</p>
+<p>プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書のビルドでは内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4491,7 +4575,7 @@ mindmapDiagram {
 <div id="footer">
 <div id="footer-text">
 バージョン 4.1.0<br>
-最終更新 2023-09-25 16:33:05 +0900
+最終更新 2023-09-25 20:28:02 +0900
 </div>
 </div>
 </body>

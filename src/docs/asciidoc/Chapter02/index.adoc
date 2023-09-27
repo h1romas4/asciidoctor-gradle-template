@@ -8,11 +8,18 @@ include::../attribute.adoc[]
 
 変換に使うスクリプトは GitHub のリポジトリに公開されており、HTML/PDF 変換に使うファイル一式と、文書のサンプルとして "この文書" の Asciidoc ファイルが配置されています。
 
-最初にリポジトリからこれらのファイルの取得を行い、次に文書の変換のために Gradle タスクを実行します。各 OS ごとの代表的な操作は次のようになります。
+文書変換スクリプトの実行には、前項で導入した Java 上で動作する **Gradle** ビルドツールが使われ、リポジトリに含まれる ``gradlew`` シェルスクリプトから定義を元に各種設定が自動的に行われ Asciidoc 文書から HTML/PDF 文書への変換が実行されます。本文書ではこれを、文書のビルドもしくは単純にビルドと呼ぶこととします。
+
+[NOTE]
+====
+``gradlew`` コマンドは ``gradlew [タスク名]`` として実行したい機能を呼び分けることができます。本手順では文書の変換をする場合のタスク名を ``docs`` と定義しています。この名称や操作の内容は、リポジトリ中の ``build.gradle`` ファイル中に含まれます。
+====
+
+最初にリポジトリからこれらのファイルの取得を行い、次に Asciidoc 文書を HTML/PDF 変換するためにビルドを実行します。各 OS ごとの代表的な操作は次のようになります。
 
 ==== サンプル文書の変換（macOS / Linux）
 
-ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開と Gradle タスクの実行を行います。
+ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開とビルドの実行を行います。
 
 [source]
 [caption="手順. "]
@@ -22,7 +29,7 @@ $ curl -L -O https://github.com/h1romas4/asciidoctor-gradle-template/archive/mai
 $ unzip main.zip # <2>
 $ cd asciidoctor-gradle-template-main # <3>
 $ ./gradlew docs # <4>
-BUILD SUCCESSFUL in 19s <5>
+BUILD SUCCESSFUL in 1m 13s <5>
 2 actionable tasks: 2 executed
 ----
 
@@ -49,8 +56,17 @@ Windows の場合 .zip ファイルの展開先はマルチバイト文字を含
 +
 image::windows-01.png[windows, pdfwidth=70%, width=70%]
 
-. ``.\gradlew.bat docs`` と入力し Gradle ビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。
-. ``BUILD SUCCESSFUL`` が出力されれば文書変換が正常終了しています。
+. ``.\gradlew.bat docs`` と入力しビルドを実行します。初回実行時はビルドに必要なファイルをダウンロードするため少し時間がかかります。次回以降は 1分程度で完了します。
++
+[source]
+[caption="手順. "]
+----
+> .\gradlew docs
+BUILD SUCCESSFUL in 1m 10s <1>
+2 actionable tasks: 2 executed
+----
+<1> ``BUILD SUCCESSFUL`` が出力されれば文書変換が正常終了しています。
+
 
 .プロキシーサーバーの設定
 ****
@@ -274,7 +290,7 @@ image::2023-06-30-12-11-56.png[]
 }
 ----
 
-Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。
+なお、Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であることから、本手順では Paste Image を紹介しています。
 
 AsciiDoc 版の Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
@@ -312,7 +328,7 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 ----
 <1> 利用しているディストリビューションのパスを設定する。
 
-なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。
+なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスして動作させています。ファイルをリードオンリーに指定するなどして、取扱いには注意してください。
 ****
 
 <<<
@@ -331,7 +347,7 @@ image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
 [caption="画面. "]
 image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
 
-統合ターミナルを活用すると VS Code を離れることなく文書の変換ができます。
+統合ターミナルを活用すると VS Code を離れることなく文書のビルドができます。
 
 [TIP]
 ====
@@ -822,7 +838,7 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 
 === GitHub Actions によるビルド
 
-本手順のリポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書の変換テスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
+本手順のリポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書のビルドテスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
 
 これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。
 

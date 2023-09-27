@@ -62,7 +62,7 @@ include::puml/diag-sequence-sample2.puml[]
 ****
 本手順の VS Code の推奨プラグインとなっている PlantUML 拡張（``jebbs.plantuml``）を使うと、PlantUML のダイアグラム記法も VS Code 上でリアルタイムプレビューできます。
 
-プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書の変換では内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。
+プレビュー処理をするために必要な PlantUML サーバは Docker コンテナで起動すると便利でしょう。なお、Gradle による文書のビルドでは内蔵の PlantUML ライブラリが使われますので本サーバーが起動している必要はありません。
 
 [source, bash]
 ----

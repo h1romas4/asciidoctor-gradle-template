@@ -9,18 +9,18 @@ include::../attribute.adoc[]
 この文書の手順から次のことができるようになります。
 
 Asciidoc 形式で執筆した文書を HTML/PDF 形式に変換::
-    Asciidoc 文書変換用 Gradle スクリプトの実行
+    Asciidoc 文書変換用 Gradle ビルドの実行
 テキストエディターで変換結果をリアルタイムにプレビューしながら文書を編集::
     Visual Studio Code と AsciiDoc 拡張の設定
 
-Asciidoc は表現力の高い文書をテキストファイルベースで執筆できるテキストプロセッサーです。他の軽量テキストプロセッサーが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
+Asciidoc は表現力の高い文書をテキストファイルベースで執筆できる軽量なマークアップ言語です。他の軽量テキストマークアップが持たない文書間のインクルードやソースコードの挿入などの機能も有し、かつ簡潔です。特に技術文書の執筆には大きな力を発揮することでしょう。
 
 [TIP]
 ====
 Asciidoc の表現力を示すひとつの例は、このような脚注表現です。
 ====
 
-一般的にテキストプロセッサーを用いた執筆環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。
+一般的にテキストプロセッサーを用いた執筆とパブリッシング環境を整えるには多くの準備が必要ですが、本文書の手順は極力初期導入するプロダクトを少なく、簡単に快適な執筆環境を整えられるよう考えられました。
 
 具体的には文書の変換に、実行を JVM 環境だけに依存する **AsciidoctorJ** と **Gradle** を活用し、執筆環境については **Visual Studio Code** を用いることでリアルタイムに文書をプレビューしながら、最後にコマンド一つで HTML/PDF 化できるように準備しました。またさらに、クラウド統合環境である Gitpod や GitHub の Codespaces もサポートし、ウェブブラウザだけでの執筆・変換も実現しています。
 
@@ -29,6 +29,32 @@ Asciidoc の表現力を示すひとつの例は、このような脚注表現�
 Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため、文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入をサポートしています。
 
 本文書がみなさんの執筆活動のお手伝いになれば幸いです。
+
+<<<
+
+=== Asciidoc と Asciidoctor について
+
+Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な出版形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。
+
+[quote, AsciiDoc Language Documentation]
+____
+About AsciiDoc
+
+AsciiDoc is a lightweight and semantic markup language primarily designed for writing technical documentation. The language can be used to produce a variety of presentation-rich output formats, all from content encoded in a concise, human-readable, plain text format.
+____
+
+Asciidoctor は Ruby でかかれた Asciidoc の実装です。構文木解析や各種出版フォーマットへの変換を実現します。
+
+[quote, Asciidoctor Documentation]
+____
+https://docs.asciidoctor.org/asciidoctor/latest/
+
+What is Asciidoctor?
+
+Asciidoctor is a fast, open source, text processor for parsing AsciiDoc into a document model, then converting it to output formats such as HTML 5, DocBook 5, man(ual) pages, PDF, and EPUB 3. Asciidoctor is written in the Ruby programming language.
+____
+
+同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトです。
 
 <<<
 
