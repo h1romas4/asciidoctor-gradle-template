@@ -52,7 +52,7 @@ sudo apt install graphviz
 
 === Java 実行環境の導入（macOS / Linux）
 
-もし macOS / Linux 環境に Java 実行環境がなければ ``SDKMAN`` を利用することで、ターミナルから簡単に導入できます。
+もし macOS / Linux 環境に Java 実行環境がなければ **SDKMAN** を利用することで、ターミナルから簡単に導入できます。
 
 [quote, SDKMAN]
 ____
@@ -92,7 +92,7 @@ $ sdk install java 11.0.20.1-tem # <4>
 
 <<<
 
-また、Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、利用しているシェル環境に合わせ ``.bashrc`` や ``.zshrc`` 等で次のように ``JAVA_HOME`` を設定します。
+また、この後で実行する Gradle ビルドツールが ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、利用しているシェル環境に合わせ ``.bashrc`` や ``.zshrc`` 等で次のように ``JAVA_HOME`` を設定します。
 
 [source]
 [caption="手順. "]
@@ -106,6 +106,8 @@ $ source ~/.bashrc # <3>
 <1> エディタで ``.bashrc`` や ``.zshrc`` を開きます。
 <2> 本ラインをファイルの最下部に追加し保存終了します。
 <3> 設定を適用します。`source` コマンドを使わず、ターミナルを再起動する操作でも反映されます。
+
+TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 
 以上で準備完了です。
 
@@ -153,7 +155,7 @@ zip ファイルを任意の場所に展開します。ここでは ``C:\develop
 
 image::windows-01.png[導入先, pdfwidth=70%, width=70%]
 
-Gradle は ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > 詳細設定 > 環境設定] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\runtime\openjdk11`` ）を設定します。
+また、この後で実行する Gradle ビルドツールが ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > 詳細設定 > 環境設定] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\runtime\openjdk11`` ）を設定します。
 
 image::windows-02.png[環境変数, pdfwidth=60%, width=60%]
 
