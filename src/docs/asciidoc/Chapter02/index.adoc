@@ -290,7 +290,7 @@ image::2023-06-30-12-11-56.png[]
 }
 ----
 
-Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であるため、本手順では Paste Image を紹介しています。
+なお、Asciidoc 拡張にも同様の機能（menu:VS Code[F1 キー押下 > AsciiDoc: Paste Image]）がありますが、現在のところ Paste Image 拡張のほうがファイル名などの設定が柔軟であることから、本手順では Paste Image を紹介しています。
 
 AsciiDoc 版の Paste Image には現在の開いている Asciidoc の ``:imagesdir:`` 属性を見て設定無しでファイル配置場所を決定してくれるなど優れた機能もありますので、それぞれの機能を確認し必要に応じて使い分けると良いでしょう。
 
@@ -328,7 +328,7 @@ powershell.exe -ExecutionPolicy Bypass -File pc.ps1 ${DISTPATH}$1
 ----
 <1> 利用しているディストリビューションのパスを設定する。
 
-なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスしています。取扱いには注意してください。
+なお、これは暫定的な方法のため拡張にアップデートがあると修正したファイルが戻って機能しなくなります。また ``-ExecutionPolicy Bypass`` 指定より PowerShell のセキュリティをバイパスして動作させています。ファイルをリードオンリーに指定するなどして、取扱いには注意してください。
 ****
 
 <<<
