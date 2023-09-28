@@ -52,7 +52,7 @@ sudo apt install graphviz
 
 === Java 実行環境の導入（macOS / Linux）
 
-もし macOS / Linux 環境に Java 実行環境がなければ **SDKMAN** を利用することで、ターミナルから簡単に導入できます。
+もし macOS / Linux 上に Java 実行環境がなければ **SDKMAN** を利用することで、ターミナルから簡単に導入できます。
 
 [quote, SDKMAN]
 ____
@@ -136,18 +136,18 @@ $ sdk default java 17.0.4.1-tem # <3>
 
 === Java 実行環境の導入（Windows）
 
-もし Windows 環境に Java 実行環境がなければ AdoptOpenJDK プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。
+もし Windows 上に Java 実行環境がなければ Eclipse Temurin プロジェクトが提供する OpenJDK のバイナリを導入すると良いでしょう。
 
 [quote, AdoptOpenJDK]
 ____
-https://adoptopenjdk.net
+https://adoptium.net/temurin/releases/?os=windows&version=11
 
-Java™ is the world's leading programming language and platform. The code for Java is open source and available at OpenJDK™. AdoptOpenJDK provides prebuilt OpenJDK binaries from a fully open source set of build scripts and infrastructure.
+Eclipse Temurin is the open source Java SE build based upon OpenJDK.
 ____
 
-``https://adoptopenjdk.net`` サイトにブラウザでアクセスし、OpenJDK 11 (LTS) - HotSpot を選択した後、zip ファイルをダウンロードしてください。
+サイトにブラウザでアクセスし、jdk-11 の最新版の中から JDK - zip ファイルをダウンロードしてください。
 
-image::AdoptOpenJDK.png[adopt, pdfwidth=80%, width=80%]
+image::2023-09-28-18-57-53.png[adopt, pdfwidth=80%, width=80%]
 
 <<<
 
