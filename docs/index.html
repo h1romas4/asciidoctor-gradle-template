@@ -710,7 +710,7 @@ pre.rouge {
 <p>手間がかかることが多い PDF 出力に関しても、フォントセットや禁則処理設定をプロジェクトに持たせることにより、実行環境に関わらず同一出力が得られるように調整しました。</p>
 </div>
 <div class="paragraph">
-<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため、文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本手順ではテキストダイアグラム記法による図形や数式のベクター画像挿入をサポートしています。</p>
+<p>Asciidoc による文書の執筆は形式的で効率が良く、また更新差分が取りやすいため、文書履歴管理や共同執筆環境としても有効です。このメリットをさらに活用するため、本文書ではバージョン管理システムの Git やテキストダイアグラム記法による図形や数式のベクター画像挿入をフォローしています。</p>
 </div>
 <div class="paragraph">
 <p>本文書がみなさんの執筆活動のお手伝いになれば幸いです。</p>
@@ -754,7 +754,7 @@ pre.rouge {
 </div>
 </div>
 <div class="paragraph">
-<p>同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトです。</p>
+<p>同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。また、AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトとなっています。</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -997,7 +997,7 @@ pre.rouge {
 <h2 id="_asciidoc_文書変換用スクリプトを使う準備">1. Asciidoc 文書変換用スクリプトを使う準備</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本手順で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
+<p>本文書で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
 </div>
 <div class="paragraph">
 <p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。</p>
@@ -1027,7 +1027,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。Java 21 に関しては周辺ツールの対応待ちのステータスです。
+本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。Java 21 に関しては周辺ツール対応待ちのステータスです。
 </td>
 </tr>
 </table>
@@ -1036,7 +1036,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <div class="content">
 <div class="title">Graphviz の導入</div>
 <div class="paragraph">
-<p>macOS 及び Linux の場合で、後述する PlantUML 以外のダイアグラム記法を使う場合は Graphviz の導入が必要です。この文書のサンプルソースでも使っている部分が一部ありますので、ワーニングなしに本文書の完全なファイルを生成したい場合は次のようにインストールしてください。Windows の場合、この操作は不要です。</p>
+<p>macOS 及び Linux で、後述するダイアグラム記法の全てを変換するには Graphviz 画像ライブラリの導入が必要です。この文書のサンプルソースでも依存している部分が一部ありますので、ワーニングなしに本文書の完全なファイルを生成したい場合は次のようにインストールしてください。Windows の場合は内部で処理されるため、この操作は不要です。</p>
 </div>
 <div class="listingblock">
 <div class="title">macOS</div>
@@ -1386,7 +1386,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>変換に使うスクリプトは GitHub のリポジトリに公開されており、HTML/PDF 変換に使うファイル一式と、文書のサンプルとして "この文書" の Asciidoc ファイルが配置されています。</p>
 </div>
 <div class="paragraph">
-<p>文書変換スクリプトの実行には、前項で導入した Java 上で動作する <strong>Gradle</strong> ビルドツールが使われ、リポジトリに含まれる <code>gradlew</code> シェルスクリプトから定義を元に各種設定が自動的に行われ Asciidoc 文書から HTML/PDF 文書への変換が実行されます。本文書ではこれを、文書のビルドもしくは単純にビルドと呼ぶこととします。</p>
+<p>文書変換スクリプトの実行には、前項で導入した Java 上で動作する <strong>Gradle</strong> ビルドツールが使われ、リポジトリに含まれる <code>gradlew</code> シェルスクリプトを起点として各種設定が自動的に行われ、Asciidoc 文書から HTML/PDF 文書への変換が実行されます。本文書ではこれを、文書のビルドもしくは単純にビルドと呼ぶこととします。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1396,7 +1396,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>gradlew</code> コマンドは <code>gradlew [タスク名]</code> として実行したい機能を呼び分けることができます。本手順では文書の変換をする場合のタスク名を <code>docs</code> と定義しています。この名称や操作の内容は、リポジトリ中の <code>build.gradle</code> ファイル中に含まれます。</p>
+<p><code>gradlew</code> コマンドは <code>gradlew [タスク名]</code> として実行したい機能を呼び分けることができます。本手順では文書の変換をする場合のタスク名を <code>docs</code> と定義しています。タスク名称や操作の内容は、リポジトリ中の <code>build.gradle</code> ファイル中に含まれます。</p>
 </div>
 </td>
 </tr>
@@ -1452,11 +1452,11 @@ BUILD SUCCESSFUL in 1m 13s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="paragraph">
 <p>ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1528,7 +1528,7 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 <div class="sect2">
 <h3 id="_変換後の文書">2.2. 変換後の文書</h3>
 <div class="paragraph">
-<p><code>./gradlew docs</code> のビルド操作により Asciidoc から変換された文書は、<code>docs</code> フォルダに HTML版(<code>index.html</code>)と PDF版（<code>index.pdf</code>）として格納されます。</p>
+<p><code>./gradlew docs</code> のビルド操作により Asciidoc から変換された文書は、プロジェクトフォルダの <code>docs</code> 配下に HTML版(<code>index.html</code>)と PDF版（<code>index.pdf</code>）として格納されます。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1544,29 +1544,51 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>成果物の出力先となる <code>docs</code> フォルダの構成は次のとおりです。</p>
+<p>ビルド結果の出力先となる HTML/PDF 文書フォルダ（<code>docs</code>）フォルダの構成は次のとおりです。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="690px" height="341">
+<img src="Chapter02/images/directory-structure-1.svg" alt="directory structure 1" width="680px" height="341">
 </div>
+<div class="title">図. HTML/PDF 文書フォルダ（<code>docs</code>）</div>
 </div>
 <div class="paragraph">
-<p>成果物文書のソースとなるのは <code>src/docs/asciidoc</code> に配置された Asciidoc 文書と画像ファイル群です。</p>
+<p>ビルド対象の文書となるソースフォルダ（<code>src/docs/asciidoc</code>）の構成は次のとおりです。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="522px" height="219">
+<img src="Chapter02/images/directory-structure-2.svg" alt="directory structure 2" width="590px" height="271">
 </div>
-</div>
-<div class="paragraph">
-<p><code>docs</code> 出力フォルダの構成としては、章（<code>Chapter*/images</code>）フォルダには HTML 版からリンクされるリソースが <code>src/docs/asciidoc</code> からコピーされ配置されます。また、後述するダイアグラム記法を使った図表や数式も、ビルドのタイミングでベクター画像が生成され同フォルダに出力されます。</p>
+<div class="title">図. ビルド対象のソースフォルダ（<code>src/docs/asciidoc</code>）</div>
 </div>
 <div class="paragraph">
-<p>PDF 版のファイルについては <code>index.pdf</code> 単体で完結しており、フォントや画像リソースなど全てが PDF ファイル内に格納されます。</p>
+<p>ビルドの基本的な動作は次のようになります。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HTML/PDF 文書フォルダ（<code>docs</code>）内のファイルを全て削除する。</p>
+</li>
+<li>
+<p>ソースフォルダ（<code>src/docs/asciidoc</code>）に配置された Asciidoc 文書と画像などのリソースを変換処理し、HTML/PDF 文書フォルダに格納する。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Asciidoc 文書に後述するダイアログ記法による図表が存在していた場合はベクター画像生成する。</p>
+</li>
+<li>
+<p>HTML 版の文書は <code>docs/index.html</code> として生成。<code>docs/Chapter*/images</code> フォルダに配置した画像などのリソースをリンクする。</p>
+</li>
+<li>
+<p>PDF 版の文書は <code>docs/index.pdf</code> として生成。フォントや画像リソースなど全てを PDF ファイル内に格納する。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>以上から成果物の配布は次のようになります。</p>
+<p>以上からビルドした文書の配布は次のようになります。</p>
 </div>
 <table class="tableblock frame-ends grid-none stripes-even stretch">
 <colgroup>
@@ -1575,11 +1597,11 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTML 文書</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTML 版の文書</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code>フォルダの <code>index.pdf</code>を除く全てのファイルを配布。</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PDF 文書</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PDF 版の文書</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs/index.pdf</code> のみを配布。</p></td>
 </tr>
 </tbody>
@@ -1595,7 +1617,10 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>docs</code> フォルダは成果物の出力専用フォルダとなっており、ビルド時にいったん全てのファイルが削除されますので、<strong>自らが作成したファイルは配置しない</strong>ように注意してください。執筆で作成するファイルは必ず <code>src/docs/asciidoc</code> 配下に配置します。</p>
+<p>HTML/PDF 文書フォルダ（<code>docs</code>）はビルドした文書を配置する専用フォルダです。ソースフォルダと同期するためビルド時にいったん全てのファイルが削除されますので、<strong>自らが作成したファイルは配置しない</strong>ように注意してください。執筆で作成するファイルは必ず <code>src/docs/asciidoc</code> 配下に配置します。</p>
+</div>
+<div class="paragraph">
+<p>なお、この後解説する Visual Studio Code テキストエディタでは、プロジェクト設定で <code>docs</code> フォルダをリードオンリーに指定し、誤ってファイルを追加・修正できないように制御してあります。</p>
 </div>
 </td>
 </tr>
@@ -1637,7 +1662,7 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 </div>
 </div>
 <div class="paragraph">
-<p>VS Code ではプロジェクトファイルとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作ができるようになります。</p>
+<p>VS Code ではプロジェクトとして「フォルダを開く」操作をよく活用します。このことから、エクスプローラなどのシェルのフォルダ右クリックのコンテキストメニューに VS Code を追加すると素早い操作ができるようになります。</p>
 </div>
 <div class="paragraph">
 <p>以上で、VS Code の準備は完了です。</p>
@@ -1646,7 +1671,7 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 <div class="sect3">
 <h4 id="_visual_studio_code_の導入wsl2_ubuntu_環境">2.3.2. Visual Studio Code の導入（WSL2 Ubuntu 環境）</h4>
 <div class="paragraph">
-<p>WSL2 環境上の Ubuntu で VS Code を使う場合は「Windows 版 VS Code」を導入後さらに次の WSL 拡張をインストールします。</p>
+<p>WSL2 環境上の Ubuntu で VS Code を使う場合は「Windows 版 VS Code」を導入後さらに次の WSL 拡張をインストールします。この拡張に処理により、VS Code のバックエンド処理が Ubuntu 側で、フロントエンド画面が Windows 側で動作できるようになります。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1667,7 +1692,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>拡張導入後、一度 VS Code を終了してください。</p>
 </div>
 <div class="paragraph">
-<p>次に、WSL2 Ubuntu のターミナル画面で <code>code</code> コマンドを入力することで WSL2 Ubuntu 上で VS Code サーバの初期セットアップが動作しその後 VS Code 画面が立ち上がります。</p>
+<p>次に、WSL2 Ubuntu のターミナル画面で <code>code</code> コマンドを入力することで WSL2 Ubuntu 上で VS Code バックエンドの初期セットアップが動作し、その後 Windows 上で VS Code フロントエンド画面が立ち上がります。</p>
 </div>
 <div class="listingblock">
 <div class="title">WSL2 Ubuntu 22.04 への VS Code サーバの導入</div>
@@ -1709,7 +1734,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 </table>
 </div>
 <div class="paragraph">
-<p>なお、VS Code WSL2 拡張の動作の詳細について知りたい場合は以下のドキュメントを参照してください。</p>
+<p>なお、VS Code WSL2 拡張の詳細は次のドキュメントから得ることができます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -1724,6 +1749,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 &#8212; Developing in the Windows Subsystem for Linux with Visual Studio Code
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
 <h4 id="_vs_code_による_asciidoc_文書のリアルタイムプレビュー">2.3.3. VS Code による Asciidoc 文書のリアルタイムプレビュー</h4>
@@ -1731,7 +1757,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>本手順のプロジェクトフォルダに配置された Asciidoc 文書は、VS Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように設定されています。</p>
 </div>
 <div class="paragraph">
-<p>最初のステップとして、プロジェクトフォルダを VS Code を開きます。VS Code でプロジェクトを開く場合は、次のように「フォルダで開く」などの操作でプロジェクトフォルダがルートになる形で行うことに注意してください。</p>
+<p>最初のステップとして、プロジェクトフォルダを VS Code を開きます。VS Code でプロジェクトを開く場合は、次のように「フォルダで開く」などの操作でプロジェクトフォルダがルートになる形で行うことに注意します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1783,14 +1809,19 @@ You get all the productivity of Windows while developing with Linux-based tools,
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="注記"></i>
+<i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-導入推奨拡張は <code>.vscode/extensions.json</code> ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
+<div class="paragraph">
+<p>VS Code のリアルタイムプレビュー設定は <code>.vscode/settings.json</code> ファイルで、導入推奨拡張は <code>.vscode/extensions.json</code> ファイルで定義されています。</p>
+</div>
+<div class="paragraph">
+<p>これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの執筆環境を揃えられます。</p>
+</div>
 </td>
 </tr>
 </table>
@@ -1829,6 +1860,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <div class="paragraph">
 <p><code>.adoc</code> ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。</p>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 <div class="sect3">
 <h4 id="_クリップボードからの画像挿入">2.3.4. クリップボードからの画像挿入</h4>
@@ -1935,7 +1967,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="sect3">
 <h4 id="_統合ターミナルの活用">2.3.5. 統合ターミナルの活用</h4>
 <div class="paragraph">
-<p>VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、ここで文書変換コマンドを実行できます。</p>
+<p>VS Code には統合ターミナルと呼ばれる VS Code 画面内で使えるターミナルエミュレータが備わっており、エディターを離れることなく文書のビルドが可能です。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1953,7 +1985,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="title">画面. VS Code 統合ターミナルの起動</div>
 </div>
 <div class="paragraph">
-<p>統合ターミナルを活用すると VS Code を離れることなく文書のビルドができます。</p>
+<p>統合ターミナルはキーボードショートカット <b class="button">Ctrl + @</b> でも起動可能です。再度、同キーを押下することでクローズするトグル動作となっており、画面を広く使いたい執筆中に活用できます。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1963,10 +1995,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 </td>
 <td class="content">
 <div class="paragraph">
-<p>統合ターミナルはキーボードショートカット <b class="button">Ctrl + @</b> でも起動可能です。</p>
-</div>
-<div class="paragraph">
-<p>また、統合ターミナル内では <b class="button">↑</b> を押下することで前回入力した履歴が呼び出せます。この操作は文書変換コマンドを再実行する際に便利です。</p>
+<p>統合ターミナル内で起動する一般的なシェル環境では、<b class="button">↑</b> を押下することで前回入力した履歴が呼び出せます。この操作は文書変換コマンドを再実行する際に便利です。</p>
 </div>
 </td>
 </tr>
@@ -1977,7 +2006,7 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="content">
 <div class="title">その他の Asciidoc 文書編集が可能な統合開発環境</div>
 <div class="paragraph">
-<p>本手順では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。</p>
+<p>本文書では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1996,11 +2025,11 @@ powershell.exe <span class="nt">-ExecutionPolicy</span> Bypass <span class="nt">
 <div class="sect2">
 <h3 id="_文書のファイル構成">2.4. 文書のファイル構成</h3>
 <div class="paragraph">
-<p>以下に執筆で編集する Asciidoc 文書フォルダ（<code>src/docs/asciidoc</code> 配下）のファイル構成を示します。</p>
+<p>以下に執筆で編集する Asciidoc 文書フォルダ（<code>src/docs/asciidoc</code> 配下）のファイル構成の詳細を示します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="375">
+<img src="Chapter02/images/directory-structure-3.svg" alt="directory structure 3" width="390px" height="358">
 </div>
 </div>
 <div class="listingblock">
@@ -2010,8 +2039,7 @@ src/docs/asciidoc/attribute.adoc <i class="conum" data-value="2"></i><b>(2)</b>
 src/docs/asciidoc/@style/asciidoctor.css <i class="conum" data-value="3"></i><b>(3)</b>
 src/docs/asciidoc/@style/pdf-theme.yml <i class="conum" data-value="4"></i><b>(4)</b>
 src/docs/asciidoc/@font/**/*.ttf <i class="conum" data-value="5"></i><b>(5)</b>
-src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b>
-build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
+src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i><b>(6)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -2038,11 +2066,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。<code>build.gradle</code> による画像パス解決のためフォルダ名は <code>Chapter{number}</code> とします。</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>文書を変換する Gradle ビルドスクリプトです。Asciidoc 文書や画像パスの設定があります。</td>
+<td><code>src/docs/asciidoc/index.adoc</code> から参照される子文書です。各子文書のフォルダ名は <code>Chapter{number}</code> とします。</td>
 </tr>
 </table>
 </div>
@@ -2053,7 +2077,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect3">
 <h4 id="_文書属性定義">2.4.1. 文書属性定義</h4>
 <div class="paragraph">
-<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性定義が行えます。画像挿入時の「図. 」など標準で付与される文字列がありますので、必要に応じて修正します。</p>
+<p><code>src/docs/asciidoc/attribute.adoc</code> では文書のデフォルトキャプション名などの属性値を定義できます。画像挿入時の「図. 」など標準で付与される文字列がありますので、必要に応じて修正します。</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>src/docs/asciidoc/attribute.adoc</code></div>
@@ -2127,7 +2151,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect2">
 <h3 id="_執筆の開始">2.5. 執筆の開始</h3>
 <div class="paragraph">
-<p>一通りのサンプル文書の構成確認が終りましたら、次のような流れで新しい執筆を開始します。</p>
+<p>一通りのサンプル文書の構成確認が終われば、次のような流れで新しい執筆を開始できるでしょう。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2171,7 +2195,7 @@ build.gradle <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 <div class="sect2">
 <h3 id="_執筆のイテレーション">2.6. 執筆のイテレーション</h3>
 <div class="paragraph">
-<p>ここまでの手順で執筆環境が整った後の、文書執筆の進め方のイメージは次のようになります。</p>
+<p>ここまでの手順で執筆環境が整った後、毎日の執筆の進め方は次のようになります。</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -2422,11 +2446,11 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="paragraph">
 <p>コミットはローカル上の Git に対して行われます。この後 GitHub のリモートリポジトリに反映させるため <b class="button">Sync Changes</b> を押下しプッシュ操作を行います。</p>
 </div>
-<div class="admonitionblock warning">
+<div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="警告"></i>
+<i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
 プッシュ操作を行うまで GitHub リモートリポジトリには文書の修正が反映されません。忘れずに実施してください。操作に慣れるまでは、プッシュ操作後にウェブブラウザで GitHub リポジトリにアクセスしファイルの更新を確認すると良いでしょう。
@@ -2455,10 +2479,9 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="paragraph">
 <p>異なる執筆環境から GitHub リポジトリの文書を取得するには次の操作を行います。</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>GitHub 上のリポジトリをクローンしプロジェクトフォルダを得る。（初回のみ操作）</p>
+<div class="paragraph">
+<p>その環境で初めて執筆する場合は、GitHub 上のリポジトリをクローンしプロジェクトフォルダを得る。</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git clone git@github.com:h1romas4/wasm-micro-book.git <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
@@ -2472,17 +2495,14 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </tr>
 </table>
 </div>
-</li>
-<li>
-<p>別の執筆環境からの修正（プッシュ）を取得するために <code>git pull</code> 操作を実施。</p>
+<div class="paragraph">
+<p>別の執筆環境からの修正（プッシュ）を取得するために <code>git pull</code> 操作を行う。</p>
+</div>
 <div class="listingblock">
 <div class="title">統合ターミナルから <code>git pull</code> を実行</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git pull</code></pre>
 </div>
-</div>
-</li>
-</ol>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2492,7 +2512,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>個人の執筆活動の Git 操作としては「執筆開始前に <code>git pull</code>」「執筆区切りで <code>commit</code> と <code>push</code>」 と覚えておくだけで十分機能するはずです。</p>
+<p>個人の執筆活動における Git 初歩としては「執筆開始前に必ず <code>git pull</code>」「執筆区切りで <code>commit</code> と <code>push</code>」 と覚えることで十分機能するはずです。</p>
 </div>
 </td>
 </tr>
@@ -2550,7 +2570,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="sect2">
 <h3 id="_クラウド環境による執筆">2.8. クラウド環境による執筆</h3>
 <div class="paragraph">
-<p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザだけで執筆と HTML/PDF 文書変換が可能です。このことから、サブマシンや iPad などタブレット端末でも執筆活動が行えます。</p>
+<p>クラウド開発環境である <a href="https://www.gitpod.io/">Gitpod</a> や GitHub の <a href="https://github.co.jp/features/codespaces">Codespaces</a> を活用すると、ローカル環境の準備なしにウェブブラウザだけで執筆と HTML/PDF 文書のビルドが可能です。このことから、サブマシンや iPad などタブレット端末でも執筆活動が行えます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -2631,7 +2651,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <p>本手順向けの VS Code 用の推奨拡張が自動導入されるように設定されていますので、特に操作をせずそのまま文書の執筆が開始できます。</p>
 </div>
 <div class="paragraph">
-<p>また合わせて、統合ターミナルから HTML/PDF のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで <code>./gradlew docs</code> することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。</p>
+<p>また合わせて、統合ターミナルから文書のビルドができるようコンテナ環境も自動設定されます。ターミナルに以下の表示が出力されれば準備完了です。同ターミナルで <code>./gradlew docs</code> することによりローカル環境と同様に HTML/PDF の文書変換が開始されます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2707,7 +2727,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <div class="title">画像.ウェブブラウザ上で起動した VS Code と Asciidoc 拡張（Codespaces）</div>
 </div>
 <div class="paragraph">
-<p>前項の Gitpod と同様に VS Code の拡張は自動導入され、PDF/HTML ビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。</p>
+<p>前項の Gitpod と同様に VS Code の拡張は自動導入され、文書のビルド用のコンテナ環境も構築されます。コンテナ環境の構築中は統合ターミナルに以下のような表示がされ、終了とともに自動的に閉じられます。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2718,7 +2738,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>PDF/HTML のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 <code>./gradlew docs</code> を実行します。</p>
+<p>文書のビルドは本処理が終了後、新しい統合ターミナルを開き環境が日本語設定になっていることを確認の上 <code>./gradlew docs</code> を実行します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2747,22 +2767,11 @@ BUILD SUCCESSFUL <span class="k">in </span>3m 19s</code></pre>
 </tr>
 </table>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="警告"></i>
-</td>
-<td class="content">
 <div class="paragraph">
 <p>統合ターミナルの環境が日本語設定になっていない場合、文書中のダイアログ記法で生成された図表の日本語出力が崩れる場合があります。</p>
 </div>
 <div class="paragraph">
-<p>クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように <code>exit</code> コマンドで一旦閉じた上で再起動すると良いでしょう。</p>
-</div>
-</td>
-</tr>
-</table>
+<p>クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように <code>exit</code> コマンドで一旦閉じた上で統合ターミナルを再起動すると良いでしょう。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2839,7 +2848,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="content">
 <div class="title">VS Code の Zen Mode</div>
 <div class="paragraph">
-<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作で元の画面に戻ります。</p>
+<p>VS Code には執筆に集中したい場合に、不要な UI を隠しながらフルスクリーン表示をする Zen Mode があります。標準のキーアサインでは <b class="button">Ctrl + k, z</b> でモードが遷移し、再度同じ操作もしくは <b class="button">Esc</b> 2回押下で元の画面に戻ります。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -2878,10 +2887,10 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect3">
 <h4 id="_文書ファイルの変換テストと検査gradle_yml">2.10.1. 文書ファイルの変換テストと検査（gradle.yml）</h4>
 <div class="paragraph">
-<p>git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。Linux、Windows、macOS のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
+<p>git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。macOS、Linux、Windows のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
 </div>
 <div class="paragraph">
-<p>環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、変換処理が実行できることへの確信が持てるはずです。</p>
+<p>環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、文書のビルドが実行できることへの確信が持てるはずです。</p>
 </div>
 <div class="paragraph">
 <p>検査に関しては、文書が生成されたかを基本として確認を行い、文書の内容自体に対しては行われません。</p>
@@ -2889,7 +2898,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="ulist">
 <ul>
 <li>
-<p>HTML、PDF 文書ファイルが存在するか。</p>
+<p>HTML、PDF 文書ファイルが生成されるか。</p>
 </li>
 <li>
 <p>後述の asciidoctor-diagram による .svg 画像生成が動作したか。</p>
@@ -3260,7 +3269,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect2">
 <h3 id="_外部リンク">3.5. 外部リンク</h3>
 <div class="paragraph">
-<p>インターネット上の URL は自動的にリンクに変換されます。</p>
+<p>インターネット上の URL 文字列は自動的にリンクに変換されます。</p>
 </div>
 <div class="paragraph">
 <p><a href="https://h1romas4.github.io/asciidoctor-gradle-template/index.html" class="bare">https://h1romas4.github.io/asciidoctor-gradle-template/index.html</a></p>
@@ -3448,11 +3457,11 @@ btn:[OK] ボタン</code></pre>
 <div class="paragraph">
 <p><code>.adoc</code> ファイルから別のファイルをインクルードできます。ソースコードや後述のダイアグラム形式などを別ファイルとして切り出すのに便利です。</p>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
 Gradle のファイル更新監視は <code>.adoc</code> からインクルードされたファイルまでは及びません。インクルード先のファイルだけを書き換えた場合は <code>./gradlew docs</code> が処理なしで終了してしまいますので、この場合は <code>./gradlew clean</code> と <code>clean</code> タスクを起動し <code>docs</code> フォルダをクリーニングしてから再ビルドしてください。
@@ -3831,7 +3840,7 @@ CAUTION: 注意</code></pre>
 <div class="sect2">
 <h3 id="_ラベル文言">3.15. ラベル文言</h3>
 <div class="paragraph">
-<p>特定のラベル文言に対して定義文を記述する表現は次のように記述します。</p>
+<p>特定のラベル文言に対して定義を明記する表現は次のように記述します。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3898,33 +3907,42 @@ CAUTION: 注意</code></pre>
 <h2 id="_ダイアグラム記法">4. ダイアグラム記法</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>本変換スクリプトでは <code>asciidoctorj-diagram</code> が有効になっており、いくつかのダイアグラム記法を追加のアドイン無しで使えます。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="注記"></i>
-</td>
-<td class="content">
-PDF 出力時に日本語が化けないよう、自動的にフォントパッチが適用されるよう構成されています。
-</td>
-</tr>
-</table>
+<p>ダイアグラム記法は、図表をソースコードから出力できる特別なマークアップです。Asciidoc と同様に文書ファイル中のテキスト形式で "描ける" ことから、修正や差分管理がしやすいという利点があります。</p>
 </div>
 <div class="paragraph">
-<p>ダイアグラムを SVG ベクター画像で出力する指定は次のようになります。</p>
+<p>本項では <strong>PlantUML</strong> と <strong>ditaa</strong> ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述例を示します。</p>
+</div>
+<div class="paragraph">
+<p>文書のビルドではダイアログ記法をサポートする <strong>asciidoctorj-diagram</strong> が有効になっており、PlantUML と ditta ダイアグラム記法を追加の操作無しで使えます。また、PDF 出力時に日本語が化けないよう自動的にフォントパッチが適用されるよう構成されています。</p>
+</div>
+<div class="paragraph">
+<p>Asciidoc 文書内でダイアグラムを SVG ベクター画像で出力する指定は次のようになります。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>[ダイアグラム種類, 出力ファイル名, svg, pdfwidth=70%, width=480px]</code></pre>
+<pre class="rouge highlight"><code>[ダイアグラム種類, 出力ファイル名, svg, pdfwidth=70%, width=480px]  <i class="conum" data-value="1"></i><b>(1)</b> <i class="conum" data-value="2"></i><b>(2)</b>
+----
+// ダイアグラム記法のソースコード
+----</code></pre>
 </div>
 </div>
-<div class="admonitionblock important">
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>ダイアグラム種類には <code>plantuml</code> か <code>ditta</code> を指定する。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定する。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock caution">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="重要"></i>
+<i class="fa icon-caution" title="注意"></i>
 </td>
 <td class="content">
 出力ファイル名は <code>images</code> フォルダ内で一意になるように設定してください。特にダイアログ記法を別の場所からコピーアンドペーストした場合は要チェックです。同名ファイル名が指定された場合は上書きされる動作になります。
@@ -3933,16 +3951,10 @@ PDF 出力時に日本語が化けないよう、自動的にフォントパッ�
 </table>
 </div>
 <div class="paragraph">
-<p><code>pdfwidth</code> は PDF 紙面に対しての比率指定、<code>width</code> は HTML 上の幅比率もしくはピクセル（<code>px</code>）で指定します。</p>
+<p>次項から PlantUML や ditta 記法を使って描いた実際のダイアグラム図表とソースコードを紹介します。コピーアンドペーストして使いやすいよう各ダイアグラム内で頻出する記法をなるべくピックアップする形で描いています。作成したい図表と似たようなものからアレンジして使うと良いでしょう。</p>
 </div>
 <div class="paragraph">
-<p>本項では PlantUML と ditaa ダイアグラム記法を用いて、技術文書で使われやすい表現のいくつかの記述法を示します。</p>
-</div>
-<div class="paragraph">
-<p>コピーして使いやすいよう各ダイアグラム内で頻出する記法をなるべくピックアップする形で描いています。作成したい図表と似たようなものからアレンジして使うと良いでしょう。</p>
-</div>
-<div class="paragraph">
-<p>PlantUML と ditta 記法の詳細な仕様については、次のドキュメントから参照できます。</p>
+<p>PlantUML と ditta 記法の詳細な仕様については、次のドキュメントから得ることができます。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -4471,7 +4483,7 @@ highlight 40 to 60 #SkyBlue;line:DimGrey : 書き込み
 <div class="content">
 <div class="title">Open Iconic アイコン</div>
 <div class="paragraph">
-<p>PlantUML 内で <code>&lt;&amp;アイコン名&gt;</code> 形式で使える Open Iconic アイコンは次の通りです。アイコン名は HTML 版の場合 <span class="menuseq"><b class="menu">ウェブブラウザ</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">右クリック</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">画像を開く</b></span> するとコピーアンドペーストで取得できます。</p>
+<p>PlantUML 内で <code>&lt;&amp;アイコン名&gt;</code> 形式で使える Open Iconic アイコンは次の通りです。なお、アイコン名はこの文書が HTML 版の場合 <span class="menuseq"><b class="menu">ウェブブラウザ</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">右クリック</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">画像を開く</b></span> するとコピーアンドペーストで取得できます。</p>
 </div>
 <div class="imageblock">
 <div class="content">

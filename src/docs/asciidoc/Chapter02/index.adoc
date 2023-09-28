@@ -45,7 +45,7 @@ BUILD SUCCESSFUL in 1m 13s <5>
 
 ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。
 
-[IMPORTANT]
+[CAUTION]
 ====
 Windows の場合 .zip ファイルの展開先はマルチバイト文字を含まないパスにしてください。JRuby の制約により変換処理がエラーとなります。また、プロジェクト内部で使うフォルダやファイル名のマルチバイト名も同様です。
 ====
@@ -106,8 +106,8 @@ image::pdf.png[pdf, pdfwidth=80%, width=80%]
 ビルド結果の出力先となる HTML/PDF 文書フォルダ（``docs``）フォルダの構成は次のとおりです。
 
 .HTML/PDF 文書フォルダ（``docs``）
-[plantuml, directory-structure-1, svg, pdfwidth=72%, width=690px]
-[caption=""]
+[caption="図. "]
+[plantuml, directory-structure-1, svg, pdfwidth=70%, width=680px]
 ----
 include::puml/directory-structure-1.puml[]
 ----
@@ -115,8 +115,8 @@ include::puml/directory-structure-1.puml[]
 ビルド対象の文書となるソースフォルダ（``src/docs/asciidoc``）の構成は次のとおりです。
 
 .ビルド対象のソースフォルダ（``src/docs/asciidoc``）
-[plantuml, directory-structure-2, svg, pdfwidth=55%, width=522px]
-[caption=""]
+[caption="図. "]
+[plantuml, directory-structure-2, svg, pdfwidth=62%, width=590px]
 ----
 include::puml/directory-structure-2.puml[]
 ----
@@ -219,6 +219,8 @@ https://code.visualstudio.com/docs/remote/wsl
 The Visual Studio Code WSL extension lets you use the Windows Subsystem for Linux (WSL) as your full-time development environment right from VS Code. You can develop in a Linux-based environment, use Linux-specific toolchains and utilities, and run and debug your Linux-based applications all from the comfort of Windows.
 ____
 
+<<<
+
 ==== VS Code による Asciidoc 文書のリアルタイムプレビュー
 
 本手順のプロジェクトフォルダに配置された Asciidoc 文書は、VS Code を利用してリアルタイムに変換結果をプレビューしながら編集できるように設定されています。
@@ -246,7 +248,12 @@ image::2023-09-17-13-30-33.png[pdfwidth=60%, width=60%]
 +
 image::vscode-extension2.png[vscode, pdfwidth=50%]
 
-NOTE: 導入推奨拡張は ``.vscode/extensions.json`` ファイルで設定されています。文書に応じて設定し、執筆メンバーの環境を揃えられます。
+[TIP]
+====
+VS Code のリアルタイムプレビュー設定は ``.vscode/settings.json`` ファイルで、導入推奨拡張は ``.vscode/extensions.json`` ファイルで定義されています。
+
+これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの執筆環境を揃えられます。
+====
 
 以上で Asciidoc 文書編集のための準備が完了しました。
 
@@ -265,6 +272,8 @@ TIP: プレビュー表示操作はキーボードショートカット btn:[Ctr
 image::vscode-asciidoc.png[width=80%, pdfWidth=80%]
 
 ``.adoc`` ファイルには本文書の内容がそのまま Asciidoc 文書形式で書かれているのが分かります。いくつか開いて試し入力などをしてみると、Asciidoc 文書のリアルタイムプレビューを含め執筆の雰囲気が掴めるはずです。
+
+<<<
 
 ==== クリップボードからの画像挿入
 
@@ -355,7 +364,7 @@ image::2023-09-20-15-30-52.png[width=60%, pdfWidth=60%]
 [caption="画面. "]
 image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
 
-統合ターミナルはキーボードショートカット btn:[Ctrl + @] でも起動可能です。再度、同キーを押下することでクローズするトグル動作となっており、画面を広く使いたい執筆中に便利です。
+統合ターミナルはキーボードショートカット btn:[Ctrl + @] でも起動可能です。再度、同キーを押下することでクローズするトグル動作となっており、画面を広く使いたい執筆中に活用できます。
 
 [TIP]
 ====
@@ -366,7 +375,7 @@ image::2023-09-20-15-26-40.png[width=60%, pdfWidth=60%]
 
 .その他の Asciidoc 文書編集が可能な統合開発環境
 ****
-本手順では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。
+本文書では VS Code を Asciidoc 文書編集用のエディタとして活用していますが、Eclipse や IntelliJ IDEA といった統合開発環境も Asciidoc を拡張機能でサポートしています。
 
 .IntelliJ IDEA の AsciiDoc Plugin で文書編集している例
 [caption="画像. "]
@@ -379,7 +388,7 @@ image::2023-09-20-18-42-42.png[pdfwidth=100%, width=100%]
 
 === 文書のファイル構成
 
-以下に執筆で編集する Asciidoc 文書フォルダ（``src/docs/asciidoc`` 配下）のファイル構成を示します。
+以下に執筆で編集する Asciidoc 文書フォルダ（``src/docs/asciidoc`` 配下）のファイル構成の詳細を示します。
 
 [plantuml, directory-structure-3, svg, pdfwidth=40%, width=390px]
 [caption=""]
@@ -403,7 +412,7 @@ src/docs/asciidoc/Chapter{number}/index.adoc <6>
 <3> HTML 出力とプレビュー用のスタイルシートです。文書に合わせて修正できます。
 <4> PDF 文書に変換する際に使われるスタイル定義です。文書に合わせて修正できます。
 <5> PDF 文書に埋め込みされるフォントファイルを配置します。``pdf-theme.yml`` からファイル名で参照されています。TrueType フォント ``.ttf`` が指定できます。
-<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。``build.gradle`` による画像パス解決のためフォルダ名は ``Chapter\{number\}`` とします。
+<6> ``src/docs/asciidoc/index.adoc`` から参照される子文書です。各子文書のフォルダ名は ``Chapter\{number\}`` とします。
 
 本構成を元に執筆したい文書に合わせカスタマイズしていきます。文書ファイルの編集や閲覧は VS Code のリアルタイムプレビューで確認しながら行うと分かりやすいでしょう。
 
@@ -617,7 +626,7 @@ image::2023-09-12-12-51-08.png[width=50%, pdfWidth=50%]
 
 コミットはローカル上の Git に対して行われます。この後 GitHub のリモートリポジトリに反映させるため btn:[Sync Changes] を押下しプッシュ操作を行います。
 
-WARNING: プッシュ操作を行うまで GitHub リモートリポジトリには文書の修正が反映されません。忘れずに実施してください。操作に慣れるまでは、プッシュ操作後にウェブブラウザで GitHub リポジトリにアクセスしファイルの更新を確認すると良いでしょう。
+CAUTION: プッシュ操作を行うまで GitHub リモートリポジトリには文書の修正が反映されません。忘れずに実施してください。操作に慣れるまでは、プッシュ操作後にウェブブラウザで GitHub リポジトリにアクセスしファイルの更新を確認すると良いでしょう。
 
 .VS Code から GitHub Repository へのプッシュ
 [caption="画面. "]
@@ -656,7 +665,7 @@ git pull
 
 [NOTE]
 ====
-個人の執筆活動の Git 操作としては「執筆開始前に `git pull`」「執筆区切りで `commit` と `push`」 と覚えておくだけで十分機能するはずです。
+個人の執筆活動における Git 初歩としては「執筆開始前に必ず `git pull`」「執筆区切りで `commit` と `push`」 と覚えることで十分機能するはずです。
 ====
 
 ==== Git による文書の差分比較
@@ -794,12 +803,9 @@ BUILD SUCCESSFUL in 3m 19s
 <2> `Noto Sans CJK JP` になっていること
 <3> 文書のビルドを開始
 
-[WARNING]
-====
 統合ターミナルの環境が日本語設定になっていない場合、文書中のダイアログ記法で生成された図表の日本語出力が崩れる場合があります。
 
-クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように `exit` コマンドで一旦閉じた上で再起動すると良いでしょう。
-====
+クラウド環境初期後に自動的に開かれる統合ターミナルは日本語設定が反映していないため、文書のビルドを行う場合は混乱がないように `exit` コマンドで一旦閉じた上で統合ターミナルを再起動すると良いでしょう。
 
 NOTE: Codespaces 向けの設定は `.devcontainer/devcontainer.json` 及び `.devcontainer/build-codespaces-container.sh` ファイルで定義されています。
 

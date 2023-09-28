@@ -13,7 +13,10 @@
  ++++++ <&file> AdoptOpenJDK.png | 文書で使う画像ファイル
  ++++++ <&file> windows-01.png
  ++++++ <&file> windows-02.png
+ ++++ <&folder> Chapter03
+ +++++ <&file> index.adoc        | ダイアグラム記法を含む Asciidoc 文書
  ++++ <&folder> ..snip..
+ ++++ <&file> index.adoc         | 各章を統合する Asciidoc 文書
 }
 }
 @endsalt

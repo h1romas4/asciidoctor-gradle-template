@@ -17,7 +17,7 @@
  ++ <&folder> Chapter03
  +++ <&folder> images
  ++++ <&file> diag-salt-sample1.svg    | HTML 版向けに自動生成されたベクター画像
- ++++ <&file> diag-salt-sample2.svg    | 後述のダイアグラム記法による
+ ++++ <&file> diag-salt-sample2.svg
  ++++ <&file> ..snip..
  ++ <&file> index.html                 | HTML 版（CSSを内包・画像はファイルに依存）
  ++ <&file> index.pdf                  | PDF 版（全ての画像・フォントリソースを内包）
