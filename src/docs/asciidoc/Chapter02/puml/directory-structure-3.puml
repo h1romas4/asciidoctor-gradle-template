@@ -23,7 +23,6 @@
  ++++ <&folder> ..snip..
  ++++ <&file> attribute.adoc                | ❷
  ++++ <&file> index.adoc                    | ❶
- + <&file> build.gradle                     | ❼
 }
 }
 @endsalt
