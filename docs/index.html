@@ -719,7 +719,7 @@ pre.rouge {
 <div class="sect2">
 <h3 id="_asciidoc_と_asciidoctor_について">Asciidoc と Asciidoctor について</h3>
 <div class="paragraph">
-<p>Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な出版形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。</p>
+<p>Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -754,7 +754,7 @@ pre.rouge {
 </div>
 </div>
 <div class="paragraph">
-<p>同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。また、AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトとなっています。</p>
+<p>同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。また、AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトです。</p>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -1000,10 +1000,10 @@ pre.rouge {
 <p>本文書で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。</p>
 </div>
 <div class="paragraph">
-<p>お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。</p>
+<p>お使いのコンピューターのコマンドライン環境（macOS / Linux ではターミナル、Windows では cmd.exe か powershell.exe）で <code>java -version</code> コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。</p>
 </div>
 <div class="listingblock">
-<div class="title">macOS/Linux の場合</div>
+<div class="title">手順. macOS / Linux の場合</div>
 <div class="content">
 <pre class="rouge highlight"><code>$ java -version
 openjdk 11.0.20.1 2023-08-24
@@ -1012,7 +1012,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Windows の場合</div>
+<div class="title">手順. Windows の場合</div>
 <div class="content">
 <pre class="rouge highlight"><code>C:¥&gt; java -version
 openjdk version "11.0.20.1" 2023-08-24
@@ -1149,7 +1149,7 @@ $ source ~/.bashrc <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 <i class="fa icon-tip" title="ヒント"></i>
 </td>
 <td class="content">
-Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、<code>java</code> コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
+Gradle は <code>JAVA_HOME</code> 環境変数を元に Java の実行環境を探すため、<code>java</code> コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 </td>
 </tr>
 </table>
@@ -1222,19 +1222,19 @@ $ sdk default java 17.0.4.1-tem <i class="conum" data-value="3"></i><b>(3)</b></
 </div>
 <div style="page-break-after: always;"></div>
 <div class="paragraph">
-<p>zip ファイルを任意の場所に展開します。ここでは <code>C:\develop\runtime\openjdk11</code> に展開したとします。</p>
+<p>zip ファイルを任意の場所に展開します。ここでは <code>C:\develop\toolchain\openjdk11</code> に展開したとします。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter01/images/windows-01.png" alt="導入先" width="70%">
+<img src="Chapter01/images/2023-10-02-14-48-47.png" alt="2023 10 02 14 48 47" width="60%">
 </div>
 </div>
 <div class="paragraph">
-<p>また、この後で実行する Gradle ビルドツールが <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境設定</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\runtime\openjdk11</code> ）を設定します。</p>
+<p>また、この後で実行する Gradle ビルドツールが <code>JAVA_HOME</code> 環境変数に実行環境の Java のパスが設定されていることを期待していますので、<span class="menuseq"><b class="menu">エクスプローラー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">PC（右クリック）</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">プロパティー</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">システム</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">システムの詳細設定</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">環境変数</b></span> からユーザー環境変数に  <code>JAVA_HOME</code> を追加し、先ほど .zip を展開したパス（<code>C:\develop\toolchain\openjdk11</code> ）を設定します。</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="Chapter01/images/windows-02.png" alt="環境変数" width="60%">
+<img src="Chapter01/images/2023-10-02-14-52-26.png" alt="2023 10 02 14 52 26" width="60%">
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1261,7 +1261,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。</p>
 </div>
 <div class="listingblock">
-<div class="title">WSL2 Ubuntu 22.04 LTS の初期設定</div>
+<div class="title">手順. WSL2 Ubuntu 22.04 LTS の初期設定</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>apt update
 <span class="nv">$ </span><span class="nb">sudo </span>apt upgrade
@@ -1307,7 +1307,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>次に、通常の Ubuntu の手順と同様に sdkman で Java 環境の導入を行います。</p>
 </div>
 <div class="listingblock">
-<div class="title">WSL2 Ubuntu 22.04 LTS への Java の導入</div>
+<div class="title">手順. WSL2 Ubuntu 22.04 LTS への Java の導入</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-s</span> <span class="s2">"https://get.sdkman.io"</span> | bash <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="nv">$ </span><span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.sdkman/bin/sdkman-init.sh"</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -1408,7 +1408,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <div class="sect3">
 <h4 id="_サンプル文書の変換macos_linux">2.1.1. サンプル文書の変換（macOS / Linux）</h4>
 <div class="paragraph">
-<p>ターミナルを起動し <code>curl</code> コマンドでファイルの取得を行い、ファイルの展開とビルドの実行を行います。</p>
+<p>ターミナルを起動し <code>curl</code> コマンドでリポジトリファイルの取得を行い、<code>.zip</code> の展開とビルドの実行を行います。</p>
 </div>
 <div class="listingblock">
 <div class="title">手順. PDF 変換ビルドスクリプトの取得と実行</div>
@@ -1450,7 +1450,7 @@ BUILD SUCCESSFUL in 1m 13s <i class="conum" data-value="5"></i><b>(5)</b>
 <div class="sect3">
 <h4 id="_サンプル文書の変換windows">2.1.2. サンプル文書の変換（Windows）</h4>
 <div class="paragraph">
-<p>ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。</p>
+<p>ウェブブラウザで URL にアクセスしてリポジトリファイルの取得を行い、エクスプローラで <code>.zip</code> を展開し、最後にコマンドプロンプトから Gradle タスクを実行します。</p>
 </div>
 <div class="admonitionblock caution">
 <table>
@@ -1635,7 +1635,7 @@ BUILD SUCCESSFUL in 1m 10s <i class="conum" data-value="1"></i><b>(1)</b>
 <p>Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。</p>
 </div>
 <div class="paragraph">
-<p>本手順のプロジェクトフォルダには VS Code 用の設定ファイル（<code>.vscode</code>配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。</p>
+<p>本手順のプロジェクトフォルダには VS Code 用の設定ファイル（<code>.vscode</code> 配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。</p>
 </div>
 <div class="paragraph">
 <p>次のサイトからお使いの OS に合わせた VS Code を導入してください。</p>
@@ -1695,7 +1695,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>次に、WSL2 Ubuntu のターミナル画面で <code>code</code> コマンドを入力することで WSL2 Ubuntu 上で VS Code バックエンドの初期セットアップが動作し、その後 Windows 上で VS Code フロントエンド画面が立ち上がります。</p>
 </div>
 <div class="listingblock">
-<div class="title">WSL2 Ubuntu 22.04 への VS Code サーバの導入</div>
+<div class="title">手順. WSL2 Ubuntu 22.04 への VS Code サーバの導入</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>code <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
@@ -1715,7 +1715,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>ここから先の手順で VS Code を起動する場合は同様に WSL2 Ubuntu のターミナル画面から <code>code</code> コマンドで起動してください。</p>
 </div>
 <div class="listingblock">
-<div class="title">リスト 1. WSL2 Ubuntu 22.04 からの VS Code 起動</div>
+<div class="title">手順. WSL2 Ubuntu 22.04 からの VS Code 起動</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>asciidoctor-gradle-template <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="nv">$ </span>code <span class="nb">.</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -1820,7 +1820,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>VS Code のリアルタイムプレビュー設定は <code>.vscode/settings.json</code> ファイルで、導入推奨拡張は <code>.vscode/extensions.json</code> ファイルで定義されています。</p>
 </div>
 <div class="paragraph">
-<p>これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの執筆環境を揃えられます。</p>
+<p>これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの環境を揃えられます。</p>
 </div>
 </td>
 </tr>
@@ -2280,23 +2280,23 @@ src/docs/asciidoc/Chapter{number}/index.adoc <i class="conum" data-value="6"></i
 <div class="sect3">
 <h4 id="_git_クライアントの導入">2.7.1. Git クライアントの導入</h4>
 <div class="paragraph">
-<p>お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。</p>
+<p>お使いのコンピュータに Git クライアントが未導入の場合は、次の手順でインストールします。</p>
 </div>
 <div class="listingblock">
-<div class="title">macOS（ターミナルエミュレータで実行）</div>
+<div class="title">手順. macOS（ターミナルエミュレータで実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code>brew install git</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Linux（ターミナルエミュレータで実行）</div>
+<div class="title">手順. Linux（ターミナルエミュレータで実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code># Ubuntu
 sudo apt install git</code></pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">Windows（PowerShell ウインドウで実行）</div>
+<div class="title">手順. Windows（PowerShell ウインドウで実行）</div>
 <div class="content">
 <pre class="rouge highlight"><code>winget install --id Git.Git -e --source winget</code></pre>
 </div>
@@ -2364,7 +2364,7 @@ sudo apt install git</code></pre>
 <div class="sect3">
 <h4 id="_github_上に文書を初期プッシュ">2.7.3. GitHub 上に文書を初期プッシュ</h4>
 <div class="paragraph">
-<p>GitHub リポジトリに文書を配置するため、VS Code で PC 上の文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。</p>
+<p>GitHub リポジトリに文書を配置するため、VS Code で文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2379,7 +2379,7 @@ sudo apt install git</code></pre>
 </table>
 </div>
 <div class="listingblock">
-<div class="title">VS Code 統合ターミナルから Git リポジトリを初期化</div>
+<div class="title">手順. VS Code 統合ターミナルから Git リポジトリを初期化</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git init
 git config <span class="nt">--local</span> user.name h1romas4 <i class="conum" data-value="1"></i><b>(1)</b>
@@ -2404,7 +2404,7 @@ git commit <span class="nt">-m</span> <span class="s1">'initial commit'</span></
 <p>ローカルの Git リポジトリの初期化完了後、続けて統合ターミナルで前項「GitHub の Create a new repository」画面でクリップボード等に保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。</p>
 </div>
 <div class="listingblock">
-<div class="title">VS Code 統合ターミナルから GitHub にプッシュ</div>
+<div class="title">手順. VS Code 統合ターミナルから GitHub にプッシュ</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git remote add origin git@github.com:h1romas4/wasm-micro-book.git <i class="conum" data-value="1"></i><b>(1)</b>
 git branch <span class="nt">-M</span> main
@@ -2468,7 +2468,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <p>なお、<b class="button">Sync Changes</b> ボタン押下操作の他、統合ターミナルから <code>git push</code> コマンドを入力することでも同様の結果が得られます。</p>
 </div>
 <div class="listingblock">
-<div class="title">統合ターミナルから <code>git push</code> を実行</div>
+<div class="title">手順. 統合ターミナルから <code>git push</code> を実行</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git push</code></pre>
 </div>
@@ -2499,7 +2499,7 @@ git push <span class="nt">-u</span> origin main</code></pre>
 <p>別の執筆環境からの修正（プッシュ）を取得するために <code>git pull</code> 操作を行う。</p>
 </div>
 <div class="listingblock">
-<div class="title">統合ターミナルから <code>git pull</code> を実行</div>
+<div class="title">手順. 統合ターミナルから <code>git pull</code> を実行</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash">git pull</code></pre>
 </div>
@@ -2865,7 +2865,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect2">
 <h3 id="_github_actions_によるビルド">2.10. GitHub Actions によるビルド</h3>
 <div class="paragraph">
-<p>本手順のリポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書のビルドテスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
+<p>リポジトリに含まれるファイル <code>.github/workflows/gradle.yml</code> 及び <code>.github/workflows/release.yml</code> は GitHub サーバ上で文書のビルドテスト、及び <code>.tar.gz</code> 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。</p>
 </div>
 <div class="paragraph">
 <p>これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。</p>
@@ -3143,7 +3143,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 </td>
 <td class="content">
 <div class="paragraph">
-<p>本文書で提供される <code>.adoc</code> はドキュメントタイプが <code>book</code> に指定され、<code>=</code>（レベル 0）がドキュメントヘッダー（文書名）となり、それ移行がセクションタイトルとなります。<br>
+<p>本文書で提供される <code>.adoc</code> はドキュメントタイプが <code>book</code> に指定され、<code>=</code>（レベル 0）がドキュメントヘッダー（文書名）となり、それ以降がセクションタイトルとなります。<br>
 なお、ドキュメントタイプは <code>attribute.adoc</code> の <code>:doctype: book</code> で指定されています。</p>
 </div>
 </td>

@@ -4,11 +4,11 @@ include::../attribute.adoc[]
 
 本文書で用いる Asciidoc 文書変換用スクリプトはビルドツールである Gradle を活用しており、実行するためには Java 実行環境が必要です。
 
-お使いのコンピューターのコマンドライン環境（macOS/Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。
+お使いのコンピューターのコマンドライン環境（macOS / Linux ではターミナル、Windows では cmd.exe か powershell.exe）で ``java -version`` コマンドを入力し、Java 11 以上のバージョンが表示されるようであれば既に環境の準備は整っています。
 
 [source]
-[caption=""]
-.macOS/Linux の場合
+[caption="手順. "]
+.macOS / Linux の場合
 ----
 $ java -version
 openjdk 11.0.20.1 2023-08-24
@@ -17,7 +17,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)
 ----
 
 [source]
-[caption=""]
+[caption="手順. "]
 .Windows の場合
 ----
 C:¥> java -version
@@ -107,7 +107,7 @@ $ source ~/.bashrc # <3>
 <2> 本ラインをファイルの最下部に追加し保存終了します。
 <3> 設定を適用します。`source` コマンドを使わず、ターミナルを再起動する操作でも反映されます。
 
-TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
+TIP: Gradle は ``JAVA_HOME`` 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 
 以上で準備完了です。
 
@@ -151,13 +151,13 @@ image::2023-09-28-18-57-53.png[adopt, pdfwidth=80%, width=80%]
 
 <<<
 
-zip ファイルを任意の場所に展開します。ここでは ``C:\develop\runtime\openjdk11`` に展開したとします。
+zip ファイルを任意の場所に展開します。ここでは ``C:\develop\toolchain\openjdk11`` に展開したとします。
 
-image::windows-01.png[導入先, pdfwidth=70%, width=70%]
+image::2023-10-02-14-48-47.png[pdfwidth=60%, width=60%]
 
-また、この後で実行する Gradle ビルドツールが ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > 詳細設定 > 環境設定] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\runtime\openjdk11`` ）を設定します。
+また、この後で実行する Gradle ビルドツールが ``JAVA_HOME`` 環境変数に実行環境の Java のパスが設定されていることを期待していますので、menu:エクスプローラー[PC（右クリック） > プロパティー > システム > システムの詳細設定 > 環境変数] からユーザー環境変数に  ``JAVA_HOME`` を追加し、先ほど .zip を展開したパス（``C:\develop\toolchain\openjdk11`` ）を設定します。
 
-image::windows-02.png[環境変数, pdfwidth=60%, width=60%]
+image::2023-10-02-14-52-26.png[pdfwidth=60%, width=60%]
 
 TIP: Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため、``java`` コマンドを使うための PATH 環境変数は設定しなくてもかまいません。
 
@@ -170,7 +170,7 @@ Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 22.04 を使うこと�
 WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。
 
 [source, bash]
-[caption=""]
+[caption="手順. "]
 .WSL2 Ubuntu 22.04 LTS の初期設定
 ----
 $ sudo apt update
@@ -190,7 +190,7 @@ NOTE: これらの日本語ロケール設定は、後述のダイアログ表�
 次に、通常の Ubuntu の手順と同様に sdkman で Java 環境の導入を行います。
 
 [source, bash]
-[caption=""]
+[caption="手順. "]
 .WSL2 Ubuntu 22.04 LTS への Java の導入
 ----
 $ curl -s "https://get.sdkman.io" | bash # <1>

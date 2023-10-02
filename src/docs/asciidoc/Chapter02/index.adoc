@@ -19,7 +19,7 @@ include::../attribute.adoc[]
 
 ==== サンプル文書の変換（macOS / Linux）
 
-ターミナルを起動し ``curl`` コマンドでファイルの取得を行い、ファイルの展開とビルドの実行を行います。
+ターミナルを起動し ``curl`` コマンドでリポジトリファイルの取得を行い、``.zip`` の展開とビルドの実行を行います。
 
 [source]
 [caption="手順. "]
@@ -43,7 +43,7 @@ BUILD SUCCESSFUL in 1m 13s <5>
 
 ==== サンプル文書の変換（Windows）
 
-ウェブブラウザで URL にアクセスしてファイルの取得を行い、エクスプローラでファイルを展開し、最後にコマンドプロンプトから Gradle タスクを実行します。
+ウェブブラウザで URL にアクセスしてリポジトリファイルの取得を行い、エクスプローラで ``.zip`` を展開し、最後にコマンドプロンプトから Gradle タスクを実行します。
 
 [CAUTION]
 ====
@@ -153,7 +153,7 @@ HTML/PDF 文書フォルダ（``docs``）はビルドした文書を配置する
 
 Visual Studio Code（以下 VS Code）は、Microsoft が提供する高性能なフリーソフトウェアのテキストエディタです。
 
-本手順のプロジェクトフォルダには VS Code 用の設定ファイル（``.vscode``配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。
+本手順のプロジェクトフォルダには VS Code 用の設定ファイル（``.vscode`` 配下）が配置されており、自動的に Asciidoc 文書向けの設定がされるように構成されています。
 
 次のサイトからお使いの OS に合わせた VS Code を導入してください。
 
@@ -190,7 +190,7 @@ ____
 次に、WSL2 Ubuntu のターミナル画面で `code` コマンドを入力することで WSL2 Ubuntu 上で VS Code バックエンドの初期セットアップが動作し、その後 Windows 上で VS Code フロントエンド画面が立ち上がります。
 
 [source, bash]
-[caption=""]
+[caption="手順. "]
 .WSL2 Ubuntu 22.04 への VS Code サーバの導入
 ----
 $ code # <1>
@@ -202,6 +202,7 @@ $ code # <1>
 ここから先の手順で VS Code を起動する場合は同様に WSL2 Ubuntu のターミナル画面から `code` コマンドで起動してください。
 
 [source, bash]
+[caption="手順. "]
 .WSL2 Ubuntu 22.04 からの VS Code 起動
 ----
 $ cd asciidoctor-gradle-template <1>
@@ -252,7 +253,7 @@ image::vscode-extension2.png[vscode, pdfwidth=50%]
 ====
 VS Code のリアルタイムプレビュー設定は ``.vscode/settings.json`` ファイルで、導入推奨拡張は ``.vscode/extensions.json`` ファイルで定義されています。
 
-これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの執筆環境を揃えられます。
+これらのファイルを修正することで、例えば拡張に日本語校正やスペルチェックを追加し設定を定義するなど、執筆メンバーの環境を揃えられます。
 ====
 
 以上で Asciidoc 文書編集のための準備が完了しました。
@@ -520,17 +521,17 @@ image::2023-09-13-14-48-50.png[]
 
 ==== Git クライアントの導入
 
-お使いの PC に Git クライアントが未導入の場合は、次の手順でインストールします。
+お使いのコンピュータに Git クライアントが未導入の場合は、次の手順でインストールします。
 
 [source]
-[caption=""]
+[caption="手順. "]
 .macOS（ターミナルエミュレータで実行）
 ----
 brew install git
 ----
 
 [source]
-[caption=""]
+[caption="手順. "]
 .Linux（ターミナルエミュレータで実行）
 ----
 # Ubuntu
@@ -538,7 +539,7 @@ sudo apt install git
 ----
 
 [source]
-[caption=""]
+[caption="手順. "]
 .Windows（PowerShell ウインドウで実行）
 ----
 winget install --id Git.Git -e --source winget
@@ -579,12 +580,12 @@ image::2023-09-12-12-23-52.png[width=80%, pdfWidth=80%]
 
 ==== GitHub 上に文書を初期プッシュ
 
-GitHub リポジトリに文書を配置するため、VS Code で PC 上の文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。
+GitHub リポジトリに文書を配置するため、VS Code で文書が配置されているプロジェクトフォルダを開き、統合ターミナルから以下のコマンドでローカルの Git リポジトリを初期化します。
 
 NOTE: プロジェクトフォルダは、ルートに `gradlew` などの本手順のビルドスクリプトが配置されている構成になっていることを確認します。変換スクリプトやフォルダ構成ごと Git にコミットすることで、いずれの執筆環境でも HTML/PDF 変換処理ができるようになります。
 
 .VS Code 統合ターミナルから Git リポジトリを初期化
-[caption=""]
+[caption="手順. "]
 [source, bash]
 ----
 git init
@@ -599,7 +600,7 @@ git commit -m 'initial commit'
 ローカルの Git リポジトリの初期化完了後、続けて統合ターミナルで前項「GitHub の Create a new repository」画面でクリップボード等に保持したコマンドを実行し、GitHub リモートリポジトリーにプロジェクトファイル一式をプッシュ操作します。
 
 .VS Code 統合ターミナルから GitHub にプッシュ
-[caption=""]
+[caption="手順. "]
 [source, bash]
 ----
 git remote add origin git@github.com:h1romas4/wasm-micro-book.git # <1>
@@ -635,7 +636,7 @@ image::2023-09-12-12-58-10.png[width=50%, pdfWidth=50%]
 なお、btn:[Sync Changes] ボタン押下操作の他、統合ターミナルから `git push` コマンドを入力することでも同様の結果が得られます。
 
 .統合ターミナルから `git push` を実行
-[caption=""]
+[caption="手順. "]
 [source, bash]
 ----
 git push
@@ -648,7 +649,7 @@ git push
 その環境で初めて執筆する場合は、GitHub 上のリポジトリをクローンしプロジェクトフォルダを得る。
 
 [source, bash]
-[caption=""]
+[caption="手順. "]
 ----
 git clone git@github.com:h1romas4/wasm-micro-book.git # <1>
 ----
@@ -658,7 +659,7 @@ git clone git@github.com:h1romas4/wasm-micro-book.git # <1>
 
 .統合ターミナルから `git pull` を実行
 [source, bash]
-[caption=""]
+[caption="手順. "]
 ----
 git pull
 ----
@@ -848,7 +849,7 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 
 === GitHub Actions によるビルド
 
-本手順のリポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書のビルドテスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
+リポジトリに含まれるファイル `.github/workflows/gradle.yml` 及び `.github/workflows/release.yml` は GitHub サーバ上で文書のビルドテスト、及び `.tar.gz` 形式での HTML/PDF 文書のリリースを行うための定義ファイルです。
 
 これらのファイルを文書ファイルとともに各自のプロジェクト GitHub リポジトリにコミットすることで、文書変換とファイルリリースが git の操作を契機として GitHub サーバ上で自動的に動作するようになります。
 

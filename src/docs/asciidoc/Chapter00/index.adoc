@@ -34,7 +34,7 @@ Asciidoc による文書の執筆は形式的で効率が良く、また更新�
 
 === Asciidoc と Asciidoctor について
 
-Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な出版形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。
+Asciidoc は人が読み書きしやすいプレーンテキスト文書から、HTML や PDF をはじめとした様々な形式に出力が行える軽量のマークアップ言語です。通常のテキストファイルを使った表現と似ていることから習得がしやすく、また出版向きの表現力も兼ね備えています。
 
 [quote, AsciiDoc Language Documentation]
 ____
@@ -54,7 +54,7 @@ What is Asciidoctor?
 Asciidoctor is a fast, open source, text processor for parsing AsciiDoc into a document model, then converting it to output formats such as HTML 5, DocBook 5, man(ual) pages, PDF, and EPUB 3. Asciidoctor is written in the Ruby programming language.
 ____
 
-同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。また、AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトとなっています。
+同プロジェクトにおいて、ウェブブラウザ上で Asciidoc の動作を実現する Asciidoctor.js や、PDF 出力を行う Asciidoctor PDF が提供されています。また、AsciidoctorJ は、Ruby 実装である Asciidoctor を Java でかかれた Ruby 実行環境である JRuby を使って Java VM 上で動作させるプロダクトです。
 
 <<<
 
