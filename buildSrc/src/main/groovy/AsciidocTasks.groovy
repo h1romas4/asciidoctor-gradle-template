@@ -1,15 +1,12 @@
-import java.lang.Comparable.PathSensitivity.*
-
+import java.io.File
 import groovy.io.FileType
-
+import org.asciidoctor.Asciidoctor
+import org.asciidoctor.SafeMode
+import org.asciidoctor.Options
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.Input
-
-import org.asciidoctor.Asciidoctor
-import org.asciidoctor.SafeMode
-import org.asciidoctor.Options
 
 /**
  * Asciidoc 文章とファイルシステムの画像の整合性を確認する Gradle タスク
@@ -68,7 +65,7 @@ abstract class SyncImageTask extends DefaultTask {
      */
     static def searchExtInDir(File baseDir, extension) {
         def list = []
-        def basePath = "${baseDir}/"
+        def basePath = "${baseDir}" + File.separator
         def ext = extension.collect {
             ".${it}"
         }
@@ -95,12 +92,23 @@ abstract class SyncImageTask extends DefaultTask {
     }
 
     /**
+     * パス区切りを UNIX に正規化
+     *
+     * @param lists 文字列リスト
+     */
+    static def normalizePath(lists) {
+        lists.collect {
+            it.replace(File.separator, "/")
+        }
+    }
+
+    /**
      * Gradle タスクエントリーポイント
      */
     @TaskAction
     def checkSyncImage() {
-        def imagesInAdoc = searchImageInAdoc(baseDir, index).sort()
-        def imagesInDir = searchExtInDir(baseDir, imageExt).sort()
+        def imagesInAdoc = normalizePath(searchImageInAdoc(baseDir, index).sort())
+        def imagesInDir = normalizePath(searchExtInDir(baseDir, imageExt).sort())
 
         def unused = imagesInDir - imagesInAdoc
         def notFound = imagesInAdoc - imagesInDir
