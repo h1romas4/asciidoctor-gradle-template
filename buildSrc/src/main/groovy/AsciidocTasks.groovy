@@ -98,7 +98,7 @@ abstract class SyncImageTask extends DefaultTask {
      * Gradle タスクエントリーポイント
      */
     @TaskAction
-    def sync() {
+    def checkSyncImage() {
         def imagesInAdoc = searchImageInAdoc(baseDir, index).sort()
         def imagesInDir = searchExtInDir(baseDir, imageExt).sort()
 
@@ -106,11 +106,11 @@ abstract class SyncImageTask extends DefaultTask {
         def notFound = imagesInAdoc - imagesInDir
 
         if(unused.size() != 0) {
-            println "@Unused images:"
+            println "::Unused images:"
             print unused
         }
         if(notFound.size() != 0) {
-            println "@Image not found:"
+            println "::Image not found:"
             print notFound
         }
     }

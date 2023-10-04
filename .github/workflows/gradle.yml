@@ -74,6 +74,8 @@ jobs:
         # test asciidoctor
         file docs/index.pdf | grep PDF
         file docs/index.html | grep HTML
+        # output unused image by index.html
+        ./gradlew checkSyncImage
 
     - name: Output PDF information
       if: startsWith(matrix.os, 'ubuntu')

@@ -83,11 +83,11 @@ task cleanDocs(type: Delete) {
  * Asciidoc 文章とファイルシステムの画像の整合性を確認するユーティリティタスク
  * 未使用画像とリンク切れ画像の一覧を出力する。
  *
- * ./gradlew syncImage
+ * ./gradlew checkSyncImage
  *
  * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
  */
-tasks.register('syncImage', SyncImageTask) {
+tasks.register('checkSyncImage', SyncImageTask) {
     // 起点の文書ディレクトリ
     baseDir = file('src/docs/asciidoc')
     // 起点の Asciidoc 文書（include を辿る）
