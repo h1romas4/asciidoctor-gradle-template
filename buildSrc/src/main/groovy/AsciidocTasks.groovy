@@ -61,6 +61,7 @@ abstract class SyncImageTask extends DefaultTask {
 
     /**
      * ディレクトリから指定された拡張子のファイルをリストで返却
+     *
      * @param File baseDir 検索ベースディレクトリ
      * @param extension 検索拡張子文字列リスト
      * @return [] baseDir からの相対パスリスト
@@ -83,6 +84,7 @@ abstract class SyncImageTask extends DefaultTask {
 
     /**
      * リスト形式の文字列を表示用に縦に出力
+     *
      * @param lists 文字列リスト
      * @param prefix 前置文字列
      */
@@ -94,8 +96,6 @@ abstract class SyncImageTask extends DefaultTask {
 
     /**
      * Gradle タスクエントリーポイント
-     *
-     * @return
      */
     @TaskAction
     def sync() {
