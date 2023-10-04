@@ -52,17 +52,26 @@ jobs:
       run: |
         export LANG=ja_JP.UTF-8
         fc-match Dialog | grep "Noto Sans CJK JP"
+        # create document
         ./gradlew docs
+        # output unused images and test Gradle task
+        ./gradlew checkSyncImage
 
     - name: Build with Gradle (macOS)
       if: startsWith(matrix.os, 'macos')
       run: |
+        # create document
         ./gradlew docs
+        # output unused images and test Gradle task
+        ./gradlew checkSyncImage
 
     - name: Build with Gradle (Windows)
       if: startsWith(matrix.os, 'windows')
       run: |
+        # create document
         .\gradlew docs
+        # output unused images and test Gradle task
+        .\gradlew checkSyncImage
 
     - name: Check
       shell: bash
@@ -83,4 +92,3 @@ jobs:
         echo "# URLs in document"
         pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
         echo "# Unused images"
-        ./gradlew checkSyncImage

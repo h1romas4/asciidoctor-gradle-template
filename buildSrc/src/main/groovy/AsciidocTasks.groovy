@@ -48,6 +48,7 @@ abstract class SyncImageTask extends DefaultTask {
      */
     static def searchImageInAdoc(baseDir, index) {
         def asciidoctor = Asciidoctor.Factory.create();
+        // include パスを辿るために SafeMode.SAFE と baseDir を設定
         def options = Options.builder().safe(SafeMode.SAFE).baseDir(baseDir).build()
         def document = asciidoctor.load(new File("${baseDir}/${index}").getText(), options);
 
@@ -69,7 +70,7 @@ abstract class SyncImageTask extends DefaultTask {
         def ext = extension.collect {
             ".${it}"
         }
-        baseDir.eachFileRecurse(FileType.FILES) {file ->
+        baseDir.eachFileRecurse(FileType.FILES) { file ->
             ext.each {
                 if(file.name.endsWith(it)) {
                     list << (file.path - basePath)
