@@ -69,21 +69,46 @@ asciidoctorj {
     attributes 'source-highlighter': 'rouge'
 }
 
+/**
+ * docs/ 配下のファイルを全て削除するタスク
+ * docs タスクの依存で直接は実行しない。
+ */
 task cleanDocs(type: Delete) {
-    // Delete all files in the docs directory once
     delete fileTree('docs/') {
         include '**/*'
     }
 }
 
+/**
+ * Asciidoc 文章とファイルシステムの画像の整合性を確認するユーティリティタスク
+ * 未使用画像とリンク切れ画像の一覧を出力する。
+ *
+ * ./gradlew syncImage
+ *
+ * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
+ */
+tasks.register('syncImage', SyncImageTask) {
+    // 起点の文書ディレクトリ
+    baseDir = file('src/docs/asciidoc')
+    // 起点の Asciidoc 文書（include を辿る）
+    index = 'index.adoc'
+    // ファイルシステム上で画像として認識する拡張子
+    imageExt = ['png', 'jpg', 'jpeg', 'svg']
+}
+
+/**
+ * Asciidoc 文書から HTML/PDF 文書を生成し docs 配下に出力するタスク
+ *
+ * ./gradlew docs
+ */
 task docs(dependsOn: [asciidoctor, asciidoctorPdf, cleanDocs]) doLast {
-    // Copy documents created by asciidoctor to the docs directory
+    // build に生成された文書を docs にコピー
     copy {
         from 'build/docs/asciidoc/index.html'
         from 'build/docs/asciidocPdf/index.pdf'
         into 'docs/'
     }
-    // Copy images to docs directory for index.html
+    // build に出力されたダイアログ生成画像を含む全ての画像を HTML 文書用に docs にコピー
     copy {
         from 'build/docs/asciidoc/'
         include 'Chapter*/images/*'
