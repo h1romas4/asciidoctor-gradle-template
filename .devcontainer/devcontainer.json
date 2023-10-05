@@ -1,5 +1,10 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/java:11-bullseye",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "11"
+    }
+  },
   "postCreateCommand": "bash .devcontainer/build-codespaces-container.sh",
   "customizations": {
     "vscode": {
