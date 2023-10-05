@@ -53,18 +53,26 @@ jobs:
       - name: Build with Gradle (Ubuntu)
         if: startsWith(matrix.os, 'ubuntu')
         run: |
+          # Check font settings
           export LANG=ja_JP.UTF-8
           fc-match Dialog | grep "Noto Sans CJK JP"
+          ## Workaround to suppress warnings from JRuby in JDK 17 or later (https://github.com/jruby/jruby/issues/6721)
+          ## export JDK_JAVA_OPTIONS="--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
           ./gradlew docs
 
       - name: Build with Gradle (macOS)
         if: startsWith(matrix.os, 'macos')
         run: |
+          ## Workaround to suppress warnings from JRuby in JDK 17 or later (https://github.com/jruby/jruby/issues/6721)
+          ## export JDK_JAVA_OPTIONS="--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
           ./gradlew docs
 
       - name: Build with Gradle (Windows)
         if: startsWith(matrix.os, 'windows')
+        shell: pwsh
         run: |
+          ## Workaround to suppress warnings from JRuby in JDK 17 or later (https://github.com/jruby/jruby/issues/6721)
+          ## $env:JDK_JAVA_OPTIONS = "--add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.base/java.io=ALL-UNNAMED"
           .\gradlew docs
 
       - name: Set archive attribute
