@@ -86,7 +86,7 @@ abstract class SyncImageTask extends DefaultTask {
      * @param lists 文字列リスト
      * @param prefix 前置文字列
      */
-    static def print(lists, prefix = "") {
+    static def printls(lists, prefix = "") {
         lists.each {
             println "${prefix}${it}"
         }
@@ -116,11 +116,11 @@ abstract class SyncImageTask extends DefaultTask {
 
         if(unused.size() != 0) {
             println "::Unused images:"
-            print unused
+            printls unused
         }
         if(notFound.size() != 0) {
             println "::Image not found:"
-            print notFound
+            printls notFound
         }
     }
 }
