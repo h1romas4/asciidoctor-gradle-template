@@ -70,48 +70,53 @@ asciidoctorj {
 }
 
 /**
- * docs/ 配下のファイルを全て削除するタスク
- * docs タスクの依存で直接は実行しない。
+ * docs/ 配下のファイル及びディレクトリを全て削除するタスク
  */
-task cleanDocs(type: Delete) {
-    delete fileTree('docs/') {
-        include '**/*'
-    }
+tasks.register('cleanDocs', Delete) {
+    group 'documentation'
+    description 'Task to delete all files and directories under docs/'
+    // docs/ ディレクトリは残しその配下のファイルとディレクトリを全て削除
+    delete file('docs/').listFiles()
 }
 
 /**
  * Asciidoc 文章とファイルシステムの画像の整合性を確認するユーティリティタスク
- * 未使用画像とリンク切れ画像の一覧を出力する。
  *
- * ./gradlew checkSyncImage
+ * src/docs/asciidoc 内の未使用画像と .adoc からのリンク切れ画像の一覧を出力する。
+ * 処理は一覧の表示のみで未使用画像ファイルの削除は行わない。
+ * また .adoc からのリンク切れもエラー終了しない。
+ * ./gradlew -q checkSyncImage
  *
  * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
  */
 tasks.register('checkSyncImage', SyncImageTask) {
+    group 'documentation'
+    description 'Utility to check the consistency of Asciidoc text and file system images'
     // 起点の文書ディレクトリ
     baseDir = file('src/docs/asciidoc')
     // 起点の Asciidoc 文書（include を辿る）
     index = 'index.adoc'
     // ファイルシステム上で画像として認識する拡張子
+    // 文書内で image:: として使われているファイル全ての拡張子を設定すること
     imageExt = ['png', 'jpg', 'jpeg', 'svg']
 }
 
 /**
- * Asciidoc 文書から HTML/PDF 文書を生成し docs 配下に出力するタスク
+ * Asciidoc 文書から HTML/PDF 文書を生成し配布可能な状態で docs 配下に出力するタスク
  *
  * ./gradlew docs
  */
-task docs(dependsOn: [asciidoctor, asciidoctorPdf, cleanDocs]) doLast {
-    // build に生成された文書を docs にコピー
-    copy {
-        from 'build/docs/asciidoc/index.html'
-        from 'build/docs/asciidocPdf/index.pdf'
-        into 'docs/'
-    }
-    // build に出力されたダイアログ生成画像を含む全ての画像を HTML 文書用に docs にコピー
-    copy {
-        from 'build/docs/asciidoc/'
+tasks.register('docs', Copy) {
+    dependsOn(asciidoctor, asciidoctorPdf, cleanDocs)
+    group 'documentation'
+    description 'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'
+    // build に生成された PDF/HML 文書を docs にコピー
+    from 'build/docs/asciidoc/index.html'
+    from 'build/docs/asciidocPdf/index.pdf'
+    // HTML 文書用に build に出力されたダイアログ生成画像、表紙裏表紙カバー PDF を含む
+    // 各 images 配下の全ての画像リソースを docs にコピー
+    from('build/docs/asciidoc/') {
         include 'Chapter*/images/*'
-        into 'docs'
     }
+    into 'docs/'
 }
