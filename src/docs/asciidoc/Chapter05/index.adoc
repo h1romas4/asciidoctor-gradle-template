@@ -1,0 +1,198 @@
+include::../attribute.adoc[]
+
+== Gradle ビルドの詳細
+
+本項では、これまで使ってきた ``docs`` や ``clean`` のような Gradle タスクの詳細を解説します。この内容は執筆には直接影響しませんが、知っておくことでプロジェクトフォルダ構成の修正をすることができます。
+
+また、リポジトリ上で提供されるタスクには、ここまで登場しなかった執筆中に有用と思われるユーティリティタスクを含めています。これらのタスクの利用法についても合わせて解説します。
+
+[format="csv", cols="1,2"]
+[frame="topbot", grid="none", options="header"]
+[caption=""]
+.執筆で使う Gradle タスク一覧
+|======
+タスク名, 役割
+``docs``, ``src/docs/asciidoc/index.adoc`` の Asciidoc 文書を HTML/PDF 文書に変換し ``docs`` フォルダに格納します。
+``clean``, ``build`` フォルダ配下のファイルを削除しビルドを初期化します。
+``checkPdfInfo``, 追加のユーティリティタスクです。``docs/index.pdf`` 文書から PDF ファイルのメタ情報を出力します。不要な情報が混入していないかの確認に使えます。
+``checkSyncImage``, 追加のユーティリティタスクです。``src/docs/asciidoc`` 内にある画像ファイルと Asciidoc 文書からリンクされている画像リソースを比較し、リンクされていない画像やリンク切れファイルを出力します。過去に使われ必要なくなった画像ファイルを検出するのに便利です。
+|======
+
+=== Gradle タスクの実行方法
+
+各々のタスクは ``build.gradle`` ファイルで定義され、``gradlew`` シェルスクリプト（Windows では ``gradlew.bat``）から Java を介して処理が実行されます。
+
+[source, bash]
+[caption="手順. "]
+.Gradle タスクの実行（mscOS / Linux）
+----
+./gradlew docs # <1>
+----
+<1> ``docs`` 部分がタスク名。
+
+[source, bash]
+[caption="手順. "]
+.Gradle タスクの実行（Windows）
+----
+.\gradlew docs # <1>
+----
+<1> ``docs`` 部分がタスク名。 ``gradlew`` 部分は拡張子省略形で実際に動作しているのは ``gradlew.bat`` ファイルとなる。
+
+TIP: Windows PowerShell でのタスクの実行では ``./gradlew docs`` とパス区切りを ``\`` ではなく、macOS や Linux と同様に ``/`` とすることでも動作します。ここからの解説では ``./gradlew`` に表記を統一して示します。
+
+なお、Gradle が持つ全てのタスクは ``tasks`` により出力でき、文書のビルドで使われるタスクは ``Documentation tasks`` グループに配置されています。
+
+[source,bash]
+[caption="手順. "]
+.``gradlew tasks`` の実行
+----
+$ ./gradlew tasks
+..snip..
+Documentation tasks
+-------------------
+asciidoctor - Generic task to convert AsciiDoc files and copy related resources
+asciidoctorPdf - Convert AsciiDoc files to PDF format
+checkPdfInfo - Utility task to check PDF document metadata
+checkSyncImage - Utility to check the consistency of Asciidoc text and file system images
+cleanDocs - Task to delete all files and directories under docs/
+docs - Generate HTML/PDF documents from Asciidoc documents and output them under docs/
+..snip..
+----
+
+=== ``docs`` タスク
+
+``src/docs/asciidoc`` 配下の Asciidoc 文書を HTML/PDF 文書に変換し ``docs`` フォルダに配置するタスクです。
+
+[source, bash]
+[caption="手順. "]
+.``docs`` タスク
+----
+./gradlew docs
+----
+
+実際の動作としては、``docs`` タスクが依存している Asciidoctor Gradle Plugin の ``asciidoctor`` 及び ``asciidoctorPdf`` タスクが文書変換処理を担います。
+
+NOTE: 各タスクの出力は ``build`` フォルダで、``clean`` タスクは ``build`` フォルダ内のファイルを削除するタスクです。
+
+``asciidoctor`` 及び ``asciidoctorPdf`` タスクの定義は次のとおりです。
+
+[source, groovy]
+[caption="ソース. "]
+.``build.gradle`` の ``asciidoctor`` タスク定義
+----
+asciidoctor {
+    dependsOn asciidoctorGemsPrepare // <1>
+    baseDir file('src/docs/asciidoc') // <2>
+    sources {
+        include 'index.adoc' // <3>
+    }
+    resources {
+        from('src/docs/asciidoc') {
+            include 'Chapter*/images/*' // <4>
+        }
+    }
+    asciidoctorj {
+        attributes 'stylesdir': '@style',
+            'stylesheet': 'asciidoctor.css' // <5>
+    }
+}
+----
+<1> 追加の Ruby スクリプトを最初にロードする。
+<2> Asciidoc 文書の起点フォルダ。
+<3> Asciidoc 文書の起点ファイル。
+<4> 画像リソース定義。
+<5> HTML 文書用のスタイル CSS 定義。
+
+[source, groovy]
+[caption="ソース. "]
+.``build.gradle`` の ``asciidoctorPdf`` タスク定義
+----
+asciidoctorPdf {
+    dependsOn asciidoctorGemsPrepare // <1>
+    baseDir file('src/docs/asciidoc') // <2>
+    fontsDir file('src/docs/asciidoc/@font') // <3>
+    sources {
+        include 'index.adoc' // <4>
+    }
+    asciidoctorj {
+        attributes 'pdf-themesdir': "@style",
+            'pdf-theme': 'pdf-theme.yml' // <5>
+    }
+}
+----
+<1> 追加の Ruby スクリプトを最初にロードする。
+<2> Asciidoc 文書の起点フォルダ。
+<3> PDF 文書用のフォントフォルダ定義。
+<4> Asciidoc 文書の起点ファイル。
+<5> PDF 文書のテーマ定義。
+
+また ``asciidoctorj`` 定義では、文書変換スクリプトで使われる AsciidoctorJ や周辺モジュールのバージョン設定をしています。
+
+[source, groovy]
+[caption="ソース. "]
+.``build.gradle`` の ``asciidoctorj`` 定義
+----
+asciidoctorj {
+    version = '2.5.6' // <1>
+    modules {
+        diagram.use()
+        diagram.version '2.2.8' // <2>
+        pdf.version '1.6.2' // <3>
+    }
+    requires = [ // <4>
+        'asciidoctor-diagram',
+        'prawn_svg_font_patch', // <5>
+        'asciidoctor/nabetani', // <6>
+    ]
+    attributes 'source-highlighter': 'rouge' // <7>
+}
+
+----
+<1> AsciidoctorJ のバージョン指定。最新バージョンにすることができますが、破壊的変更がある場合にビルドが失敗する場合があるので注意します。
+<2> ダイアログ記法を処理する asciidoctor-diagram のバージョン指定。
+<3> PDF 文書変換をする asciidoctor-pdf のバージョン指定。日本語禁則処理が ``1.6.2`` に依存しているため本ビルドでは固定。
+<4> Asciidoctor が使う Ruby スクリプト名の定義。追加のスクリプトは ``gradle/repos/gem`` 配下に Ruby Gem として配置する。
+<5> ダイアログ記法で使われるフォントを日本語にパッチするスクリプト。
+<6> PDF 文書で日本語禁則処理を行う asciidoctor-nabetani の導入。asciidoctor-pdf ``1.6.2`` に依存します。
+
+``docs`` タスクでは、これらの Asciidoctor Gradle Plugin を事前の依存とし、処理完了後に ``build`` フォルダに生成された文書及びリソースを ``docs`` フォルダにコピーしています。
+
+[source, groovy]
+[caption="ソース. "]
+.``build.gradle`` の ``docs`` タスク定義
+----
+tasks.register('docs', Copy) {
+    dependsOn(asciidoctor, asciidoctorPdf, cleanDocs)
+    group 'documentation'
+    description 'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'
+    // build に生成された PDF/HML 文書を docs にコピー
+    from 'build/docs/asciidoc/index.html'
+    from 'build/docs/asciidocPdf/index.pdf'
+    // HTML 文書用に build に出力されたダイアログ生成画像、表紙裏表紙カバー PDF を含む
+    // 各 images 配下の全ての画像リソースを docs にコピー
+    from('build/docs/asciidoc/') {
+        include 'Chapter*/images/*'
+    }
+    into 'docs/'
+}
+----
+
+また、``docs`` の事前依存となっている ``cleanDocs`` タスクでは ``docs`` フォルダのクリーンアップを行っています。
+
+[source, groovy]
+[caption="ソース. "]
+.``build.gradle`` の ``cleanDocs`` タスク定義
+----
+tasks.register('cleanDocs', Delete) {
+    group 'documentation'
+    description 'Task to delete all files and directories under docs/'
+    // docs/ ディレクトリは残しその配下のファイルとディレクトリを全て削除
+    delete file('docs/').listFiles()
+}
+----
+
+TIP: ビルドスクリプト中に現れるパスを変更することで、プロジェクトフォルダのファイル・フォルダ構成を変更することができます。
+
+=== `checkPdfInfo` タスク
+
+=== `checkSyncImage` タスク
