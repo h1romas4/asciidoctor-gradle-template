@@ -58,7 +58,7 @@ jobs:
         # create document
         ./gradlew docs
         # output unused images and test Gradle task
-        ./gradlew checkSyncImage
+        ./gradlew -q checkSyncImage
 
     - name: Build with Gradle (macOS)
       if: startsWith(matrix.os, 'macos')
@@ -68,7 +68,7 @@ jobs:
         # create document
         ./gradlew docs
         # output unused images and test Gradle task
-        ./gradlew checkSyncImage
+        ./gradlew -q checkSyncImage
 
     - name: Build with Gradle (Windows)
       if: startsWith(matrix.os, 'windows')
@@ -79,7 +79,7 @@ jobs:
         # create document
         .\gradlew docs
         # output unused images and test Gradle task
-        .\gradlew checkSyncImage
+        .\gradlew -q checkSyncImage
 
     - name: Check
       shell: bash
@@ -92,11 +92,23 @@ jobs:
         file docs/index.pdf | grep PDF
         file docs/index.html | grep HTML
 
-    - name: Output PDF information
+    - name: Output PDF information (Ubuntu)
       if: startsWith(matrix.os, 'ubuntu')
       run: |
         echo "# PDF information"
-        pdfinfo docs/index.pdf
+        ./gradlew -q checkPdfInfo
         echo "# URLs in document"
         pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
-        echo "# Unused images"
+
+    - name: Output PDF information
+      if: startsWith(matrix.os, 'windows')
+      shell: pwsh
+      run: |
+        echo "# PDF information"
+        .\gradlew -q checkPdfInfo
+
+    - name: Output PDF information (macOS)
+      if: startsWith(matrix.os, 'macos')
+      run: |
+        echo "# PDF information"
+        ./gradlew -q checkPdfInfo

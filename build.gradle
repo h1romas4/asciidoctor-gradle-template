@@ -102,6 +102,20 @@ tasks.register('checkSyncImage', SyncImageTask) {
 }
 
 /**
+ * PDF 文書のメタデータを確認するユーティリティタスク
+ *
+ * ./gradlew -q checkPdfInfo
+ *
+ * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
+ */
+tasks.register('checkPdfInfo', PdfInfoTask) {
+    group 'documentation'
+    description 'Utility task to check PDF document metadata'
+    // 確認する PDF 文書
+    pdfFile = file('docs/index.pdf')
+}
+
+/**
  * Asciidoc 文書から HTML/PDF 文書を生成し配布可能な状態で docs 配下に出力するタスク
  *
  * ./gradlew docs
