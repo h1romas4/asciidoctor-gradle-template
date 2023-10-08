@@ -47,10 +47,10 @@ abstract class SyncImageTask extends DefaultTask {
      * @return [] baseDir からの相対画像パスリスト
      */
     static def searchImageInAdoc(baseDir, index) {
-        def asciidoctor = Asciidoctor.Factory.create();
+        def asciidoctor = Asciidoctor.Factory.create()
         // include パスを辿るために SafeMode.SAFE と baseDir を設定
         def options = Options.builder().safe(SafeMode.SAFE).baseDir(baseDir).build()
-        def document = asciidoctor.load(new File("${baseDir}/${index}").getText(), options);
+        def document = asciidoctor.load(new File("${baseDir}/${index}").getText(), options)
 
         document.findBy(["context": ":image"]).collect {
             "${it.attributes.imagesdir}/${it.attributes.target}"
