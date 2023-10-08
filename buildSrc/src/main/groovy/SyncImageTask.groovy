@@ -25,13 +25,13 @@ abstract class SyncImageTask extends DefaultTask {
      * 起点 Asciidoc 文書（include も処理する）
      */
     @Input
-    def index
+    String index
 
     /**
      * 画像として認識するファイルシステム上の拡張子
      */
     @Input
-    def imageExt = ['png', 'jpg']
+    ArrayList<String> imageExt = ['png', 'jpg']
 
     /**
      * 未使用画像をファイルシステムから削除するかどうかを決定するフラグ（TODO: 未実装）
