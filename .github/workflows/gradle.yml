@@ -100,7 +100,7 @@ jobs:
         echo "# URLs in document"
         pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
 
-    - name: Output PDF information
+    - name: Output PDF information (Windows)
       if: startsWith(matrix.os, 'windows')
       shell: pwsh
       run: |
