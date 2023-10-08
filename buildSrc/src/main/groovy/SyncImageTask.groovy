@@ -124,3 +124,4 @@ abstract class SyncImageTask extends DefaultTask {
         }
     }
 }
+
