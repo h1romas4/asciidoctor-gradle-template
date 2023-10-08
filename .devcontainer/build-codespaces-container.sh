@@ -1,5 +1,5 @@
 #
-# build contaner for GitHub Codespaces
+# build container for GitHub Codespaces
 #
 sudo apt-get -y update
 sudo apt-get -y upgrade
