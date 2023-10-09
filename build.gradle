@@ -87,7 +87,7 @@ tasks.register('cleanDocs', Delete) {
  * また .adoc からのリンク切れもエラー終了しない。
  * ./gradlew -q checkSyncImage
  *
- * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
+ * @see buildSrc/src/main/groovy/SyncImageTask.groovy
  */
 tasks.register('checkSyncImage', SyncImageTask) {
     group 'documentation'
@@ -106,7 +106,7 @@ tasks.register('checkSyncImage', SyncImageTask) {
  *
  * ./gradlew -q checkPdfInfo
  *
- * @see buildSrc/src/main/groovy/AsciidocTasks.groovy
+ * @see buildSrc/src/main/groovy/PdfInfoTask.groovy
  */
 tasks.register('checkPdfInfo', PdfInfoTask) {
     group 'documentation'
