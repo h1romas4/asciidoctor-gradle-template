@@ -2,7 +2,7 @@ include::../attribute.adoc[]
 
 == Gradle ビルドの詳細
 
-本項では、これまで使ってきた ``docs`` や ``clean`` のような Gradle タスクの詳細を解説します。この内容は執筆には直接影響しませんが、知っておくことでプロジェクトフォルダ構成変更や変換のカスタマイズが行えます。
+本項では、これまで使ってきた ``docs`` や ``clean`` のような Gradle タスクの詳細を解説します。この内容は執筆に直接影響しませんが、予備知識として知ることでプロジェクトフォルダ構成変更などビルドのカスタマイズが行えます。
 
 また、リポジトリ上で提供されるタスクには、ここまで登場しなかった執筆中に有用と思われるユーティリティタスクを含めています。これらのタスクの利用法についても合わせて解説します。
 
@@ -20,7 +20,7 @@ include::../attribute.adoc[]
 
 === Gradle タスクの実行方法
 
-各々のタスクは ``build.gradle`` ファイルで定義され、``gradlew`` シェルスクリプト（Windows では ``gradlew.bat``）から Java を介して処理が実行されます。
+各々のタスクは ``build.gradle`` ファイルで定義され、``gradlew`` シェルスクリプト（Windows では ``gradlew.bat``）からタスク名を指定することで処理が実行されます。
 
 [source, bash]
 [caption="手順. "]
@@ -70,14 +70,12 @@ docs - Generate HTML/PDF documents from Asciidoc documents and output them under
 ./gradlew docs
 ----
 
-実際の動作としては、``docs`` タスクが依存している Asciidoctor Gradle Plugin の ``asciidoctor`` 及び ``asciidoctorPdf`` タスクが文書変換処理を担います。
-
-NOTE: 各タスクの出力は ``build`` フォルダで、``clean`` タスクは ``build`` フォルダ内のファイルを削除するタスクです。
+実際の動作としては Asciidoctor Gradle Plugin の ``asciidoctor`` 及び ``asciidoctorPdf`` タスクが文書変換処理を担います。
 
 ``asciidoctor`` 及び ``asciidoctorPdf`` タスクの定義は次のとおりです。
 
 [source, groovy]
-[caption="ソース. "]
+[caption=""]
 .``build.gradle`` の ``asciidoctor`` タスク定義
 ----
 asciidoctor {
@@ -104,7 +102,7 @@ asciidoctor {
 <5> HTML 文書用のスタイル CSS 定義。
 
 [source, groovy]
-[caption="ソース. "]
+[caption=""]
 .``build.gradle`` の ``asciidoctorPdf`` タスク定義
 ----
 asciidoctorPdf {
@@ -126,10 +124,12 @@ asciidoctorPdf {
 <4> Asciidoc 文書の起点ファイル。
 <5> PDF 文書のテーマ定義。
 
+NOTE: 両タスクの結果の出力先は ``build`` フォルダとなっており、``clean`` タスクの実態は ``build`` フォルダ内のファイルを削除する処理です。
+
 また ``asciidoctorj`` 定義では、文書変換スクリプトで使われる AsciidoctorJ や周辺モジュールのバージョン設定をしています。
 
 [source, groovy]
-[caption="ソース. "]
+[caption=""]
 .``build.gradle`` の ``asciidoctorj`` 定義
 ----
 asciidoctorj {
@@ -150,17 +150,27 @@ asciidoctorj {
 ----
 <1> AsciidoctorJ のバージョン指定。最新バージョンを指定できますが、破壊的変更がある場合にビルドが失敗する場合があるので注意します。
 <2> ダイアログ記法を処理する asciidoctor-diagram のバージョン指定。
-<3> PDF 文書変換をする asciidoctor-pdf のバージョン指定。日本語禁則処理が ``1.6.2`` に依存しているため本ビルドでは固定。
-<4> Asciidoctor が使う Ruby スクリプト名の定義。追加のスクリプトは ``build.gradle`` 上部の ``dependencies`` 部分で定義し ``gradle/repos/gem`` 配下に Ruby Gem として配置する。
+<3> PDF 文書変換をする asciidoctor-pdf のバージョン指定。日本語禁則処理が ``1.6.2`` に依存しているため本ビルドでは固定です。
+<4> Asciidoctor が使う Ruby スクリプト名の定義。追加のスクリプトは ``build.gradle`` ファイル上部の ``dependencies`` 部分で定義し ``gradle/repos/gem`` 配下に Ruby Gem として配置します。
 <5> ダイアログ記法で使われるフォントを日本語にパッチするスクリプト。
 <6> PDF 文書で日本語禁則処理を行う asciidoctor-nabetani の導入。asciidoctor-pdf ``1.6.2`` に依存します。
 
-TIP: Asciidoc 文書変換中に追加の処理が必要な場合は、Asciidoc カスタムコンバータを作成し Ruby Gem 形式でプロジェクトフォルダに配置・実行することができます。
+[TIP]
+====
+Asciidoc 文書変換で追加の処理が必要な場合は、Asciidoc カスタムコンバータを作成し Ruby Gem 形式でプロジェクトフォルダに配置・実行できます。カスタムコンバータの詳細については以下のドキュメントを参照してください。
 
-``docs`` タスクでは、これらの Asciidoctor Gradle Plugin を事前の依存とし、処理完了後に ``build`` フォルダに生成された文書及びリソースを ``docs`` フォルダにコピーしています。
+[quote, Custom Converter | Asciidoctor Docs]
+____
+https://docs.asciidoctor.org/asciidoctor/latest/convert/custom/
+
+Asciidoctor supports custom converters. If you want to produce an output format that’s not supported by a built-in converter or any of the available converters in the ecosystem, you can create and use your own converter.
+____
+====
+
+起動タスクとなっている ``docs`` タスクでは、これらの Asciidoctor Gradle Plugin が事前実行依存として設定してあり、文書変換処理完了後に ``build`` フォルダに生成された文書及びリソースを ``docs`` フォルダにコピーします。
 
 [source, groovy]
-[caption="ソース. "]
+[caption=""]
 .``build.gradle`` の ``docs`` タスク定義
 ----
 tasks.register('docs', Copy) {
@@ -179,10 +189,10 @@ tasks.register('docs', Copy) {
 }
 ----
 
-また、``docs`` の事前依存となっている ``cleanDocs`` タスクでは ``docs`` フォルダのクリーンアップを行っています。
+また、``docs`` の依存にひとつとなっている ``cleanDocs`` タスクでは ``docs`` フォルダのクリーンアップを行っています。
 
 [source, groovy]
-[caption="ソース. "]
+[caption=""]
 .``build.gradle`` の ``cleanDocs`` タスク定義
 ----
 tasks.register('cleanDocs', Delete) {
@@ -193,8 +203,121 @@ tasks.register('cleanDocs', Delete) {
 }
 ----
 
-TIP: ビルドスクリプト中に現れるパスを変更することで、プロジェクトフォルダのファイル・フォルダ構成を変更できます。
+TIP: 本項で現れたビルドスクリプト中に現れるパスを変更することで、プロジェクトフォルダのファイル・フォルダ構成を変更できます。
 
-=== `checkPdfInfo` タスク
+=== ``checkPdfInfo`` タスク
 
-=== `checkSyncImage` タスク
+``checkPdfInfo`` タスクは ``docs/index.pdf`` に生成された PDF のメタ情報を出力します。
+
+[source, bash]
+[caption="手順. "]
+.``checkPdfInfo`` タスクの実行
+----
+./gradlew -q checkPdfInfo
+----
+
+TIP: ``gradlew`` の -q`` オプションは Gradle からのビルドメッセージ出力を抑止し、タスクからの出力を見やすくするオプションです。
+
+このタスクの出力結果は次のようになります。
+
+[source, bash]
+[caption="手順. "]
+.``checkPdfInfo`` タスクの出力例
+----
+Content-Type: application/pdf
+access_permission:assemble_document: true
+access_permission:can_modify: true
+access_permission:can_print: true
+access_permission:can_print_degraded: true
+access_permission:extract_content: true
+access_permission:extract_for_accessibility: true
+access_permission:fill_in_form: true
+access_permission:modify_annotations: true
+dc:creator: https://github.com/h1romas4/asciidoctor-gradle-template
+dc:format: application/pdf; version=1.4
+dc:title: AsciidoctorとGradleでつくる文書執筆環境
+dcterms:created: 2023-10-04T06:17:20Z
+dcterms:modified: 2023-09-25T08:40:46Z
+pdf:PDFVersion: 1.4
+pdf:annotationSubtypes: Link
+pdf:annotationTypes: null
+pdf:charsPerPage: 0
+pdf:containsDamagedFont: false
+pdf:containsNonEmbeddedFont: false
+pdf:docinfo:created: 2023-10-04T06:17:20Z
+pdf:docinfo:creator: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:docinfo:creator_tool: Asciidoctor PDF 1.6.2, based on Prawn 2.4.0
+pdf:docinfo:modified: 2023-09-25T08:40:46Z
+pdf:docinfo:producer: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:docinfo:title: AsciidoctorとGradleでつくる文書執筆環境
+pdf:encrypted: false
+pdf:hasCollection: false
+pdf:hasMarkedContent: false
+pdf:hasXFA: false
+pdf:hasXMP: false
+pdf:num3DAnnotations: 0
+pdf:overallPercentageUnmappedUnicodeChars: 0.0
+pdf:producer: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:totalUnmappedUnicodeChars: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+xmp:CreatorTool: Asciidoctor PDF 1.6.2, based on Prawn 2.4.0
+xmpTPg:NPages: 77
+----
+
+PDF 文書のメタ情報には、主に ``src/docs/asciidoc/index.adoc`` で設定したタイトルや著者名などが記録されますが、本タスクで正しく設定されているかを確認できます。
+
+=== ``checkSyncImage`` タスク
+
+``checkSyncImage`` タスクは、Asciidoc 文書から使われている画像リソースと ``src/docs/asciidoc`` 内のファイルを比較し一致性を出力します。特に未使用画像を検出するのに便利なタスクです。
+
+[source, bash]
+[caption="手順. "]
+.``checkSyncImage`` タスクの実行
+----
+./gradlew -q checkSyncImage
+----
+
+このタスクの出力結果は次のようになります。
+
+[source, bash]
+[caption="手順. "]
+.``checkPdfInfo`` タスクの出力例
+----
+::Unused images:
+Chapter01/images/unused-image-1.png
+Chapter03/images/unused-image-1.png
+::Image not found:
+Chapter01/images/2023-09-17-13-43-06.png
+----
+
+それぞれの出力項目の内容は次のとおりです。なお、タスクの実行で何も出力されず正常終了した場合は、Asciidoc 文書と画像ファイルが整合していることを示します。
+
+``::Unused images:``::
+    Asciidoc 文書からリンクされていない未使用画像ファイルの一覧。削除することができます。
+``::Image not found:``::
+    Asciidoc 文書からリンクされているが存在しない画像ファイルの一覧。これは ``docs`` タスクでも警告となりますが、文書を修正する必要があります。
+
+TIP: ``::Unused images:`` に申告されたファイルは未使用ながら ``docs`` 配下の HTML 文書用画像フォルダに転送されます。HTML 文書の配布を行う場合は、本タスクで検出して ``src/docs/asciidoc`` フォルダから削除後、再度文書のビルドをしてクリーンアップすると良いでしょう。
+
+本タスクの設定は、``build.gradle`` の次の記述で行われています。
+
+[source, groovy]
+[caption=""]
+.``build.gradle`` の ``checkSyncImage`` タスク定義
+----
+tasks.register('checkSyncImage', SyncImageTask) {
+    group 'documentation'
+    description 'Utility to check the consistency of Asciidoc text and file system images'
+    // 起点の文書ディレクトリ
+    baseDir = file('src/docs/asciidoc')
+    // 起点の Asciidoc 文書（include を辿る）
+    index = 'index.adoc'
+    // ファイルシステム上で画像として認識する拡張子
+    // 文書内で image:: として使われているファイル全ての拡張子を設定すること
+    imageExt = ['png', 'jpg', 'jpeg', 'svg']
+}
+----
+
+画像ファイルは ``imageExt`` 変数で設定された拡張子をもって識別しています。
+
+もし設定されている以外の画像拡張子が Asciidoc 文書で使われている場合は、``::Image not found:`` としてリンク切れで認識されます。必要に応じて設定を修正してください。
