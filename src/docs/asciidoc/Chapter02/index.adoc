@@ -860,9 +860,9 @@ Zen Mode は、VS Code や OS の不要なコンポーネントが見えなく�
 
 ==== 文書ファイルの変換テストと検査（gradle.yml）
 
-git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。macOS、Linux、Windows のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。
+git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。macOS、Linux、Windows のそれぞれの環境で、Java 11/17/21 においてビルドが試行され、一定の検査が行われます。
 
-環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、文書のビルドが実行できることへの確信が持てるはずです。
+環境はマトリクスになっており、計 9 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、文書のビルドが実行できることへの確信が持てるはずです。
 
 検査に関しては、文書が生成されたかを基本として確認を行い、文書の内容自体に対しては行われません。
 
@@ -874,7 +874,7 @@ git による main ブランチへの push 操作を契機に自動的に動作�
 
 .`.github/workflows/gradle.yml`
 [caption=""]
-[source,yml]
+[source, yml]
 ----
 - name: Check
   shell: bash
@@ -893,18 +893,20 @@ git による main ブランチへの push 操作を契機に自動的に動作�
 
 .`.github/workflows/gradle.yml`
 [caption=""]
-[source,yml]
+[source, yml]
 ----
-- name: Output PDF information
+- name: Output PDF information (Ubuntu)
   if: startsWith(matrix.os, 'ubuntu')
   run: |
     echo "# PDF information"
-    pdfinfo docs/index.pdf
+    ./gradlew -q checkPdfInfo # <1>
     echo "# URLs in document"
-    pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq
+    pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq # <2>
 ----
+<1> PDF 文書のメタ情報を出力。
+<2> ``pdfinfo`` コマンドで PDF 文書中に含まれる URL 文字列を抽出。
 
-NOTE: この部分は `pdfinfo` コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
+NOTE: ``pdfinfo`` コマンド部分は Ubuntu ビルドのみ対応しています。また、メタ情報に関する合否確認は組み込んでいませんので必要であればカスタマイズしてください。
 
 なお、文書が問題なく変換ができたことの証となる「バッジ」を以下のようにすることで画像として取得可能です。正常の場合はグリーンに、失敗の場合は赤で表示されます。
 
@@ -941,7 +943,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-22.04, windows-latest, macos-latest ] # <1>
-        java: [ '11', '17' ] # <2>
+        java: [ '11', '17', '21' ] # <2>
 ----
 
 <1> `os: [ windows-latest ]` とすると Windows のみでビルドされます。
@@ -951,7 +953,7 @@ jobs:
 ====
 設定する OS や Java のバージョンは、メインで使われている執筆環境と合わせると良いでしょう。
 
-本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11 | 17 の計 6 環境で文書のビルドと確認を実施しています。
+本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11/17/21 の計 9 環境で文書のビルドと確認を実施しています。
 ====
 
 リリースされる文書のファイル名や付与されるバージョン番号については、スクリプトの次の部分で指定されています。執筆する文書に合わせて変更してください。
