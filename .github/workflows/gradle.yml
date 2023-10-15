@@ -44,7 +44,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v3
       with:
-        distribution: 'corretto'
+        distribution: 'temurin'
         java-version: ${{ matrix.java }}
 
     - name: Build with Gradle (Ubuntu)

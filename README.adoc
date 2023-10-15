@@ -10,6 +10,10 @@ image::https://github.com/h1romas4/asciidoctor-gradle-template/workflows/Build/b
 
 image:https://gitpod.io/button/open-in-gitpod.svg[Open in Gitpod, link=https://gitpod.io/#https://github.com/h1romas4/asciidoctor-gradle-template]
 
+== Try with Codespaces
+
+image:https://github.com/codespaces/badge.svg[Open in Codespaces, link=https://codespaces.new/h1romas4/docs/asciidoctor-gradle-template]
+
 == License
 
 MIT License

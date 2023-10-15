@@ -1,4 +1,3 @@
-import java.io.File
 import groovy.io.FileType
 import org.asciidoctor.Asciidoctor
 import org.asciidoctor.SafeMode
@@ -25,19 +24,13 @@ abstract class SyncImageTask extends DefaultTask {
      * 起点 Asciidoc 文書（include も処理する）
      */
     @Input
-    def index
+    String index
 
     /**
      * 画像として認識するファイルシステム上の拡張子
      */
     @Input
-    def imageExt = ['png', 'jpg']
-
-    /**
-     * 未使用画像をファイルシステムから削除するかどうかを決定するフラグ（TODO: 未実装）
-     */
-    @Input
-    boolean remove = false
+    ArrayList<String> imageExt = ['png', 'jpg']
 
     /**
      * Asciidoc 文書から image ブロックの画像パスをリスト取得
@@ -47,10 +40,10 @@ abstract class SyncImageTask extends DefaultTask {
      * @return [] baseDir からの相対画像パスリスト
      */
     static def searchImageInAdoc(baseDir, index) {
-        def asciidoctor = Asciidoctor.Factory.create();
+        def asciidoctor = Asciidoctor.Factory.create()
         // include パスを辿るために SafeMode.SAFE と baseDir を設定
         def options = Options.builder().safe(SafeMode.SAFE).baseDir(baseDir).build()
-        def document = asciidoctor.load(new File("${baseDir}/${index}").getText(), options);
+        def document = asciidoctor.load(new File("${baseDir}/${index}").getText(), options)
 
         document.findBy(["context": ":image"]).collect {
             "${it.attributes.imagesdir}/${it.attributes.target}"
@@ -64,7 +57,7 @@ abstract class SyncImageTask extends DefaultTask {
      * @param extension 検索拡張子文字列リスト
      * @return [] baseDir からの相対パスリスト
      */
-    static def searchExtInDir(File baseDir, extension) {
+    static def searchExtInDir(baseDir, extension) {
         def list = []
         def basePath = "${baseDir}" + File.separator
         def ext = extension.collect {
@@ -83,11 +76,11 @@ abstract class SyncImageTask extends DefaultTask {
     /**
      * リスト形式の文字列を表示用に縦に出力
      *
-     * @param lists 文字列リスト
+     * @param list 文字列リスト
      * @param prefix 前置文字列
      */
-    static def printls(lists, prefix = "") {
-        lists.each {
+    static def printls(list, prefix = "") {
+        list.each {
             println "${prefix}${it}"
         }
     }
@@ -97,8 +90,8 @@ abstract class SyncImageTask extends DefaultTask {
      *
      * @param lists 文字列リスト
      */
-    static def normalizePath(lists) {
-        lists.collect {
+    static def normalizePath(list) {
+        list.collect {
             it.replace(File.separator, "/")
         }
     }
@@ -124,4 +117,3 @@ abstract class SyncImageTask extends DefaultTask {
         }
     }
 }
-

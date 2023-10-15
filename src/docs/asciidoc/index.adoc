@@ -27,7 +27,7 @@ endif::[]
 // Producer: https://github.com/h1romas4/asciidoctor-gradle-template
 = AsciidoctorとGradleでつくる文書執筆環境
 https://github.com/h1romas4/asciidoctor-gradle-template
-v4.1.0, 2023-10-01
+v4.2.0, devel
 :toc: macro
 
 // 章ごとにインクルードしていく（画像パスも上書きすること）
@@ -54,6 +54,10 @@ include::Chapter03/index.adoc[]
 // 4章
 :imagesdir: Chapter04/images
 include::Chapter04/index.adoc[]
+
+// 5章
+:imagesdir: Chapter05/images
+include::Chapter05/index.adoc[]
 
 // 奥付
 :imagesdir: Chapter99/images

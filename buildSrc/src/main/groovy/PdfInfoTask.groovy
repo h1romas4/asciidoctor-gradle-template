@@ -1,4 +1,3 @@
-import java.io.File
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.InputFile
@@ -24,12 +23,12 @@ abstract class PdfInfoTask extends DefaultTask {
      */
     @TaskAction
     def checkPdfInfo() {
-        BodyContentHandler handler = new BodyContentHandler()
-        Metadata metadata = new Metadata()
-        FileInputStream input = new FileInputStream(pdfFile)
-        ParseContext context = new ParseContext()
+        def handler = new BodyContentHandler()
+        def metadata = new Metadata()
+        def input = new FileInputStream(pdfFile)
+        def context = new ParseContext()
 
-        PDFParser pdf = new PDFParser()
+        def pdf = new PDFParser()
         pdf.parse(input, handler, metadata, context)
 
         metadata.names().sort().each { name ->
