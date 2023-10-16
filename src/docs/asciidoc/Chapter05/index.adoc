@@ -6,21 +6,28 @@ include::../attribute.adoc[]
 
 また合わせて、ここまで登場しなかった執筆中に有用と思われるユーティリティタスクについても示します。
 
-執筆中に実行する全ての Gradle タスクは次のとおりです。
+本項で解説する Gradle タスクは次のとおりです。
 
 [cols="1,2"]
 [frame="topbot", grid="none", options="header"]
 [caption=""]
-.執筆中に実行する Gradle タスク一覧
+.Gradle タスク一覧
 |======
 |タスク名
 |役割
+|``tasks``
+|``build.gradle`` で定義された全てのタスク名と説明を出力します。
+
 |``docs``
 |``src/docs/asciidoc/index.adoc`` の Asciidoc 文書を HTML/PDF 文書に変換し ``docs`` フォルダに格納します。
 
 |``clean``
 |``build`` フォルダ配下のファイルを削除しビルドを初期化します。 +
-include 先ファイルの更新や PDF テーマの修正など、``.adoc`` 自体に変更がない場合に ``clean`` タスクを実行後、再ビルドすると結果が反映されます。
+include 先ファイルの更新や PDF テーマの修正など、``.adoc`` 自体に変更がない場合に本タスクを実行後、再ビルドすると結果が反映されます。
+
+|``cleanDocs``
+|``docs`` フォルダ配下のファイルを全て削除します。 +
+``docs`` タスクの前提依存となっているため、このタスクを直接実行する機会はほとんどありませんが、ビルドスクリプトのカスタマイズを行う場合に使えるかもしれません。
 
 |``checkPdfInfo``
 |追加のユーティリティタスクです。 +
@@ -51,9 +58,13 @@ include 先ファイルの更新や PDF テーマの修正など、``.adoc`` 自
 ----
 <1> ``docs`` 部分がタスク名。 ``gradlew`` 部分は拡張子省略形で、実際に動作しているのは ``gradlew.bat`` ファイルとなる。
 
-TIP: Windows PowerShell 環境では、パスの区切り文字を ``\`` ではなく、macOS や Linux と同様に ``/`` とすることでも正しく動作します。環境による操作の差異を省くため、ここからの解説ではパス区切りを ``/`` に表記として示します。また、各ユーティリティタスクが出力するパスも ``/`` 形式に統一しています。
+TIP: Windows PowerShell 環境では、パスの区切り文字を ``\`` ではなく、macOS や Linux と同様に ``/`` としても正しく動作します。そこで、ここからの解説では環境による操作の差異を省くため、パス区切りを ``/`` に表記として示します。また、各ユーティリティタスクが出力するパスも ``/`` 形式に統一されています。
 
-なお、Gradle が持つ全てのタスクは ``tasks`` タスクにより出力でき、文書のビルドで使われるタスクは ``Documentation tasks`` グループに配置されていることが分かります。
+=== ``tasks`` タスク
+
+Gradle が持つ全てのタスクは ``tasks`` タスクにより一覧表示できます。
+
+文書のビルドで使われるタスクは ``Documentation tasks`` グループに纏まって出力されます。本タスクは詳細なタスク名を忘れた場合に使うと便利です。
 
 [source,bash]
 [caption="手順. "]
@@ -137,7 +148,7 @@ asciidoctorPdf {
 <4> Asciidoc 文書の起点ファイルです。
 <5> PDF 文書のテーマ定義です。
 
-NOTE: HTML/PDF 変換タスクの結果の出力先は ``build`` フォルダとなっており、``clean`` タスクの実態は ``build`` フォルダ内のファイルを削除する処理です。
+NOTE: ``asciidoctor`` 及び ``asciidoctorPdf`` タスクの実行結果出力先は、プロジェクトフォルダ下の ``build`` テンポラリーフォルダです。なお、ビルドを初期化する ``clean`` タスクの実態は ``build`` フォルダ内のファイルを削除する処理になっています。
 
 また ``asciidoctorj`` 定義では、文書変換スクリプトで使われる AsciidoctorJ や周辺モジュールのバージョン設定をしています。
 
@@ -161,9 +172,9 @@ asciidoctorj {
 }
 
 ----
-<1> AsciidoctorJ のバージョン指定します。最新バージョンを指定できますが、破壊的変更がある場合にビルドが失敗する場合があるので注意します。
-<2> ダイアログ記法を処理する asciidoctor-diagram のバージョン指定です。最新バージョンが指定できます。
-<3> PDF 文書変換をする asciidoctor-pdf のバージョン指定。日本語禁則処理が ``1.6.2`` に依存しているため本ビルドでは固定です。
+<1> AsciidoctorJ のバージョン指定します。最新バージョンを指定できますが、破壊的変更がある場合にビルドが失敗する場合があるので、既存の文書のビルドでバージョンを上げる際には注意します。
+<2> ダイアログ記法を処理する asciidoctor-diagram のバージョン指定です。最新バージョンが指定できます。こちらも既存文書でバージョンを上げる場合は、破壊的変更に注意します。
+<3> PDF 文書変換をする asciidoctor-pdf のバージョン指定です。日本語禁則処理が ``1.6.2`` に依存しているため本ビルドでは固定です。
 <4> Asciidoctor が使う Ruby スクリプトの定義です。追加のスクリプトがある場合は ``build.gradle`` ファイル上部の ``dependencies`` 部分で定義し ``gradle/repos/gem`` 配下に Ruby Gem として配置します。
 <5> ダイアログ記法で使われるフォントを日本語にパッチするスクリプトです。
 <6> PDF 文書で日本語禁則処理を行う asciidoctor-nabetani の導入定義です。asciidoctor-pdf ``1.6.2`` に依存します。
@@ -190,17 +201,16 @@ tasks.register('docs', Copy) {
     dependsOn(asciidoctor, asciidoctorPdf, cleanDocs)
     group 'documentation'
     description 'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'
-    // build に生成された PDF/HML 文書を docs にコピー
-    from 'build/docs/asciidoc/index.html'
-    from 'build/docs/asciidocPdf/index.pdf'
-    // HTML 文書用に build に出力されたダイアログ生成画像、表紙裏表紙カバー PDF を含む
-    // 各 images 配下の全ての画像リソースを docs にコピー
-    from('build/docs/asciidoc/') {
+    from 'build/docs/asciidoc/index.html' // <1>
+    from 'build/docs/asciidocPdf/index.pdf' // <1>
+    from('build/docs/asciidoc/') { // <2>
         include 'Chapter*/images/*'
     }
     into 'docs/'
 }
 ----
+<1> build に生成された PDF/HML 文書を docs にコピーします。
+<2> HTML 文書用に build に出力された画像、ダイアログ記法で生成された SVG、表紙裏表紙カバー PDF を含む、各 images 配下の全ての画像リソースを docs にコピーします。
 
 また、``docs`` の依存にひとつとなっている ``cleanDocs`` タスクでは ``docs`` フォルダのクリーンアップを行っています。
 
