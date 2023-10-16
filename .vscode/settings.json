@@ -1,5 +1,6 @@
 {
     "asciidoc.preview.style": "src/docs/asciidoc/@style/asciidoctor.css",
+    "asciidoc.preview.scrollEditorWithPreview": false,
     "pasteImage.path": "${currentFileDir}/images",
     "pasteImage.basePath": "${currentFileDir}/images",
     "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
