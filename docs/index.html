@@ -657,8 +657,8 @@ pre.rouge {
 <h1>AsciidoctorとGradleでつくる文書執筆環境</h1>
 <div class="details">
 <span id="author" class="author">https://github.com/h1romas4/asciidoctor-gradle-template</span><br>
-<span id="revnumber">バージョン 4.1.0,</span>
-<span id="revdate">2023-10-01</span>
+<span id="revnumber">バージョン 4.2.0,</span>
+<span id="revdate">devel</span>
 </div>
 </div>
 <div id="content">
@@ -873,10 +873,13 @@ pre.rouge {
 </ul>
 </div>
 </dd>
-<dt class="hdlist1">Build Tool</dt>
+<dt class="hdlist1">Java Development Kit &amp; Build Tool</dt>
 <dd>
 <div class="ulist">
 <ul>
+<li>
+<p>Eclipse Temurin - Multi(Apache License 2.0/GPLv2+CE/GPLv2+Assembly) - <a href="https://adoptium.net/about/" class="bare">https://adoptium.net/about/</a></p>
+</li>
 <li>
 <p>SDKMAN - Apache License 2.0 - <a href="https://sdkman.io/" class="bare">https://sdkman.io/</a></p>
 </li>
@@ -987,6 +990,15 @@ pre.rouge {
 <li><a href="#_マインドマップ">4.9. マインドマップ</a></li>
 </ul>
 </li>
+<li><a href="#_gradle_ビルドの詳細">5. Gradle ビルドの詳細</a>
+<ul class="sectlevel2">
+<li><a href="#_gradle_タスクの実行方法">5.1. Gradle タスクの実行方法</a></li>
+<li><a href="#_tasks_タスク">5.2. <code>tasks</code> タスク</a></li>
+<li><a href="#_docs_タスク">5.3. <code>docs</code> タスク</a></li>
+<li><a href="#_checkpdfinfo_タスク">5.4. <code>checkPdfInfo</code> タスク</a></li>
+<li><a href="#_checksyncimage_タスク">5.5. <code>checkSyncImage</code> タスク</a></li>
+</ul>
+</li>
 <li><a href="#_奥付">奥付</a></li>
 </ul>
 </div>
@@ -1027,7 +1039,7 @@ OpenJDK 64-Bit Server VM Temurin-11.0.20.1+1 (build 11.0.20.1+1, mixed mode)</co
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-本文書では Java 11 を用いて解説します。また、ビルド時に僅かに内部処理のワーニングが出力されますが Java 17 でも期待通り動作することを確認しています。Java 21 に関しては周辺ツール対応待ちのステータスです。
+本文書では Java 11 を用いて解説します。また、ビルド時にいくつか内部処理のワーニングが出力されますが Java 17/21 の各 LTS バージョンでも期待通り動作することを確認しています。
 </td>
 </tr>
 </table>
@@ -2887,10 +2899,10 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="sect3">
 <h4 id="_文書ファイルの変換テストと検査gradle_yml">2.10.1. 文書ファイルの変換テストと検査（gradle.yml）</h4>
 <div class="paragraph">
-<p>git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。macOS、Linux、Windows のそれぞれの環境で、Java 11 と 17 においてビルドが試行され、一定の検査が行われます。</p>
+<p>git による main ブランチへの push 操作を契機に自動的に動作する文書変換テストです。macOS、Linux、Windows のそれぞれの環境で、Java 11/17/21 においてビルドが試行され、一定の検査が行われます。</p>
 </div>
 <div class="paragraph">
-<p>環境はマトリクスになっており、計 6 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、文書のビルドが実行できることへの確信が持てるはずです。</p>
+<p>環境はマトリクスになっており、計 9 環境でのテストでビルドが正しいかが確認され GitHub Actions 上のログやメール通知で結果が得られます。自分の執筆環境以外のさまざまな環境で、文書のビルドが実行できることへの確信が持てるはずです。</p>
 </div>
 <div class="paragraph">
 <p>検査に関しては、文書が生成されたかを基本として確認を行い、文書の内容自体に対しては行われません。</p>
@@ -2940,14 +2952,26 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <div class="listingblock">
 <div class="title"><code>.github/workflows/gradle.yml</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Output PDF information</span>
+<pre class="rouge highlight"><code data-lang="yml"><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Output PDF information (Ubuntu)</span>
   <span class="na">if</span><span class="pi">:</span> <span class="s">startsWith(matrix.os, 'ubuntu')</span>
   <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
     <span class="s">echo "# PDF information"</span>
-    <span class="s">pdfinfo docs/index.pdf</span>
+    <span class="s">./gradlew -q checkPdfInfo </span><i class="conum" data-value="1"></i><b>(1)</b>
     <span class="s">echo "# URLs in document"</span>
-    <span class="s">pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq</span></code></pre>
+    <span class="s">pdfinfo -url docs/index.pdf | tail -n +2 | awk '{ print $3 }' | sort | uniq </span><i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>PDF 文書のメタ情報を出力。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>pdfinfo</code> コマンドで PDF 文書中に含まれる URL 文字列を抽出。</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2956,7 +2980,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <i class="fa icon-note" title="注記"></i>
 </td>
 <td class="content">
-この部分は <code>pdfinfo</code> コマンドを活用している関係で Ubuntu ビルドのみ対応しています。また、合否確認は組み込んでいませんので必要であればカスタマイズしてください。
+<code>pdfinfo</code> コマンド部分は Ubuntu ビルドのみ対応しています。また、メタ情報に関する合否確認は組み込んでいませんので必要であればカスタマイズしてください。
 </td>
 </tr>
 </table>
@@ -3005,7 +3029,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
     <span class="na">strategy</span><span class="pi">:</span>
       <span class="na">matrix</span><span class="pi">:</span>
         <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">ubuntu-22.04</span><span class="pi">,</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="na">java</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">11'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">17'</span> <span class="pi">]</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+        <span class="na">java</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">11'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">17'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">21'</span> <span class="pi">]</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -3031,7 +3055,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
 <p>設定する OS や Java のバージョンは、メインで使われている執筆環境と合わせると良いでしょう。</p>
 </div>
 <div class="paragraph">
-<p>本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11 | 17 の計 6 環境で文書のビルドと確認を実施しています。</p>
+<p>本文書はテンプレートとして多くの環境での動作を担保するため、Ubuntu | Windows | macOS 上のそれぞれの Java 11/17/21 の計 9 環境で文書のビルドと確認を実施しています。</p>
 </div>
 </td>
 </tr>
@@ -4531,6 +4555,535 @@ mindmapDiagram {
 </div>
 </div>
 <div class="sect1">
+<h2 id="_gradle_ビルドの詳細">5. Gradle ビルドの詳細</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本項では、これまで使ってきた <code>docs</code> や <code>clean</code> のような Gradle タスクの詳細を解説します。この内容は執筆に直接影響しませんが、予備知識として知ることでプロジェクトフォルダ構成変更などビルドのカスタマイズが行えます。</p>
+</div>
+<div class="paragraph">
+<p>また合わせて、ここまで登場しなかった執筆中に有用と思われるユーティリティタスクについても示します。</p>
+</div>
+<div class="paragraph">
+<p>本項で解説する Gradle タスクは次のとおりです。</p>
+</div>
+<table class="tableblock frame-ends grid-none stripes-even stretch">
+<caption class="title">Gradle タスク一覧</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">タスク名</th>
+<th class="tableblock halign-left valign-top">役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>tasks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build.gradle</code> で定義された全てのタスク名と説明を出力します。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/docs/asciidoc/index.adoc</code> の Asciidoc 文書を HTML/PDF 文書に変換し <code>docs</code> フォルダに格納します。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>clean</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build</code> フォルダ配下のファイルを削除しビルドを初期化します。<br>
+include 先ファイルの更新や PDF テーマの修正など、<code>.adoc</code> 自体に変更がない場合に本タスクを実行後、再ビルドすると結果が反映されます。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cleanDocs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docs</code> フォルダ配下のファイルを全て削除します。<br>
+<code>docs</code> タスクの前提依存となっているため、このタスクを直接実行する機会はほとんどありませんが、ビルドスクリプトのカスタマイズを行う場合に使えるかもしれません。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>checkPdfInfo</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">追加のユーティリティタスクです。<br>
+<code>docs/index.pdf</code> 文書から PDF ファイルに設定されたメタ情報を出力します。このタスクは PDF 文書に誤った情報が混入していないかの確認に使えます。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>checkSyncImage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">追加のユーティリティタスクです。<br>
+<code>src/docs/asciidoc</code> 内にある画像ファイルと Asciidoc 文書からリンクされている画像リソースを比較し、リンクされていない画像やリンク切れファイルを出力します。このタスクは過去に使われ必要なくなった画像ファイルを検出するのに便利です。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_gradle_タスクの実行方法">5.1. Gradle タスクの実行方法</h3>
+<div class="paragraph">
+<p>各々のタスクは <code>build.gradle</code> ファイルで定義され、<code>gradlew</code> シェルスクリプト（Windows では <code>gradlew.bat</code>）からタスク名を指定することで処理が実行されます。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. Gradle タスクの実行（macOS / Linux）</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">./gradlew docs <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>docs</code> 部分がタスク名。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">手順. Gradle タスクの実行（Windows）</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="powershell"><span class="o">.</span><span class="n">\gradlew</span><span class="w"> </span><span class="nx">docs</span><span class="w"> <i class="conum" data-value="1"></i><b>(1)</b>
+</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>docs</code> 部分がタスク名。 <code>gradlew</code> 部分は拡張子省略形で、実際に動作しているのは <code>gradlew.bat</code> ファイルとなる。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+Windows PowerShell 環境では、パスの区切り文字を <code>\</code> ではなく、macOS や Linux と同様に <code>/</code> としても正しく動作します。そこで、ここからの解説では環境による操作の差異を省くため、パス区切りを <code>/</code> に表記として示します。また、各ユーティリティタスクが出力するパスも <code>/</code> 形式に統一されています。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tasks_タスク">5.2. <code>tasks</code> タスク</h3>
+<div class="paragraph">
+<p>Gradle が持つ全てのタスクは <code>tasks</code> タスクにより一覧表示できます。</p>
+</div>
+<div class="paragraph">
+<p>文書のビルドで使われるタスクは <code>Documentation tasks</code> グループに纏まって出力されます。本タスクは詳細なタスク名を忘れた場合に使うと便利です。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>gradlew tasks</code> の実行</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>./gradlew tasks
+..snip..
+Documentation tasks
+<span class="nt">-------------------</span>
+asciidoctor - Generic task to convert AsciiDoc files and copy related resources
+asciidoctorPdf - Convert AsciiDoc files to PDF format
+checkPdfInfo - Utility task to check PDF document metadata
+checkSyncImage - Utility to check the consistency of Asciidoc text and file system images
+cleanDocs - Task to delete all files and directories under docs/
+docs - Generate HTML/PDF documents from Asciidoc documents and output them under docs/
+..snip..</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_docs_タスク">5.3. <code>docs</code> タスク</h3>
+<div class="paragraph">
+<p><code>src/docs/asciidoc</code> 配下の Asciidoc 文書を HTML/PDF 文書に変換し <code>docs</code> フォルダに配置するタスクです。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>docs</code> タスク</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">./gradlew docs</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>実際の動作としては Asciidoctor Gradle Plugin の <code>asciidoctor</code> 及び <code>asciidoctorPdf</code> タスクが文書変換処理を担います。</p>
+</div>
+<div class="paragraph">
+<p><code>asciidoctor</code> 及び <code>asciidoctorPdf</code> タスクの定義は次のとおりです。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>asciidoctor</code> タスク定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">asciidoctor</span> <span class="o">{</span>
+    <span class="n">dependsOn</span> <span class="n">asciidoctorGemsPrepare</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">baseDir</span> <span class="nf">file</span><span class="o">(</span><span class="s1">'src/docs/asciidoc'</span><span class="o">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">sources</span> <span class="o">{</span>
+        <span class="n">include</span> <span class="s1">'index.adoc'</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="o">}</span>
+    <span class="n">resources</span> <span class="o">{</span>
+        <span class="n">from</span><span class="o">(</span><span class="s1">'src/docs/asciidoc'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">include</span> <span class="s1">'Chapter*/images/*'</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">asciidoctorj</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s1">'stylesdir'</span><span class="o">:</span> <span class="s1">'@style'</span><span class="o">,</span>
+            <span class="s1">'stylesheet'</span><span class="o">:</span> <span class="s1">'asciidoctor.css'</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>追加の Ruby スクリプトを最初にロードします。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Asciidoc 文書の起点フォルダです。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Asciidoc 文書の起点ファイルです。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>画像リソース定義です。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>HTML 文書用のスタイル CSS 定義です。</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>asciidoctorPdf</code> タスク定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">asciidoctorPdf</span> <span class="o">{</span>
+    <span class="n">dependsOn</span> <span class="n">asciidoctorGemsPrepare</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">baseDir</span> <span class="nf">file</span><span class="o">(</span><span class="s1">'src/docs/asciidoc'</span><span class="o">)</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="n">fontsDir</span> <span class="nf">file</span><span class="o">(</span><span class="s1">'src/docs/asciidoc/@font'</span><span class="o">)</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="n">sources</span> <span class="o">{</span>
+        <span class="n">include</span> <span class="s1">'index.adoc'</span> <i class="conum" data-value="4"></i><b>(4)</b>
+    <span class="o">}</span>
+    <span class="n">asciidoctorj</span> <span class="o">{</span>
+        <span class="n">attributes</span> <span class="s1">'pdf-themesdir'</span><span class="o">:</span> <span class="s2">"@style"</span><span class="o">,</span>
+            <span class="s1">'pdf-theme'</span><span class="o">:</span> <span class="s1">'pdf-theme.yml'</span> <i class="conum" data-value="5"></i><b>(5)</b>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>追加の Ruby スクリプトを最初にロードします。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Asciidoc 文書の起点フォルダです。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>PDF 文書用のフォントフォルダ定義です。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Asciidoc 文書の起点ファイルです。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>PDF 文書のテーマ定義です。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="注記"></i>
+</td>
+<td class="content">
+<code>asciidoctor</code> 及び <code>asciidoctorPdf</code> タスクの実行結果出力先は、プロジェクトフォルダ下の <code>build</code> テンポラリーフォルダです。なお、ビルドを初期化する <code>clean</code> タスクの実態は <code>build</code> フォルダ内のファイルを削除する処理になっています。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>また <code>asciidoctorj</code> 定義では、文書変換スクリプトで使われる AsciidoctorJ や周辺モジュールのバージョン設定をしています。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>asciidoctorj</code> 定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">asciidoctorj</span> <span class="o">{</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s1">'2.5.6'</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">modules</span> <span class="o">{</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="na">use</span><span class="o">()</span>
+        <span class="n">diagram</span><span class="o">.</span><span class="na">version</span> <span class="s1">'2.2.8'</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="n">pdf</span><span class="o">.</span><span class="na">version</span> <span class="s1">'1.6.2'</span> <i class="conum" data-value="3"></i><b>(3)</b>
+    <span class="o">}</span>
+    <span class="n">requires</span> <span class="o">=</span> <span class="o">[</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="s1">'asciidoctor-diagram'</span><span class="o">,</span>
+        <span class="s1">'prawn_svg_font_patch'</span><span class="o">,</span> <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="s1">'asciidoctor/nabetani'</span><span class="o">,</span> <i class="conum" data-value="6"></i><b>(6)</b>
+    <span class="o">]</span>
+    <span class="n">attributes</span> <span class="s1">'source-highlighter'</span><span class="o">:</span> <span class="s1">'rouge'</span> <i class="conum" data-value="7"></i><b>(7)</b>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>AsciidoctorJ のバージョン指定します。最新バージョンを指定できますが、破壊的変更がある場合にビルドが失敗する場合があるので、既存の文書のビルドでバージョンを上げる際には注意します。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>ダイアログ記法を処理する asciidoctor-diagram のバージョン指定です。最新バージョンが指定できます。こちらも既存文書でバージョンを上げる場合は、破壊的変更に注意します。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>PDF 文書変換をする asciidoctor-pdf のバージョン指定です。日本語禁則処理が <code>1.6.2</code> に依存しているため本ビルドでは固定です。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Asciidoctor が使う Ruby スクリプトの定義です。追加のスクリプトがある場合は <code>build.gradle</code> ファイル上部の <code>dependencies</code> 部分で定義し <code>gradle/repos/gem</code> 配下に Ruby Gem として配置します。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>ダイアログ記法で使われるフォントを日本語にパッチするスクリプトです。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>PDF 文書で日本語禁則処理を行う asciidoctor-nabetani の導入定義です。asciidoctor-pdf <code>1.6.2</code> に依存します。</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Asciidoc 文書変換で追加の処理が必要な場合は、Asciidoc カスタムコンバータを作成し Ruby Gem 形式でプロジェクトフォルダに配置しビルドに組み込んで実行できます。カスタムコンバータの詳細については以下のドキュメントを参照してください。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="https://docs.asciidoctor.org/asciidoctor/latest/convert/custom/" class="bare">https://docs.asciidoctor.org/asciidoctor/latest/convert/custom/</a></p>
+</div>
+<div class="paragraph">
+<p>Asciidoctor supports custom converters. If you want to produce an output format that’s not supported by a built-in converter or any of the available converters in the ecosystem, you can create and use your own converter.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Custom Converter | Asciidoctor Docs
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>起動タスクとなっている <code>docs</code> タスクでは、ここまでで解説した Asciidoctor Gradle Plugin が事前実行依存として設定してあり、文書変換処理完了後に <code>build</code> フォルダに生成された文書及びリソースを <code>docs</code> フォルダにコピーします。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>docs</code> タスク定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">tasks</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="s1">'docs'</span><span class="o">,</span> <span class="n">Copy</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">dependsOn</span><span class="o">(</span><span class="n">asciidoctor</span><span class="o">,</span> <span class="n">asciidoctorPdf</span><span class="o">,</span> <span class="n">cleanDocs</span><span class="o">)</span>
+    <span class="n">group</span> <span class="s1">'documentation'</span>
+    <span class="n">description</span> <span class="s1">'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'</span>
+    <span class="n">from</span> <span class="s1">'build/docs/asciidoc/index.html'</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">from</span> <span class="s1">'build/docs/asciidocPdf/index.pdf'</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="n">from</span><span class="o">(</span><span class="s1">'build/docs/asciidoc/'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="n">include</span> <span class="s1">'Chapter*/images/*'</span>
+    <span class="o">}</span>
+    <span class="n">into</span> <span class="s1">'docs/'</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>build に生成された PDF/HML 文書を docs にコピーします。</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>HTML 文書用に build に出力された画像、ダイアログ記法で生成された SVG、表紙裏表紙カバー PDF を含む、各 images 配下の全ての画像リソースを docs にコピーします。</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>また、<code>docs</code> の依存にひとつとなっている <code>cleanDocs</code> タスクでは <code>docs</code> フォルダのクリーンアップを行っています。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>cleanDocs</code> タスク定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">tasks</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="s1">'cleanDocs'</span><span class="o">,</span> <span class="n">Delete</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">group</span> <span class="s1">'documentation'</span>
+    <span class="n">description</span> <span class="s1">'Task to delete all files and directories under docs/'</span>
+    <span class="c1">// docs/ ディレクトリは残しその配下のファイルとディレクトリを全て削除</span>
+    <span class="n">delete</span> <span class="nf">file</span><span class="o">(</span><span class="s1">'docs/'</span><span class="o">).</span><span class="na">listFiles</span><span class="o">()</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+本項で現れたビルドスクリプト中に現れるパスを変更することで、プロジェクトフォルダのファイル・フォルダ構成を変更できます。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checkpdfinfo_タスク">5.4. <code>checkPdfInfo</code> タスク</h3>
+<div class="paragraph">
+<p><code>checkPdfInfo</code> タスクは <code>docs/index.pdf</code> に生成された PDF のメタ情報を出力します。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>checkPdfInfo</code> タスクの実行</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">./gradlew <span class="nt">-q</span> checkPdfInfo</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<code>gradlew</code> の -q`` オプションは Gradle からのビルドメッセージ出力を抑止し、タスクからの出力を見やすくするオプションです。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>このタスクの出力結果は次のようになります。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>checkPdfInfo</code> タスクの出力例</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">Content-Type: application/pdf
+access_permission:assemble_document: <span class="nb">true
+</span>access_permission:can_modify: <span class="nb">true
+</span>access_permission:can_print: <span class="nb">true
+</span>access_permission:can_print_degraded: <span class="nb">true
+</span>access_permission:extract_content: <span class="nb">true
+</span>access_permission:extract_for_accessibility: <span class="nb">true
+</span>access_permission:fill_in_form: <span class="nb">true
+</span>access_permission:modify_annotations: <span class="nb">true
+</span>dc:creator: https://github.com/h1romas4/asciidoctor-gradle-template
+dc:format: application/pdf<span class="p">;</span> <span class="nv">version</span><span class="o">=</span>1.4
+dc:title: AsciidoctorとGradleでつくる文書執筆環境
+dcterms:created: 2023-10-04T06:17:20Z
+dcterms:modified: 2023-09-25T08:40:46Z
+pdf:PDFVersion: 1.4
+pdf:annotationSubtypes: Link
+pdf:annotationTypes: null
+pdf:charsPerPage: 0
+pdf:containsDamagedFont: <span class="nb">false
+</span>pdf:containsNonEmbeddedFont: <span class="nb">false
+</span>pdf:docinfo:created: 2023-10-04T06:17:20Z
+pdf:docinfo:creator: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:docinfo:creator_tool: Asciidoctor PDF 1.6.2, based on Prawn 2.4.0
+pdf:docinfo:modified: 2023-09-25T08:40:46Z
+pdf:docinfo:producer: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:docinfo:title: AsciidoctorとGradleでつくる文書執筆環境
+pdf:encrypted: <span class="nb">false
+</span>pdf:hasCollection: <span class="nb">false
+</span>pdf:hasMarkedContent: <span class="nb">false
+</span>pdf:hasXFA: <span class="nb">false
+</span>pdf:hasXMP: <span class="nb">false
+</span>pdf:num3DAnnotations: 0
+pdf:overallPercentageUnmappedUnicodeChars: 0.0
+pdf:producer: https://github.com/h1romas4/asciidoctor-gradle-template
+pdf:totalUnmappedUnicodeChars: 0
+pdf:unmappedUnicodeCharsPerPage: 0
+xmp:CreatorTool: Asciidoctor PDF 1.6.2, based on Prawn 2.4.0
+xmpTPg:NPages: 77</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>PDF 文書のメタ情報には、主に <code>src/docs/asciidoc/index.adoc</code> で設定したタイトルや著者名などが記録されますが、本タスクで正しく設定されているかを確認できます。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checksyncimage_タスク">5.5. <code>checkSyncImage</code> タスク</h3>
+<div class="paragraph">
+<p><code>checkSyncImage</code> タスクは、Asciidoc 文書から使われている画像リソースと <code>src/docs/asciidoc</code> 内のファイルを比較し一致性を出力します。特に未使用画像を検出するのに便利なタスクです。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>checkSyncImage</code> タスクの実行</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">./gradlew <span class="nt">-q</span> checkSyncImage</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このタスクの出力結果は次のようになります。</p>
+</div>
+<div class="listingblock">
+<div class="title">手順. <code>checkPdfInfo</code> タスクの出力例</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash">::Unused images:
+Chapter01/images/unused-image-1.png
+Chapter03/images/unused-image-1.png
+::Image not found:
+Chapter01/images/2023-09-17-13-43-06.png</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>それぞれの出力項目の内容は次のとおりです。なお、タスクの実行で何も出力されず正常終了した場合は、Asciidoc 文書と画像ファイルが整合していることを示します。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>::Unused images:</code></dt>
+<dd>
+<p>Asciidoc 文書からリンクされていない未使用画像ファイルの一覧です。これらは不要なファイルとして削除できます。</p>
+</dd>
+<dt class="hdlist1"><code>::Image not found:</code></dt>
+<dd>
+<p>Asciidoc 文書からリンクされているが存在しない画像ファイルの一覧です。画像リンク切れファイルはビルド時の <code>docs</code> タスクでも警告となり、文書を修正する必要があります。</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="ヒント"></i>
+</td>
+<td class="content">
+<code>::Unused images:</code> に申告されたファイルは未使用ながら <code>docs</code> 配下の HTML 文書用画像フォルダに転送されます。HTML 文書の配布を行う場合は、本タスクで検出して <code>src/docs/asciidoc</code> フォルダから削除後、再度文書のビルドをしてクリーンアップすると良いでしょう。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>本タスクの設定は、<code>build.gradle</code> の次の記述で行われています。</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>build.gradle</code> の <code>checkSyncImage</code> タスク定義</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="groovy"><span class="n">tasks</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="s1">'checkSyncImage'</span><span class="o">,</span> <span class="n">SyncImageTask</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">group</span> <span class="s1">'documentation'</span>
+    <span class="n">description</span> <span class="s1">'Utility to check the consistency of Asciidoc text and file system images'</span>
+    <span class="c1">// 起点の文書ディレクトリ</span>
+    <span class="n">baseDir</span> <span class="o">=</span> <span class="n">file</span><span class="o">(</span><span class="s1">'src/docs/asciidoc'</span><span class="o">)</span>
+    <span class="c1">// 起点の Asciidoc 文書（include を辿る）</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="s1">'index.adoc'</span>
+    <span class="c1">// ファイルシステム上で画像として認識する拡張子</span>
+    <span class="c1">// 文書内で image:: として使われているファイル全ての拡張子を設定すること</span>
+    <span class="n">imageExt</span> <span class="o">=</span> <span class="o">[</span><span class="s1">'png'</span><span class="o">,</span> <span class="s1">'jpg'</span><span class="o">,</span> <span class="s1">'jpeg'</span><span class="o">,</span> <span class="s1">'svg'</span><span class="o">]</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>画像ファイルは <code>imageExt</code> 変数で設定された拡張子をもって識別しています。</p>
+</div>
+<div class="paragraph">
+<p>もし設定されている以外の画像拡張子が Asciidoc 文書で使われている場合は、<code>::Image not found:</code> としてリンク切れで認識されます。必要に応じて設定を修正してください。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_奥付">奥付</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -4586,8 +5139,8 @@ mindmapDiagram {
 </div>
 <div id="footer">
 <div id="footer-text">
-バージョン 4.1.0<br>
-最終更新 2023-09-25 17:40:46 +0900
+バージョン 4.2.0<br>
+最終更新 2023-10-15 10:54:52 +0900
 </div>
 </div>
 </body>
