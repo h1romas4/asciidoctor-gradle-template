@@ -1,1 +1,12 @@
+pluginManagement {
+    repositories {
+        // https://github.com/asciidoctor/asciidoctor-gradle-plugin/issues/679#issuecomment-2252292062
+        maven {
+            url "https://archiva-repository.apache.org/archiva/repository/public/"
+        }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
 rootProject.name = 'asciidoc-template'
