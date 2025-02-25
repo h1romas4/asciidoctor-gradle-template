@@ -1,3 +1,13 @@
+buildscript {
+    configurations.classpath {
+        resolutionStrategy.dependencySubstitution {
+            // https://github.com/asciidoctor/asciidoctor-gradle-plugin/issues/679#issuecomment-2371010585
+            // fix dependencies (Could not find io.github.rburgst:okhttp-digest:1.10)
+            substitute module('com.burgstaller:okhttp-digest') using module('io.github.rburgst:okhttp-digest:1.21')
+        }
+    }
+}
+
 plugins {
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
     id 'org.asciidoctor.jvm.pdf' version '3.3.2'
