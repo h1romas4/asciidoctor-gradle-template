@@ -4,6 +4,7 @@
         "EditorConfig.EditorConfig",
         "mushan.vscode-paste-image",
         "anwar.papyrus-pdf",
-        "jebbs.plantuml"
+        "jebbs.plantuml",
+        "hediet.vscode-drawio"
     ]
 }
