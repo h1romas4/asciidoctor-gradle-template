@@ -102,6 +102,8 @@ Asciidoc::
 Diagram::
     * PlantUML - Multi(MIT/Apache/BSD/EPL/GPLv3/LGPL) - https://github.com/plantuml/plantuml
     * ditaa - LGPL-3.0 license - https://github.com/stathissideris/ditaa
+    * Draw.io - Apache License 2.0 - https://github.com/jgraph/drawio
+    * vscode-drawio - GPL-3.0 license - https://github.com/hediet/vscode-drawio
 Java Development Kit & Build Tool::
     * Eclipse Temurin - Multi(Apache License 2.0/GPLv2+CE/GPLv2+Assembly) - https://adoptium.net/about/
     * SDKMAN - Apache License 2.0 - https://sdkman.io/

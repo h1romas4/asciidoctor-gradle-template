@@ -870,6 +870,12 @@ pre.rouge {
 <li>
 <p>ditaa - LGPL-3.0 license - <a href="https://github.com/stathissideris/ditaa" class="bare">https://github.com/stathissideris/ditaa</a></p>
 </li>
+<li>
+<p>Draw.io - Apache License 2.0 - <a href="https://github.com/jgraph/drawio" class="bare">https://github.com/jgraph/drawio</a></p>
+</li>
+<li>
+<p>vscode-drawio - GPL-3.0 license - <a href="https://github.com/hediet/vscode-drawio" class="bare">https://github.com/hediet/vscode-drawio</a></p>
+</li>
 </ul>
 </div>
 </dd>
@@ -4551,6 +4557,37 @@ mindmapDiagram {
 <img src="Chapter04/images/diag-mindmap-sample1.svg" alt="diag mindmap sample1" width="394" height="286">
 </div>
 </div>
+<div style="page-break-after: always;"></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Draw.io でのダイアグラム作成</div>
+<div class="paragraph">
+<p>Draw.io はオープンソースで提供されるウェブブラウザ上で任意のダイアグラムを描画できるツールです。VS Code では <code>hediet.vscode-drawio</code> 拡張を導入することで、次のように VS Code 上でオフライン Draw.io エディタが使用可能です。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/drawio-01.png" alt="drawio 01" width="90%">
+</div>
+</div>
+<div class="paragraph">
+<p>本手順では Draw.io で作成した SVG ファイルを PDF 文書に埋め込んだ際に日本語が文字化けしないように事前設定がされています。Draw.io 上のテキストフォント設定は標準から変更せずに <code>Helvetica</code> を指定したままにしてください。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/hello.drawio.svg" alt="hello.drawio">
+</div>
+</div>
+<div class="paragraph">
+<p>また、もし PDF 文書に挿入した SVG 画像に <code>Text is not SVG - cannot display</code> という文字がオーバーレイされてしまう場合は、<span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Properties</b></span> から <b class="button">Disable SVG 1.1 warning</b> にチェックをつけ SVG 画像を保存し直してください。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Chapter04/images/drawio-02.png" alt="drawio 02">
+</div>
+</div>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -5140,7 +5177,7 @@ Chapter01/images/2023-09-17-13-43-06.png</code></pre>
 <div id="footer">
 <div id="footer-text">
 バージョン 4.2.0<br>
-最終更新 2023-10-15 10:54:52 +0900
+最終更新 2024-11-21 18:49:38 +0900
 </div>
 </div>
 </body>
