@@ -12,7 +12,8 @@
         "asciidoctor.asciidoctor-vscode",
         "EditorConfig.EditorConfig",
         "anwar.papyrus-pdf",
-        "jebbs.plantuml"
+        "jebbs.plantuml",
+        "hediet.vscode-drawio"
       ]
     }
   }
