@@ -16,6 +16,18 @@
             }
         },
         {
+            "label": "Check sync image between links and resources",
+            "type": "shell",
+            "command": "./gradlew -q checkSyncImage",
+            "windows": {
+                "command": ".\\gradlew.bat -q checkSyncImage"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
             "label": "docker run plantuml-server",
             "type": "shell",
             "command": "docker run --name plantuml_server -d --rm -p 8080:8080 plantuml/plantuml-server:jetty",
