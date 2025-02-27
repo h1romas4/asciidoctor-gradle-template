@@ -942,7 +942,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-22.04, windows-latest, macos-latest ] # <1>
+        os: [ ubuntu-24.04, windows-latest, macos-latest ] # <1>
         java: [ '11', '17', '21' ] # <2>
 ----
 
