@@ -191,7 +191,7 @@ ____
 
 [source, bash]
 [caption="手順. "]
-.WSL2 Ubuntu 22.04 への VS Code サーバの導入
+.WSL2 Ubuntu 24.04 への VS Code サーバの導入
 ----
 $ code # <1>
 ----
@@ -203,7 +203,7 @@ $ code # <1>
 
 [source, bash]
 [caption="手順. "]
-.WSL2 Ubuntu 22.04 からの VS Code 起動
+.WSL2 Ubuntu 24.04 からの VS Code 起動
 ----
 $ cd asciidoctor-gradle-template <1>
 $ code . <2>
