@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="https://github.com/h1romas4/asciidoctor-gradle-template">
 <title>AsciidoctorとGradleでつくる文書執筆環境</title>
 <style>
@@ -1273,13 +1273,13 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <div class="sect3">
 <h4 id="_windows_環境の_wsl2_上の_ubuntu_を使う">1.2.1. Windows 環境の WSL2 上の Ubuntu を使う</h4>
 <div class="paragraph">
-<p>Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 22.04 を使うことでも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。</p>
+<p>Windows 環境では WSL2 Linux 仮想環境上の Ubuntu 24.04 を使うことでも環境構築が可能です。メインの執筆環境が macOS や Ubuntu の場合に、Windows 上でも WSL2 Ubuntu を使うと各種操作が統一できて便利かもしれません。</p>
 </div>
 <div class="paragraph">
-<p>WSL2 に Ubuntu 22.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。</p>
+<p>WSL2 に Ubuntu 24.04 LTS が導入済みであることを前提に、環境構築手順は次のようになります。</p>
 </div>
 <div class="listingblock">
-<div class="title">手順. WSL2 Ubuntu 22.04 LTS の初期設定</div>
+<div class="title">手順. WSL2 Ubuntu 24.04 LTS の初期設定</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">sudo </span>apt update
 <span class="nv">$ </span><span class="nb">sudo </span>apt upgrade
@@ -1325,7 +1325,7 @@ Gradle は JAVA_HOME 環境変数を元に Java の実行環境を探すため�
 <p>次に、通常の Ubuntu の手順と同様に sdkman で Java 環境の導入を行います。</p>
 </div>
 <div class="listingblock">
-<div class="title">手順. WSL2 Ubuntu 22.04 LTS への Java の導入</div>
+<div class="title">手順. WSL2 Ubuntu 24.04 LTS への Java の導入</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-s</span> <span class="s2">"https://get.sdkman.io"</span> | bash <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="nv">$ </span><span class="nb">source</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.sdkman/bin/sdkman-init.sh"</span> <i class="conum" data-value="2"></i><b>(2)</b>
@@ -1713,7 +1713,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>次に、WSL2 Ubuntu のターミナル画面で <code>code</code> コマンドを入力することで WSL2 Ubuntu 上で VS Code バックエンドの初期セットアップが動作し、その後 Windows 上で VS Code フロントエンド画面が立ち上がります。</p>
 </div>
 <div class="listingblock">
-<div class="title">手順. WSL2 Ubuntu 22.04 への VS Code サーバの導入</div>
+<div class="title">手順. WSL2 Ubuntu 24.04 への VS Code サーバの導入</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span>code <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
@@ -1733,7 +1733,7 @@ You get all the productivity of Windows while developing with Linux-based tools,
 <p>ここから先の手順で VS Code を起動する場合は同様に WSL2 Ubuntu のターミナル画面から <code>code</code> コマンドで起動してください。</p>
 </div>
 <div class="listingblock">
-<div class="title">手順. WSL2 Ubuntu 22.04 からの VS Code 起動</div>
+<div class="title">手順. WSL2 Ubuntu 24.04 からの VS Code 起動</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>asciidoctor-gradle-template <i class="conum" data-value="1"></i><b>(1)</b>
 <span class="nv">$ </span>code <span class="nb">.</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
@@ -3034,7 +3034,7 @@ Git プッシュの操作を行わずにウェブブラウザーを閉じてし�
   <span class="na">build</span><span class="pi">:</span>
     <span class="na">strategy</span><span class="pi">:</span>
       <span class="na">matrix</span><span class="pi">:</span>
-        <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">ubuntu-22.04</span><span class="pi">,</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="na">os</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">ubuntu-24.04</span><span class="pi">,</span> <span class="nv">windows-latest</span><span class="pi">,</span> <span class="nv">macos-latest</span> <span class="pi">]</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="na">java</span><span class="pi">:</span> <span class="pi">[</span> <span class="s1">'</span><span class="s">11'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">17'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">21'</span> <span class="pi">]</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
@@ -4562,7 +4562,7 @@ mindmapDiagram {
 <div class="content">
 <div class="title">Draw.io でのダイアグラム作成</div>
 <div class="paragraph">
-<p>Draw.io はオープンソースで提供されるウェブブラウザ上で任意のダイアグラムを描画できるツールです。VS Code では <code>hediet.vscode-drawio</code> 拡張を導入することで、次のように VS Code 上でオフライン Draw.io エディタが使用可能です。</p>
+<p>Draw.io はオープンソースで提供されるウェブブラウザ上で任意のベクター画像を描画できるツールです。VS Code では <code>hediet.vscode-drawio</code> 拡張を導入することで、次のように VS Code 上でオフライン Draw.io エディタが使用可能です。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4570,7 +4570,7 @@ mindmapDiagram {
 </div>
 </div>
 <div class="paragraph">
-<p>本手順では Draw.io で作成した SVG ファイルを PDF 文書に埋め込んだ際に日本語が文字化けしないように事前設定がされています。Draw.io 上のテキストフォント設定は標準から変更せずに <code>Helvetica</code> を指定したままにしてください。</p>
+<p>本手順では Draw.io で作成した SVG ファイルを PDF 文書に埋め込んだ際に日本語が文字化けしないように事前設定がされています。Draw.io で図形編集する場合はテキストフォントを標準から変更せずに <code>Helvetica</code> を維持してください。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4578,7 +4578,7 @@ mindmapDiagram {
 </div>
 </div>
 <div class="paragraph">
-<p>また、もし PDF 文書に挿入した SVG 画像に <code>Text is not SVG - cannot display</code> という文字がオーバーレイされてしまう場合は、<span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Properties</b></span> から <b class="button">Disable SVG 1.1 warning</b> にチェックをつけ SVG 画像を保存し直してください。</p>
+<p>また、もし PDF 文書に挿入した SVG 画像に <code>Text is not SVG - cannot display</code> という文字がオーバーレイされてしまう場合は、<span class="menuseq"><b class="menu">File</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Properties</b></span> から <b class="button">Disable SVG 1.1 warning</b> にチェックをつけファイルを保存し直してください。</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -5139,7 +5139,7 @@ Chapter01/images/2023-09-17-13-43-06.png</code></pre>
 <dl>
 <dt class="hdlist1">Asciidoctor と Gradle でつくる執筆環境</dt>
 <dd>
-<p>2023年 10月 1日 v4.1.0 発行</p>
+<p>2025年 2月 27日 v4.2.0 発行</p>
 </dd>
 </dl>
 </div>
