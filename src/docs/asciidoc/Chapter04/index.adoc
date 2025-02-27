@@ -403,15 +403,15 @@ include::puml/diag-mindmap-sample1.puml[]
 
 .Draw.io でのダイアグラム作成
 ****
-Draw.io はオープンソースで提供されるウェブブラウザ上で任意のダイアグラムを描画できるツールです。VS Code では `hediet.vscode-drawio` 拡張を導入することで、次のように VS Code 上でオフライン Draw.io エディタが使用可能です。
+Draw.io はオープンソースで提供されるウェブブラウザ上で任意のベクター画像を描画できるツールです。VS Code では `hediet.vscode-drawio` 拡張を導入することで、次のように VS Code 上でオフライン Draw.io エディタが使用可能です。
 
 image::drawio-01.png[pdfwidth=65%, width=90%]
 
-本手順では Draw.io で作成した SVG ファイルを PDF 文書に埋め込んだ際に日本語が文字化けしないように事前設定がされています。Draw.io 上のテキストフォント設定は標準から変更せずに `Helvetica` を指定したままにしてください。
+本手順では Draw.io で作成した SVG ファイルを PDF 文書に埋め込んだ際に日本語が文字化けしないように事前設定がされています。Draw.io で図形編集する場合はテキストフォントを標準から変更せずに `Helvetica` を維持してください。
 
 image::hello.drawio.svg[pdfwidth=40%]
 
-また、もし PDF 文書に挿入した SVG 画像に `Text is not SVG - cannot display` という文字がオーバーレイされてしまう場合は、menu:File[Properties] から btn:[Disable SVG 1.1 warning] にチェックをつけ SVG 画像を保存し直してください。
+また、もし PDF 文書に挿入した SVG 画像に `Text is not SVG - cannot display` という文字がオーバーレイされてしまう場合は、menu:File[Properties] から btn:[Disable SVG 1.1 warning] にチェックをつけファイルを保存し直してください。
 
 image::drawio-02.png[pdfwidth=40%]
 ****
