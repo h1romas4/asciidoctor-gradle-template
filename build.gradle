@@ -63,7 +63,7 @@ asciidoctorj {
     version = '2.5.6'
     modules {
         diagram.use()
-        diagram.version '2.2.8'
+        diagram.version '2.3.1'
         // If asciidoctor-nabetani is used,
         // asciidoctor-pdf must be specified as 1.5.3 - 1.6.2.
         pdf.version '1.6.2'
