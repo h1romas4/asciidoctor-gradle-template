@@ -29,7 +29,7 @@ dependencies {
 
 asciidoctor {
     dependsOn asciidoctorGemsPrepare
-    baseDir file('src/docs/asciidoc')
+    baseDir = file('src/docs/asciidoc')
     sources {
         include 'index.adoc'
     }
@@ -46,8 +46,8 @@ asciidoctor {
 
 asciidoctorPdf {
     dependsOn asciidoctorGemsPrepare
-    baseDir file('src/docs/asciidoc')
-    fontsDir file('src/docs/asciidoc/@font')
+    baseDir = file('src/docs/asciidoc')
+    fontsDir = file('src/docs/asciidoc/@font')
     sources {
         include 'index.adoc'
     }
@@ -84,8 +84,8 @@ asciidoctorj {
  * docs/ 配下のファイル及びディレクトリを全て削除するタスク
  */
 tasks.register('cleanDocs', Delete) {
-    group 'documentation'
-    description 'Task to delete all files and directories under docs/'
+    group = 'documentation'
+    description = 'Task to delete all files and directories under docs/'
     // docs/ ディレクトリは残しその配下のファイルとディレクトリを全て削除
     delete file('docs/').listFiles()
 }
@@ -133,8 +133,8 @@ tasks.register('checkPdfInfo', PdfInfoTask) {
  */
 tasks.register('docs', Copy) {
     dependsOn(asciidoctor, asciidoctorPdf, cleanDocs)
-    group 'documentation'
-    description 'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'
+    group = 'documentation'
+    description = 'Generate HTML/PDF documents from Asciidoc documents and output them under docs/'
     // build に生成された PDF/HML 文書を docs にコピー
     from 'build/docs/asciidoc/index.html'
     from 'build/docs/asciidocPdf/index.pdf'
